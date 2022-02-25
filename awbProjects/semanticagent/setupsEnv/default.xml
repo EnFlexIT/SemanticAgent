@@ -19,13 +19,5 @@
                 <graphElementIDs>PP1</graphElementIDs>
             </value>
         </entry>
-        <entry>
-            <key>CeExAg</key>
-            <value>
-                <id>CeExAg</id>
-                <type>CEA</type>
-                <graphElementIDs>PP2</graphElementIDs>
-            </value>
-        </entry>
     </networkComponentList>
 </networkModelFileContent>
