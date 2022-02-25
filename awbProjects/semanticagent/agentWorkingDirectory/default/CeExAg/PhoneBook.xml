@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<phoneBook>
+    <phoneBookEntries>
+        <entry>
+            <key>A1</key>
+            <value>
+                <AID>
+                    <localName>A1</localName>
+                    <name>A1@139.11.222.18:1099/JADE</name>
+                </AID>
+                <componentType>SemanticAgent</componentType>
+                <controllable>false</controllable>
+                <mtpAddresses>http://toersleffsim:7778/acc</mtpAddresses>
+            </value>
+        </entry>
+        <entry>
+            <key>A2</key>
+            <value>
+                <AID>
+                    <localName>A2</localName>
+                    <name>A2@139.11.222.18:1099/JADE</name>
+                </AID>
+                <componentType>SemanticAgent</componentType>
+                <controllable>false</controllable>
+                <mtpAddresses>http://toersleffsim:7778/acc</mtpAddresses>
+            </value>
+        </entry>
+    </phoneBookEntries>
+</phoneBook>

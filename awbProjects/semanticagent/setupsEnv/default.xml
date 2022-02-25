@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<networkModelFileContent>
+    <layoutID>XvmyWBmhSn</layoutID>
+    <mapSettingsList/>
+    <networkComponentList>
+        <entry>
+            <key>A1</key>
+            <value>
+                <id>A1</id>
+                <type>SemanticAgent</type>
+                <graphElementIDs>PP0</graphElementIDs>
+            </value>
+        </entry>
+        <entry>
+            <key>A2</key>
+            <value>
+                <id>A2</id>
+                <type>SemanticAgent</type>
+                <graphElementIDs>PP1</graphElementIDs>
+            </value>
+        </entry>
+        <entry>
+            <key>CeExAg</key>
+            <value>
+                <id>CeExAg</id>
+                <type>CEA</type>
+                <graphElementIDs>PP2</graphElementIDs>
+            </value>
+        </entry>
+    </networkComponentList>
+</networkModelFileContent>

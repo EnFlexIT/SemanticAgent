@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:energyontology="http://www.agenthygrid.com/ontologies/energyontology.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <owl:Ontology rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl">
+    <rdfs:comment>An Ontology for test purposes in a multi agent system of energy agents. The domain of interest is therefore the energy system.
+
+Konzept Knoten - sind knoten dasselbe wie energie-agenten?
+Nein, HyGrid Szenario anschauen</rdfs:comment>
+  </owl:Ontology>
+  <rdfs:Datatype rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#batteryVoltage">
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdfs:Datatype>
+  <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#EnergyStore">
+    <rdfs:comment>Class of energy storages</rdfs:comment>
+    <owl:disjointWith>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#Voltage"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#EnergyAgent">
+    <rdfs:comment>Class of Energy Agents</rdfs:comment>
+    <owl:disjointWith>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#Voltage"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#EnergyStore"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#TimeStamp">
+    <rdfs:comment>derzeit nicht verwendet, da zeitstempel als dataproperty modelliert sind</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#State">
+    <rdfs:comment>Class of states</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#Power">
+    <rdfs:comment>Class of power</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#OutgoingBus">
+    <rdfs:comment>Abgangsschiene</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#Battery">
+    <rdfs:subClassOf rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#EnergyStore"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#EnergyAgent"/>
+        <owl:onProperty>
+          <owl:TransitiveProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#isBatteryOf"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#Voltage">
+    <rdfs:comment>Subclass of: Versuch, alle vier Eigenschaften in eine Subclass zu bringen</rdfs:comment>
+    <rdfs:comment>Class of voltages</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasLowerValidityBoundary"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasTimestamp"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasUpperValidityBoundary"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasVoltageValue"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasState">
+    <rdfs:range rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#State"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#isStateOf"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#isBatteryLevelOf">
+    <rdfs:comment>Batterieladestand in Prozent</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#Battery"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasBatteryLevel">
+    <rdfs:comment>Batterieladestand in Prozent</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#Battery"/>
+    <owl:inverseOf rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#isBatteryLevelOf"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasTimeStamp">
+    <rdfs:comment>Anwendung dieser Property nur, wenn TimeStamp als Instanz einer eigenen Klasse Zeitstempel modelliert wird</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#TimeStamp"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#isStateOf">
+    <rdfs:comment></rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#State"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#isPowerOf">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#isVoltageOf">
+    <rdfs:domain rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#Voltage"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasUpperValidityBoundary">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasStateValue">
+    <rdfs:comment>gibt an, ob Soll erreicht (=true) oder nicht (=false)</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasPower">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    <owl:inverseOf rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#isPowerOf"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasLowerValidityBoundary">
+    <rdfs:comment>müssen die disjoint sein?</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+  </owl:DatatypeProperty>
+  <owl:TransitiveProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#isBatteryOf">
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#isEnergyStorageOf"/>
+    </rdfs:subPropertyOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasEnergyStorage">
+    <rdfs:comment>has energy storage, connects two individuals of classes</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#EnergyAgent"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#isEnergyStorageOf"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasBattery">
+    <owl:inverseOf rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#isBatteryOf"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#hasEnergyStorage"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#isEnergyStorageOf">
+    <rdfs:range rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#EnergyAgent"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:FunctionalProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasLoadStatus">
+    <rdfs:comment>hat Ladezustand einer Batterie in Prozent</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasVoltage">
+    <rdfs:range rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#Voltage"/>
+    <owl:inverseOf rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#isVoltageOf"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasTimestamp">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#hasVoltageValue">
+    <rdfs:comment>Weisst einer Instanz von Klasse Voltage einen Datenwert zu (integer)</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#EnergyAgent"/>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#EnergyStore"/>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#OutgoingBus"/>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#Power"/>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#State"/>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#TimeStamp"/>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#Voltage"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <energyontology:State rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#stateOfBatteryOfAgentA">
+    <energyontology:hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</energyontology:hasStateValue>
+    <energyontology:isStateOf>
+      <energyontology:Battery rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#batteryOfAgentA">
+        <energyontology:isBatteryOf>
+          <energyontology:EnergyAgent rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#agentA">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </energyontology:EnergyAgent>
+        </energyontology:isBatteryOf>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </energyontology:Battery>
+    </energyontology:isStateOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </energyontology:State>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#EnergyAgent"/>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#EnergyStore"/>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#OutgoingBus"/>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#Power"/>
+      <owl:Class rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#Voltage"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <energyontology:Voltage rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#voltageOfBatteryOfAgentA">
+    <energyontology:hasVoltageValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >25</energyontology:hasVoltageValue>
+    <energyontology:hasUpperValidityBoundary rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >30</energyontology:hasUpperValidityBoundary>
+    <energyontology:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp"
+    >2020-04-14T12:00:00Z</energyontology:hasTimestamp>
+    <energyontology:hasLowerValidityBoundary rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >0</energyontology:hasLowerValidityBoundary>
+    <energyontology:isVoltageOf rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#batteryOfAgentA"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </energyontology:Voltage>
+  <owl:NamedIndividual rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#binIchEineBatterie">
+    <rdfs:comment>ReasoningTest: soll klasse Battery zugeordnet werden, da object property isbatteryof agentA zugewiesen</rdfs:comment>
+    <energyontology:isBatteryOf rdf:resource="http://www.agenthygrid.com/ontologies/energyontology.owl#agentA"/>
+  </owl:NamedIndividual>
+  <energyontology:Voltage rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#voltageOfBatteryOfAgentB">
+    <energyontology:hasVoltageValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >24</energyontology:hasVoltageValue>
+    <energyontology:hasUpperValidityBoundary rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >30</energyontology:hasUpperValidityBoundary>
+    <energyontology:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp"
+    >2020-04-14T13:00:00Z</energyontology:hasTimestamp>
+    <energyontology:hasLowerValidityBoundary rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >0</energyontology:hasLowerValidityBoundary>
+    <energyontology:isVoltageOf>
+      <energyontology:Battery rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#batteryOfAgentB">
+        <energyontology:isBatteryOf>
+          <energyontology:EnergyAgent rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#agentB">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </energyontology:EnergyAgent>
+        </energyontology:isBatteryOf>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </energyontology:Battery>
+    </energyontology:isVoltageOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </energyontology:Voltage>
+  <energyontology:Voltage rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#voltageOfBatteryOfAgentC">
+    <energyontology:hasVoltageValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >23</energyontology:hasVoltageValue>
+    <energyontology:hasUpperValidityBoundary rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >30</energyontology:hasUpperValidityBoundary>
+    <energyontology:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp"
+    >2020-04-13T12:00:00Z</energyontology:hasTimestamp>
+    <energyontology:hasLowerValidityBoundary rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >0</energyontology:hasLowerValidityBoundary>
+    <energyontology:isVoltageOf>
+      <energyontology:Battery rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#batteryOfAgentC">
+        <energyontology:isBatteryOf>
+          <energyontology:EnergyAgent rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#agentC">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </energyontology:EnergyAgent>
+        </energyontology:isBatteryOf>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </energyontology:Battery>
+    </energyontology:isVoltageOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </energyontology:Voltage>
+  <owl:NamedIndividual rdf:about="http://www.agenthygrid.com/ontologies/energyontology.owl#wasbinich">
+    <rdfs:comment>ReasoningTest: diese Instanz soll der Klasse Voltage angehören, da sie die vier eigenschaften besitzt</rdfs:comment>
+    <energyontology:hasVoltageValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >26</energyontology:hasVoltageValue>
+    <energyontology:hasUpperValidityBoundary rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >30</energyontology:hasUpperValidityBoundary>
+    <energyontology:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp"
+    >2020-04-13T12:00:00Z</energyontology:hasTimestamp>
+    <energyontology:hasLowerValidityBoundary rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >25</energyontology:hasLowerValidityBoundary>
+  </owl:NamedIndividual>
+</rdf:RDF>

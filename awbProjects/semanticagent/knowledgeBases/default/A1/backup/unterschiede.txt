@@ -1,0 +1,8 @@
+Unterschied zwischen den beiden Ontologien ist, dass die eine Ontologie Instanzenwissen über LineSegmentSate und NodeState bestitzt 
+und die Ontologie für 4 und 5 nicht, da sie diese Instanzen sich selber hinzufügen möchte und functional properties in diesem Instanzenwissen vorhanden sind.
+
+A2 braucht Instanzenwissen, um Szenario 4 durchzuführen
+
+Szenarien 2 und 3 sind von den Instanzen abhängig, weshalb diese zu diesem Zeitpunkt im GSA (A1) vorhanden sein müssen
+
+Zur Ausführung des jeweiligen Szenarios, die Kopie der jeweiligen Ontologie in "LVGridFlexOntology" umbenennen.

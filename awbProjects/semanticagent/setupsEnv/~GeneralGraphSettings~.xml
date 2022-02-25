@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<generalGraphSettings4MAS>
+    <componentSorting>Alphanumeric</componentSorting>
+    <currentCTS>
+        <entry>
+            <key>CEA</key>
+            <value>
+                <adapterClass>de.enflexit.ea.core.centralExecutiveAgent.dataModel.CeaNetworkAdapter</adapterClass>
+                <agentClass>de.enflexit.ea.core.centralExecutiveAgent.CentralExecutiveAgent</agentClass>
+                <color>-39322</color>
+                <domain>Default Domain</domain>
+                <edgeImage>MissingIcon</edgeImage>
+                <edgeWidth>10.0</edgeWidth>
+                <graphPrototype>org.awb.env.networkModel.prototypes.DistributionNode</graphPrototype>
+                <showLabel>true</showLabel>
+            </value>
+        </entry>
+        <entry>
+            <key>SemanticAgent</key>
+            <value>
+                <adapterClass>de.enflexit.eom.awb.adapter.EomAdapter</adapterClass>
+                <agentClass>semanticAgent.SemanticAgent</agentClass>
+                <color>-16777216</color>
+                <domain>Default Domain</domain>
+                <edgeImage>MissingIcon</edgeImage>
+                <edgeWidth>10.0</edgeWidth>
+                <graphPrototype>org.awb.env.networkModel.prototypes.DistributionNode</graphPrototype>
+                <showLabel>true</showLabel>
+            </value>
+        </entry>
+        <entry>
+            <key>test</key>
+            <value>
+                <adapterClass>de.enflexit.eom.awb.adapter.EomAdapter</adapterClass>
+                <agentClass>hygrid.agent.battery.BatteryAgent</agentClass>
+                <color>-16777216</color>
+                <domain>Default Domain</domain>
+                <edgeImage>MissingIcon</edgeImage>
+                <edgeWidth>2.0</edgeWidth>
+                <graphPrototype>org.awb.env.networkModel.prototypes.DistributionNode</graphPrototype>
+                <showLabel>true</showLabel>
+            </value>
+        </entry>
+    </currentCTS>
+    <domainSettings>
+        <entry>
+            <key>Default Domain</key>
+            <value>
+                <clusterShape>Rectangle</clusterShape>
+                <showLabel>true</showLabel>
+                <vertexColor>-65536</vertexColor>
+                <vertexColorPicked>-256</vertexColorPicked>
+                <vertexSize>10</vertexSize>
+            </value>
+        </entry>
+    </domainSettings>
+    <layoutSettings>
+        <entry>
+            <key>XvmyWBmhSn</key>
+            <value>
+                <coordinateSystemXDirection>East</coordinateSystemXDirection>
+                <coordinateSystemYDirection>ClockwiseToX</coordinateSystemYDirection>
+                <edgeShape>Line</edgeShape>
+                <geographicalLayout>false</geographicalLayout>
+                <layoutName>Default Layout</layoutName>
+                <snap2Grid>true</snap2Grid>
+                <snapRaster>5.0</snapRaster>
+            </value>
+        </entry>
+    </layoutSettings>
+</generalGraphSettings4MAS>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<hyGridAbstractEnvironmentModel xmlns:ns2="http://www.dawis.wiwi.uni-due.de/EnergyOptionModel" xmlns:ns3="http://www.dawis.wiwi.uni-due.de/HyGridAgentConfiguration">
+    <simulationIntervalLength>5</simulationIntervalLength>
+    <simulationIntervalUnitIndex>1</simulationIntervalUnitIndex>
+    <isDiscreteSnapshotSimulation>false</isDiscreteSnapshotSimulation>
+    <networkCalculationIntervalLength>5</networkCalculationIntervalLength>
+    <networkCalculationIntervalUnitIndex>1</networkCalculationIntervalUnitIndex>
+    <stateTransmission>Reduced</stateTransmission>
+    <executionDataBase>NodePowerFlows</executionDataBase>
+    <energyTransmissionConfiguration>
+        <deltaAbsoluteWatt>100</deltaAbsoluteWatt>
+        <deltaMechanism>Percentage</deltaMechanism>
+        <deltaPercentage>1.0</deltaPercentage>
+        <timePeriodForLiveBit>600000</timePeriodForLiveBit>
+    </energyTransmissionConfiguration>
+    <displayUpdateConfiguration>
+        <updateMechanism>EnableUpdates</updateMechanism>
+    </displayUpdateConfiguration>
+    <graphElementLayoutSettingsPersisted domain="Electricity 10kV">
+        <settingsTreeMap>
+            <entry>
+                <key>edges.isEnabled</key>
+                <value>false</value>
+            </entry>
+            <entry>
+                <key>nodes.isEnabled</key>
+                <value>false</value>
+            </entry>
+        </settingsTreeMap>
+    </graphElementLayoutSettingsPersisted>
+    <graphElementLayoutSettingsPersisted domain="ElectricityThriPhase">
+        <settingsTreeMap>
+            <entry>
+                <key>edges.isEnabled</key>
+                <value>false</value>
+            </entry>
+            <entry>
+                <key>nodes.isEnabled</key>
+                <value>false</value>
+            </entry>
+        </settingsTreeMap>
+    </graphElementLayoutSettingsPersisted>
+    <graphElementLayoutSettingsPersisted domain="Heat">
+        <settingsTreeMap>
+            <entry>
+                <key>edges.isEnabled</key>
+                <value>false</value>
+            </entry>
+            <entry>
+                <key>nodes.isEnabled</key>
+                <value>false</value>
+            </entry>
+        </settingsTreeMap>
+    </graphElementLayoutSettingsPersisted>
+    <scheduleLengthRestriction>
+        <ns2:idScheduleLengthRestriction>0</ns2:idScheduleLengthRestriction>
+        <ns2:Duration>
+            <ns2:idDuration>0</ns2:idDuration>
+            <ns2:value>3</ns2:value>
+            <ns2:unit>hour, h</ns2:unit>
+        </ns2:Duration>
+        <ns2:MaxNumberOfSystemStates>200</ns2:MaxNumberOfSystemStates>
+    </scheduleLengthRestriction>
+    <deploymentSettings>
+        <ns3:centralAgentSpecifier>
+            <ns3:AgentName>CeExAg</ns3:AgentName>
+            <ns3:PlatformName>localhost:0/JADE</ns3:PlatformName>
+            <ns3:UrlOrIp>localhost</ns3:UrlOrIp>
+            <ns3:JadePort>0</ns3:JadePort>
+            <ns3:MtpPort>0</ns3:MtpPort>
+        </ns3:centralAgentSpecifier>
+        <ns3:certificate/>
+        <ns3:defaultAgentOperatingMode>Testbed application - real</ns3:defaultAgentOperatingMode>
+        <ns3:jadePort>0</ns3:jadePort>
+        <ns3:keyStore/>
+        <ns3:mtpPort>0</ns3:mtpPort>
+        <ns3:p2RepositoryEnabled>false</ns3:p2RepositoryEnabled>
+        <ns3:projectRepositoryEnabled>false</ns3:projectRepositoryEnabled>
+        <ns3:targetSystemAutoIp>false</ns3:targetSystemAutoIp>
+        <ns3:trustStore/>
+    </deploymentSettings>
+</hyGridAbstractEnvironmentModel>

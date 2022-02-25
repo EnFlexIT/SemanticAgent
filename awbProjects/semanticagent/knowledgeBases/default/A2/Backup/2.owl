@@ -1,0 +1,963 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix lvgridflex: <http://www.hsu-ifa.de/ontologies/LVGridFlex#> .
+
+xsd:nonPositiveInteger
+        a                    rdfs:Datatype , owl:Class , rdfs:Resource , rdfs:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , xsd:nonPositiveInteger , rdfs:Resource ;
+        owl:disjointWith     xsd:float , xsd:time , xsd:duration , xsd:string , xsd:date , xsd:boolean , xsd:dateTime ;
+        owl:equivalentClass  xsd:nonPositiveInteger ;
+        owl:sameAs           xsd:nonPositiveInteger .
+
+xsd:gMonthDay  a             rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      xsd:gMonthDay , rdfs:Resource ;
+        owl:equivalentClass  xsd:gMonthDay ;
+        owl:sameAs           xsd:gMonthDay .
+
+owl:Restriction  a           rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , owl:Class , rdfs:Resource , owl:Restriction , rdfs:Class ;
+        owl:equivalentClass  owl:Restriction ;
+        owl:sameAs           owl:Restriction .
+
+rdf:nil  a          rdf:List , rdfs:Resource , owl:Thing ;
+        owl:sameAs  () .
+
+lvgridflex:hasMinimumPower
+        a                       rdf:Property , owl:FunctionalProperty , owl:DatatypeProperty , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Thing , lvgridflex:FlexibilityPotential , rdfs:Resource ;
+        rdfs:label              "hasMinimumPower" ;
+        rdfs:range              xsd:double , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:hasMinimumPower ;
+        owl:equivalentProperty  lvgridflex:hasMinimumPower ;
+        owl:sameAs              lvgridflex:hasMinimumPower .
+
+rdfs:Container  a            rdfs:Resource , rdfs:Class , owl:Thing , owl:Class ;
+        rdfs:subClassOf      rdfs:Container , rdfs:Resource ;
+        owl:equivalentClass  rdfs:Container ;
+        owl:sameAs           rdfs:Container .
+
+xsd:gYearMonth  a            rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      xsd:gYearMonth , rdfs:Resource ;
+        owl:equivalentClass  xsd:gYearMonth ;
+        owl:sameAs           xsd:gYearMonth .
+
+xsd:unsignedShort  a         rdfs:Datatype , owl:Class , rdfs:Class , rdfs:Resource , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , xsd:unsignedLong , xsd:unsignedShort , xsd:long , xsd:unsignedInt , xsd:integer , xsd:short , xsd:nonNegativeInteger , xsd:int , xsd:decimal ;
+        owl:disjointWith     xsd:time , xsd:float , xsd:duration , xsd:boolean , xsd:dateTime , xsd:string , xsd:date ;
+        owl:equivalentClass  xsd:unsignedShort ;
+        owl:sameAs           xsd:unsignedShort .
+
+owl:disjointWith  a             owl:SymmetricProperty , rdf:Property , owl:ObjectProperty , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Thing , owl:Class , rdfs:Resource , rdfs:Class ;
+        rdfs:range              owl:Thing , owl:Class , rdfs:Class , rdfs:Resource ;
+        rdfs:subPropertyOf      owl:disjointWith ;
+        owl:equivalentProperty  owl:disjointWith ;
+        owl:sameAs              owl:disjointWith .
+
+xsd:dateTime  a              rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , xsd:dateTime ;
+        owl:disjointWith     xsd:float , xsd:byte , xsd:long , xsd:boolean , xsd:unsignedLong , xsd:unsignedShort , xsd:date , xsd:integer , xsd:duration , xsd:unsignedInt , xsd:short , xsd:decimal , xsd:string , xsd:nonNegativeInteger , xsd:unsignedByte , xsd:time , xsd:int , xsd:nonPositiveInteger ;
+        owl:equivalentClass  xsd:dateTime ;
+        owl:sameAs           xsd:dateTime .
+
+owl:differentFrom  a            owl:SymmetricProperty , owl:ObjectProperty , rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Thing , rdfs:Resource ;
+        rdfs:range              owl:Thing , rdfs:Resource ;
+        rdfs:subPropertyOf      owl:differentFrom ;
+        owl:equivalentProperty  owl:differentFrom ;
+        owl:sameAs              owl:differentFrom .
+
+xsd:unsignedInt  a           rdfs:Datatype , owl:Class , rdfs:Resource , rdfs:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , xsd:nonNegativeInteger , xsd:integer , xsd:int , xsd:long , xsd:unsignedLong , xsd:unsignedInt , xsd:decimal ;
+        owl:disjointWith     xsd:boolean , xsd:string , xsd:dateTime , xsd:float , xsd:time , xsd:date , xsd:duration ;
+        owl:equivalentClass  xsd:unsignedInt ;
+        owl:sameAs           xsd:unsignedInt .
+
+xsd:byte  a                  rdfs:Datatype , owl:Class , rdfs:Class , rdfs:Resource , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , xsd:byte , xsd:short , xsd:integer , xsd:long , xsd:int , xsd:decimal ;
+        owl:disjointWith     xsd:time , xsd:boolean , xsd:dateTime , xsd:float , xsd:duration , xsd:date , xsd:string ;
+        owl:equivalentClass  xsd:byte ;
+        owl:sameAs           xsd:byte .
+
+rdf:Seq  a                   rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      rdf:Seq , rdfs:Resource , rdfs:Container ;
+        owl:equivalentClass  rdf:Seq ;
+        owl:sameAs           rdf:Seq .
+
+lvgridflex:controls  a          owl:InverseFunctionalProperty , rdf:Property , rdfs:Resource , owl:ObjectProperty , owl:Thing ;
+        rdfs:domain             rdfs:Resource , lvgridflex:DistributedEnergyResourceAgent , lvgridflex:EnergyAgent , owl:Thing ;
+        rdfs:label              "controls"@de ;
+        rdfs:range              lvgridflex:DistributedEnergyResource , owl:Thing , rdfs:Resource ;
+        rdfs:subPropertyOf      lvgridflex:controls ;
+        owl:equivalentProperty  lvgridflex:controls ;
+        owl:inverseOf           lvgridflex:controlledBy ;
+        owl:sameAs              lvgridflex:controls .
+
+owl:AnnotationProperty
+        a                    rdfs:Resource , rdfs:Class , owl:Thing , owl:Class ;
+        rdfs:subClassOf      owl:AnnotationProperty , rdfs:Resource ;
+        owl:equivalentClass  owl:AnnotationProperty ;
+        owl:sameAs           owl:AnnotationProperty .
+
+rdfs:range  a                   rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:range              rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subPropertyOf      rdfs:range ;
+        owl:equivalentProperty  rdfs:range ;
+        owl:sameAs              rdfs:range .
+
+owl:FunctionalProperty
+        a                    rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      owl:FunctionalProperty , rdfs:Resource , rdf:Property ;
+        owl:equivalentClass  owl:FunctionalProperty ;
+        owl:sameAs           owl:FunctionalProperty .
+
+owl:sameAs  a                   owl:SymmetricProperty , owl:ObjectProperty , rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Thing , rdfs:Resource ;
+        rdfs:range              owl:Thing , rdfs:Resource ;
+        rdfs:subPropertyOf      owl:sameAs ;
+        owl:equivalentProperty  owl:sameAs ;
+        owl:sameAs              owl:sameAs .
+
+owl:backwardCompatibleWith
+        a                       rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Ontology , rdfs:Resource , owl:Thing ;
+        rdfs:range              owl:Ontology , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      owl:backwardCompatibleWith ;
+        owl:equivalentProperty  owl:backwardCompatibleWith ;
+        owl:sameAs              owl:backwardCompatibleWith .
+
+xsd:anyURI  a                rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      xsd:anyURI , rdfs:Resource ;
+        owl:equivalentClass  xsd:anyURI ;
+        owl:sameAs           xsd:anyURI .
+
+xsd:positiveInteger  a       rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      xsd:positiveInteger , rdfs:Resource ;
+        owl:equivalentClass  xsd:positiveInteger ;
+        owl:sameAs           xsd:positiveInteger .
+
+xsd:double  a                rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , xsd:double ;
+        owl:equivalentClass  xsd:double ;
+        owl:sameAs           xsd:double .
+
+rdf:XMLLiteral  a            rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      rdf:XMLLiteral , rdfs:Resource ;
+        owl:equivalentClass  rdf:XMLLiteral ;
+        owl:sameAs           rdf:XMLLiteral .
+
+xsd:gMonth  a                rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      xsd:gMonth , rdfs:Resource ;
+        owl:equivalentClass  xsd:gMonth ;
+        owl:sameAs           xsd:gMonth .
+
+xsd:string  a                rdfs:Datatype , rdfs:Resource , owl:Class , rdfs:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , xsd:string , rdfs:Resource ;
+        owl:disjointWith     xsd:integer , xsd:float , xsd:dateTime , xsd:time , xsd:boolean , xsd:long , xsd:nonNegativeInteger , xsd:nonPositiveInteger , xsd:short , xsd:byte , xsd:unsignedByte , xsd:duration , xsd:decimal , xsd:unsignedShort , xsd:date , xsd:unsignedInt , xsd:int , xsd:unsignedLong ;
+        owl:equivalentClass  xsd:string ;
+        owl:sameAs           xsd:string .
+
+lvgridflex:hasNodeState
+        a                       owl:ObjectProperty , owl:InverseFunctionalProperty , rdfs:Resource , rdf:Property , owl:Thing ;
+        rdfs:domain             rdfs:Resource , owl:Thing , lvgridflex:Component , lvgridflex:Node ;
+        rdfs:label              "hasNodeState"@de ;
+        rdfs:range              lvgridflex:NodeState , lvgridflex:ComponentState , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:hasNodeState ;
+        owl:equivalentProperty  lvgridflex:hasNodeState ;
+        owl:sameAs              lvgridflex:hasNodeState .
+
+lvgridflex:resourceId
+        a                       owl:FunctionalProperty , rdfs:Resource , rdf:Property , owl:DatatypeProperty , owl:Thing ;
+        rdfs:domain             lvgridflex:FlexibilityPotential , rdfs:Resource , owl:Thing ;
+        rdfs:label              "resourceID" ;
+        rdfs:range              rdfs:Resource , rdfs:Literal , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:resourceId ;
+        owl:equivalentProperty  lvgridflex:resourceId ;
+        owl:sameAs              lvgridflex:resourceId .
+
+lvgridflex:controlledBy
+        a                       owl:ObjectProperty , owl:FunctionalProperty , rdfs:Resource , rdf:Property , owl:Thing ;
+        rdfs:domain             lvgridflex:DistributedEnergyResource , rdfs:Resource , owl:Thing ;
+        rdfs:label              "controlledBy"@de ;
+        rdfs:range              owl:Thing , lvgridflex:DistributedEnergyResourceAgent , lvgridflex:EnergyAgent , rdfs:Resource ;
+        rdfs:subPropertyOf      lvgridflex:controlledBy ;
+        owl:equivalentProperty  lvgridflex:controlledBy ;
+        owl:inverseOf           lvgridflex:controls ;
+        owl:sameAs              lvgridflex:controlledBy .
+
+owl:equivalentClass  a          rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Class , rdfs:Class , rdfs:Resource , owl:Thing ;
+        rdfs:range              owl:Class , rdfs:Class , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      owl:equivalentClass ;
+        owl:equivalentProperty  owl:equivalentClass ;
+        owl:sameAs              owl:equivalentClass .
+
+xsd:nonNegativeInteger
+        a                    rdfs:Datatype , owl:Class , rdfs:Class , rdfs:Resource , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , xsd:nonNegativeInteger , xsd:integer , xsd:decimal ;
+        owl:disjointWith     xsd:duration , xsd:date , xsd:float , xsd:string , xsd:dateTime , xsd:boolean , xsd:time ;
+        owl:equivalentClass  xsd:nonNegativeInteger ;
+        owl:sameAs           xsd:nonNegativeInteger .
+
+owl:InverseFunctionalProperty
+        a                    rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      owl:InverseFunctionalProperty , rdfs:Resource , owl:ObjectProperty ;
+        owl:equivalentClass  owl:InverseFunctionalProperty ;
+        owl:sameAs           owl:InverseFunctionalProperty .
+
+owl:NamedIndividual  a       rdfs:Resource , rdfs:Class , owl:Thing , owl:Class ;
+        rdfs:subClassOf      owl:NamedIndividual , rdfs:Resource ;
+        owl:equivalentClass  owl:NamedIndividual ;
+        owl:sameAs           owl:NamedIndividual .
+
+rdfs:Resource  a             rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource ;
+        owl:equivalentClass  rdfs:Resource , owl:Thing ;
+        owl:sameAs           rdfs:Resource .
+
+xsd:base64Binary  a          rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      xsd:base64Binary , rdfs:Resource ;
+        owl:equivalentClass  xsd:base64Binary ;
+        owl:sameAs           xsd:base64Binary .
+
+lvgridflex:hasTotalEnergy
+        a                       rdf:Property , owl:FunctionalProperty , owl:DatatypeProperty , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Thing , lvgridflex:FlexibilityPotential , rdfs:Resource ;
+        rdfs:label              "hasTotalEnergy" ;
+        rdfs:range              xsd:double , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:hasTotalEnergy ;
+        owl:equivalentProperty  lvgridflex:hasTotalEnergy ;
+        owl:sameAs              lvgridflex:hasTotalEnergy .
+
+rdfs:subPropertyOf  a           rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:range              rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      rdfs:subPropertyOf ;
+        owl:equivalentProperty  rdfs:subPropertyOf ;
+        owl:sameAs              rdfs:subPropertyOf .
+
+owl:OntologyProperty  a      rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      owl:OntologyProperty , rdfs:Resource , rdf:Property ;
+        owl:equivalentClass  owl:OntologyProperty ;
+        owl:sameAs           owl:OntologyProperty .
+
+xsd:unsignedLong  a          rdfs:Datatype , rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:subClassOf      rdfs:Resource , owl:Thing , xsd:unsignedLong , xsd:integer , xsd:nonNegativeInteger , xsd:long , xsd:decimal ;
+        owl:disjointWith     xsd:float , xsd:dateTime , xsd:boolean , xsd:time , xsd:string , xsd:duration , xsd:date ;
+        owl:equivalentClass  xsd:unsignedLong ;
+        owl:sameAs           xsd:unsignedLong .
+
+rdfs:domain  a                  rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:range              rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subPropertyOf      rdfs:domain ;
+        owl:equivalentProperty  rdfs:domain ;
+        owl:sameAs              rdfs:domain .
+
+rdfs:ContainerMembershipProperty
+        a                    rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      rdfs:ContainerMembershipProperty , rdfs:Resource , rdf:Property ;
+        owl:equivalentClass  rdfs:ContainerMembershipProperty ;
+        owl:sameAs           rdfs:ContainerMembershipProperty .
+
+rdfs:seeAlso  a                 rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      rdfs:seeAlso ;
+        owl:equivalentProperty  rdfs:seeAlso ;
+        owl:sameAs              rdfs:seeAlso .
+
+rdf:subject  a                  rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             rdf:Statement , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      rdf:subject ;
+        owl:equivalentProperty  rdf:subject ;
+        owl:sameAs              rdf:subject .
+
+rdfs:Datatype  a             rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      rdfs:Datatype , rdfs:Resource , rdfs:Class ;
+        owl:equivalentClass  rdfs:Datatype ;
+        owl:sameAs           rdfs:Datatype .
+
+xsd:time  a                  rdfs:Datatype , rdfs:Resource , rdfs:Class , owl:Class , owl:Thing ;
+        rdfs:subClassOf      xsd:time , rdfs:Resource , owl:Thing ;
+        owl:disjointWith     xsd:dateTime , xsd:boolean , xsd:string , xsd:nonNegativeInteger , xsd:short , xsd:byte , xsd:date , xsd:unsignedInt , xsd:decimal , xsd:float , xsd:unsignedByte , xsd:unsignedShort , xsd:long , xsd:int , xsd:unsignedLong , xsd:nonPositiveInteger , xsd:duration , xsd:integer ;
+        owl:equivalentClass  xsd:time ;
+        owl:sameAs           xsd:time .
+
+rdf:List  a                  rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , rdf:List ;
+        owl:equivalentClass  rdf:List ;
+        owl:sameAs           rdf:List .
+
+owl:imports  a                  owl:OntologyProperty , rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Ontology , rdfs:Resource , owl:Thing ;
+        rdfs:range              owl:Ontology , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      owl:imports ;
+        owl:equivalentProperty  owl:imports ;
+        owl:sameAs              owl:imports .
+
+owl:TransitiveProperty
+        a                    rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      owl:TransitiveProperty , rdfs:Resource , owl:ObjectProperty ;
+        owl:equivalentClass  owl:TransitiveProperty ;
+        owl:sameAs           owl:TransitiveProperty .
+
+lvgridflex:supervises
+        a                       owl:InverseFunctionalProperty , rdf:Property , rdfs:Resource , owl:ObjectProperty , owl:Thing ;
+        rdfs:domain             lvgridflex:GridStateAgent , lvgridflex:EnergyAgent , rdfs:Resource , owl:Thing ;
+        rdfs:label              "supervises"@de ;
+        rdfs:range              lvgridflex:Busbar , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:supervises ;
+        owl:equivalentProperty  lvgridflex:supervises ;
+        owl:sameAs              lvgridflex:supervises .
+
+owl:equivalentProperty
+        a                   rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf  owl:equivalentProperty ;
+        owl:sameAs          owl:equivalentProperty .
+
+owl:ObjectProperty  a        rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      owl:ObjectProperty , rdfs:Resource , rdf:Property ;
+        owl:equivalentClass  owl:ObjectProperty ;
+        owl:sameAs           owl:ObjectProperty .
+
+lvgridflex:measures  a          owl:InverseFunctionalProperty , rdfs:Resource , owl:ObjectProperty , rdf:Property , owl:Thing ;
+        rdfs:domain             owl:Thing , lvgridflex:SensorAgent , lvgridflex:EnergyAgent , rdfs:Resource ;
+        rdfs:label              "measures"@de ;
+        rdfs:range              lvgridflex:Component , owl:Thing , rdfs:Resource ;
+        rdfs:subPropertyOf      lvgridflex:measures ;
+        owl:equivalentProperty  lvgridflex:measures ;
+        owl:sameAs              lvgridflex:measures .
+
+rdf:Property  a              rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , rdf:Property ;
+        owl:equivalentClass  rdf:Property ;
+        owl:sameAs           rdf:Property .
+
+rdf:first  a                    rdf:Property , owl:FunctionalProperty , rdfs:Resource , owl:Thing ;
+        rdfs:domain             rdf:List , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      rdf:first ;
+        owl:equivalentProperty  rdf:first ;
+        owl:sameAs              rdf:first .
+
+lvgridflex:hasTimeStamp
+        a                       rdf:Property , owl:FunctionalProperty , owl:DatatypeProperty , rdfs:Resource , owl:Thing ;
+        rdfs:label              "hasTimeStamp"@de ;
+        rdfs:range              xsd:dateTime , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:hasTimeStamp ;
+        owl:equivalentProperty  lvgridflex:hasTimeStamp ;
+        owl:sameAs              lvgridflex:hasTimeStamp .
+
+owl:oneOf  a                    rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Class , rdfs:Class , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      owl:oneOf ;
+        owl:equivalentProperty  owl:oneOf ;
+        owl:sameAs              owl:oneOf .
+
+xsd:negativeInteger  a       rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      xsd:negativeInteger , rdfs:Resource ;
+        owl:equivalentClass  xsd:negativeInteger ;
+        owl:sameAs           xsd:negativeInteger .
+
+xsd:hexBinary  a             rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      xsd:hexBinary , rdfs:Resource ;
+        owl:equivalentClass  xsd:hexBinary ;
+        owl:sameAs           xsd:hexBinary .
+
+owl:priorVersion  a             rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Ontology , rdfs:Resource , owl:Thing ;
+        rdfs:range              owl:Ontology , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      owl:priorVersion ;
+        owl:equivalentProperty  owl:priorVersion ;
+        owl:sameAs              owl:priorVersion .
+
+lvgridflex:hasMaximumCurrent
+        a                       rdfs:Resource , owl:DatatypeProperty , rdf:Property , owl:FunctionalProperty , owl:Thing ;
+        rdfs:domain             rdfs:Resource , lvgridflex:LineSegment , lvgridflex:Component , owl:Thing ;
+        rdfs:label              "hasMaximumCurrent"@de ;
+        rdfs:range              rdfs:Resource , xsd:double , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:hasMaximumCurrent ;
+        owl:equivalentProperty  lvgridflex:hasMaximumCurrent ;
+        owl:sameAs              lvgridflex:hasMaximumCurrent .
+
+lvgridflex:hasLineSegmentState
+        a                       rdfs:Resource , owl:InverseFunctionalProperty , owl:ObjectProperty , rdf:Property , owl:Thing ;
+        rdfs:domain             rdfs:Resource , owl:Thing , lvgridflex:Component , lvgridflex:LineSegment ;
+        rdfs:label              "hasLineSegmentState"@de ;
+        rdfs:range              lvgridflex:LineSegmentState , rdfs:Resource , lvgridflex:ComponentState , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:hasLineSegmentState ;
+        owl:equivalentProperty  lvgridflex:hasLineSegmentState ;
+        owl:sameAs              lvgridflex:hasLineSegmentState .
+
+owl:intersectionOf  a           rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Class , rdfs:Class , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      owl:intersectionOf ;
+        owl:equivalentProperty  owl:intersectionOf ;
+        owl:sameAs              owl:intersectionOf .
+
+owl:incompatibleWith  a         rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Ontology , rdfs:Resource , owl:Thing ;
+        rdfs:range              owl:Ontology , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      owl:incompatibleWith ;
+        owl:equivalentProperty  owl:incompatibleWith ;
+        owl:sameAs              owl:incompatibleWith .
+
+lvgridflex:hasEndNode
+        a                       owl:ObjectProperty , owl:FunctionalProperty , rdfs:Resource , rdf:Property , owl:Thing ;
+        rdfs:domain             owl:Thing , rdfs:Resource , lvgridflex:Component , lvgridflex:LineSegment ;
+        rdfs:label              "hasEndNode"@de ;
+        rdfs:range              lvgridflex:Component , owl:Thing , lvgridflex:Node , rdfs:Resource ;
+        rdfs:subPropertyOf      lvgridflex:hasEndNode ;
+        owl:equivalentProperty  lvgridflex:hasEndNode ;
+        owl:sameAs              lvgridflex:hasEndNode .
+
+lvgridflex:hasFlexibilityPotential
+        a                       owl:ObjectProperty , rdfs:Resource , rdf:Property , owl:Thing ;
+        rdfs:domain             lvgridflex:DistributedEnergyResource , rdfs:Resource , owl:Thing ;
+        rdfs:range              owl:Thing , rdfs:Resource , lvgridflex:FlexibilityPotential ;
+        rdfs:subPropertyOf      lvgridflex:hasFlexibilityPotential ;
+        owl:equivalentProperty  lvgridflex:hasFlexibilityPotential ;
+        owl:sameAs              lvgridflex:hasFlexibilityPotential .
+
+lvgridflex:hasConnectedDER
+        a                       owl:ObjectProperty , rdf:Property , rdfs:Resource , owl:InverseFunctionalProperty , owl:Thing ;
+        rdfs:domain             rdfs:Resource , owl:Thing , lvgridflex:Component , lvgridflex:Node ;
+        rdfs:label              "hasConnectedDER"@de ;
+        rdfs:range              lvgridflex:DistributedEnergyResource , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:hasConnectedDER ;
+        owl:equivalentProperty  lvgridflex:hasConnectedDER ;
+        owl:inverseOf           lvgridflex:connectedTo ;
+        owl:sameAs              lvgridflex:hasConnectedDER .
+
+owl:DatatypeProperty  a      rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      owl:DatatypeProperty , rdfs:Resource , rdf:Property ;
+        owl:equivalentClass  owl:DatatypeProperty ;
+        owl:sameAs           owl:DatatypeProperty .
+
+owl:Ontology  a              rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , owl:Ontology ;
+        owl:equivalentClass  owl:Ontology ;
+        owl:sameAs           owl:Ontology .
+
+rdf:Alt  a                   rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      rdf:Alt , rdfs:Resource , rdfs:Container ;
+        owl:equivalentClass  rdf:Alt ;
+        owl:sameAs           rdf:Alt .
+
+xsd:gDay  a                  rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      xsd:gDay , rdfs:Resource ;
+        owl:equivalentClass  xsd:gDay ;
+        owl:sameAs           xsd:gDay .
+
+rdf:type  a                     rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:range              rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subPropertyOf      rdf:type ;
+        owl:equivalentProperty  rdf:type ;
+        owl:sameAs              rdf:type .
+
+lvgridflex:hasStartNode
+        a                       owl:ObjectProperty , rdfs:Resource , owl:FunctionalProperty , rdf:Property , owl:Thing ;
+        rdfs:domain             lvgridflex:LineSegment , rdfs:Resource , lvgridflex:Component , owl:Thing ;
+        rdfs:label              "hasStartNode"@de ;
+        rdfs:range              rdfs:Resource , lvgridflex:Node , owl:Thing , lvgridflex:Component ;
+        rdfs:subPropertyOf      lvgridflex:hasStartNode ;
+        owl:equivalentProperty  lvgridflex:hasStartNode ;
+        owl:sameAs              lvgridflex:hasStartNode .
+
+xsd:unsignedByte  a          rdfs:Datatype , rdfs:Resource , rdfs:Class , owl:Class , owl:Thing ;
+        rdfs:subClassOf      rdfs:Resource , owl:Thing , xsd:int , xsd:unsignedInt , xsd:unsignedByte , xsd:byte , xsd:integer , xsd:short , xsd:unsignedLong , xsd:unsignedShort , xsd:long , xsd:nonNegativeInteger , xsd:decimal ;
+        owl:disjointWith     xsd:time , xsd:float , xsd:dateTime , xsd:date , xsd:boolean , xsd:string , xsd:duration ;
+        owl:equivalentClass  xsd:unsignedByte ;
+        owl:sameAs           xsd:unsignedByte .
+
+lvgridflex:hasComponent
+        a                       rdfs:Resource , rdf:Property , owl:ObjectProperty , owl:InverseFunctionalProperty , owl:Thing ;
+        rdfs:domain             owl:Thing , rdfs:Resource , lvgridflex:Busbar ;
+        rdfs:label              "hasComponent"@de ;
+        rdfs:range              owl:Thing , lvgridflex:Component , rdfs:Resource ;
+        rdfs:subPropertyOf      lvgridflex:hasComponent ;
+        owl:equivalentProperty  lvgridflex:hasComponent ;
+        owl:inverseOf           lvgridflex:isComponentOf ;
+        owl:sameAs              lvgridflex:hasComponent .
+
+rdfs:subClassOf  a              rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:range              rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subPropertyOf      rdfs:subClassOf ;
+        owl:equivalentProperty  rdfs:subClassOf ;
+        owl:sameAs              rdfs:subClassOf .
+
+xsd:float  a                 rdfs:Datatype , owl:Class , rdfs:Class , rdfs:Resource , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , xsd:float , rdfs:Resource ;
+        owl:disjointWith     xsd:byte , xsd:duration , xsd:integer , xsd:short , xsd:long , xsd:int , xsd:dateTime , xsd:nonPositiveInteger , xsd:boolean , xsd:nonNegativeInteger , xsd:decimal , xsd:unsignedShort , xsd:unsignedInt , xsd:string , xsd:unsignedLong , xsd:date , xsd:time , xsd:unsignedByte ;
+        owl:equivalentClass  xsd:float ;
+        owl:sameAs           xsd:float .
+
+owl:inverseOf  a                rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      owl:inverseOf ;
+        owl:equivalentProperty  owl:inverseOf ;
+        owl:sameAs              owl:inverseOf .
+
+owl:Thing  a                 owl:Class , rdfs:Class , rdfs:Resource , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource ;
+        owl:equivalentClass  owl:Thing , rdfs:Resource ;
+        owl:sameAs           owl:Thing .
+
+rdf:object  a                   rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             rdf:Statement , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      rdf:object ;
+        owl:equivalentProperty  rdf:object ;
+        owl:sameAs              rdf:object .
+
+lvgridflex:componentId
+        a                       rdfs:Resource , owl:FunctionalProperty , owl:DatatypeProperty , rdf:Property , owl:Thing ;
+        rdfs:domain             rdfs:Resource , lvgridflex:ComponentState , owl:Thing ;
+        rdfs:range              rdfs:Resource , rdfs:Literal , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:componentId ;
+        owl:equivalentProperty  lvgridflex:componentId ;
+        owl:sameAs              lvgridflex:componentId .
+
+xsd:decimal  a               rdfs:Datatype , owl:Class , rdfs:Resource , rdfs:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , xsd:decimal , rdfs:Resource ;
+        owl:disjointWith     xsd:date , xsd:dateTime , xsd:float , xsd:string , xsd:boolean , xsd:duration , xsd:time ;
+        owl:equivalentClass  xsd:decimal ;
+        owl:sameAs           xsd:decimal .
+
+owl:SymmetricProperty
+        a                    rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      owl:SymmetricProperty , rdfs:Resource , owl:ObjectProperty ;
+        owl:equivalentClass  owl:SymmetricProperty ;
+        owl:sameAs           owl:SymmetricProperty .
+
+lvgridflex:hasVoltage
+        a                       rdf:Property , owl:FunctionalProperty , owl:DatatypeProperty , rdfs:Resource , owl:Thing ;
+        rdfs:label              "hasVoltage"@de ;
+        rdfs:range              xsd:double , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:hasVoltage ;
+        owl:equivalentProperty  lvgridflex:hasVoltage ;
+        owl:sameAs              lvgridflex:hasVoltage .
+
+xsd:boolean  a               rdfs:Datatype , rdfs:Resource , rdfs:Class , owl:Class , owl:Thing ;
+        rdfs:subClassOf      xsd:boolean , rdfs:Resource , owl:Thing ;
+        owl:disjointWith     xsd:unsignedShort , xsd:byte , xsd:int , xsd:nonPositiveInteger , xsd:string , xsd:float , xsd:unsignedByte , xsd:unsignedInt , xsd:time , xsd:duration , xsd:date , xsd:unsignedLong , xsd:long , xsd:dateTime , xsd:short , xsd:nonNegativeInteger , xsd:integer , xsd:decimal ;
+        owl:equivalentClass  xsd:boolean ;
+        owl:sameAs           xsd:boolean .
+
+rdf:Bag  a                   rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      rdf:Bag , rdfs:Resource , rdfs:Container ;
+        owl:equivalentClass  rdf:Bag ;
+        owl:sameAs           rdf:Bag .
+
+xsd:long  a                  rdfs:Datatype , rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:subClassOf      rdfs:Resource , owl:Thing , xsd:integer , xsd:long , xsd:decimal ;
+        owl:disjointWith     xsd:dateTime , xsd:duration , xsd:boolean , xsd:date , xsd:float , xsd:string , xsd:time ;
+        owl:equivalentClass  xsd:long ;
+        owl:sameAs           xsd:long .
+
+rdf:predicate  a                rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             rdf:Statement , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      rdf:predicate ;
+        owl:equivalentProperty  rdf:predicate ;
+        owl:sameAs              rdf:predicate .
+
+lvgridflex:connectedTo
+        a                       owl:ObjectProperty , owl:FunctionalProperty , rdfs:Resource , rdf:Property , owl:Thing ;
+        rdfs:domain             owl:Thing , rdfs:Resource , lvgridflex:DistributedEnergyResource ;
+        rdfs:label              "connectedTo"@de ;
+        rdfs:range              rdfs:Resource , owl:Thing , lvgridflex:Node , lvgridflex:Component ;
+        rdfs:subPropertyOf      lvgridflex:connectedTo ;
+        owl:equivalentProperty  lvgridflex:connectedTo ;
+        owl:inverseOf           lvgridflex:hasConnectedDER ;
+        owl:sameAs              lvgridflex:connectedTo .
+
+lvgridflex:isComponentOf
+        a                       owl:ObjectProperty , rdfs:Resource , rdf:Property , owl:FunctionalProperty , owl:Thing ;
+        rdfs:domain             rdfs:Resource , owl:Thing , lvgridflex:Component ;
+        rdfs:label              "isComponentOf"@de ;
+        rdfs:range              lvgridflex:Busbar , owl:Thing , rdfs:Resource ;
+        rdfs:subPropertyOf      lvgridflex:isComponentOf ;
+        owl:equivalentProperty  lvgridflex:isComponentOf ;
+        owl:inverseOf           lvgridflex:hasComponent ;
+        owl:sameAs              lvgridflex:isComponentOf .
+
+lvgridflex:hasCurrent
+        a                       rdf:Property , rdfs:Resource , owl:FunctionalProperty , owl:DatatypeProperty , owl:Thing ;
+        rdfs:domain             rdfs:Resource , lvgridflex:LineSegmentState , owl:Thing , lvgridflex:ComponentState ;
+        rdfs:label              "hasCurrent"@de ;
+        rdfs:range              xsd:double , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:hasCurrent ;
+        owl:equivalentProperty  lvgridflex:hasCurrent ;
+        owl:sameAs              lvgridflex:hasCurrent .
+
+xsd:short  a                 rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      rdfs:Resource , owl:Thing , xsd:short , xsd:int , xsd:long , xsd:integer , xsd:decimal ;
+        owl:disjointWith     xsd:time , xsd:duration , xsd:dateTime , xsd:date , xsd:string , xsd:boolean , xsd:float ;
+        owl:equivalentClass  xsd:short ;
+        owl:sameAs           xsd:short .
+
+owl:versionInfo  a  owl:AnnotationProperty , rdfs:Resource , owl:Thing ;
+        owl:sameAs  owl:versionInfo .
+
+rdf:Statement  a             rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , rdf:Statement ;
+        owl:equivalentClass  rdf:Statement ;
+        owl:sameAs           rdf:Statement .
+
+rdfs:isDefinedBy  a             rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      rdfs:seeAlso , rdfs:isDefinedBy ;
+        owl:equivalentProperty  rdfs:isDefinedBy ;
+        owl:sameAs              rdfs:isDefinedBy .
+
+xsd:int  a                   rdfs:Datatype , rdfs:Resource , rdfs:Class , owl:Class , owl:Thing ;
+        rdfs:subClassOf      rdfs:Resource , owl:Thing , xsd:integer , xsd:long , xsd:int , xsd:decimal ;
+        owl:disjointWith     xsd:string , xsd:boolean , xsd:date , xsd:time , xsd:dateTime , xsd:duration , xsd:float ;
+        owl:equivalentClass  xsd:int ;
+        owl:sameAs           xsd:int .
+
+owl:onProperty  a               rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:domain             owl:Restriction , owl:Class , rdfs:Resource , rdfs:Class , owl:Thing ;
+        rdfs:range              owl:Property , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      owl:onProperty ;
+        owl:equivalentProperty  owl:onProperty ;
+        owl:sameAs              owl:onProperty .
+
+<urn:x-hp-jena:rubrik/validation>
+        a                       rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      <urn:x-hp-jena:rubrik/validation> ;
+        owl:equivalentProperty  <urn:x-hp-jena:rubrik/validation> ;
+        owl:sameAs              <urn:x-hp-jena:rubrik/validation> .
+
+lvgridflex:hasMaximumPower
+        a                       owl:FunctionalProperty , rdfs:Resource , owl:DatatypeProperty , rdf:Property , owl:Thing ;
+        rdfs:domain             rdfs:Resource , owl:Thing , lvgridflex:FlexibilityPotential ;
+        rdfs:label              "hasMaximumPower" ;
+        rdfs:range              rdfs:Resource , xsd:double , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:hasMaximumPower ;
+        owl:equivalentProperty  lvgridflex:hasMaximumPower ;
+        owl:sameAs              lvgridflex:hasMaximumPower .
+
+xsd:integer  a               rdfs:Datatype , rdfs:Resource , rdfs:Class , owl:Class , owl:Thing ;
+        rdfs:subClassOf      rdfs:Resource , owl:Thing , xsd:decimal , xsd:integer ;
+        owl:disjointWith     xsd:time , xsd:dateTime , xsd:date , xsd:string , xsd:float , xsd:boolean , xsd:duration ;
+        owl:equivalentClass  xsd:integer ;
+        owl:sameAs           xsd:integer .
+
+owl:Class  a                 rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Class , rdfs:Resource , owl:Class ;
+        owl:equivalentClass  owl:Class , rdfs:Class ;
+        owl:sameAs           owl:Class .
+
+xsd:date  a                  rdfs:Datatype , owl:Class , rdfs:Resource , rdfs:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , xsd:date , rdfs:Resource ;
+        owl:disjointWith     xsd:unsignedLong , xsd:dateTime , xsd:unsignedShort , xsd:duration , xsd:unsignedByte , xsd:float , xsd:integer , xsd:string , xsd:long , xsd:int , xsd:decimal , xsd:nonNegativeInteger , xsd:boolean , xsd:nonPositiveInteger , xsd:unsignedInt , xsd:short , xsd:byte , xsd:time ;
+        owl:equivalentClass  xsd:date ;
+        owl:sameAs           xsd:date .
+
+owl:Property  a              rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , owl:Property ;
+        owl:equivalentClass  owl:Property ;
+        owl:sameAs           owl:Property .
+
+lvgridflex:hasId  a             rdf:Property , owl:FunctionalProperty , owl:DatatypeProperty , rdfs:Resource , owl:Thing ;
+        rdfs:range              rdfs:Literal , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      lvgridflex:hasId ;
+        owl:equivalentProperty  lvgridflex:hasId ;
+        owl:sameAs              lvgridflex:hasId .
+
+xsd:gYear  a                 rdfs:Datatype , rdfs:Class , rdfs:Resource , owl:Thing , owl:Class ;
+        rdfs:subClassOf      xsd:gYear , rdfs:Resource ;
+        owl:equivalentClass  xsd:gYear ;
+        owl:sameAs           xsd:gYear .
+
+xsd:duration  a              rdfs:Datatype , rdfs:Resource , owl:Class , rdfs:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , xsd:duration , rdfs:Resource ;
+        owl:disjointWith     xsd:byte , xsd:unsignedLong , xsd:string , xsd:decimal , xsd:date , xsd:unsignedInt , xsd:time , xsd:unsignedByte , xsd:long , xsd:boolean , xsd:short , xsd:integer , xsd:nonPositiveInteger , xsd:float , xsd:unsignedShort , xsd:dateTime , xsd:nonNegativeInteger , xsd:int ;
+        owl:equivalentClass  xsd:duration ;
+        owl:sameAs           xsd:duration .
+
+rdfs:Literal  a              rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , rdfs:Literal ;
+        owl:equivalentClass  rdfs:Literal ;
+        owl:sameAs           rdfs:Literal .
+
+lvgridflex:hasStateType
+        a                       rdf:Property , owl:FunctionalProperty , owl:DatatypeProperty , rdfs:Resource , owl:Thing ;
+        rdfs:label              "hasStateType"@de ;
+        rdfs:subPropertyOf      lvgridflex:hasStateType ;
+        owl:equivalentProperty  lvgridflex:hasStateType ;
+        owl:sameAs              lvgridflex:hasStateType .
+
+owl:Nothing  a               owl:Class , rdfs:Class , rdfs:Resource , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , owl:Nothing ;
+        owl:equivalentClass  owl:Nothing ;
+        owl:sameAs           owl:Nothing .
+
+rdfs:Class  a                rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , rdfs:Class , owl:Class ;
+        owl:equivalentClass  rdfs:Class , owl:Class ;
+        owl:sameAs           rdfs:Class .
+
+rdf:rest  a                     rdf:Property , owl:FunctionalProperty , rdfs:Resource , owl:Thing ;
+        rdfs:domain             rdf:List , rdfs:Resource , owl:Thing ;
+        rdfs:range              rdf:List , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      rdf:rest ;
+        owl:equivalentProperty  rdf:rest ;
+        owl:sameAs              rdf:rest .
+
+rdfs:label  a                   rdf:Property , rdfs:Resource , owl:Thing ;
+        rdfs:subPropertyOf      rdfs:label ;
+        owl:equivalentProperty  rdfs:label ;
+        owl:sameAs              rdfs:label .
+
+lvgridflex:ls04  a                    lvgridflex:LineSegment , owl:Thing , owl:NamedIndividual , rdfs:Resource , lvgridflex:Component ;
+        lvgridflex:hasEndNode         lvgridflex:node04 ;
+        lvgridflex:hasMaximumCurrent  "100.0"^^xsd:double ;
+        lvgridflex:hasStartNode       lvgridflex:node03 ;
+        lvgridflex:isComponentOf      lvgridflex:bb01 ;
+        owl:differentFrom             lvgridflex:bb02 , lvgridflex:node01 , lvgridflex:node03 , lvgridflex:node02 , lvgridflex:node04 , lvgridflex:bb01 ;
+        owl:sameAs                    lvgridflex:ls04 .
+
+lvgridflex:node02  a                rdfs:Resource , lvgridflex:Component , owl:NamedIndividual , owl:Thing , lvgridflex:Node ;
+        rdfs:label                  "node02" ;
+        lvgridflex:hasConnectedDER  lvgridflex:cs01 ;
+        lvgridflex:isComponentOf    lvgridflex:bb01 ;
+        owl:differentFrom           lvgridflex:bb01 , lvgridflex:ls03 , lvgridflex:ls02 , lvgridflex:ls04 , lvgridflex:ls01 , lvgridflex:bb02 ;
+        owl:sameAs                  lvgridflex:node02 .
+
+lvgridflex:dera02  a         lvgridflex:DistributedEnergyResourceAgent , owl:NamedIndividual , owl:Thing , rdfs:Resource , lvgridflex:EnergyAgent ;
+        rdfs:label           "dera02"@de ;
+        lvgridflex:controls  lvgridflex:cs02 ;
+        owl:sameAs           lvgridflex:dera02 .
+
+lvgridflex:ls03  a                    owl:NamedIndividual , rdfs:Resource , lvgridflex:LineSegment , lvgridflex:Component , owl:Thing ;
+        lvgridflex:hasEndNode         lvgridflex:node03 ;
+        lvgridflex:hasMaximumCurrent  "100.0"^^xsd:double ;
+        lvgridflex:hasStartNode       lvgridflex:node02 ;
+        lvgridflex:isComponentOf      lvgridflex:bb01 ;
+        owl:differentFrom             lvgridflex:bb02 , lvgridflex:node01 , lvgridflex:node03 , lvgridflex:node02 , lvgridflex:node04 , lvgridflex:bb01 ;
+        owl:sameAs                    lvgridflex:ls03 .
+
+lvgridflex:node01  a                rdfs:Resource , lvgridflex:Component , lvgridflex:Node , owl:Thing , owl:NamedIndividual ;
+        rdfs:label                  "node01"@de ;
+        lvgridflex:hasConnectedDER  lvgridflex:bs01 ;
+        lvgridflex:isComponentOf    lvgridflex:bb01 ;
+        owl:differentFrom           lvgridflex:bb01 , lvgridflex:bb02 , lvgridflex:ls03 , lvgridflex:ls04 , lvgridflex:ls01 , lvgridflex:ls02 ;
+        owl:sameAs                  lvgridflex:node01 .
+
+lvgridflex:dera01  a         lvgridflex:DistributedEnergyResourceAgent , owl:NamedIndividual , owl:Thing , rdfs:Resource , lvgridflex:EnergyAgent ;
+        rdfs:label           "dera01"@de ;
+        lvgridflex:controls  lvgridflex:cs01 , lvgridflex:bs01 ;
+        owl:sameAs           lvgridflex:dera01 .
+
+lvgridflex:fp01  a                  lvgridflex:FlexibilityPotential , owl:NamedIndividual , owl:Thing , rdfs:Resource ;
+        lvgridflex:hasMaximumPower  "20.0"^^xsd:double ;
+        lvgridflex:hasMinimumPower  "10.0"^^xsd:double ;
+        lvgridflex:hasTotalEnergy   "5.0"^^xsd:double ;
+        lvgridflex:resourceId       "bs01"^^rdfs:Literal ;
+        owl:sameAs                  lvgridflex:fp01 .
+
+lvgridflex:cs02  a               lvgridflex:ChargingStation , owl:NamedIndividual , owl:Thing , rdfs:Resource , lvgridflex:DistributedEnergyResource ;
+        lvgridflex:connectedTo   lvgridflex:node04 ;
+        lvgridflex:controlledBy  lvgridflex:dera02 ;
+        owl:sameAs               lvgridflex:cs02 .
+
+lvgridflex:ls02  a                      lvgridflex:LineSegment , rdfs:Resource , owl:Thing , owl:NamedIndividual , lvgridflex:Component ;
+        lvgridflex:hasEndNode           lvgridflex:node02 ;
+        lvgridflex:hasLineSegmentState  lvgridflex:lss02 ;
+        lvgridflex:hasMaximumCurrent    "100.0"^^xsd:double ;
+        lvgridflex:hasStartNode         lvgridflex:node01 ;
+        lvgridflex:isComponentOf        lvgridflex:bb01 ;
+        owl:differentFrom               lvgridflex:bb02 , lvgridflex:node02 , lvgridflex:node04 , lvgridflex:node01 , lvgridflex:node03 , lvgridflex:bb01 ;
+        owl:sameAs                      lvgridflex:ls02 .
+
+<http://www.hsu-ifa.de/ontologies/LVGridFlex>
+        a           owl:Ontology , rdfs:Resource , owl:Thing ;
+        owl:sameAs  <http://www.hsu-ifa.de/ontologies/LVGridFlex> .
+
+lvgridflex:bs01  a               lvgridflex:BatteryStorage , owl:NamedIndividual , owl:Thing , rdfs:Resource , lvgridflex:DistributedEnergyResource ;
+        rdfs:label               "bs01"@de ;
+        lvgridflex:connectedTo   lvgridflex:node01 ;
+        lvgridflex:controlledBy  lvgridflex:dera01 ;
+        owl:sameAs               lvgridflex:bs01 .
+
+lvgridflex:Component  a      rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "Component"@de ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , lvgridflex:Component ;
+        owl:disjointWith     lvgridflex:Busbar ;
+        owl:equivalentClass  lvgridflex:Component ;
+        owl:sameAs           lvgridflex:Component .
+
+lvgridflex:sa01  a           lvgridflex:SensorAgent , owl:NamedIndividual , owl:Thing , rdfs:Resource , lvgridflex:EnergyAgent ;
+        lvgridflex:measures  lvgridflex:node01 , lvgridflex:ls02 ;
+        owl:sameAs           lvgridflex:sa01 .
+
+lvgridflex:FlexibilityPotential
+        a                    rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "FlexibilityPotential" ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , lvgridflex:FlexibilityPotential ;
+        owl:equivalentClass  lvgridflex:FlexibilityPotential ;
+        owl:sameAs           lvgridflex:FlexibilityPotential .
+
+lvgridflex:GridStateAgent
+        a                    rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "GridStateAgent"@de ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , lvgridflex:GridStateAgent , lvgridflex:EnergyAgent ;
+        owl:equivalentClass  lvgridflex:GridStateAgent ;
+        owl:sameAs           lvgridflex:GridStateAgent .
+
+lvgridflex:gsa01  a            lvgridflex:GridStateAgent , owl:NamedIndividual , owl:Thing , rdfs:Resource , lvgridflex:EnergyAgent ;
+        rdfs:label             "gsa"@de ;
+        lvgridflex:supervises  lvgridflex:bb01 ;
+        owl:sameAs             lvgridflex:gsa01 .
+
+lvgridflex:cs01  a               lvgridflex:ChargingStation , owl:NamedIndividual , owl:Thing , rdfs:Resource , lvgridflex:DistributedEnergyResource ;
+        lvgridflex:connectedTo   lvgridflex:node02 ;
+        lvgridflex:controlledBy  lvgridflex:dera01 ;
+        owl:sameAs               lvgridflex:cs01 .
+
+lvgridflex:ls01  a                      lvgridflex:LineSegment , rdfs:Resource , owl:Thing , owl:NamedIndividual , lvgridflex:Component ;
+        lvgridflex:hasEndNode           lvgridflex:node01 ;
+        lvgridflex:hasLineSegmentState  lvgridflex:lss01 ;
+        lvgridflex:hasMaximumCurrent    "100.0"^^xsd:double ;
+        lvgridflex:isComponentOf        lvgridflex:bb01 ;
+        owl:differentFrom               lvgridflex:node04 , lvgridflex:node01 , lvgridflex:node03 , lvgridflex:bb01 , lvgridflex:bb02 , lvgridflex:node02 ;
+        owl:sameAs                      lvgridflex:ls01 .
+
+lvgridflex:EnergyAgent
+        a                    rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "EnergyAgent"@de ;
+        rdfs:subClassOf      rdfs:Resource , lvgridflex:EnergyAgent , owl:Thing ;
+        owl:equivalentClass  lvgridflex:EnergyAgent ;
+        owl:sameAs           lvgridflex:EnergyAgent .
+
+lvgridflex:ChargingStation
+        a                    rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "ChargingStation"@de ;
+        rdfs:subClassOf      rdfs:Resource , lvgridflex:ChargingStation , owl:Thing , lvgridflex:DistributedEnergyResource ;
+        owl:equivalentClass  lvgridflex:ChargingStation ;
+        owl:sameAs           lvgridflex:ChargingStation .
+
+lvgridflex:lss02  a              owl:Thing , owl:NamedIndividual , rdfs:Resource , lvgridflex:ComponentState , lvgridflex:LineSegmentState ;
+        lvgridflex:componentId   "ls01"^^rdfs:Literal ;
+        lvgridflex:hasCurrent    "90.0"^^xsd:double ;
+        lvgridflex:hasStateType  "Measured"^^rdfs:Literal ;
+        lvgridflex:hasTimeStamp  "2020-08-08T14:26:00"^^xsd:dateTime ;
+        owl:sameAs               lvgridflex:lss02 .
+
+lvgridflex:LineSegmentState
+        a                    rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "LineSegmentState"@de ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , lvgridflex:LineSegmentState , lvgridflex:ComponentState ;
+        owl:equivalentClass  lvgridflex:LineSegmentState ;
+        owl:sameAs           lvgridflex:LineSegmentState .
+
+lvgridflex:BatteryStorage
+        a                    rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "BatteryStorage"@de ;
+        rdfs:subClassOf      rdfs:Resource , lvgridflex:BatteryStorage , owl:Thing , lvgridflex:DistributedEnergyResource ;
+        owl:equivalentClass  lvgridflex:BatteryStorage ;
+        owl:sameAs           lvgridflex:BatteryStorage .
+
+lvgridflex:ComponentState
+        a                    rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "ComponentState"@de ;
+        rdfs:subClassOf      rdfs:Resource , lvgridflex:ComponentState , owl:Thing ;
+        owl:equivalentClass  lvgridflex:ComponentState ;
+        owl:sameAs           lvgridflex:ComponentState .
+
+lvgridflex:DistributedEnergyResource
+        a                    rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "DistributedEnergyResource"@de ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , lvgridflex:DistributedEnergyResource ;
+        owl:equivalentClass  lvgridflex:DistributedEnergyResource ;
+        owl:sameAs           lvgridflex:DistributedEnergyResource .
+
+lvgridflex:node04  a                owl:Thing , lvgridflex:Node , lvgridflex:Component , rdfs:Resource , owl:NamedIndividual ;
+        rdfs:label                  "node04" ;
+        lvgridflex:hasConnectedDER  lvgridflex:cs02 ;
+        lvgridflex:isComponentOf    lvgridflex:bb01 ;
+        owl:differentFrom           lvgridflex:ls03 , lvgridflex:ls01 , lvgridflex:bb02 , lvgridflex:bb01 , lvgridflex:ls02 , lvgridflex:ls04 ;
+        owl:sameAs                  lvgridflex:node04 .
+
+lvgridflex:DistributedEnergyResourceAgent
+        a                    rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "DistributedEnergyResourceAgent"@de ;
+        rdfs:subClassOf      rdfs:Resource , lvgridflex:DistributedEnergyResourceAgent , owl:Thing , lvgridflex:EnergyAgent ;
+        owl:equivalentClass  lvgridflex:DistributedEnergyResourceAgent ;
+        owl:sameAs           lvgridflex:DistributedEnergyResourceAgent .
+
+lvgridflex:lss01  a              owl:NamedIndividual , rdfs:Resource , lvgridflex:ComponentState , lvgridflex:LineSegmentState , owl:Thing ;
+        lvgridflex:componentId   "ls01"^^rdfs:Literal ;
+        lvgridflex:hasCurrent    "110.0"^^xsd:double ;
+        lvgridflex:hasStateType  "Measured"^^rdfs:Literal ;
+        lvgridflex:hasTimeStamp  "2020-08-08T14:27:00"^^xsd:dateTime ;
+        owl:sameAs               lvgridflex:lss01 .
+
+lvgridflex:nodestate02
+        a                        lvgridflex:NodeState , lvgridflex:ComponentState , rdfs:Resource , owl:NamedIndividual , owl:Thing ;
+        lvgridflex:componentId   "node01"^^rdfs:Literal ;
+        lvgridflex:hasStateType  "Measured"^^rdfs:Literal ;
+        lvgridflex:hasTimeStamp  "2020-08-08T14:27:00"^^xsd:dateTime ;
+        lvgridflex:hasVoltage    "228.5"^^xsd:double ;
+        owl:sameAs               lvgridflex:nodestate02 .
+
+lvgridflex:Busbar  a         rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "Busbar"@de ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , lvgridflex:Busbar ;
+        owl:disjointWith     lvgridflex:Component ;
+        owl:equivalentClass  lvgridflex:Busbar ;
+        owl:sameAs           lvgridflex:Busbar .
+
+lvgridflex:SensorAgent
+        a                    rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "SensorAgent"@de ;
+        rdfs:subClassOf      owl:Thing , rdfs:Resource , lvgridflex:SensorAgent , lvgridflex:EnergyAgent ;
+        owl:equivalentClass  lvgridflex:SensorAgent ;
+        owl:sameAs           lvgridflex:SensorAgent .
+
+lvgridflex:Node  a           rdfs:Class , rdfs:Resource , owl:Class , owl:Thing ;
+        rdfs:label           "Node"@de ;
+        rdfs:subClassOf      rdfs:Resource , lvgridflex:Node , lvgridflex:Component , owl:Thing ;
+        owl:disjointWith     lvgridflex:LineSegment ;
+        owl:equivalentClass  lvgridflex:Node ;
+        owl:sameAs           lvgridflex:Node .
+
+lvgridflex:LineSegment
+        a                    rdfs:Resource , owl:Class , rdfs:Class , owl:Thing ;
+        rdfs:label           "LineSegment"@de ;
+        rdfs:subClassOf      rdfs:Resource , lvgridflex:LineSegment , lvgridflex:Component , owl:Thing ;
+        owl:disjointWith     lvgridflex:Node ;
+        owl:equivalentClass  lvgridflex:LineSegment ;
+        owl:sameAs           lvgridflex:LineSegment .
+
+lvgridflex:bb02  a         owl:Thing , owl:NamedIndividual , rdfs:Resource , lvgridflex:Busbar ;
+        owl:differentFrom  lvgridflex:node03 , lvgridflex:ls01 , lvgridflex:node04 , lvgridflex:ls03 , lvgridflex:node01 , lvgridflex:node02 , lvgridflex:ls04 , lvgridflex:ls02 ;
+        owl:sameAs         lvgridflex:bb02 .
+
+lvgridflex:node03  a              lvgridflex:Node , rdfs:Resource , owl:NamedIndividual , lvgridflex:Component , owl:Thing ;
+        rdfs:label                "node03" ;
+        lvgridflex:isComponentOf  lvgridflex:bb01 ;
+        owl:differentFrom         lvgridflex:ls04 , lvgridflex:ls01 , lvgridflex:bb02 , lvgridflex:bb01 , lvgridflex:ls03 , lvgridflex:ls02 ;
+        owl:sameAs                lvgridflex:node03 .
+
+lvgridflex:NodeState  a      rdfs:Class , owl:Class , rdfs:Resource , owl:Thing ;
+        rdfs:label           "NodeState"@de ;
+        rdfs:subClassOf      rdfs:Resource , lvgridflex:NodeState , owl:Thing , lvgridflex:ComponentState ;
+        owl:equivalentClass  lvgridflex:NodeState ;
+        owl:sameAs           lvgridflex:NodeState .
+
+lvgridflex:nodestate01
+        a                        lvgridflex:ComponentState , owl:Thing , rdfs:Resource , owl:NamedIndividual , lvgridflex:NodeState ;
+        lvgridflex:componentId   "node01"^^rdfs:Literal ;
+        lvgridflex:hasStateType  "Measured"^^rdfs:Literal ;
+        lvgridflex:hasTimeStamp  "2020-08-08T14:26:00"^^xsd:dateTime ;
+        lvgridflex:hasVoltage    "228.0"^^xsd:double ;
+        owl:sameAs               lvgridflex:nodestate01 .
+
+lvgridflex:bb01  a               rdfs:Resource , owl:NamedIndividual , owl:Thing , lvgridflex:Busbar ;
+        rdfs:label               "bb01"@de ;
+        lvgridflex:hasComponent  lvgridflex:node01 , lvgridflex:ls04 , lvgridflex:node03 , lvgridflex:node02 , lvgridflex:node04 , lvgridflex:ls02 , lvgridflex:ls03 , lvgridflex:ls01 ;
+        lvgridflex:hasId         "bb1"^^rdfs:Literal ;
+        owl:differentFrom        lvgridflex:node01 , lvgridflex:node02 , lvgridflex:node03 , lvgridflex:node04 , lvgridflex:ls01 , lvgridflex:ls02 , lvgridflex:ls03 , lvgridflex:ls04 ;
+        owl:sameAs               lvgridflex:bb01 .
