@@ -153,7 +153,7 @@
 		<name>Peak project consortium</name>
 		<url>http://www.agent-hygrid.net/</url>
 	</organization>
-	<name>AWB IDE-Tools</name>
-	<url>http://www.agent-hygrid.net/</url>
-	<inceptionYear>2015</inceptionYear>
+	<name>AWB - Semantic Agent Build</name>
+	<url>https://github.com/EnFlexIT/SemanticAgent/</url>
+	<inceptionYear>2022</inceptionYear>
 </project>
