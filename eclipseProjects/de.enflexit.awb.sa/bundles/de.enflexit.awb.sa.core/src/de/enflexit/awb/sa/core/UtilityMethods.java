@@ -1,4 +1,4 @@
-package semanticAgent;
+package de.enflexit.awb.sa.core;
 
 import java.io.FileWriter;
 import java.io.IOException;

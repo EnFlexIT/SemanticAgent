@@ -13,6 +13,12 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.SimpleLayout;
 
 import agentgui.core.application.Application;
+import de.enflexit.awb.sa.core.KnowledgeBase;
+import de.enflexit.awb.sa.core.OwlMessageReceiveBehaviour;
+import de.enflexit.awb.sa.core.SendInformBehaviour;
+import de.enflexit.awb.sa.core.SendQueryBehaviour;
+import de.enflexit.awb.sa.core.UtilityMethods;
+import de.enflexit.awb.sa.core.UtilityStrings;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;

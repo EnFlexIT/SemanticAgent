@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <project>
     <projectName>semanticAgent</projectName>
-    <projectStartTab>2|4</projectStartTab>
+    <projectStartTab>2|3</projectStartTab>
     <projectTreeVisible>true</projectTreeVisible>
     <projectTabHeaderVisible>true</projectTabHeaderVisible>
     <versionTag>Complete Project</versionTag>
     <updateSite>https://p2.enflex.it/awbProjectRepository/</updateSite>
     <updateAutoConfiguration>0</updateAutoConfiguration>
-    <updateDateLastChecked>1645709193880</updateDateLastChecked>
+    <updateDateLastChecked>1645803357608</updateDateLastChecked>
     <updateAuthorization>
         <authorizationType>NONE</authorizationType>
     </updateAuthorization>
@@ -31,10 +31,8 @@
         <serviceList>
             <service>agentgui.simulationService.LoadService</service>
             <service>agentgui.simulationService.SimulationService</service>
-            <service>jade.core.mobility.AgentMobilityService</service>
             <service>agentgui.logging.DebugService</service>
             <service>jade.core.event.NotificationService</service>
-            <service>de.enflexit.eom.awb.jadeService.EomService</service>
         </serviceList>
     </jadeConfiguration>
     <distributionSetup>

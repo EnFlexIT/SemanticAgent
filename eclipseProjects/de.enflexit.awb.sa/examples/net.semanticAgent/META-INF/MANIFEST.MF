@@ -1,14 +1,16 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SemanticAgent
-Bundle-SymbolicName: de.enflexit.awb.sa.core
-Bundle-Version: 0.0.1.qualifier
+Bundle-SymbolicName: net.semanticAgent
+Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: net.semanticAgent
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Service-Component: OSGI-INF/awbClassLoadService.xml
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.agentgui.core,
+Require-Bundle: de.enflexit.common,
+ org.agentgui.core,
  org.agentgui.lib.jade,
- de.enflexit.awb.sa.jena,
- de.enflexit.common
-Export-Package: de.enflexit.awb.sa.core
+ de.enflexit.awb.sa.core,
+ de.enflexit.awb.sa.jena
+Export-Package: semanticAgent,
+ semanticAgent.classLoadService

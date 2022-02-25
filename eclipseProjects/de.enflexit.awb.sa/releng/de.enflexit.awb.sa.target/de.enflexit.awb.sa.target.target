@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
 <target includeMode="feature" name="de.enflexit.awb.sa.target" sequenceNumber="104">
-<locations>
-	<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-		<repository location="https://download.eclipse.org/releases/2020-09/"/>
-		<unit id="org.eclipse.platform.sdk" version="0.0.0"/>
-		<unit id="org.eclipse.sdk.ide" version="0.0.0"/>
-	</location>
-</locations>
+	<locations>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<repository location="https://p2.enflex.it/awb/latest/"/>
+			<unit id="de.enflexit.common.feature.feature.group" version="2.1.8.202201071415"/>
+			<unit id="de.enflexit.common.feature.source.feature.group" version="2.1.8.202201071415"/>
+			<unit id="org.agentgui.feature.feature.group" version="2.2.2.202201071415"/>
+			<unit id="org.agentgui.feature.source.feature.group" version="2.2.2.202201071415"/>
+		</location>
+	</locations>
 </target>

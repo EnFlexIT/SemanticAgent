@@ -1,8 +1,8 @@
-package semanticAgent;
+package de.enflexit.awb.sa.core;
 
 import java.util.ArrayList;
 
-public class NamespaceList extends ArrayList<semanticAgent.NamespaceList.NameSpaceDescription> {
+public class NamespaceList extends ArrayList<de.enflexit.awb.sa.core.NamespaceList.NameSpaceDescription> {
 	
 	private static final long serialVersionUID = -5419876949202012928L;
 

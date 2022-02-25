@@ -1,4 +1,4 @@
-package semanticAgent;
+package de.enflexit.awb.sa.core;
 
 import java.text.DateFormat;
 import java.util.Date;

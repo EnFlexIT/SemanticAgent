@@ -1,21 +1,22 @@
-package semanticAgent;
+package de.enflexit.awb.sa.core;
 
 import org.apache.log4j.Logger;
 
-import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;
 
-public class ReveiveInformBehaviour extends OneShotBehaviour {
+public class ProcessQueryAnswerBehaviour extends OneShotBehaviour {
 	
+	// --- Variables -----------------
+	private static final long serialVersionUID = 1111119 ;
 	private static Logger logger = Logger.getRootLogger();
 
-	private String rdfTriples;
+	private String queryResult;
 	private KnowledgeBase knowledgeBase;
-
+	
 	// --- Constructors --------------
-	public ReveiveInformBehaviour(KnowledgeBase knowledgeBase, String rdfTriples) {
+	public ProcessQueryAnswerBehaviour(KnowledgeBase knowledgeBase, String queryResult) {
 		this.knowledgeBase = knowledgeBase;
-		this.rdfTriples = rdfTriples;
+		this.queryResult = queryResult;
 	}
 	@Override
 	public void action() {
@@ -24,7 +25,7 @@ public class ReveiveInformBehaviour extends OneShotBehaviour {
 			this.addStatementsToModel();
 			
 		} else {
-			logger.info("Consistency check not passed.\nDon't add statements to model now.");
+			logger.info("Consistency check not passed.\n The statements will not be added to the model.");
 		}
 	}
 	
@@ -34,7 +35,7 @@ public class ReveiveInformBehaviour extends OneShotBehaviour {
 	 */
 	private boolean statementsAreValid() {
 		logger.info("Perform consistency check now");
-		return UtilityMethods.checkRdfStatementConsistency(rdfTriples, this.knowledgeBase.getModel());
+		return UtilityMethods.checkRdfStatementConsistency(queryResult, this.knowledgeBase.getModel());
 	}
 	
 	/**
@@ -42,12 +43,11 @@ public class ReveiveInformBehaviour extends OneShotBehaviour {
 	 * run "OWL" reasoning afterwards to possibly generate new ABox instances.
 	 */
 	private void addStatementsToModel() {
-
+		
 		logger.info("Consistency check passed.\nAdd statements to model now.");
-
-		UtilityMethods.executeSparqlUpdate(this.knowledgeBase.getModel(), UtilityMethods.addPrefixesToSparqlUpdate(rdfTriples));
+		
+		UtilityMethods.executeSparqlUpdate(this.knowledgeBase.getModel(), UtilityMethods.addPrefixesToSparqlUpdate(queryResult));
 		this.knowledgeBase.setModel(UtilityMethods.generateInferredModel(this.knowledgeBase.getModel(), "OWL"));
 
 	}
-
 }
