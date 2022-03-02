@@ -35,7 +35,7 @@ public class ProcessQueryAnswerBehaviour extends OneShotBehaviour {
 	 */
 	private boolean statementsAreValid() {
 		logger.info("Perform consistency check now");
-		return UtilityMethods.checkRdfStatementConsistency(queryResult, this.knowledgeBase.getModel());
+		return UtilityMethods.checkRdfStatementConsistency(queryResult, knowledgeBase);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class ProcessQueryAnswerBehaviour extends OneShotBehaviour {
 		
 		logger.info("Consistency check passed.\nAdd statements to model now.");
 		
-		UtilityMethods.executeSparqlUpdate(this.knowledgeBase.getModel(), UtilityMethods.addPrefixesToSparqlUpdate(queryResult));
+		UtilityMethods.executeSparqlUpdate(this.knowledgeBase.getModel(), UtilityMethods.addPrefixesToSparqlUpdate(queryResult, knowledgeBase));
 		this.knowledgeBase.setModel(UtilityMethods.generateInferredModel(this.knowledgeBase.getModel(), "OWL"));
 
 	}

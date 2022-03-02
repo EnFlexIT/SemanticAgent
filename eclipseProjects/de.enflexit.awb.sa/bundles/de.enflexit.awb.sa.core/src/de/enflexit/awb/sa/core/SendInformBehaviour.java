@@ -16,13 +16,15 @@ public class SendInformBehaviour extends OneShotBehaviour{
 	private AID receiverAID;
 	private String rdfString;
 	private String conversationId; 
+	private String ontologyName; 
 	
 	// --- Constructors --------------
 	
-	public SendInformBehaviour(AID receiverAID, String rdfString, String conversationId) {
+	public SendInformBehaviour(AID receiverAID, String rdfString, String conversationId, String ontologyName) {
 		this.receiverAID = receiverAID;
 		this.rdfString = rdfString;
 		this.conversationId = conversationId; 
+		this.ontologyName = ontologyName; 
 	}
 
 	@Override
@@ -33,7 +35,7 @@ public class SendInformBehaviour extends OneShotBehaviour{
 		msg.addReceiver(this.receiverAID);
 		msg.setContent(this.rdfString);
 		msg.setLanguage("TURTLE");
-		msg.setOntology(UtilityStrings.lvGridFlexOntologyName);
+		msg.setOntology(ontologyName);
 		//Protokoll für diesen Anwendugnsfall auslassenauslassen?
 		msg.setConversationId(this.conversationId);
 		

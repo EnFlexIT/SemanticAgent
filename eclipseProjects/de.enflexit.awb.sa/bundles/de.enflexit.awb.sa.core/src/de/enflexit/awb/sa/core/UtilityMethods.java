@@ -20,9 +20,10 @@ import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
-//musste erst über access restriction verfügbar gemacht werden
 import org.apache.jena.update.*;
 import org.apache.log4j.Logger;
+import de.enflexit.awb.sa.core.NamespaceList.NamespaceDescription;
+
 import org.apache.jena.reasoner.*;
 
 
@@ -61,7 +62,7 @@ public class UtilityMethods{
 	 * It's recommended to separate every triple with a dot.
 	 * @return A string that can be added to a UpdateRequest object
 	 */
-	public static String addPrefixesToSparqlUpdate(String updateString)  { // TODO create variation for graph-specific updates 
+	public static String addPrefixesToSparqlUpdate(String updateString, KnowledgeBase kb)  { // TODO create variation for graph-specific updates 
 		ParameterizedSparqlString pss = new ParameterizedSparqlString();
 		
 		// --- Define command text here, here SPARQL Update/"INSERT DATA" ---
@@ -80,13 +81,21 @@ public class UtilityMethods{
 //						+ "}}");
 			
 		// --- Define BASE and PREFIXes -------------
-		pss.setBaseUri(UtilityStrings.lvGridFlexNamespaceIri); 
-		pss.setNsPrefix(UtilityStrings.owlQname, UtilityStrings.owlNamespaceIri);
-		pss.setNsPrefix(UtilityStrings.rdfQname, UtilityStrings.rdfNamespaceIri);
-		pss.setNsPrefix(UtilityStrings.rdfsQname, UtilityStrings.rdfsNamespaceIri);
-		pss.setNsPrefix(UtilityStrings.xsdQname, UtilityStrings.xsdNamespaceIri);
-		pss.setNsPrefix(UtilityStrings.xmlQname, UtilityStrings.xmlNamespaceIri);
-		pss.setNsPrefix(UtilityStrings.lvGridFlexQname, UtilityStrings.lvGridFlexNamespaceIri);
+//		pss.setBaseUri(UtilityStrings.lvGridFlexNamespaceIri); 
+//		pss.setNsPrefix(UtilityStrings.owlQname, UtilityStrings.owlNamespaceIri);
+//		pss.setNsPrefix(UtilityStrings.rdfQname, UtilityStrings.rdfNamespaceIri);
+//		pss.setNsPrefix(UtilityStrings.rdfsQname, UtilityStrings.rdfsNamespaceIri);
+//		pss.setNsPrefix(UtilityStrings.xsdQname, UtilityStrings.xsdNamespaceIri);
+//		pss.setNsPrefix(UtilityStrings.xmlQname, UtilityStrings.xmlNamespaceIri);
+//		pss.setNsPrefix(UtilityStrings.lvGridFlexQname, UtilityStrings.lvGridFlexNamespaceIri);
+		
+		pss.setBaseUri(kb.getBaseUri()); 
+		
+		NamespaceList namespaceList = kb.getNamespaceList(); 
+		for (int i = 0; i < namespaceList.size(); i++) {
+			NamespaceDescription nd = namespaceList.get(i);
+			pss.setNsPrefix(nd.getNamespacePrefix(), nd.getNamespaceIRI());
+		}
 			
 		return pss.toString();
 	}
@@ -98,17 +107,26 @@ public class UtilityMethods{
 	 * @return SPARQL query string with prefixes
 	 */
 	
-	public static String addPrefixesToSparqlQuery(String commandText) {
+	public static String addPrefixesToSparqlQuery(String commandText, KnowledgeBase kb) {
+		
 		ParameterizedSparqlString pss = new ParameterizedSparqlString();
 		
 		pss.setCommandText(commandText);
-		pss.setBaseUri(UtilityStrings.lvGridFlexNamespaceIri); 
-		pss.setNsPrefix(UtilityStrings.owlQname, UtilityStrings.owlNamespaceIri);
-		pss.setNsPrefix(UtilityStrings.rdfQname, UtilityStrings.rdfNamespaceIri);
-		pss.setNsPrefix(UtilityStrings.rdfsQname, UtilityStrings.rdfsNamespaceIri);
-		pss.setNsPrefix(UtilityStrings.xsdQname, UtilityStrings.xsdNamespaceIri);
-		pss.setNsPrefix(UtilityStrings.xmlQname, UtilityStrings.xmlNamespaceIri);
-		pss.setNsPrefix(UtilityStrings.lvGridFlexQname, UtilityStrings.lvGridFlexNamespaceIri);
+//		pss.setBaseUri(UtilityStrings.lvGridFlexNamespaceIri); 
+//		pss.setNsPrefix(UtilityStrings.owlQname, UtilityStrings.owlNamespaceIri);
+//		pss.setNsPrefix(UtilityStrings.rdfQname, UtilityStrings.rdfNamespaceIri);
+//		pss.setNsPrefix(UtilityStrings.rdfsQname, UtilityStrings.rdfsNamespaceIri);
+//		pss.setNsPrefix(UtilityStrings.xsdQname, UtilityStrings.xsdNamespaceIri);
+//		pss.setNsPrefix(UtilityStrings.xmlQname, UtilityStrings.xmlNamespaceIri);
+//		pss.setNsPrefix(UtilityStrings.lvGridFlexQname, UtilityStrings.lvGridFlexNamespaceIri);
+		
+		pss.setBaseUri(kb.getBaseUri()); 
+		
+		NamespaceList namespaceList = kb.getNamespaceList(); 
+		for (int i = 0; i < namespaceList.size(); i++) {
+			NamespaceDescription nd = namespaceList.get(i);
+			pss.setNsPrefix(nd.getNamespacePrefix(), nd.getNamespaceIRI());
+		}
 		
 		return pss.toString();
 	}
@@ -343,12 +361,12 @@ public class UtilityMethods{
 	 * @param model Jena model to make a deep copy from
 	 * @return Boolean: True, if modified model passed consistency check, otherwise false
 	 */
-	public static boolean checkRdfStatementConsistency(String stringToAddToModel, Model model) {
+	public static boolean checkRdfStatementConsistency(String stringToAddToModel, KnowledgeBase kb) {
 		boolean validityResult = false;
 		
-		Model modelCopy = ModelFactory.createDefaultModel().add(model); 
+		Model modelCopy = ModelFactory.createDefaultModel().add(kb.getModel()); 
 		
-		String updateString = addPrefixesToSparqlUpdate(stringToAddToModel);
+		String updateString = addPrefixesToSparqlUpdate(stringToAddToModel, kb);
 		
 		// --- Add statement(s) to copy of model for further consistency checks -----
 		UtilityMethods.executeSparqlUpdate(modelCopy, updateString);
@@ -378,13 +396,13 @@ public class UtilityMethods{
 	}
 	
 	/**
-	 * Method to turn a String[] into a String that is consisting of individual 
+	 * Method to turn a one-dimensional string array into a string that is consisting of individual 
 	 * lines of text for each field of the array.
 	 * 
 	 * @param stringArray the one-dimensional string array supposed to be transformed to a simple string
 	 * @return the generatedString
 	 */
-	public static String stringArrayToString(String[] stringArray) {
+	public static String oneDimensionalStringArrayToString(String[] stringArray) {
 		
 		String generatedString = new String(); 
 		
@@ -398,15 +416,16 @@ public class UtilityMethods{
 					generatedString += " \n";
 				}
 			}
-			logger.debug("Operations.stringArrayToString(): contentString = \n"+generatedString);
+			logger.debug("SemanticUtilities.oneDimensionalStringArrayToString(): generatedString = \n" + generatedString);
 		}
 		else {
-				logger.debug("Solution array is empty");
+				logger.debug("String array is empty");
 				generatedString = null;
 		}
 		
 		return generatedString;
 	}
+	
 
 	/**
 	 * Converts a double to a String that can be used as an object of a triple in a SPARQL Update
@@ -453,15 +472,15 @@ public class UtilityMethods{
 	}
 
 	/**
-	 * Runs a specified inference engine on a given model. 
-	 * The given model is replaced with the inferred model.
+	 * Runs a specified inference engine on the model of a given knowledgeBase. 
+	 * The model in the given knowledge base is replaced with the inferred model.
 	 * 
-	 * @param model
+	 * @param knowledgeBase
 	 * @param infEngine
 	 */
-	public static void runInferenceEngineOnModel(Model model, String infEngine) {
+	public static void runInferenceEngineOnModel(KnowledgeBase knowledgeBase, String infEngine) {
 		
-		model = UtilityMethods.generateInferredModel(model, infEngine);	
+		knowledgeBase.setModel(UtilityMethods.generateInferredModel(knowledgeBase.getModel(), infEngine));	
 	}	
 	
 	/**

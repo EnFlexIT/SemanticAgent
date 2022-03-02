@@ -5,11 +5,6 @@ import java.util.Map;
 public class UtilityStrings {
 	
 
-	/**
-	 * Used to identify ontology parameter for ACL messages
-	 */
-	public static final String lvGridFlexOntologyName = "LVGridFlexOntology";
-
 	
 	// --- Namespace IRIs ----------------------------------------------------------
 	/**

@@ -20,14 +20,16 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 	private AID receiverAID;
 	private String[][] solutionArray;
 	private String contentString = "";
+	String ontologyName; 
 	
 	
-	public AnswerQueryBehaviour(KnowledgeBase knowledgeBase, String queryString, String msgRef, AID receiverAID) {
+	public AnswerQueryBehaviour(KnowledgeBase knowledgeBase, String queryString, String msgRef, AID receiverAID, String ontologyName) {
 		this.knowledgeBase = knowledgeBase;
 		this.queryString = queryString;
 		this.msgRef = msgRef;
 		this.receiverAID = receiverAID;
-			}
+		this.ontologyName = ontologyName; 
+	}
 		
 	
 	@Override
@@ -60,7 +62,7 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 		msg.addReceiver(receiverAID);
 		msg.setContent(contentString);
 		msg.setLanguage("TURTLE");
-		msg.setOntology(UtilityStrings.lvGridFlexOntologyName);
+		msg.setOntology(ontologyName);
 		msg.setProtocol("FIPA_QUERY"); // könnte auch übergeben werden
 		msg.setConversationId(msgRef);
 		

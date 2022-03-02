@@ -34,7 +34,7 @@ public class ReveiveInformBehaviour extends OneShotBehaviour {
 	 */
 	private boolean statementsAreValid() {
 		logger.info("Perform consistency check now");
-		return UtilityMethods.checkRdfStatementConsistency(rdfTriples, this.knowledgeBase.getModel());
+		return UtilityMethods.checkRdfStatementConsistency(rdfTriples, this.knowledgeBase);
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class ReveiveInformBehaviour extends OneShotBehaviour {
 
 		logger.info("Consistency check passed.\nAdd statements to model now.");
 
-		UtilityMethods.executeSparqlUpdate(this.knowledgeBase.getModel(), UtilityMethods.addPrefixesToSparqlUpdate(rdfTriples));
+		UtilityMethods.executeSparqlUpdate(this.knowledgeBase.getModel(), UtilityMethods.addPrefixesToSparqlUpdate(rdfTriples, knowledgeBase));
 		this.knowledgeBase.setModel(UtilityMethods.generateInferredModel(this.knowledgeBase.getModel(), "OWL"));
 
 	}
