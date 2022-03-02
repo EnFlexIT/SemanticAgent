@@ -3,20 +3,17 @@
     <projectName>semanticAgent</projectName>
     <projectStartTab>2|3</projectStartTab>
     <projectTreeVisible>true</projectTreeVisible>
-    <projectTabHeaderVisible>true</projectTabHeaderVisible>
+    <projectTabHeaderVisible>false</projectTabHeaderVisible>
     <versionTag>Complete Project</versionTag>
     <updateSite>https://p2.enflex.it/awbProjectRepository/</updateSite>
     <updateAutoConfiguration>0</updateAutoConfiguration>
-    <updateDateLastChecked>1645803357608</updateDateLastChecked>
+    <updateDateLastChecked>1646062478567</updateDateLastChecked>
     <updateAuthorization>
         <authorizationType>NONE</authorizationType>
     </updateAuthorization>
     <environmentModel>gridEnvironment</environmentModel>
     <projectFeatures/>
-    <plugins>
-        <className>de.enflexit.ea.core.awbIntegration.plugin.AWBIntegrationPlugIn</className>
-        <className>de.enflexit.ea.deployment.plugin.DeploymentPlugIn</className>
-    </plugins>
+    <plugins/>
     <subOntologies/>
     <agentStartConfiguration>
         <agentVector/>
@@ -166,7 +163,6 @@
         <preventUsageOfAlreadyUsedComputers>true</preventUsageOfAlreadyUsedComputers>
         <showJADErmaGUI>false</showJADErmaGUI>
     </remoteContainerConfiguration>
-    <userObjectClassName>de.enflexit.ea.core.dataModel.absEnvModel.HyGridAbstractEnvironmentModel</userObjectClassName>
     <simulationSetupCurrent>default</simulationSetupCurrent>
     <timeModelClass>agentgui.simulationService.time.TimeModelDiscrete</timeModelClass>
     <simulationSetups>

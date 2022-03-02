@@ -44,5 +44,4 @@
             <value>60000</value>
         </entry>
     </timeModelSettings>
-    <userObjectClassName>de.enflexit.ea.core.dataModel.deployment.SetupExtension</userObjectClassName>
 </simulationSetup>
