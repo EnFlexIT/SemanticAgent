@@ -2,7 +2,7 @@
 <feature
       id="de.enflexit.awb.sa.feature"
       label="AWB - Semantic Agent Feature"
-      version="0.0.2.qualifier"
+      version="0.0.1.qualifier"
       provider-name="EnFlex.IT &amp; Sebastian Toersleff"
       plugin="de.enflexit.awb.sa.core"
       os="linux,macosx,win32"
@@ -24,18 +24,8 @@
       <update label="EnFlex.IT - AWB IDE-Tools Update Site" url="https://www.enflex.it/awbTools/latest"/>
    </url>
 
-   <includes
-         id="de.enflexit.common.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.agentgui.feature"
-         version="0.0.0"/>
-
    <requires>
-      <import plugin="org.agentgui.core"/>
       <import plugin="org.agentgui.lib.jade"/>
-      <import plugin="de.enflexit.common"/>
    </requires>
 
    <plugin

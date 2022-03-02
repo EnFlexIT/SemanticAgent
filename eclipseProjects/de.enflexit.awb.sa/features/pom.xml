@@ -24,9 +24,7 @@
 				<version>${tycho-extras-version}</version>
 				<configuration>
 					<excludes>
-						<plugin id="de.enflexit.dlt.battery" />
-						<plugin id="net.insekt.lib.matrixCalculations" />
-						<feature id="de.enflexit.eom.feature" />
+						<plugin id="de.enflexit.awb.sa.jena" />
 					</excludes>
 				</configuration>
 				<executions>
