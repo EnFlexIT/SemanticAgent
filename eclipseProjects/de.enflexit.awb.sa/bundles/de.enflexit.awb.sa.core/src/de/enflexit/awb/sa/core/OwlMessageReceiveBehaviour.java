@@ -119,7 +119,7 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 
 	protected void processQueryRefMessage(ACLMessage message) {
 		
-		AnswerQueryBehaviour aqb = new AnswerQueryBehaviour(this.knowledgeBase, message.getContent(), message.getConversationId(), message.getSender());
+		AnswerQueryBehaviour aqb = new AnswerQueryBehaviour(this.knowledgeBase, message.getContent(), message.getConversationId(), message.getSender(), ontologyName);
 		this.myAgent.addBehaviour(aqb);		
 		
 		// --- alternative für synchrone Code-Ausführung -----------------

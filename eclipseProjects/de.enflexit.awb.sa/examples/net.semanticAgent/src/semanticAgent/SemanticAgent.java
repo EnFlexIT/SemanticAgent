@@ -1,12 +1,8 @@
 package semanticAgent;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Set;
 
-import org.apache.jena.query.Query;
-import org.apache.jena.update.UpdateRequest;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -18,11 +14,8 @@ import de.enflexit.awb.sa.core.OwlMessageReceiveBehaviour;
 import de.enflexit.awb.sa.core.SendInformBehaviour;
 import de.enflexit.awb.sa.core.SendQueryBehaviour;
 import de.enflexit.awb.sa.core.UtilityMethods;
-import de.enflexit.awb.sa.core.UtilityStrings;
 import jade.core.AID;
 import jade.core.Agent;
-import jade.core.behaviours.CyclicBehaviour;
-import jade.lang.acl.ACLMessage;
 
 
 /**
@@ -60,8 +53,7 @@ public class SemanticAgent extends Agent {
 		
 		// --- for now only one ontology is supported; this variable is used ------------
 		// --- for the ontology field of ACL message objects and message filtering; -----
-		// --- this is not the file name of the ontology -------------------
-		this.ontologyName = UtilityStrings.lvGridFlexOntologyName;
+		this.ontologyName = "LVGridFlexOntology";
 		
 		// --- specify ontology folder path and file name --------------------------
 		String ontologyDirectory = Application.getProjectFocused().getProjectFolderFullPath()
@@ -70,8 +62,14 @@ public class SemanticAgent extends Agent {
 				+ this.getAID().getLocalName();
 		String ontologyFileName = "LVGridFlexOntology.owl";
 		
-		// --- instantiate knowledge base -------------------------------
-		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName);
+		// --- specify Base URI ------------------------
+		String baseUri = "http://www.hsu-ifa.de/ontologies/LVGridFlex#"; 
+		
+		// --- instantiate knowledge base with previously defined parameters -----------------
+		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
+		
+		// --- add individual namespaces --------------
+		knowledgeBase.getNamespaceList().addNameSpace("", "http://www.hsu-ifa.de/ontologies/LVGridFlex#", false);
 		
 		// --- Determine communication partner ----------------
 		if (this.getAID().getLocalName().equals("A1")) {
@@ -87,8 +85,9 @@ public class SemanticAgent extends Agent {
 		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
 		this.addBehaviour(this.owlMsgReceiveBehaviour);
 		
-		// --- Run ontology reasoning at agent setup; possibly infers additional triples ----------------------
-		UtilityMethods.runInferenceEngineOnModel(this.knowledgeBase.getModel(), null);
+		// --- Run inference engine at agent setup; possibly infers additional triples ----------------------
+		UtilityMethods.runInferenceEngineOnModel(knowledgeBase, null);
+//		knowledgeBase.setModel(UtilityMethods.generateInferredModel(knowledgeBase.getModel(), null)); 
 		
 		// -------------------------------------------------------------------
 		// --- setup required for evaluation ---------------------------------
@@ -109,8 +108,9 @@ public class SemanticAgent extends Agent {
 		// --- Evaluation methods ----------------------------
 //		this.testAnswerQueryBehaviour(); 
 //		this.testSendInformBehaviour();
-		this.testSparqlQuery();
+//		this.testSparqlQuery();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar2Col();
+		this.determineAllDerasThatControlDersAtSpecificBusbar();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar();
 //		this.determineLineSegmentsExceedingMaxCurrent();
 //		this.determineMostRecentVoltageAtSpecificNode();
@@ -183,7 +183,7 @@ public class SemanticAgent extends Agent {
 					"	}";
 			
 			
-			String nodeStateQueryPSS = UtilityMethods.addPrefixesToSparqlQuery(nodeStateQuery);
+			String nodeStateQueryPSS = UtilityMethods.addPrefixesToSparqlQuery(nodeStateQuery, knowledgeBase);
 			queryResults = UtilityMethods.executeConstructQuery(nodeStateQueryPSS, this.knowledgeBase.getModel());
 			
 			String lineSegmentStateQuery = "CONSTRUCT {?linesegmentstate ?p ?o}\n" + 
@@ -200,13 +200,13 @@ public class SemanticAgent extends Agent {
 					"		LIMIT 1 }\n" + 
 					"	}";
 			
-			String lineSegmentStateQueryPSS = UtilityMethods.addPrefixesToSparqlQuery(lineSegmentStateQuery);
+			String lineSegmentStateQueryPSS = UtilityMethods.addPrefixesToSparqlQuery(lineSegmentStateQuery, knowledgeBase);
 			
 			queryResults+=UtilityMethods.executeConstructQuery(lineSegmentStateQueryPSS, this.knowledgeBase.getModel());
 			
 			rootLogger.debug(queryResults);
 			
-			SendInformBehaviour sendInformBehaviour = new SendInformBehaviour(this.communicationPartner, queryResults, this.generateArbitraryConversationId());
+			SendInformBehaviour sendInformBehaviour = new SendInformBehaviour(this.communicationPartner, queryResults, this.generateArbitraryConversationId(), ontologyName);
 			this.addBehaviour(sendInformBehaviour);
 		}
 	}
@@ -218,10 +218,8 @@ public class SemanticAgent extends Agent {
 					+ "	?sc rdfs:subClassOf ?c. \n"
 					+ "}";
 					
-					
-					
-			
-			String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query);
+
+			String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
 			String[][] queryResults = UtilityMethods.executeMultiColumnSelectQuery(queryPSS, this.knowledgeBase.getModel());
 //			this.knowledgeBase.printAllModelStatements();
 			
@@ -235,6 +233,8 @@ public class SemanticAgent extends Agent {
 	/**
 	 * GSA (A1) queries his ontology to determine which DERAs control battery storages that are connectedTo a specific busbar
 	 * The busbar is the parameter of the SPARQL query.
+	 * Requires reasoning to be executed before querying, otherwise result is null. 
+	 * 
 	 * @param busbar_ Busbar
 	 */
 	private void determineAllDerasThatControlBatteryStoragesAtSpecificBusbar() {
@@ -245,22 +245,54 @@ public class SemanticAgent extends Agent {
 			String selectQuery = "SELECT DISTINCT ?dera \n" + 
 					"	WHERE {\n" + 
 					"	?dera :controls ?bs .\n" + 
-//					"	?bs rdf:type :BatteryStorage .\n" +
-//					"	?bs :connectedTo ?node .\n" + 
-//					"	?node rdf:type :Node .\n" + 
-//					"	?node :isComponentOf ?bb .\n" + 
-//					"	?bb rdf:type :Busbar. \n" + 
-//					"	?bb :hasId ?id .\n" + 
-//					"	FILTER (str(?id)=\"" + busbarId + "\") \n" + 
+					"	?bs rdf:type :BatteryStorage .\n" +
+					"	?bs :connectedTo ?node .\n" + 
+					"	?node rdf:type :Node .\n" + 
+					"	?node :isComponentOf ?bb .\n" + 
+					"	?bb rdf:type :Busbar. \n" + 
+					"	?bb :hasId ?id .\n" + 
+					"	FILTER (str(?id)=\"" + busbarId + "\") \n" + 
 					"	}";
 			
-			String prefixedSelectQuery = UtilityMethods.addPrefixesToSparqlQuery(selectQuery);
-			String[] solutionArray = UtilityMethods.executeSingleColumnSelectQuery(prefixedSelectQuery, this.knowledgeBase.getModel());
+			String prefixedSelectQuery = UtilityMethods.addPrefixesToSparqlQuery(selectQuery, knowledgeBase);
+			String[] solutionArray = UtilityMethods.executeSingleColumnSelectQuery(prefixedSelectQuery, knowledgeBase.getModel());
 
 			
-			String solutionString = UtilityMethods.stringArrayToString(solutionArray);
+			String solutionString = UtilityMethods.oneDimensionalStringArrayToString(solutionArray);
 			
 			rootLogger.debug(solutionString);
+
+		}
+	}
+	
+	/**
+	 * GSA (A1) queries his ontology to determine which DERAs control battery storages that are connectedTo a specific busbar
+	 * The busbar is the parameter of the SPARQL query.
+	 * Requires reasoning to be executed before querying, otherwise result is null. 
+	 * 
+	 * @param busbar_ Busbar
+	 */
+	private void determineAllDerasThatControlDersAtSpecificBusbar() {
+		if (this.getAID().getLocalName().equals("A1")) {
+			
+			String busbarId = "bb01"; 
+			
+			String selectQuery = "SELECT DISTINCT ?deras ?der \n" + 
+					"	WHERE {\n" + 
+					"	?dera :controls ?der .\n" + 
+					"	?der rdf:type :DistributedEnergyResource .\n" +
+					"	?der :connectedTo ?node .\n" + 
+					"	?node rdf:type :Node .\n" + 
+					"	?node :isComponentOf ?bb .\n" + 
+					"	?bb rdf:type :Busbar. \n" + 
+					"	?bb :hasId ?id .\n" + 
+					"	FILTER (str(?id)=\"" + busbarId + "\") \n" + 
+					"	}";
+			
+			String prefixedSelectQuery = UtilityMethods.addPrefixesToSparqlQuery(selectQuery, knowledgeBase);
+			String[][] solutionArrayMultiCol = UtilityMethods.executeMultiColumnSelectQuery(prefixedSelectQuery, this.knowledgeBase.getModel());
+					
+			rootLogger.debug(solutionArrayMultiCol);
 
 		}
 	}
@@ -289,11 +321,11 @@ public class SemanticAgent extends Agent {
 					"	FILTER (str(?id)=\"" + busbarId + "\") \n" + 
 					"	}";
 			
-			String prefixedSelectQuery = UtilityMethods.addPrefixesToSparqlQuery(selectQuery);
+			String prefixedSelectQuery = UtilityMethods.addPrefixesToSparqlQuery(selectQuery, knowledgeBase);
 			String[][] solutionArrayMultiCol = UtilityMethods.executeMultiColumnSelectQuery(prefixedSelectQuery, this.knowledgeBase.getModel());
 			
 			rootLogger.debug(solutionArrayMultiCol);
-
+			
 		}
 	}
 	
@@ -312,10 +344,10 @@ public class SemanticAgent extends Agent {
 					"	FILTER (?current > ?maxcurrent)\n" + 
 					"	}";
 		
-			String sparqlString = UtilityMethods.addPrefixesToSparqlQuery(query);
+			String sparqlString = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
 			String[] queryResult = UtilityMethods.executeSingleColumnSelectQuery(sparqlString, this.knowledgeBase.getModel());
 			
-			String contentString = UtilityMethods.stringArrayToString(queryResult);
+			String contentString = UtilityMethods.oneDimensionalStringArrayToString(queryResult);
 			
 			rootLogger.debug(queryResult);	
 		}
@@ -340,7 +372,7 @@ public class SemanticAgent extends Agent {
 					"ORDER BY DESC (?ts) \n" + 
 					"LIMIT 1 \n";
 		
-			String sparqlString = UtilityMethods.addPrefixesToSparqlQuery(query);
+			String sparqlString = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
 			String queryResult = UtilityMethods.executeSingleCellSelectQuery(sparqlString, this.knowledgeBase.getModel());
 			
 			double voltage = Double.parseDouble(queryResult); 
@@ -369,9 +401,9 @@ public class SemanticAgent extends Agent {
 					"	FILTER (?current > ?maxcurrent)\n" + 
 					"	}";
 			
-			String sparqlString = UtilityMethods.addPrefixesToSparqlQuery(commandText);
+			String sparqlString = UtilityMethods.addPrefixesToSparqlQuery(commandText, knowledgeBase);
 			String[] solution = UtilityMethods.executeSingleColumnSelectQuery(sparqlString, this.knowledgeBase.getModel());
-			String contentString = UtilityMethods.stringArrayToString(solution);
+			String contentString = UtilityMethods.oneDimensionalStringArrayToString(solution);
 			rootLogger.debug(contentString);
 			
 		}
@@ -427,7 +459,7 @@ public class SemanticAgent extends Agent {
 			
 			
 			// --- RDF Statements model via SPARQL Update hinzufügen
-			String sparqlUpdateStatement = UtilityMethods.addPrefixesToSparqlUpdate(sparqlUpdateTriples);
+			String sparqlUpdateStatement = UtilityMethods.addPrefixesToSparqlUpdate(sparqlUpdateTriples, knowledgeBase);
 			
 			rootLogger.debug(this.getAID().getLocalName() + "/updateFlexibilityPotential() will execute this SPARQL update: \n" + sparqlUpdateStatement);
 			
@@ -460,7 +492,7 @@ public class SemanticAgent extends Agent {
 					"	ORDER BY DESC (?timestamp) \n" + 
 					"		LIMIT 1}\n" + 
 					"}";
-			String queryString = UtilityMethods.addPrefixesToSparqlQuery(commandText);
+			String queryString = UtilityMethods.addPrefixesToSparqlQuery(commandText, knowledgeBase);
 			SendQueryBehaviour sqb = new SendQueryBehaviour(this, queryString, this.communicationPartner, this.generateArbitraryConversationId(), this.ontologyName);
 			this.addBehaviour(sqb);
 		}

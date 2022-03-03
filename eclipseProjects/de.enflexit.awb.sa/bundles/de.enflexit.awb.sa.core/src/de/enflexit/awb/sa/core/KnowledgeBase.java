@@ -13,6 +13,8 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.log4j.Logger;
+
+import de.enflexit.awb.sa.core.NamespaceList.NamespaceDescription;
 import jade.core.Agent;
 
 /**
@@ -33,12 +35,15 @@ public class KnowledgeBase {
 	private String ontologyDirectory; 
 	private String ontologyFileName;
 	
+	private String baseUri; 
+	
 	// --- Constructor for knowledgeBase --------------------------------------
-	public KnowledgeBase(Agent myAgent, String ontologyDirectory, String ontologyFileName) {
+	public KnowledgeBase(Agent myAgent, String ontologyDirectory, String ontologyFileName, String baseUri) {
 		
 		this.myAgent = myAgent; 
 		this.ontologyDirectory = ontologyDirectory; 
 		this.ontologyFileName = ontologyFileName; 
+		this.setBaseUri(baseUri); 
 		
 		// --- instantiate a model using ModelFactory 
 		model = this.instantiateModelInFactory();   
@@ -127,11 +132,17 @@ public class KnowledgeBase {
 	
 	public NamespaceList getNamespaceList() {
 		if (namespaceList == null) {
-			namespaceList = new NamespaceList();
-			// TODO Find the ontology specific namespace entries in the Jena Model (if possible)
-			
+			namespaceList = new NamespaceList();			
 		}
 		return namespaceList; 
+	}
+
+	public String getBaseUri() {
+		return baseUri;
+	}
+
+	public void setBaseUri(String baseUri) {
+		this.baseUri = baseUri;
 	}
 
 }
