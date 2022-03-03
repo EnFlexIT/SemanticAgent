@@ -1,12 +1,8 @@
 package semanticAgent;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Set;
 
-import org.apache.jena.query.Query;
-import org.apache.jena.update.UpdateRequest;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -18,11 +14,8 @@ import de.enflexit.awb.sa.core.OwlMessageReceiveBehaviour;
 import de.enflexit.awb.sa.core.SendInformBehaviour;
 import de.enflexit.awb.sa.core.SendQueryBehaviour;
 import de.enflexit.awb.sa.core.UtilityMethods;
-import de.enflexit.awb.sa.core.UtilityStrings;
 import jade.core.AID;
 import jade.core.Agent;
-import jade.core.behaviours.CyclicBehaviour;
-import jade.lang.acl.ACLMessage;
 
 
 /**
@@ -116,7 +109,8 @@ public class SemanticAgent extends Agent {
 //		this.testAnswerQueryBehaviour(); 
 //		this.testSendInformBehaviour();
 //		this.testSparqlQuery();
-		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar2Col();
+//		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar2Col();
+		this.determineAllDerasThatControlDersAtSpecificBusbar();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar();
 //		this.determineLineSegmentsExceedingMaxCurrent();
 //		this.determineMostRecentVoltageAtSpecificNode();
@@ -267,6 +261,38 @@ public class SemanticAgent extends Agent {
 			String solutionString = UtilityMethods.oneDimensionalStringArrayToString(solutionArray);
 			
 			rootLogger.debug(solutionString);
+
+		}
+	}
+	
+	/**
+	 * GSA (A1) queries his ontology to determine which DERAs control battery storages that are connectedTo a specific busbar
+	 * The busbar is the parameter of the SPARQL query.
+	 * Requires reasoning to be executed before querying, otherwise result is null. 
+	 * 
+	 * @param busbar_ Busbar
+	 */
+	private void determineAllDerasThatControlDersAtSpecificBusbar() {
+		if (this.getAID().getLocalName().equals("A1")) {
+			
+			String busbarId = "bb01"; 
+			
+			String selectQuery = "SELECT DISTINCT ?deras ?der \n" + 
+					"	WHERE {\n" + 
+					"	?dera :controls ?der .\n" + 
+					"	?der rdf:type :DistributedEnergyResource .\n" +
+					"	?der :connectedTo ?node .\n" + 
+					"	?node rdf:type :Node .\n" + 
+					"	?node :isComponentOf ?bb .\n" + 
+					"	?bb rdf:type :Busbar. \n" + 
+					"	?bb :hasId ?id .\n" + 
+					"	FILTER (str(?id)=\"" + busbarId + "\") \n" + 
+					"	}";
+			
+			String prefixedSelectQuery = UtilityMethods.addPrefixesToSparqlQuery(selectQuery, knowledgeBase);
+			String[][] solutionArrayMultiCol = UtilityMethods.executeMultiColumnSelectQuery(prefixedSelectQuery, this.knowledgeBase.getModel());
+					
+			rootLogger.debug(solutionArrayMultiCol);
 
 		}
 	}

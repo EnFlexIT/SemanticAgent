@@ -80,15 +80,6 @@ public class UtilityMethods{
 //						+updateString+".\n"
 //						+ "}}");
 			
-		// --- Define BASE and PREFIXes -------------
-//		pss.setBaseUri(UtilityStrings.lvGridFlexNamespaceIri); 
-//		pss.setNsPrefix(UtilityStrings.owlQname, UtilityStrings.owlNamespaceIri);
-//		pss.setNsPrefix(UtilityStrings.rdfQname, UtilityStrings.rdfNamespaceIri);
-//		pss.setNsPrefix(UtilityStrings.rdfsQname, UtilityStrings.rdfsNamespaceIri);
-//		pss.setNsPrefix(UtilityStrings.xsdQname, UtilityStrings.xsdNamespaceIri);
-//		pss.setNsPrefix(UtilityStrings.xmlQname, UtilityStrings.xmlNamespaceIri);
-//		pss.setNsPrefix(UtilityStrings.lvGridFlexQname, UtilityStrings.lvGridFlexNamespaceIri);
-		
 		pss.setBaseUri(kb.getBaseUri()); 
 		
 		NamespaceList namespaceList = kb.getNamespaceList(); 
