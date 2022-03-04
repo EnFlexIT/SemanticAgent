@@ -10,7 +10,7 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: de.enflexit.common,
  org.agentgui.core,
  org.agentgui.lib.jade,
- de.enflexit.awb.sa.core,
- de.enflexit.awb.sa.jena
+ de.enflexit.awb.sa.jena,
+ de.enflexit.awb.sa.core
 Export-Package: semanticAgent,
  semanticAgent.classLoadService

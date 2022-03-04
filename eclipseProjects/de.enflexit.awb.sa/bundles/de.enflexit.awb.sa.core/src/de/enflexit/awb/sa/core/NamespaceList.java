@@ -2,12 +2,15 @@ package de.enflexit.awb.sa.core;
 
 import java.util.ArrayList;
 
+/**
+ * The Class NamespaceList.
+ */
 public class NamespaceList extends ArrayList<de.enflexit.awb.sa.core.NamespaceList.NamespaceDescription> {
 	
 	private static final long serialVersionUID = -5419876949202012928L;
 
 	/**
-	 * Instantiates a new name space list.
+	 * Instantiates a new namespace list.
 	 * the following default namespaces are added automatically: rdf, rdfs, owl, xsd, xml
 	 */
 	public NamespaceList() {
@@ -16,9 +19,7 @@ public class NamespaceList extends ArrayList<de.enflexit.awb.sa.core.NamespaceLi
 		this.add(new NamespaceDescription("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#", true));
 		this.add(new NamespaceDescription("rdfs", "http://www.w3.org/2000/01/rdf-schema#", true));
 		this.add(new NamespaceDescription("owl", "http://www.w3.org/2002/07/owl#", true));
-		this.add(new NamespaceDescription("xsd", "http://www.w3.org/2001/XMLSchema#", true));
-		this.add(new NamespaceDescription("xml", "http://www.w3.org/XML/1998/namespace", true));
-		
+		this.add(new NamespaceDescription("xsd", "http://www.w3.org/2001/XMLSchema#", true));		
 	}
 	
 	public void addNameSpace(String namespacePrefix, String namespaceIRI, boolean isDefaultNamespace) {

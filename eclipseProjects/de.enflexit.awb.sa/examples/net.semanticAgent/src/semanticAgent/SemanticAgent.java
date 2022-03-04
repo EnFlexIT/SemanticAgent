@@ -106,16 +106,17 @@ public class SemanticAgent extends Agent {
 		try {Thread.sleep(4000);} catch (InterruptedException e) {e.printStackTrace();}
 			
 		// --- Evaluation methods ----------------------------
-//		this.testAnswerQueryBehaviour(); 
 //		this.testSendInformBehaviour();
 //		this.testSparqlQuery();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar2Col();
-		this.determineAllDerasThatControlDersAtSpecificBusbar();
+//		this.determineAllDerasThatControlDersAtSpecificBusbar();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar();
 //		this.determineLineSegmentsExceedingMaxCurrent();
 //		this.determineMostRecentVoltageAtSpecificNode();
 //		this.determineBusbarsWithLineSegmentsExceedingMaxCurrent();
 //		this.updateFlexibilityPotential();
+		
+		// --- dieses Szenario führt zu einer Exception nach Beendigung der Simulation (A1 kann iwie nicht beendet werden)
 //		this.gsaAsksDeraForFlexibility();
 	
 	}
@@ -277,7 +278,7 @@ public class SemanticAgent extends Agent {
 			
 			String busbarId = "bb01"; 
 			
-			String selectQuery = "SELECT DISTINCT ?deras ?der \n" + 
+			String selectQuery = "SELECT DISTINCT ?dera ?der \n" + 
 					"	WHERE {\n" + 
 					"	?dera :controls ?der .\n" + 
 					"	?der rdf:type :DistributedEnergyResource .\n" +
