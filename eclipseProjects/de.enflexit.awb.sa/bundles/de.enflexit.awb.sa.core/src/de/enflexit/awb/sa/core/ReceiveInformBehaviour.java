@@ -5,15 +5,25 @@ import org.apache.log4j.Logger;
 import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;
 
-public class ReveiveInformBehaviour extends OneShotBehaviour {
+/**
+ * The Class ReceiveInformBehaviour.
+ * This behaviour is used to process incoming INFORM messages that contain RDF triples. 
+ * Triples are only added to the knowledge base if they pass the consistency check.
+ */
+public class ReceiveInformBehaviour extends OneShotBehaviour {
 	
 	private static Logger logger = Logger.getRootLogger();
 
 	private String rdfTriples;
 	private KnowledgeBase knowledgeBase;
 
-	// --- Constructors --------------
-	public ReveiveInformBehaviour(KnowledgeBase knowledgeBase, String rdfTriples) {
+	/**
+	 * Instantiates a new ReceiveInformBehaviour.
+	 *
+	 * @param knowledgeBase the knowledge base that the tripels will be added to (after successful consistency check).
+	 * @param rdfTriples the rdf triples that are supposed to be injected into the knowledge base 
+	 */
+	public ReceiveInformBehaviour(KnowledgeBase knowledgeBase, String rdfTriples) {
 		this.knowledgeBase = knowledgeBase;
 		this.rdfTriples = rdfTriples;
 	}

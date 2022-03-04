@@ -18,7 +18,7 @@ import de.enflexit.awb.sa.core.NamespaceList.NamespaceDescription;
 import jade.core.Agent;
 
 /**
- * @author Sebastian T�rsleff, Helmut Schmidt University; Nils-Hendric Martens, University of Hamburg
+ * @author Sebastian Toersleff, Helmut Schmidt University; Nils-Hendric Martens, University of Hamburg
  *
  */
 

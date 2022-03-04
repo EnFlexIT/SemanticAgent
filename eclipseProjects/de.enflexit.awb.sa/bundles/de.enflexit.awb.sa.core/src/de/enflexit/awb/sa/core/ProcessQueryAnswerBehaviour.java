@@ -4,6 +4,11 @@ import org.apache.log4j.Logger;
 
 import jade.core.behaviours.OneShotBehaviour;
 
+/**
+ * The Class ProcessQueryAnswerBehaviour.
+ * 
+ * @author Sebastian Toersleff, Helmut Schmidt University
+ */
 public class ProcessQueryAnswerBehaviour extends OneShotBehaviour {
 	
 	// --- Variables -----------------
@@ -13,11 +18,17 @@ public class ProcessQueryAnswerBehaviour extends OneShotBehaviour {
 	private String queryResult;
 	private KnowledgeBase knowledgeBase;
 	
-	// --- Constructors --------------
+	/**
+	 * Instantiates a new ProcessQueryAnswerBehaviour.
+	 *
+	 * @param knowledgeBase the knowledge base
+	 * @param queryResult the query result
+	 */
 	public ProcessQueryAnswerBehaviour(KnowledgeBase knowledgeBase, String queryResult) {
 		this.knowledgeBase = knowledgeBase;
 		this.queryResult = queryResult;
 	}
+	
 	@Override
 	public void action() {
 		

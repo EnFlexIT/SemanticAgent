@@ -7,6 +7,11 @@ import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 
+/**
+ * The Class SendInformBehaviour.
+ * 
+ * @author Sebastian Toersleff, Helmut Schmidt University
+ */
 public class SendInformBehaviour extends OneShotBehaviour{
 	
 	// --- Variables -----------------
@@ -18,8 +23,15 @@ public class SendInformBehaviour extends OneShotBehaviour{
 	private String conversationId; 
 	private String ontologyName; 
 	
-	// --- Constructors --------------
 	
+	/**
+	 * Instantiates a new send inform behaviour.
+	 *
+	 * @param receiverAID the receiver AID
+	 * @param rdfString the rdf string that will be sent
+	 * @param conversationId the conversation id
+	 * @param ontologyName the ontology name
+	 */
 	public SendInformBehaviour(AID receiverAID, String rdfString, String conversationId, String ontologyName) {
 		this.receiverAID = receiverAID;
 		this.rdfString = rdfString;

@@ -8,8 +8,9 @@ import jade.lang.acl.ACLMessage;
 
 
 /**
- * A behaviour to send queries as ACL Messages to other semantic agents
- * @author Sebastian Törsleff, Helmut Schmidt University; Nils-Hendric Martens, University of Hamburg
+ * A behaviour to send QUERY_REF ACL messages containing SPARQL construct queries to other agents
+ * 
+ * @author Sebastian Toersleff, Helmut Schmidt University; Nils-Hendric Martens, University of Hamburg
  *
  */
 public class SendQueryBehaviour extends OneShotBehaviour{
@@ -24,6 +25,15 @@ public class SendQueryBehaviour extends OneShotBehaviour{
 	String conversationId; 
 	
 	
+	/**
+	 * Instantiates a new send query behaviour.
+	 *
+	 * @param sendingAgent the sending agent
+	 * @param queryString the query string (needs to be SPARQL construct query)
+	 * @param receiverAID the receiver AID
+	 * @param conversationId the conversation id
+	 * @param ontologyName the ontology name 
+	 */
 	public SendQueryBehaviour(Agent sendingAgent, String queryString, AID receiverAID, String conversationId, String ontologyName) {
 		super(sendingAgent);
 		this.queryString = queryString;

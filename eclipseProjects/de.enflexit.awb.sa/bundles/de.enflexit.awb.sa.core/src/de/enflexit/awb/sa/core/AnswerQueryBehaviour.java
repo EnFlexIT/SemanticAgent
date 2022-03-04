@@ -9,6 +9,11 @@ import jade.core.AID;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 
+/**
+ * The Class AnswerQueryBehaviour. The result of the query is send to the asking agent using the INFORM_REF performative.
+ * 
+ * @author Sebastian Toersleff, Helmut Schmidt University; Nils-Hendric Martens, University of Hamburg
+ */
 public class AnswerQueryBehaviour extends OneShotBehaviour{
 
 	private static final long serialVersionUID = 1111112 ;
@@ -23,6 +28,15 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 	String ontologyName; 
 	
 	
+	/**
+	 * Instantiates a new AnswerQueryBehaviour.
+	 *
+	 * @param knowledgeBase the knowledge base
+	 * @param queryString the query string (only construct queries can be processed)
+	 * @param msgRef the message reference
+	 * @param receiverAID the receiver AID
+	 * @param ontologyName the ontology name
+	 */
 	public AnswerQueryBehaviour(KnowledgeBase knowledgeBase, String queryString, String msgRef, AID receiverAID, String ontologyName) {
 		this.knowledgeBase = knowledgeBase;
 		this.queryString = queryString;
@@ -54,7 +68,6 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 		this.sendACLMessage();
 	}
 	
-	// --- Send ACL INFORM_REF message
 	private void sendACLMessage() {
 		
 		ACLMessage msg = new ACLMessage(ACLMessage.INFORM_REF);
@@ -63,7 +76,7 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 		msg.setContent(contentString);
 		msg.setLanguage("TURTLE");
 		msg.setOntology(ontologyName);
-		msg.setProtocol("FIPA_QUERY"); // könnte auch übergeben werden
+		msg.setProtocol("FIPA_QUERY"); 
 		msg.setConversationId(msgRef);
 		
 		logger.debug("AnswerQueryBehaviour of agent " + this.myAgent.getLocalName() + ": INFORM_REF message sent to agent " + this.receiverAID.getLocalName());

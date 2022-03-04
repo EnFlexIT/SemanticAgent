@@ -28,10 +28,10 @@ import org.apache.jena.reasoner.*;
 
 
 /**
- * This class is used to hold some operations regarding SPARQL like 
+ * This class contains methods that facilitate using the Jena framework, such as  
  * creating and executing SELECT and CONSTRUCT queries and parameterized queries, 
  * performing SPARQL updates and consistency checks on inferred models....
- * @author Sebastian Törsleff, Helmut Schmidt University; Nils-Hendric Martens, University of Hamburg
+ * @author Sebastian Toersleff, Helmut Schmidt University; Nils-Hendric Martens, University of Hamburg
  *
  */
 public class UtilityMethods{

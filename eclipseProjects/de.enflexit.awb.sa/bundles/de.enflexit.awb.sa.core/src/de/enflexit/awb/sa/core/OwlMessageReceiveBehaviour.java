@@ -12,6 +12,11 @@ import jade.lang.acl.MessageTemplate;
 /**
  * The Class OwlMessageReceiveBehaviour.
  * 
+ * This behaviour can be instantiated for agents to process OWL messages. 
+ * The methods for handling the different types of messages according to their performative can be overridden.
+ * 
+ * @author Sebastian Toersleff, Helmut Schmidt University; Nils-Hendric Martens, University of Hamburg
+ * 
  */
 public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 
@@ -27,6 +32,15 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 	// --- Set of AIDs of trusted agents whose message will be processed by the behaviour 
 	Set<AID> trustedAgents; 
 	
+	/**
+	 * Instantiates a new OWL message receive behaviour that enables an agent to process OWL messages.
+	 * Depending on the performative, messages are processed by the suitable behaviour (AnswerQueryBehaviour, ProcessQueryBehaviour, ReceiveInformBehaviour). 
+	 *
+	 * @param ontologyName the ontology name will be used as a filter for incoming messages. Only messages that have the ontology field set to this name will be processed by the behaviour.
+	 * @param myAgent the my agent
+	 * @param knowledgeBase the knowledge base
+	 * @param trustedAgents only messages received by these agents will be processed
+	 */
 	public OwlMessageReceiveBehaviour(String ontologyName, Agent myAgent, KnowledgeBase knowledgeBase, Set<AID> trustedAgents) {
 		
 		this.ontologyName = ontologyName; 	
@@ -113,7 +127,7 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 
 	protected void processInformMessage(ACLMessage message) {
 
-		ReveiveInformBehaviour rib = new ReveiveInformBehaviour(this.knowledgeBase, message.getContent());
+		ReceiveInformBehaviour rib = new ReceiveInformBehaviour(this.knowledgeBase, message.getContent());
 		this.myAgent.addBehaviour(rib);		
 	}
 
