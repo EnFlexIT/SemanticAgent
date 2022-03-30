@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <project>
-    <projectName>semanticAgent</projectName>
-    <projectStartTab>2|3</projectStartTab>
+    <projectName>optiFlexEvaluation</projectName>
     <projectTreeVisible>true</projectTreeVisible>
-    <projectTabHeaderVisible>false</projectTabHeaderVisible>
+    <projectTabHeaderVisible>true</projectTabHeaderVisible>
     <versionTag>Complete Project</versionTag>
     <updateSite>https://p2.enflex.it/awbProjectRepository/</updateSite>
     <updateAutoConfiguration>0</updateAutoConfiguration>
-    <updateDateLastChecked>1648625313114</updateDateLastChecked>
+    <updateDateLastChecked>1648625306331</updateDateLastChecked>
     <updateAuthorization>
         <authorizationType>NONE</authorizationType>
     </updateAuthorization>
@@ -15,9 +14,6 @@
     <projectFeatures/>
     <plugins/>
     <subOntologies/>
-    <agentStartConfiguration>
-        <agentVector/>
-    </agentStartConfiguration>
     <jadeConfiguration>
         <skipUserRequestForJadeStart>true</skipUserRequestForJadeStart>
         <useLocalPort>1099</useLocalPort>
@@ -28,8 +24,8 @@
         <serviceList>
             <service>agentgui.simulationService.LoadService</service>
             <service>agentgui.simulationService.SimulationService</service>
-            <service>agentgui.logging.DebugService</service>
             <service>jade.core.event.NotificationService</service>
+            <service>agentgui.logging.DebugService</service>
         </serviceList>
     </jadeConfiguration>
     <distributionSetup>
@@ -59,23 +55,23 @@
     <agentClassLoadMetricsTable>
         <agentClassMetricDescriptionVector>
             <agentClass>
-                <className>semanticAgent.SemanticAgent</className>
-                <realMetric>1.0</realMetric>
-                <realMetricAverage>0.43293371397558994</realMetricAverage>
-                <realMetricMax>0.43293371397558994</realMetricMax>
-                <realMetricMin>0.43293371397558994</realMetricMin>
-                <userPredictedMetric>1.0</userPredictedMetric>
-            </agentClass>
-            <agentClass>
                 <className>system.class.-Regular-Thread-</className>
                 <realMetric>1.0</realMetric>
-                <realMetricAverage>7.534634158623203</realMetricAverage>
-                <realMetricMax>7.534634158623203</realMetricMax>
-                <realMetricMin>7.534634158623203</realMetricMin>
+                <realMetricAverage>34.79319441193724</realMetricAverage>
+                <realMetricMax>34.793194411937215</realMetricMax>
+                <realMetricMin>34.793194411937215</realMetricMin>
                 <userPredictedMetric>1.0</userPredictedMetric>
             </agentClass>
             <agentClass>
                 <className>agentgui.simulationService.agents.ServerClientAgent</className>
+                <realMetric>1.0</realMetric>
+                <realMetricAverage>0.0</realMetricAverage>
+                <realMetricMax>0.0</realMetricMax>
+                <realMetricMin>0.0</realMetricMin>
+                <userPredictedMetric>1.0</userPredictedMetric>
+            </agentClass>
+            <agentClass>
+                <className>org.awb.env.networkModel.visualisation.DisplayAgent</className>
                 <realMetric>1.0</realMetric>
                 <realMetricAverage>0.0</realMetricAverage>
                 <realMetricMax>0.0</realMetricMax>
@@ -93,13 +89,21 @@
             <agentClass>
                 <className>agentgui.simulationService.agents.LoadMeasureAgent</className>
                 <realMetric>1.0</realMetric>
-                <realMetricAverage>5.087896442496476</realMetricAverage>
-                <realMetricMax>5.087896442496476</realMetricMax>
-                <realMetricMin>5.087896442496476</realMetricMin>
+                <realMetricAverage>1.304805409026064</realMetricAverage>
+                <realMetricMax>1.304805409026064</realMetricMax>
+                <realMetricMin>1.304805409026064</realMetricMin>
                 <userPredictedMetric>1.0</userPredictedMetric>
             </agentClass>
             <agentClass>
                 <className>jade.domain.ams</className>
+                <realMetric>1.0</realMetric>
+                <realMetricAverage>0.0</realMetricAverage>
+                <realMetricMax>0.0</realMetricMax>
+                <realMetricMin>0.0</realMetricMin>
+                <userPredictedMetric>1.0</userPredictedMetric>
+            </agentClass>
+            <agentClass>
+                <className>optiFlex.ProcessAgent</className>
                 <realMetric>1.0</realMetric>
                 <realMetricAverage>0.0</realMetricAverage>
                 <realMetricMax>0.0</realMetricMax>
@@ -115,43 +119,11 @@
                 <userPredictedMetric>1.0</userPredictedMetric>
             </agentClass>
             <agentClass>
-                <className>org.awb.env.networkModel.visualisation.DisplayAgent</className>
+                <className>optiFlex.OptimizationAgent</className>
                 <realMetric>1.0</realMetric>
-                <realMetricAverage>0.0</realMetricAverage>
-                <realMetricMax>0.0</realMetricMax>
-                <realMetricMin>0.0</realMetricMin>
-                <userPredictedMetric>1.0</userPredictedMetric>
-            </agentClass>
-            <agentClass>
-                <className>hygrid.agent.manager.SimulationManager</className>
-                <realMetric>1.0</realMetric>
-                <realMetricAverage>0.8658674279511799</realMetricAverage>
-                <realMetricMax>0.8658674279511799</realMetricMax>
-                <realMetricMin>0.8658674279511799</realMetricMin>
-                <userPredictedMetric>1.0</userPredictedMetric>
-            </agentClass>
-            <agentClass>
-                <className>hygrid.globalDataModel.blackboard.BlackboardAgent</className>
-                <realMetric>1.0</realMetric>
-                <realMetricAverage>154.71968603202646</realMetricAverage>
-                <realMetricMax>154.71968603202646</realMetricMax>
-                <realMetricMin>154.71968603202646</realMetricMin>
-                <userPredictedMetric>1.0</userPredictedMetric>
-            </agentClass>
-            <agentClass>
-                <className>jade.tools.rma.rma</className>
-                <realMetric>1.0</realMetric>
-                <realMetricAverage>0.0</realMetricAverage>
-                <realMetricMax>0.0</realMetricMax>
-                <realMetricMin>0.0</realMetricMin>
-                <userPredictedMetric>1.0</userPredictedMetric>
-            </agentClass>
-            <agentClass>
-                <className>hygrid.agent.centralExecutiveAgent.CentralExecutiveAgent</className>
-                <realMetric>1.0</realMetric>
-                <realMetricAverage>0.0</realMetricAverage>
-                <realMetricMax>0.0</realMetricMax>
-                <realMetricMin>0.0</realMetricMin>
+                <realMetricAverage>448.8982377265102</realMetricAverage>
+                <realMetricMax>448.8982377265102</realMetricMax>
+                <realMetricMin>448.8982377265102</realMetricMin>
                 <userPredictedMetric>1.0</userPredictedMetric>
             </agentClass>
         </agentClassMetricDescriptionVector>

@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.hsu-ifa.de/ontologies/OptiFlex#"
+     xml:base="http://www.hsu-ifa.de/ontologies/OptiFlex"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#hasFlexibleLoad -->
+
+    <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#hasFlexibleLoad">
+        <owl:inverseOf rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#isFlexibleLoadOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#Process"/>
+        <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#hasTargetFlexibleLoad -->
+
+    <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#hasTargetFlexibleLoad">
+        <owl:inverseOf rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#isTargetFlexibleLoadOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#hasTemporalType -->
+
+    <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#hasTemporalType">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoadDependency"/>
+        <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#TemporalType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#hasTriggerFlexibleLoad -->
+
+    <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#hasTriggerFlexibleLoad">
+        <owl:inverseOf rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#isTriggerFlexibleLoadOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoadDependency"/>
+        <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#isFlexibleLoadOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#isFlexibleLoadOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#isTargetFlexibleLoadOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#isTargetFlexibleLoadOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+        <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoadDependency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#isTriggerFlexibleLoadOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#isTriggerFlexibleLoadOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#activationGradientInKilowattPerSecond -->
+
+    <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#activationGradientInKilowattPerSecond">
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#costInEuro -->
+
+    <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#costInEuro">
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#earliestStart -->
+
+    <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#earliestStart">
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#holdingDurationInSeconds -->
+
+    <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#holdingDurationInSeconds">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#latestStart -->
+
+    <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#latestStart">
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#powerStateInKilowatts -->
+
+    <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#powerStateInKilowatts">
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#temporalGapInSeconds -->
+
+    <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#temporalGapInSeconds">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoadDependency"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad -->
+
+    <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoadDependency -->
+
+    <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoadDependency"/>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#Process -->
+
+    <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#Process"/>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#TemporalType -->
+
+    <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#TemporalType">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#end-end"/>
+                    <rdf:Description rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#end-start"/>
+                    <rdf:Description rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#start-end"/>
+                    <rdf:Description rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#start-start"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#end-end -->
+
+    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#end-end">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#TemporalType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#end-start -->
+
+    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#end-start">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#TemporalType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#flexibleLoad1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#flexibleLoad1">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+        <activationGradientInKilowattPerSecond rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.1</activationGradientInKilowattPerSecond>
+        <costInEuro rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.7</costInEuro>
+        <earliestStart rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-03-18T19:20:00</earliestStart>
+        <holdingDurationInSeconds rdf:datatype="http://www.w3.org/2001/XMLSchema#int">600</holdingDurationInSeconds>
+        <latestStart rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-03-18T22:00:00</latestStart>
+        <powerStateInKilowatts rdf:datatype="http://www.w3.org/2001/XMLSchema#double">7.0</powerStateInKilowatts>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#flexibleLoad2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#flexibleLoad2">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoad"/>
+        <activationGradientInKilowattPerSecond rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.1</activationGradientInKilowattPerSecond>
+        <costInEuro rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.1</costInEuro>
+        <earliestStart rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-03-18T20:10:00</earliestStart>
+        <holdingDurationInSeconds rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1200</holdingDurationInSeconds>
+        <latestStart rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-03-18T23:30:00</latestStart>
+        <powerStateInKilowatts rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</powerStateInKilowatts>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#flexibleLoadDependency1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#flexibleLoadDependency1">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#FlexibleLoadDependency"/>
+        <hasTargetFlexibleLoad rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#flexibleLoad2"/>
+        <hasTemporalType rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#start-start"/>
+        <hasTriggerFlexibleLoad rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#flexibleLoad1"/>
+        <temporalGapInSeconds rdf:datatype="http://www.w3.org/2001/XMLSchema#int">400</temporalGapInSeconds>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#process1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#process1">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#Process"/>
+        <hasFlexibleLoad rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#flexibleLoad1"/>
+        <hasFlexibleLoad rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#flexibleLoad2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#start-end -->
+
+    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#start-end">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#TemporalType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/OptiFlex#start-start -->
+
+    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/OptiFlex#start-start">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/OptiFlex#TemporalType"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

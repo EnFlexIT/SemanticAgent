@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simulationSetup>
+    <agentSetup>
+        <agent>
+            <postionNo>1</postionNo>
+            <listMembership>02 AgentStartEnvironment</listMembership>
+            <agentClassReference>optiFlex.ProcessAgent</agentClassReference>
+            <startAsName>ProcessAgent</startAsName>
+        </agent>
+        <agent>
+            <postionNo>2</postionNo>
+            <listMembership>02 AgentStartEnvironment</listMembership>
+            <agentClassReference>optiFlex.OptimizationAgent</agentClassReference>
+            <startAsName>OptimizationAgent</startAsName>
+        </agent>
+    </agentSetup>
+    <timeModelSettings>
+        <entry>
+            <key>TimeFormat</key>
+            <value>dd.MM.yyyy HH:mm:ss.SSS</value>
+        </entry>
+        <entry>
+            <key>TimeCurrent</key>
+            <value>1648473635790</value>
+        </entry>
+        <entry>
+            <key>ZoneId</key>
+            <value>Europe/Berlin</value>
+        </entry>
+        <entry>
+            <key>TimeStop</key>
+            <value>1648560035790</value>
+        </entry>
+        <entry>
+            <key>DisplayUnitIndex</key>
+            <value>1</value>
+        </entry>
+        <entry>
+            <key>TimeStart</key>
+            <value>1648473635790</value>
+        </entry>
+        <entry>
+            <key>StepWidth</key>
+            <value>60000</value>
+        </entry>
+    </timeModelSettings>
+</simulationSetup>

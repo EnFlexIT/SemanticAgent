@@ -3,25 +3,25 @@
     <componentSorting>Alphanumeric</componentSorting>
     <currentCTS>
         <entry>
+            <key>OptimizationAgent</key>
+            <value>
+                <agentClass>optiFlex.OptimizationAgent</agentClass>
+                <color>-16777216</color>
+                <domain>Default Domain</domain>
+                <edgeImage>MissingIcon</edgeImage>
+                <edgeWidth>8.0</edgeWidth>
+                <graphPrototype>org.awb.env.networkModel.prototypes.DistributionNode</graphPrototype>
+                <showLabel>true</showLabel>
+            </value>
+        </entry>
+        <entry>
             <key>ProcessAgent</key>
             <value>
                 <agentClass>optiFlex.ProcessAgent</agentClass>
                 <color>-16777216</color>
                 <domain>Default Domain</domain>
                 <edgeImage>MissingIcon</edgeImage>
-                <edgeWidth>2.0</edgeWidth>
-                <graphPrototype>org.awb.env.networkModel.prototypes.DistributionNode</graphPrototype>
-                <showLabel>true</showLabel>
-            </value>
-        </entry>
-        <entry>
-            <key>SemanticAgent</key>
-            <value>
-                <agentClass>semanticAgent.SemanticAgent</agentClass>
-                <color>-16777216</color>
-                <domain>Default Domain</domain>
-                <edgeImage>MissingIcon</edgeImage>
-                <edgeWidth>10.0</edgeWidth>
+                <edgeWidth>8.0</edgeWidth>
                 <graphPrototype>org.awb.env.networkModel.prototypes.DistributionNode</graphPrototype>
                 <showLabel>true</showLabel>
             </value>
@@ -41,7 +41,7 @@
     </domainSettings>
     <layoutSettings>
         <entry>
-            <key>XvmyWBmhSn</key>
+            <key>DzzbAfggln</key>
             <value>
                 <coordinateSystemXDirection>East</coordinateSystemXDirection>
                 <coordinateSystemYDirection>ClockwiseToX</coordinateSystemYDirection>

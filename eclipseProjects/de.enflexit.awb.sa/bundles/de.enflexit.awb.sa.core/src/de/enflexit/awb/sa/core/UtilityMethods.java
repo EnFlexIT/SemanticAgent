@@ -103,13 +103,6 @@ public class UtilityMethods{
 		ParameterizedSparqlString pss = new ParameterizedSparqlString();
 		
 		pss.setCommandText(commandText);
-//		pss.setBaseUri(UtilityStrings.lvGridFlexNamespaceIri); 
-//		pss.setNsPrefix(UtilityStrings.owlQname, UtilityStrings.owlNamespaceIri);
-//		pss.setNsPrefix(UtilityStrings.rdfQname, UtilityStrings.rdfNamespaceIri);
-//		pss.setNsPrefix(UtilityStrings.rdfsQname, UtilityStrings.rdfsNamespaceIri);
-//		pss.setNsPrefix(UtilityStrings.xsdQname, UtilityStrings.xsdNamespaceIri);
-//		pss.setNsPrefix(UtilityStrings.xmlQname, UtilityStrings.xmlNamespaceIri);
-//		pss.setNsPrefix(UtilityStrings.lvGridFlexQname, UtilityStrings.lvGridFlexNamespaceIri);
 		
 		pss.setBaseUri(kb.getBaseUri()); 
 		
@@ -309,7 +302,9 @@ public class UtilityMethods{
 	 * @return Inferred model with added statements that were implicit before
 	 */
 	public static Model generateInferredModel(Model model, String reasonerString) {
-		Reasoner reasoner=null;
+		
+		Reasoner reasoner = null;
+		
 		if(reasonerString=="OWL") {
 			reasoner = ReasonerRegistry.getOWLReasoner();
 		}

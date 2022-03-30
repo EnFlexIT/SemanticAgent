@@ -1,4 +1,4 @@
-package semanticAgent;
+package optiFlex;
 
 import java.io.File;
 import java.util.Set;
@@ -19,17 +19,13 @@ import jade.core.Agent;
 
 
 /**
- * Represents a semantic energy agent. 
- * This agent can be used to send SPARQL queries to other semantic agents, which will execute the queries automatically. 
- * The result is sent back to the asking agent automatically as well. 
- * In addition the semantic agent can query his own ontology or add knowledge in terms of statements (turtle) into it.
- * 
- * @author Sebastian Törsleff, Helmut Schmidt University; Nils-Hendric Martens, University of Hamburg
+ * @author Sebastian Törsleff, Helmut Schmidt University
  */
-public class SemanticAgent extends Agent {
+public class OptimizationAgent extends Agent {
+
 
 	// --- static variables -----------------------------
-	private static final long serialVersionUID = -2493803948645554649L;
+	private static final long serialVersionUID = 3164333512327730902L;
 	private static Logger rootLogger = Logger.getRootLogger();
 	
 	
@@ -53,31 +49,26 @@ public class SemanticAgent extends Agent {
 		
 		// --- for now only one ontology is supported; this variable is used ------------
 		// --- for the ontology field of ACL message objects and message filtering; -----
-		this.ontologyName = "LVGridFlexOntology";
+		this.ontologyName = "OptiFlexOntology";
 		
 		// --- specify ontology folder path and file name --------------------------
 		String ontologyDirectory = Application.getProjectFocused().getProjectFolderFullPath()
 				+ "knowledgeBases" + File.separator 
 				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
 				+ this.getAID().getLocalName();
-		String ontologyFileName = "LVGridFlexOntology.owl";
+		String ontologyFileName = "testOntology.owl";
 		
 		// --- specify Base URI ------------------------
-		String baseUri = "http://www.hsu-ifa.de/ontologies/LVGridFlex#"; 
+		String baseUri = "http://www.hsu-ifa.de/ontologies/jena-bugfixing#"; 
 		
 		// --- instantiate knowledge base with previously defined parameters -----------------
-		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, "http://www.hsu-ifa.de/ontologies/LVGridFlex#");
+		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
 		
-		// --- add individual namespaces --------------
-		knowledgeBase.getNamespaceList().addNameSpace("", "http://www.hsu-ifa.de/ontologies/LVGridFlex#", false);
+		// --- add default namespace --------------
+		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
 		
 		// --- Determine communication partner ----------------
-		if (this.getAID().getLocalName().equals("A1")) {
-			this.communicationPartner = new AID("A2", AID.ISLOCALNAME);
-			this.knowledgeBase.printAllModelStatements(); 
-		} else {
-			this.communicationPartner = new AID("A1", AID.ISLOCALNAME);
-		}
+		this.communicationPartner = new AID("ProcessAgent", AID.ISLOCALNAME);
 
 		// --- Generate set of trusted agents used by OMRB for handling of incoming messages
 		Set<AID> trustedAgents = Set.of(this.communicationPartner); 
@@ -87,20 +78,18 @@ public class SemanticAgent extends Agent {
 		this.addBehaviour(this.owlMsgReceiveBehaviour);
 		
 		// --- Run inference engine at agent setup; possibly infers additional triples ----------------------
-		UtilityMethods.runInferenceEngineOnModel(knowledgeBase, "OWL");
+//		UtilityMethods.runInferenceEngineOnModel(knowledgeBase, null);
 		
 		// -------------------------------------------------------------------
 		// --- setup required for evaluation ---------------------------------
 		// -------------------------------------------------------------------
 		
 		// --- Logger configuration --------------------------------------
-		if (this.getAID().getLocalName().equals("A1")) {
-			rootLogger.removeAllAppenders(); //unschöner workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell
-			SimpleLayout layout = new SimpleLayout();
-			ConsoleAppender consoleAppender = new ConsoleAppender(layout);
-			rootLogger.addAppender(consoleAppender);
-			rootLogger.setLevel(Level.DEBUG);			
-		}
+		rootLogger.removeAllAppenders(); //unschöner workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell
+		SimpleLayout layout = new SimpleLayout();
+		ConsoleAppender consoleAppender = new ConsoleAppender(layout);
+		rootLogger.addAppender(consoleAppender);
+		rootLogger.setLevel(Level.DEBUG);			
 		
 		// Timeblocker 4s for setting up JADE sniffer
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
@@ -108,6 +97,7 @@ public class SemanticAgent extends Agent {
 		// --- Evaluation methods ----------------------------
 //		this.testSendInformBehaviour();
 //		this.testSparqlQuery();
+//		this.testSparqlConstruct();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar2Col();
 //		this.determineDerasControllingDersAtBusbar();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar();
@@ -115,9 +105,6 @@ public class SemanticAgent extends Agent {
 //		this.determineMostRecentVoltageAtSpecificNode();
 //		this.determineBusbarsWithLineSegmentsExceedingMaxCurrent();
 //		this.updateFlexibilityPotential();
-		
-		// --- dieses Szenario führt zu einer Exception nach Beendigung der Simulation (A1 kann iwie nicht beendet werden)
-//		this.gsaAsksDeraForFlexibility();
 	
 	}
 
@@ -132,9 +119,7 @@ public class SemanticAgent extends Agent {
 		// --- Close the knowledge base model ---------------------------------------------
 		this.knowledgeBase.closeModel();
 		
-		if (this.getAID().getLocalName().equals("A1")) {
-			rootLogger.removeAllAppenders(); // workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell		
-		}
+		rootLogger.removeAllAppenders(); //unschöner workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell		
 				
 		super.takeDown();
 	}
@@ -155,6 +140,56 @@ public class SemanticAgent extends Agent {
 	// ---------------- tested evaluation methods ------------------------
 	// -------------------------------------------------------------------
 	// -------------------------------------------------------------------
+
+	private void testSparqlQuery() {						
+			
+		String query = "select * where { \n"
+				+ "	?s ?p ?o .\n"
+				+ "} limit 100 ";
+				
+
+		String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
+		String[][] queryResults = UtilityMethods.executeMultiColumnSelectQuery(queryPSS, this.knowledgeBase.getModel());
+//			this.knowledgeBase.printAllModelStatements();
+		
+		rootLogger.debug(queryResults);
+	}
+	
+
+	private void testSparqlConstruct() {						
+			
+		String query = "CONSTRUCT {?s ?p ?o}\n"
+				+ "WHERE {\n"
+				+ "    ?s ?p ?o {\n"
+				+ "        SELECT ?s ?o\n"
+				+ "        WHERE {\n"
+				+ "            {\n"
+				+ "                ?process :hasFlexibleLoad ?s.\n"
+				+ "                FILTER (?process = :process1)\n"
+				+ "            }\n"
+				+ "            UNION\n"
+				+ "            {\n"
+				+ "                ?process :hasFlexibleLoad ?o.\n"
+				+ "                FILTER (?process = :process1)\n"
+				+ "            }\n"
+				+ "            UNION \n"
+				+ "            {\n"
+				+ "                ?s :hasTriggerFlexibleLoad ?fl.\n"
+				+ "                ?process :hasFlexibleLoad ?fl\n"
+				+ "                FILTER (?process = :process1)\n"
+				+ "            }\n"
+				+ "        }        \n"
+				+ "    }\n"
+				+ "}";
+				
+
+		String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
+		String queryResults = UtilityMethods.executeConstructQuery(queryPSS, this.knowledgeBase.getModel());
+//			this.knowledgeBase.printAllModelStatements();
+		
+		rootLogger.debug(queryResults);
+	}
+
 
 	/**
 	 * The Sensor Agent (A2) queries his ontology for the newest measurements of two components (parameters) and sends these to the Grid State Agent.
@@ -202,6 +237,7 @@ public class SemanticAgent extends Agent {
 					"	}";
 			
 			String lineSegmentStateQueryPSS = UtilityMethods.addPrefixesToSparqlQuery(lineSegmentStateQuery, knowledgeBase);
+			
 			queryResults+=UtilityMethods.executeConstructQuery(lineSegmentStateQueryPSS, this.knowledgeBase.getModel());
 			
 			rootLogger.debug(queryResults);
@@ -211,25 +247,6 @@ public class SemanticAgent extends Agent {
 		}
 	}
 	
-	private void testSparqlQuery() {
-		if (this.getAID().getLocalName().equals("A2")) {
-						
-			String query = "SELECT ?sc ?c WHERE {\n"
-					+ "	?sc rdfs:subClassOf ?c. \n"
-					+ "}";
-					
-
-			String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
-			String[][] queryResults = UtilityMethods.executeMultiColumnSelectQuery(queryPSS, this.knowledgeBase.getModel());
-//			this.knowledgeBase.printAllModelStatements();
-			
-			rootLogger.debug(queryResults);
-		}
-	}
-	
-	
-	
-
 	/**
 	 * GSA (A1) queries his ontology to determine which DERAs control DERs that are connectedTo a specific busbar
 	 * The busbar is the parameter of the SPARQL query.
@@ -408,7 +425,7 @@ public class SemanticAgent extends Agent {
 		}
 	}
 	/**
-	 * Method used for updating the flexibility potential of a DERA (A2) by using SPARQL update functionality
+	 * Method used for updating the flexibility potential of a DERA (A2) by using sparql update functionality
 	 */
 	private void updateFlexibilityPotential() {
 		
@@ -419,7 +436,34 @@ public class SemanticAgent extends Agent {
 		String resourceId = "bs01"; 
 		String timeStamp = "2022-02-04T20:27:00";
 		
-		if (this.getAID().getLocalName().equals("A2")) {	
+		if (this.getAID().getLocalName().equals("A2")) {
+			
+//			String totalEnergy = "\"9.55\"^^xsd:double";
+			
+			// --- Update string für neues Flexibilitätspotential
+			
+//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential>.\n"  
+//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMaximumPower> "+maxPower+".\n"
+//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMinimumPower> " +minPower+".\n"
+//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTotalEnergy> " + totalEnergy +".\n"
+//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#resourceId> " + resourceId + ".\n" 
+//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTimeStamp> " + timeStamp + ".";			
+			
+//			String updateString = "<fp02> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual>.\n" 
+//					+"<fp02> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential>.\n"  
+//					+"<fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMaximumPower> "+maxPower+".\n"
+//					+"<fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMinimumPower> " +minPower+".\n"
+//					+"<fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTotalEnergy> " + totalEnergy +".\n"
+//					+"<fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#resourceId> " + resourceId + ".\n" 
+//					+"<fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTimeStamp> " + timeStamp + ".";	
+			
+//			String updateString = ":fp02 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual>.\n" 
+//					+":fp02 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential>.\n"  
+//					+":fp02 <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMaximumPower> "+maxPower+".\n"
+//					+":fp02 <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMinimumPower> " +minPower+".\n"
+//					+":fp02 <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTotalEnergy> " + totalEnergy +".\n"
+//					+":fp02 <http://www.hsu-ifa.de/ontologies/LVGridFlex#resourceId> " + resourceId + ".\n" 
+//					+":fp02 <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTimeStamp> " + timeStamp + ".";		
 			
 			String sparqlUpdateTriples = ":fp02 rdf:type owl:NamedIndividual.\n" 
 					+":fp02 rdf:type :FlexibilityPotential.\n"  
