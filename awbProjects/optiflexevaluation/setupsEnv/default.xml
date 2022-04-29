@@ -2,22 +2,5 @@
 <networkModelFileContent>
     <layoutID>DzzbAfggln</layoutID>
     <mapSettingsList/>
-    <networkComponentList>
-        <entry>
-            <key>OptimizationAgent</key>
-            <value>
-                <id>OptimizationAgent</id>
-                <type>OptimizationAgent</type>
-                <graphElementIDs>PP1</graphElementIDs>
-            </value>
-        </entry>
-        <entry>
-            <key>ProcessAgent</key>
-            <value>
-                <id>ProcessAgent</id>
-                <type>ProcessAgent</type>
-                <graphElementIDs>PP0</graphElementIDs>
-            </value>
-        </entry>
-    </networkComponentList>
+    <networkComponentList/>
 </networkModelFileContent>

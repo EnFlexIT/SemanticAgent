@@ -1730,9 +1730,9 @@ Bei FlexibilityPotential wird die DP "resourceId" genutzt (sollte zumindes ander
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
   </owl:InverseFunctionalProperty>
   <owl:InverseFunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasConnectedDER">
-    <owl:inverseOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#connectedTo"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:inverseOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#connectedTo"/>
     <rdfs:label xml:lang="de">hasConnectedDER</rdfs:label>
     <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
     <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Node"/>
@@ -1865,6 +1865,9 @@ Bei FlexibilityPotential wird die DP "resourceId" genutzt (sollte zumindes ander
                                         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
                                         <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node01"/>
                                         <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls02"/>
+                                        <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node03"/>
+                                        <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node04"/>
+                                        <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node02"/>
                                         <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls04"/>
                                         <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls03"/>
                                         <owl:differentFrom>
@@ -1890,9 +1893,6 @@ Bei FlexibilityPotential wird die DP "resourceId" genutzt (sollte zumindes ander
                                             <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
                                           </lvgridflex:LineSegment>
                                         </owl:differentFrom>
-                                        <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node04"/>
-                                        <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node03"/>
-                                        <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node02"/>
                                         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
                                         <owl:sameAs rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb02"/>
                                         <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
@@ -2013,12 +2013,12 @@ Bei FlexibilityPotential wird die DP "resourceId" genutzt (sollte zumindes ander
             <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
             <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node01"/>
             <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls02"/>
+            <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node03"/>
+            <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node04"/>
+            <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node02"/>
             <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls04"/>
             <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls03"/>
             <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls01"/>
-            <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node04"/>
-            <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node03"/>
-            <owl:differentFrom rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node02"/>
             <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
             <owl:sameAs rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
             <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>

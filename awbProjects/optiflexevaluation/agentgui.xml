@@ -6,14 +6,17 @@
     <versionTag>Complete Project</versionTag>
     <updateSite>https://p2.enflex.it/awbProjectRepository/</updateSite>
     <updateAutoConfiguration>0</updateAutoConfiguration>
-    <updateDateLastChecked>1648625306331</updateDateLastChecked>
+    <updateDateLastChecked>1651238187161</updateDateLastChecked>
     <updateAuthorization>
         <authorizationType>NONE</authorizationType>
     </updateAuthorization>
-    <environmentModel>gridEnvironment</environmentModel>
+    <environmentModel>none</environmentModel>
     <projectFeatures/>
     <plugins/>
     <subOntologies/>
+    <agentStartConfiguration>
+        <agentVector/>
+    </agentStartConfiguration>
     <jadeConfiguration>
         <skipUserRequestForJadeStart>true</skipUserRequestForJadeStart>
         <useLocalPort>1099</useLocalPort>
@@ -136,7 +139,6 @@
         <showJADErmaGUI>false</showJADErmaGUI>
     </remoteContainerConfiguration>
     <simulationSetupCurrent>default</simulationSetupCurrent>
-    <timeModelClass>agentgui.simulationService.time.TimeModelDiscrete</timeModelClass>
     <simulationSetups>
         <entry>
             <key>default</key>

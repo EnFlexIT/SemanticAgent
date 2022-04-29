@@ -27,11 +27,5 @@ xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns/graphml">
 <default></default>
 </key>
 <graph edgedefault="directed">
-<node id="PP0">
-<data key="pos">-12.353630065917969:0.2927401661872864</data>
-</node>
-<node id="PP1">
-<data key="pos">-21.5726318359375:5.566493034362793</data>
-</node>
 </graph>
 </graphml>

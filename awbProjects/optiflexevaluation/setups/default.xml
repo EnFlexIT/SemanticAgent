@@ -3,15 +3,15 @@
     <agentSetup>
         <agent>
             <postionNo>1</postionNo>
-            <listMembership>02 AgentStartEnvironment</listMembership>
-            <agentClassReference>optiFlex.ProcessAgent</agentClassReference>
-            <startAsName>ProcessAgent</startAsName>
+            <listMembership>01 AgentStartManual</listMembership>
+            <agentClassReference>optiFlex.OptimizationAgent</agentClassReference>
+            <startAsName>OptimizationAgent</startAsName>
         </agent>
         <agent>
             <postionNo>2</postionNo>
-            <listMembership>02 AgentStartEnvironment</listMembership>
-            <agentClassReference>optiFlex.OptimizationAgent</agentClassReference>
-            <startAsName>OptimizationAgent</startAsName>
+            <listMembership>01 AgentStartManual</listMembership>
+            <agentClassReference>optiFlex.ProcessAgent</agentClassReference>
+            <startAsName>ProcessAgent</startAsName>
         </agent>
     </agentSetup>
     <timeModelSettings>

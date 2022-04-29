@@ -3,13 +3,13 @@
     <agentSetup>
         <agent>
             <postionNo>1</postionNo>
-            <listMembership>02 AgentStartEnvironment</listMembership>
+            <listMembership>01 AgentStartManual</listMembership>
             <agentClassReference>semanticAgent.SemanticAgent</agentClassReference>
             <startAsName>A1</startAsName>
         </agent>
         <agent>
             <postionNo>2</postionNo>
-            <listMembership>02 AgentStartEnvironment</listMembership>
+            <listMembership>01 AgentStartManual</listMembership>
             <agentClassReference>semanticAgent.SemanticAgent</agentClassReference>
             <startAsName>A2</startAsName>
         </agent>
