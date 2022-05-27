@@ -56,9 +56,6 @@ public class ProcessQueryAnswerBehaviour extends OneShotBehaviour {
 	private void addStatementsToModel() {
 		
 		logger.info("Consistency check passed.\nAdd statements to model now.");
-		
-		UtilityMethods.executeSparqlUpdate(this.knowledgeBase.getModel(), UtilityMethods.addPrefixesToSparqlUpdate(queryResult, knowledgeBase));
-		this.knowledgeBase.setModel(UtilityMethods.generateInferredModel(this.knowledgeBase.getModel(), "OWL"));
-
+		UtilityMethods.executeSparqlUpdate(this.knowledgeBase, queryResult);
 	}
 }

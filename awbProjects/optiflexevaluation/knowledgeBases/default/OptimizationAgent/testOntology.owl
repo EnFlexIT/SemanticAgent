@@ -13,6 +13,31 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/jena-bugfixing#inverseOfNormalProperty -->
+
+    <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/jena-bugfixing#inverseOfNormalProperty">
+        <owl:inverseOf rdf:resource="http://www.hsu-ifa.de/ontologies/jena-bugfixing#normalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/jena-bugfixing#normalProperty -->
+
+    <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/jena-bugfixing#normalProperty"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -23,7 +48,9 @@
 
     <!-- http://www.hsu-ifa.de/ontologies/jena-bugfixing#ClassA -->
 
-    <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/jena-bugfixing#ClassA"/>
+    <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/jena-bugfixing#ClassA">
+        <owl:disjointWith rdf:resource="http://www.hsu-ifa.de/ontologies/jena-bugfixing#ClassB"/>
+    </owl:Class>
     
 
 
@@ -44,9 +71,18 @@
     
 
 
-    <!-- http://www.hsu-ifa.de/ontologies/jena-bugfixing#individualOfClassA -->
+    <!-- http://www.hsu-ifa.de/ontologies/jena-bugfixing#individual1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/jena-bugfixing#individualOfClassA">
+    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/jena-bugfixing#individual1">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/jena-bugfixing#ClassA"/>
+        <normalProperty rdf:resource="http://www.hsu-ifa.de/ontologies/jena-bugfixing#individual2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/jena-bugfixing#individual2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/jena-bugfixing#individual2">
         <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/jena-bugfixing#ClassA"/>
     </owl:NamedIndividual>
 </rdf:RDF>

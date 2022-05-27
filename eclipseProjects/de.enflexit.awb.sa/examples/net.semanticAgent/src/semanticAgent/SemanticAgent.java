@@ -3,6 +3,11 @@ package semanticAgent;
 import java.io.File;
 import java.util.Set;
 
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.reasoner.Reasoner;
+import org.apache.jena.reasoner.ReasonerRegistry;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -86,8 +91,6 @@ public class SemanticAgent extends Agent {
 		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
 		this.addBehaviour(this.owlMsgReceiveBehaviour);
 		
-		// --- Run inference engine at agent setup; possibly infers additional triples ----------------------
-		UtilityMethods.runInferenceEngineOnModel(knowledgeBase, "OWL");
 		
 		// -------------------------------------------------------------------
 		// --- setup required for evaluation ---------------------------------
@@ -106,6 +109,7 @@ public class SemanticAgent extends Agent {
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
 			
 		// --- Evaluation methods ----------------------------
+//		if (this.getAID().getLocalName().equals("A1")) this.testReasoning(); 
 //		this.testSendInformBehaviour();
 //		this.testSparqlQuery();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar2Col();
@@ -119,6 +123,24 @@ public class SemanticAgent extends Agent {
 		// --- dieses Szenario führt zu einer Exception nach Beendigung der Simulation (A1 kann iwie nicht beendet werden)
 //		this.gsaAsksDeraForFlexibility();
 	
+	}
+
+
+	private void testReasoning() {
+		
+		this.knowledgeBase.printAllModelStatements(); 
+		
+		OntModel ontModel = this.knowledgeBase.getModel(); 
+		
+		Reasoner reasoner = ReasonerRegistry.getOWLReasoner(); 
+		reasoner = reasoner.bindSchema(ontModel);
+		OntModelSpec ontModelSpec = OntModelSpec.OWL_DL_MEM;
+	    ontModelSpec.setReasoner(reasoner);
+	    OntModel model = ModelFactory.createOntologyModel(ontModelSpec, ontModel);
+	    
+	    this.knowledgeBase.setModel(model);
+	    
+	    this.knowledgeBase.printAllModelStatements(); 
 	}
 
 
@@ -431,11 +453,8 @@ public class SemanticAgent extends Agent {
 			
 			
 			// --- RDF Statements model via SPARQL Update hinzufügen
-			String sparqlUpdateStatement = UtilityMethods.addPrefixesToSparqlUpdate(sparqlUpdateTriples, knowledgeBase);
-			
-			rootLogger.debug(this.getAID().getLocalName() + "/updateFlexibilityPotential() will execute this SPARQL update: \n" + sparqlUpdateStatement);
-			
-			UtilityMethods.executeSparqlUpdate(this.knowledgeBase.getModel(),sparqlUpdateStatement);
+			rootLogger.debug(this.getAID().getLocalName() + "/updateFlexibilityPotential() will add these triples: \n" + sparqlUpdateTriples);	
+			UtilityMethods.executeSparqlUpdate(this.knowledgeBase, sparqlUpdateTriples);
 		}
 	}
 	
