@@ -3,6 +3,17 @@ package optiFlex;
 import java.io.File;
 import java.util.Set;
 
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.rdf.model.InfModel;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.reasoner.Reasoner;
+import org.apache.jena.reasoner.ReasonerRegistry;
+import org.apache.jena.reasoner.ValidityReport;
+import org.apache.jena.vocabulary.RDFS;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -56,10 +67,10 @@ public class OptimizationAgent extends Agent {
 				+ "knowledgeBases" + File.separator 
 				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
 				+ this.getAID().getLocalName();
-		String ontologyFileName = "testOntology.owl";
+		String ontologyFileName = "OptiFlex_20220318.owl";
 		
 		// --- specify Base URI ------------------------
-		String baseUri = "http://www.hsu-ifa.de/ontologies/jena-bugfixing#"; 
+		String baseUri = "http://www.hsu-ifa.de/ontologies/OptiFlex#"; 
 		
 		// --- instantiate knowledge base with previously defined parameters -----------------
 		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
@@ -77,8 +88,12 @@ public class OptimizationAgent extends Agent {
 		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
 		this.addBehaviour(this.owlMsgReceiveBehaviour);
 		
+//		this.knowledgeBase.printAllModelStatements();
+		
 		// --- Run inference engine at agent setup; possibly infers additional triples ----------------------
-//		UtilityMethods.runInferenceEngineOnModel(knowledgeBase, null);
+//		UtilityMethods.runInferenceEngineOnModel(knowledgeBase, "OWL");
+//		this.knowledgeBase.printAllModelStatements();
+
 		
 		// -------------------------------------------------------------------
 		// --- setup required for evaluation ---------------------------------
@@ -93,7 +108,7 @@ public class OptimizationAgent extends Agent {
 		
 		// Timeblocker 4s for setting up JADE sniffer
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
-			
+		
 		// --- Evaluation methods ----------------------------
 //		this.testSendInformBehaviour();
 //		this.testSparqlQuery();
@@ -135,22 +150,22 @@ public class OptimizationAgent extends Agent {
 		return cidBase + (cidCnt++);
 	}
 	
+	
+	
 	// -------------------------------------------------------------------
 	// -------------------------------------------------------------------
 	// ---------------- tested evaluation methods ------------------------
 	// -------------------------------------------------------------------
 	// -------------------------------------------------------------------
-
+	
 	private void testSparqlQuery() {						
 			
-		String query = "select * where { \n"
-				+ "	?s ?p ?o .\n"
-				+ "} limit 100 ";
+		String query = "SELECT ?x ?y WHERE {\n"
+				+ "	?x :hasFlexibleLoad ?y .\n"
+				+ "}";
 				
-
 		String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
 		String[][] queryResults = UtilityMethods.executeMultiColumnSelectQuery(queryPSS, this.knowledgeBase.getModel());
-//			this.knowledgeBase.printAllModelStatements();
 		
 		rootLogger.debug(queryResults);
 	}
@@ -475,11 +490,8 @@ public class OptimizationAgent extends Agent {
 			
 			
 			// --- RDF Statements model via SPARQL Update hinzufügen
-			String sparqlUpdateStatement = UtilityMethods.addPrefixesToSparqlUpdate(sparqlUpdateTriples, knowledgeBase);
-			
-			rootLogger.debug(this.getAID().getLocalName() + "/updateFlexibilityPotential() will execute this SPARQL update: \n" + sparqlUpdateStatement);
-			
-			UtilityMethods.executeSparqlUpdate(this.knowledgeBase.getModel(),sparqlUpdateStatement);
+			rootLogger.debug(this.getAID().getLocalName() + "/updateFlexibilityPotential() will add these triples: \n" + sparqlUpdateTriples);	
+			UtilityMethods.executeSparqlUpdate(this.knowledgeBase, sparqlUpdateTriples);
 		}
 	}
 	

@@ -55,9 +55,7 @@ public class ReceiveInformBehaviour extends OneShotBehaviour {
 
 		logger.info("Consistency check passed.\nAdd statements to model now.");
 
-		UtilityMethods.executeSparqlUpdate(this.knowledgeBase.getModel(), UtilityMethods.addPrefixesToSparqlUpdate(rdfTriples, knowledgeBase));
-		this.knowledgeBase.setModel(UtilityMethods.generateInferredModel(this.knowledgeBase.getModel(), "OWL"));
-
+		UtilityMethods.executeSparqlUpdate(this.knowledgeBase, this.rdfTriples);
 	}
 
 }

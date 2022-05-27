@@ -99,7 +99,7 @@ public class ProcessAgent extends Agent {
 //		this.testSendInformBehaviour();
 //		this.testSparqlQuery();
 //		this.testSparqlConstruct();
-//		this.sendFlexLoadInfoToOptiAgent(); 
+		this.sendFlexLoadInfoToOptiAgent(); 
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar2Col();
 //		this.determineDerasControllingDersAtBusbar();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar();
@@ -145,6 +145,18 @@ public class ProcessAgent extends Agent {
 	// -------------------------------------------------------------------
 	// -------------------------------------------------------------------
 	
+	
+	private void testSparqlQuery() {
+		
+		String query = "SELECT ?x ?y WHERE {\n"
+				+ "	?x :hasFlexibleLoad ?y .\n"
+				+ "}";
+				
+		String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
+		String[][] queryResults = UtilityMethods.executeMultiColumnSelectQuery(queryPSS, this.knowledgeBase.getModel());
+		
+		rootLogger.debug(queryResults);
+	}
 
 	private void testSparqlConstruct() {						
 			
@@ -500,11 +512,8 @@ public class ProcessAgent extends Agent {
 			
 			
 			// --- RDF Statements model via SPARQL Update hinzufügen
-			String sparqlUpdateStatement = UtilityMethods.addPrefixesToSparqlUpdate(sparqlUpdateTriples, knowledgeBase);
-			
-			rootLogger.debug(this.getAID().getLocalName() + "/updateFlexibilityPotential() will execute this SPARQL update: \n" + sparqlUpdateStatement);
-			
-			UtilityMethods.executeSparqlUpdate(this.knowledgeBase.getModel(),sparqlUpdateStatement);
+			rootLogger.debug(this.getAID().getLocalName() + "/updateFlexibilityPotential() will add these triples: \n" + sparqlUpdateTriples);	
+			UtilityMethods.executeSparqlUpdate(this.knowledgeBase, sparqlUpdateTriples);
 		}
 	}
 	

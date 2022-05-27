@@ -1,14 +1,26 @@
-<?xml version="1.0" encoding="windows-1252"?>
-<rdf:RDF
-    xmlns="http://www.hsu-ifa.de/ontologies/jena-bugfixing#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
-  <owl:Ontology rdf:about="http://www.hsu-ifa.de/ontologies/jena-bugfixing"/>
-  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/jena-bugfixing#ClassB"/>
-  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/jena-bugfixing#ClassA"/>
-  <ClassA rdf:about="http://www.hsu-ifa.de/ontologies/jena-bugfixing#individualOfClassA">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  </ClassA>
-</rdf:RDF>
+@prefix :     <http://www.hsu-ifa.de/ontologies/jena-bugfixing#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+:individual3  rdf:type  :ClassB , owl:NamedIndividual .
+
+:ClassB  rdf:type  owl:Class .
+
+:individual1  rdf:type   :ClassA , owl:NamedIndividual ;
+        :normalProperty  :individual2 .
+
+:normalProperty  rdf:type  owl:ObjectProperty .
+
+<http://www.hsu-ifa.de/ontologies/jena-bugfixing>
+        rdf:type  owl:Ontology .
+
+:inverseOfNormalProperty
+        rdf:type       owl:ObjectProperty ;
+        owl:inverseOf  :normalProperty .
+
+:individual2  rdf:type  :ClassA , owl:NamedIndividual .
+
+:ClassA  rdf:type         owl:Class ;
+        owl:disjointWith  :ClassB .

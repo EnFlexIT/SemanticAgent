@@ -4,6 +4,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.ontology.impl.OntModelImpl;
 import org.apache.jena.query.ParameterizedSparqlString;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryException;
@@ -40,18 +44,19 @@ public class UtilityMethods{
 	private static Logger logger = Logger.getRootLogger();
 	
 	/**
-	 * This static method is used to first create and then execute SPARQL updates on the provided Jena model
-	 * @param model Jena model, target of update
-	 * @param updateString A complete and valid SPARQL update string in TURTLE syntax with prefixes, no checks are made on syntax. 
-	 * This string is used to add to a updateRequest object.
+	 * This method is used to add triples as a SPARQL update on the OntModel contained in the provided KnowledgeBase.
+	 * The m
+	 * 
+	 * @param knowledgeBase contains the OntModel that is the target of update.
+	 * @param sparqlUpdateTriples a String of triples serialized in Turtle that is to be added to the OntModel. 
+	 * The method transforms the raw triples into a complete SPARQL update statement it is executed.
 	 */
-	public static void executeSparqlUpdate(Model model, String updateString) {	// TODO eventuell einbauen, dass das Update erst ausgefürt wird, wenn chechRdfConsistency erfolgreich war	
+	public static void executeSparqlUpdate(KnowledgeBase knowledgeBase, String sparqlUpdateTriples) {	
+		
+		String sparqlUpdateStatement = UtilityMethods.addPrefixesToSparqlUpdate(sparqlUpdateTriples, knowledgeBase);
 		UpdateRequest updateRequest = UpdateFactory.create();
-		updateRequest.add(updateString);
-		UpdateAction.execute(updateRequest, model);
-//		logger.debug("-------------New model-------------");
-//		logger.debug(model.write(System.out, "TURTLE"));
-
+		updateRequest.add(sparqlUpdateStatement);
+		UpdateAction.execute(updateRequest, knowledgeBase.getModel());
 	}
 	
 	/**
@@ -295,67 +300,28 @@ public class UtilityMethods{
 		return solStrArray;
 	}
 		
-	/**
-	 * A method to generate a inferred model from a given Jena model (the provided model is not changed)
-	 * @param model Target of the inference process, must be the model from the agents knowledge base
-	 * @param reasonerString Identifier for reasoner to use. "OWL" / "RDFS" / "transitive" possible, OWL Reasoner used by default
-	 * @return Inferred model with added statements that were implicit before
-	 */
-	public static Model generateInferredModel(Model model, String reasonerString) {
-		
-		Reasoner reasoner = null;
-		
-		if(reasonerString=="OWL") {
-			reasoner = ReasonerRegistry.getOWLReasoner();
-		}
-		else if(reasonerString=="RDFS") {
-			reasoner = ReasonerRegistry.getRDFSReasoner();
-		}
-		else if(reasonerString=="transitive") {
-			reasoner = ReasonerRegistry.getTransitiveReasoner();
-		}
-//		else if(reasonerString=="openllet") { // In case the openllet reasoner gets implemented
-//			Reasoner reasoner = PelletReasonerFactory.theInstance().create();
-//		}
-		else {
-			reasoner = ReasonerRegistry.getOWLReasoner();
-		}
-		
-		InfModel infModel = ModelFactory.createInfModel(reasoner, model);
-		
-		ValidityReport validity = infModel.validate();
-		if (validity.isValid()) {
-		    logger.info("Validity: OK");
-		} else {
-		    logger.info("Validity: NOT OK\nSee conflicts");
-		    for (Iterator i = validity.getReports(); i.hasNext(); ) {
-		        ValidityReport.Report report = (ValidityReport.Report)i.next();
-		        logger.info(" - " + report);
-		    }
-		}
-		
-		return infModel;
-		
-	}
 	
 	/**
-	 * A method to perform a consistency check on a Jena model to verify if new statements can be added to
-	 * that model without harming any restrictions of the ontology. Therefore a copy of the model gets created, 
+	 * A method to perform a consistency check on a OntModel to verify if new statements can be added to
+	 * that model without harming any restrictions of the ontology. Therefore a copy of the model is created, 
 	 * to which the new statements are added via a SPARQL update. The selected reasoner then validates the model and prints
-	 * a validity report. OWL reasoner by default. In case the validity report shows at least one error/conflict, the statements should not be added to the model.
-	 * @param stringToAddToModel Well formed string containing triples in TURTLE Syntax.
-	 * @param model Jena model to make a deep copy from
+	 * a validity report. OWL reasoner is used by default. In case the validity report shows at least one error/conflict, the statements should not be added to the model.
+	 * @param triplesToAddToModel string containing triples in TURTLE Syntax.
+	 * @param knowledgeBase KnowledgeBase containing the OntModel to make a copy from that is used for the validity check
 	 * @return Boolean: True, if modified model passed consistency check, otherwise false
 	 */
-	public static boolean checkRdfStatementConsistency(String stringToAddToModel, KnowledgeBase kb) {
+	public static boolean checkRdfStatementConsistency(String triplesToAddToModel, KnowledgeBase knowledgeBase) {
 		boolean validityResult = false;
 		
-		Model modelCopy = ModelFactory.createDefaultModel().add(kb.getModel()); 
+		OntModel modelCopy = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
+		modelCopy.add(knowledgeBase.getModel().getBaseModel());
 		
-		String updateString = addPrefixesToSparqlUpdate(stringToAddToModel, kb);
+		String updateString = addPrefixesToSparqlUpdate(triplesToAddToModel, knowledgeBase);
 		
 		// --- Add statement(s) to copy of model for further consistency checks -----
-		UtilityMethods.executeSparqlUpdate(modelCopy, updateString);
+		UpdateRequest updateRequest = UpdateFactory.create();
+		updateRequest.add(updateString);
+		UpdateAction.execute(updateRequest, modelCopy);
 		
 		// --- Select the reasoner -------------------------
 		Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
@@ -372,7 +338,7 @@ public class UtilityMethods{
 		    validityResult = true;
 		} else {
 			logger.info("Validity = NOT OK \nConflicts");
-			logger.info("Statement(s) not added to model due to inconsistency");
+//			logger.info("Statement(s) not added to model due to inconsistency");
 		    for (Iterator i = validity.getReports(); i.hasNext(); ) {
 		        ValidityReport.Report report = (ValidityReport.Report)i.next();
 		        logger.info(" - " + report);
@@ -457,17 +423,17 @@ public class UtilityMethods{
 		return stringAsXsdDateTime;
 	}
 
-	/**
-	 * Runs a specified inference engine on the model of a given knowledgeBase. 
-	 * The model in the given knowledge base is replaced with the inferred model.
-	 * 
-	 * @param knowledgeBase
-	 * @param infEngine
-	 */
-	public static void runInferenceEngineOnModel(KnowledgeBase knowledgeBase, String infEngine) {
-		
-		knowledgeBase.setModel(UtilityMethods.generateInferredModel(knowledgeBase.getModel(), infEngine));	
-	}	
+//	/**
+//	 * Runs a specified inference engine on the model of a given knowledgeBase. 
+//	 * The model in the given knowledge base is replaced with the inferred model.
+//	 * 
+//	 * @param knowledgeBase
+//	 * @param infEngine
+//	 */
+//	public static void runInferenceEngineOnModel(KnowledgeBase knowledgeBase, String infEngine) {
+//		
+//		knowledgeBase.setModel(UtilityMethods.generateInferredModel(knowledgeBase.getModel(), infEngine));	
+//	}	
 	
 	/**
 	 * Method to execute a SPARQL SELECT query received as a String on the provided model. 

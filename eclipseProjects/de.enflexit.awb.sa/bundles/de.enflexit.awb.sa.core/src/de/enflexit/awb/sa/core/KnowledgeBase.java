@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
@@ -28,7 +30,7 @@ public class KnowledgeBase {
 	private static Logger logger = Logger.getRootLogger();
 	
 	private File knowledgeBaseFolder;
-	private Model model; 
+	private OntModel ontModel; 
 	private NamespaceList namespaceList;
 	
 	private Agent myAgent; 
@@ -45,20 +47,20 @@ public class KnowledgeBase {
 		this.ontologyFileName = ontologyFileName; 
 		this.setBaseUri(baseUri); 
 		
-		// --- instantiate a model using ModelFactory 
-		model = this.instantiateModelInFactory();   
+		// --- instantiate a ontModel using ModelFactory 
+		ontModel = this.instantiateModelInFactory();   
 	}
 	
-	private Model instantiateModelInFactory() {
+	private OntModel instantiateModelInFactory() {
 		
 		String filePath = this.getKnowledgeBaseFolderPath() + File.separator + ontologyFileName; 
-		Model model = ModelFactory.createDefaultModel();
-		model.read(filePath); 		
-		return model;
+		OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
+		ontModel.read(filePath); 		
+		return ontModel;
 	}
 
 	public void printAllModelStatements () {
-		StmtIterator iter = model.listStatements();
+		StmtIterator iter = this.getModel().listStatements();
 	    while (iter.hasNext()) {
 	    	Statement stmt      = iter.nextStatement();  // get next statement
 	    	Resource  subject   = stmt.getSubject();     // get the subject
@@ -78,20 +80,20 @@ public class KnowledgeBase {
 	    } 
 	}
 	
-	public Model getModel() {
-		return model;
+	public OntModel getModel() {
+		return ontModel;
 	}
 
-	public void setModel(Model model) {
-		this.model = model;
+	public void setModel(OntModel ontModel) {
+		this.ontModel = ontModel;
 	}
 	
 	public void closeModel () {
-		this.model.close(); 
+		this.ontModel.close(); 
 	}
 	
 	/**
-	 * A method to save the current in-memory model of the knowledgeBase (Ontology) of a semantic agent into a file on hard disk. 
+	 * A method to save the current in-memory ontModel of the knowledgeBase (Ontology) of a semantic agent into a file on hard disk. 
 	 * The file is saved under a new name: "..._postSim".
 	 */
 	public void saveModel() {
@@ -104,8 +106,8 @@ public class KnowledgeBase {
 	    		catch (IOException e) {
 	    			e.printStackTrace();
 	    		}
-	    try {				// --- Select serialization method here
-	        this.model.write( out, "RDF/XML" );
+	    try {				// --- Select serialization here
+	        this.ontModel.write(out, "TURTLE" );
 	    }
 	    	finally {
 	       			try {
