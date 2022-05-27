@@ -77,9 +77,6 @@ public class ProcessAgent extends Agent {
 		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
 		this.addBehaviour(this.owlMsgReceiveBehaviour);
 		
-		// --- Run inference engine at agent setup; possibly infers additional triples ----------------------
-//		UtilityMethods.runInferenceEngineOnModel(knowledgeBase, null);
-
 		
 		// -------------------------------------------------------------------
 		// --- setup required for evaluation ---------------------------------
@@ -218,7 +215,6 @@ public class ProcessAgent extends Agent {
 				+ "        }        \n"
 				+ "    }\n"
 				+ "}";
-				
 
 		String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
 		String queryResults = UtilityMethods.executeConstructQuery(queryPSS, knowledgeBase.getModel());

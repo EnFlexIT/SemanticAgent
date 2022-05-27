@@ -125,25 +125,6 @@ public class SemanticAgent extends Agent {
 	
 	}
 
-
-	private void testReasoning() {
-		
-		this.knowledgeBase.printAllModelStatements(); 
-		
-		OntModel ontModel = this.knowledgeBase.getModel(); 
-		
-		Reasoner reasoner = ReasonerRegistry.getOWLReasoner(); 
-		reasoner = reasoner.bindSchema(ontModel);
-		OntModelSpec ontModelSpec = OntModelSpec.OWL_DL_MEM;
-	    ontModelSpec.setReasoner(reasoner);
-	    OntModel model = ModelFactory.createOntologyModel(ontModelSpec, ontModel);
-	    
-	    this.knowledgeBase.setModel(model);
-	    
-	    this.knowledgeBase.printAllModelStatements(); 
-	}
-
-
 	@Override
 	protected void takeDown() {
 

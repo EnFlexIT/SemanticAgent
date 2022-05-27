@@ -88,12 +88,6 @@ public class OptimizationAgent extends Agent {
 		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
 		this.addBehaviour(this.owlMsgReceiveBehaviour);
 		
-//		this.knowledgeBase.printAllModelStatements();
-		
-		// --- Run inference engine at agent setup; possibly infers additional triples ----------------------
-//		UtilityMethods.runInferenceEngineOnModel(knowledgeBase, "OWL");
-//		this.knowledgeBase.printAllModelStatements();
-
 		
 		// -------------------------------------------------------------------
 		// --- setup required for evaluation ---------------------------------

@@ -97,7 +97,7 @@ public class UtilityMethods{
 	}
 	
 	/**This static method creates a SPARQL query using the provided command text (SELECT or CONSTRUCT query).
-	 * The prefixes according to the UTILITYSTRINGS are added automatically.
+	 * The prefixes according to the KnowledgeBase are added automatically.
 	 * 
 	 * @param commandText Content of the SPARQL query, either SELECT or CONSTRUCT queries are possible 
 	 * @return SPARQL query string with prefixes
