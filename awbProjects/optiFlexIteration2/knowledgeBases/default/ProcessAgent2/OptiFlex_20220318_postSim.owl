@@ -1,0 +1,117 @@
+@prefix :     <http://www.hsu-ifa.de/ontologies/OptiFlex#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+:isFlexibleLoadOf  rdf:type  owl:FunctionalProperty , owl:ObjectProperty .
+
+:Process  rdf:type  owl:Class .
+
+<http://www.hsu-ifa.de/ontologies/OptiFlex>
+        rdf:type  owl:Ontology .
+
+:isTargetFlexibleLoadOf
+        rdf:type     owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain  :FlexibleLoad ;
+        rdfs:range   :FlexibleLoadDependency .
+
+:earliestStart  rdf:type  owl:DatatypeProperty ;
+        rdfs:domain  :FlexibleLoad ;
+        rdfs:range   xsd:dateTime .
+
+:flexibleLoadDependency2
+        rdf:type                 :FlexibleLoadDependency , owl:NamedIndividual ;
+        :hasTargetFlexibleLoad   :flexibleLoad4 ;
+        :hasTemporalType         :start-start ;
+        :hasTriggerFlexibleLoad  :flexibleLoad3 ;
+        :temporalGapInSeconds    "400"^^xsd:int .
+
+:end-start  rdf:type  :TemporalType , owl:NamedIndividual .
+
+:isTriggerFlexibleLoadOf
+        rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty .
+
+:latestStart  rdf:type  owl:DatatypeProperty ;
+        rdfs:domain  :FlexibleLoad ;
+        rdfs:range   xsd:dateTime .
+
+:temporalGapInSeconds
+        rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:domain  :FlexibleLoadDependency ;
+        rdfs:range   xsd:int .
+
+:start-start  rdf:type  :TemporalType , owl:NamedIndividual .
+
+:flexibleLoad4  rdf:type           :FlexibleLoad , owl:NamedIndividual ;
+        :activationGradientInKilowattPerSecond
+                "0.1"^^xsd:double ;
+        :costInEuro                "3.1"^^xsd:double ;
+        :earliestStart             "2022-03-18T20:10:00"^^xsd:dateTime ;
+        :holdingDurationInSeconds  "1200"^^xsd:int ;
+        :latestStart               "2022-03-18T23:30:00"^^xsd:dateTime ;
+        :powerStateInKilowatts     "3.0"^^xsd:double .
+
+:flexibleLoad3  rdf:type           :FlexibleLoad , owl:NamedIndividual ;
+        :activationGradientInKilowattPerSecond
+                "0.1"^^xsd:double ;
+        :costInEuro                "2.7"^^xsd:double ;
+        :earliestStart             "2022-03-18T19:20:00"^^xsd:dateTime ;
+        :holdingDurationInSeconds  "600"^^xsd:int ;
+        :latestStart               "2022-03-18T22:00:00"^^xsd:dateTime ;
+        :powerStateInKilowatts     "7.0"^^xsd:double .
+
+:activationGradientInKilowattPerSecond
+        rdf:type     owl:DatatypeProperty ;
+        rdfs:domain  :FlexibleLoad ;
+        rdfs:range   xsd:double .
+
+:FlexibleLoadDependency
+        rdf:type  owl:Class .
+
+:hasFlexibleLoad  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain    :Process ;
+        rdfs:range     :FlexibleLoad ;
+        owl:inverseOf  :isFlexibleLoadOf .
+
+:hasTargetFlexibleLoad
+        rdf:type       owl:FunctionalProperty , owl:ObjectProperty ;
+        owl:inverseOf  :isTargetFlexibleLoadOf .
+
+:holdingDurationInSeconds
+        rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:domain  :FlexibleLoad ;
+        rdfs:range   xsd:int .
+
+:FlexibleLoad  rdf:type  owl:Class .
+
+:hasTriggerFlexibleLoad
+        rdf:type       owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain    :FlexibleLoadDependency ;
+        rdfs:range     :FlexibleLoad ;
+        owl:inverseOf  :isTriggerFlexibleLoadOf .
+
+:end-end  rdf:type  :TemporalType , owl:NamedIndividual .
+
+:start-end  rdf:type  :TemporalType , owl:NamedIndividual .
+
+:hasTemporalType  rdf:type  owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain  :FlexibleLoadDependency ;
+        rdfs:range   :TemporalType .
+
+:powerStateInKilowatts
+        rdf:type     owl:DatatypeProperty ;
+        rdfs:domain  :FlexibleLoad ;
+        rdfs:range   xsd:double .
+
+:costInEuro  rdf:type  owl:DatatypeProperty ;
+        rdfs:domain  :FlexibleLoad ;
+        rdfs:range   xsd:double .
+
+:TemporalType  rdf:type      owl:Class ;
+        owl:equivalentClass  [ rdf:type   owl:Class ;
+                               owl:oneOf  ( :end-end :end-start :start-end :start-start )
+                             ] .
+
+:process2  rdf:type       :Process , owl:NamedIndividual ;
+        :hasFlexibleLoad  :flexibleLoad4 , :flexibleLoad3 .

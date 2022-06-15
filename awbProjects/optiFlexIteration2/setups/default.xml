@@ -13,6 +13,12 @@
             <agentClassReference>optiFlexIteration2.OptimizationAgent</agentClassReference>
             <startAsName>OptimizationAgent</startAsName>
         </agent>
+        <agent>
+            <postionNo>3</postionNo>
+            <listMembership>01 AgentStartManual</listMembership>
+            <agentClassReference>optiFlexIteration2.ProcessAgent</agentClassReference>
+            <startAsName>ProcessAgent2</startAsName>
+        </agent>
     </agentSetup>
     <timeModelSettings>
         <entry>
