@@ -29,7 +29,7 @@ import jade.core.Agent;
  * The result is sent back to the asking agent automatically as well. 
  * In addition the semantic agent can query his own ontology or add knowledge in terms of statements (turtle) into it.
  * 
- * @author Sebastian Törsleff, Helmut Schmidt University; Nils-Hendric Martens, University of Hamburg
+ * @author Sebastian TÃ¶rsleff, Helmut Schmidt University; Nils-Hendric Martens, University of Hamburg
  */
 public class SemanticAgent extends Agent {
 
@@ -71,15 +71,14 @@ public class SemanticAgent extends Agent {
 		String baseUri = "http://www.hsu-ifa.de/ontologies/LVGridFlex#"; 
 		
 		// --- instantiate knowledge base with previously defined parameters -----------------
-		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, "http://www.hsu-ifa.de/ontologies/LVGridFlex#");
+		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
 		
 		// --- add individual namespaces --------------
-		knowledgeBase.getNamespaceList().addNameSpace("", "http://www.hsu-ifa.de/ontologies/LVGridFlex#", false);
+		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
 		
 		// --- Determine communication partner ----------------
 		if (this.getAID().getLocalName().equals("A1")) {
 			this.communicationPartner = new AID("A2", AID.ISLOCALNAME);
-			this.knowledgeBase.printAllModelStatements(); 
 		} else {
 			this.communicationPartner = new AID("A1", AID.ISLOCALNAME);
 		}
@@ -98,7 +97,7 @@ public class SemanticAgent extends Agent {
 		
 		// --- Logger configuration --------------------------------------
 		if (this.getAID().getLocalName().equals("A1")) {
-			rootLogger.removeAllAppenders(); //unschöner workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell
+			rootLogger.removeAllAppenders(); //unschï¿½ner workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell
 			SimpleLayout layout = new SimpleLayout();
 			ConsoleAppender consoleAppender = new ConsoleAppender(layout);
 			rootLogger.addAppender(consoleAppender);
@@ -110,7 +109,7 @@ public class SemanticAgent extends Agent {
 			
 		// --- Evaluation methods ----------------------------
 //		if (this.getAID().getLocalName().equals("A1")) this.testReasoning(); 
-//		this.testSendInformBehaviour();
+		this.testSendInformBehaviour();
 //		this.testSparqlQuery();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar2Col();
 //		this.determineDerasControllingDersAtBusbar();
@@ -120,7 +119,7 @@ public class SemanticAgent extends Agent {
 //		this.determineBusbarsWithLineSegmentsExceedingMaxCurrent();
 //		this.updateFlexibilityPotential();
 		
-		// --- dieses Szenario führt zu einer Exception nach Beendigung der Simulation (A1 kann iwie nicht beendet werden)
+		// --- dieses Szenario fÃ¼hrt zu Inkonsistenzen im Konsistenzcheck, so dass das Query Ergebnis nicht angenommen wird von A1
 //		this.gsaAsksDeraForFlexibility();
 	
 	}
@@ -395,7 +394,7 @@ public class SemanticAgent extends Agent {
 			String commandText = "SELECT DISTINCT ?bb\n" + 
 					"	WHERE {\n" + 
 					"	?bb rdf:type :Busbar .\n" + 
-					"	?bb :hasComponent ?ls .\n" +   //hier steht nur node01 zur Verfügung - in Protege testen
+					"	?bb :hasComponent ?ls .\n" +   //hier steht nur node01 zur Verfï¿½gung - in Protege testen
 					"	?ls rdf:type :LineSegment .\n" + 
 					"	?ls :hasMaximumCurrent ?maxcurrent .\n" + 
 					"	?ls :hasLineSegmentState ?lss .\n" + 
@@ -433,7 +432,7 @@ public class SemanticAgent extends Agent {
 					+":fp02 :hasTimeStamp " + UtilityMethods.stringToXsdDateTime(timeStamp) + ".";	
 			
 			
-			// --- RDF Statements model via SPARQL Update hinzufügen
+			// --- RDF Statements model via SPARQL Update hinzufï¿½gen
 			rootLogger.debug(this.getAID().getLocalName() + "/updateFlexibilityPotential() will add these triples: \n" + sparqlUpdateTriples);	
 			UtilityMethods.executeSparqlUpdate(this.knowledgeBase, sparqlUpdateTriples);
 		}
@@ -443,7 +442,7 @@ public class SemanticAgent extends Agent {
 	 * The Grid State Agent (A1) asks a Distributed Energy Resource Agent (A2) for his flexibility potential of a specific Distributed Energy Resource (battery storage bs01). 
 	 * After the DERA receives the SPARQL query he executes the query and send back the result.
 	 * The GSA then adds the flexibility potential to his ontology after it passed the consistency check.
-	 * Zum Testen sicherstellen, dass in der Ontologie von A1 keine flexpo enthalten ist, das in der Onto von A2 enthalten ist 
+	 * Zum Testen sicherstellen, dass in der Ontologie von A1 kein flexpo enthalten ist, das in der Onto von A2 enthalten ist 
 	 */
 	private void gsaAsksDeraForFlexibility() {
 		

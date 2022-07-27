@@ -1,749 +1,298 @@
-<?xml version="1.0" encoding="windows-1252"?>
-<rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:lvgridflex="http://www.hsu-ifa.de/ontologies/LVGridFlex#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
-  <owl:Ontology rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-    >Bekannte Schwachstellen: 
+@prefix :           <http://www.hsu-ifa.de/ontologies/LVGridFlex#> .
+@prefix lvgridflex: <http://www.hsu-ifa.de/ontologies/LVGridFlex#> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
 
-manche Klassen haben IDs (z.B. Busbar), andere nicht (z.B. Line Segment); allgemein ist das Thema IDs ist nicht einheitlich gehandhabt
+lvgridflex:ls04  rdf:type             lvgridflex:LineSegment , owl:NamedIndividual ;
+        lvgridflex:hasEndNode         lvgridflex:node04 ;
+        lvgridflex:hasId              "ls04"^^rdfs:Literal ;
+        lvgridflex:hasMaximumCurrent  "100.0"^^xsd:double ;
+        lvgridflex:hasStartNode       lvgridflex:node03 ;
+        lvgridflex:isComponentOf      lvgridflex:bb01 .
 
-Bei FlexibilityPotential wird die DP "resourceId" genutzt (sollte zumindes anders genannt werden (z.B. derId); bei ComponentStates wird die DP "componentId" genutzt</rdfs:comment>
-  </owl:Ontology>
-  <rdfs:Datatype rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdf:type>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    </rdf:type>
-  </rdfs:Datatype>
-  <rdfs:Resource rdf:about="http://www.w3.org/2002/07/owl#InverseFunctionalProperty">
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    </rdf:type>
-  </rdfs:Resource>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#ComponentState">
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdfs:subClassOf>
-    <rdfs:label xml:lang="de">ComponentState</rdfs:label>
-    <rdf:type>
-      <rdfs:Resource rdf:about="http://www.w3.org/2002/07/owl#Class">
-        <rdf:type>
-          <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
-        </rdf:type>
-      </rdfs:Resource>
-    </rdf:type>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ComponentState"/>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdf:type>
-  </rdfs:Class>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#SensorAgent">
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdfs:subClassOf>
-    <rdfs:label xml:lang="de">SensorAgent</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#EnergyAgent"/>
-    </rdfs:subClassOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#SensorAgent"/>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdf:type>
-  </rdfs:Class>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegment">
-    <rdfs:label xml:lang="de">LineSegment</rdfs:label>
-    <owl:disjointWith>
-      <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#Node"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-    </rdfs:subClassOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegment"/>
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdfs:subClassOf>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdf:type>
-  </rdfs:Class>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#Busbar">
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Busbar"/>
-    <rdfs:label xml:lang="de">Busbar</rdfs:label>
-    <owl:disjointWith>
-      <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-    </owl:disjointWith>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdf:type>
-  </rdfs:Class>
-  <rdfs:Class rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement">
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdfs:subClassOf>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdf:type>
-  </rdfs:Class>
-  <rdfs:Resource rdf:about="http://www.w3.org/2000/01/rdf-schema#Container">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Container"/>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    </rdf:type>
-  </rdfs:Resource>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential">
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential"/>
-    <rdfs:label>FlexibilityPotential</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdf:type>
-  </rdfs:Class>
-  <rdfs:Resource rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Container"/>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    </rdf:type>
-  </rdfs:Resource>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#GridStateAgent">
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdfs:subClassOf>
-    <rdfs:label xml:lang="de">GridStateAgent</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#EnergyAgent"/>
-    </rdfs:subClassOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#GridStateAgent"/>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdf:type>
-  </rdfs:Class>
-  <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Literal">
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdfs:subClassOf>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdf:type>
-  </rdfs:Class>
-  <rdfs:Resource rdf:about="http://www.w3.org/2002/07/owl#FunctionalProperty">
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    </rdf:type>
-  </rdfs:Resource>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#Node">
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdfs:subClassOf>
-    <rdfs:label xml:lang="de">Node</rdfs:label>
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-    </rdfs:subClassOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Node"/>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdf:type>
-  </rdfs:Class>
-  <rdfs:Class rdf:about="http://www.w3.org/2001/XMLSchema#double">
-    <rdfs:subClassOf>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    </rdf:type>
-  </rdfs:Class>
-  <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdfs:Class>
-  <rdfs:Resource rdf:about="http://www.w3.org/2002/07/owl#DatatypeProperty">
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    </rdf:type>
-  </rdfs:Resource>
-  <rdfs:Class rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#List">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdfs:Class>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#NodeState">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdfs:label xml:lang="de">NodeState</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ComponentState"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#NodeState"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdfs:Class>
-  <rdfs:Class rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdfs:Class>
-  <rdfs:Resource rdf:about="http://www.w3.org/2000/01/rdf-schema#ContainerMembershipProperty">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#ContainerMembershipProperty"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    </rdf:type>
-  </rdfs:Resource>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegmentState">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdfs:label xml:lang="de">LineSegmentState</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ComponentState"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegmentState"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdfs:Class>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdfs:label xml:lang="de">DistributedEnergyResource</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdfs:Class>
-  <rdfs:Resource rdf:about="http://www.w3.org/2002/07/owl#Ontology">
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    </rdf:type>
-  </rdfs:Resource>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdfs:label xml:lang="de">Component</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdfs:Class>
-  <rdfs:Resource rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Container"/>
-    <rdf:type>
-      <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    </rdf:type>
-  </rdfs:Resource>
-  <rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdfs:Class>
-  <rdfs:Resource rdf:about="http://www.w3.org/2000/01/rdf-schema#Datatype">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdfs:Resource>
-  <rdfs:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResourceAgent">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdfs:label xml:lang="de">DistributedEnergyResourceAgent</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#EnergyAgent"/>
-    </rdfs:subClassOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResourceAgent"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdfs:Class>
-  <rdfs:Resource rdf:about="http://www.w3.org/2002/07/owl#NamedIndividual">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdfs:Resource>
-  <rdfs:Class rdf:about="http://www.w3.org/2001/XMLSchema#dateTime">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdfs:Class>
-  <rdfs:Resource rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#Alt">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Alt"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Container"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdfs:Resource>
-  <rdfs:Resource rdf:about="http://www.w3.org/2002/07/owl#ObjectProperty">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdfs:Resource>
-  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#BatteryStorage">
-    <rdfs:label xml:lang="de">BatteryStorage</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#BatteryStorage"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#ChargingStation">
-    <rdfs:label xml:lang="de">ChargingStation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ChargingStation"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#EnergyAgent">
-    <rdfs:label xml:lang="de">EnergyAgent</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#EnergyAgent"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </owl:Class>
-  <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasFlexibilityPotential">
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:ObjectProperty>
-  <rdf:Property rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate">
-    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdf:Property>
-  <rdfs:Resource rdf:about="http://www.w3.org/2000/01/rdf-schema#isDefinedBy">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
-    <rdfs:subPropertyOf>
-      <rdfs:Resource rdf:about="http://www.w3.org/2000/01/rdf-schema#seeAlso">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#seeAlso"/>
-        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-      </rdfs:Resource>
-    </rdfs:subPropertyOf>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </rdfs:Resource>
-  <rdf:Property rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject">
-    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdf:Property>
-  <rdf:Property rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#object">
-    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdf:Property>
-  <rdfs:Resource rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </rdfs:Resource>
-  <rdfs:Resource rdf:about="http://www.w3.org/2000/01/rdf-schema#domain">
-    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </rdfs:Resource>
-  <rdfs:Resource rdf:about="http://www.w3.org/2000/01/rdf-schema#subPropertyOf">
-    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </rdfs:Resource>
-  <rdfs:Resource rdf:about="http://www.w3.org/2000/01/rdf-schema#subClassOf">
-    <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </rdfs:Resource>
-  <rdf:Property rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#rest">
-    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#rest"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdf:Property>
-  <rdf:Property rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#first">
-    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#first"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdf:Property>
-  <rdfs:Resource rdf:about="http://www.w3.org/2000/01/rdf-schema#range">
-    <rdfs:domain rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </rdfs:Resource>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTimeStamp">
-    <rdfs:label xml:lang="de">hasTimeStamp</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasId">
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMaximumPower">
-    <rdfs:label>hasMaximumPower</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#isComponentOf">
-    <rdfs:label xml:lang="de">isComponentOf</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Busbar"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasCurrent">
-    <rdfs:label xml:lang="de">hasCurrent</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegmentState"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMaximumCurrent">
-    <rdfs:label xml:lang="de">hasMaximumCurrent</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegment"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTotalEnergy">
-    <rdfs:label>hasTotalEnergy</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#componentId">
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ComponentState"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasVoltage">
-    <rdfs:label xml:lang="de">hasVoltage</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#controlledBy">
-    <rdfs:label xml:lang="de">controlledBy</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResourceAgent"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
-    <owl:inverseOf>
-      <owl:InverseFunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#controls"/>
-    </owl:inverseOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#resourceId">
-    <rdfs:label>resourceID</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMinimumPower">
-    <rdfs:label>hasMinimumPower</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasStartNode">
-    <rdfs:label xml:lang="de">hasStartNode</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Node"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegment"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#connectedTo">
-    <rdfs:label xml:lang="de">connectedTo</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Node"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
-    <owl:inverseOf>
-      <owl:InverseFunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasConnectedDER"/>
-    </owl:inverseOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasEndNode">
-    <rdfs:label xml:lang="de">hasEndNode</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Node"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegment"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:FunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasComponent">
-    <rdfs:label xml:lang="de">hasComponent</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Busbar"/>
-    <owl:inverseOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#isComponentOf"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:InverseFunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#supervises">
-    <rdfs:label xml:lang="de">supervises</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Busbar"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#GridStateAgent"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:InverseFunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#measures">
-    <rdfs:label xml:lang="de">measures</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#SensorAgent"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:InverseFunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasNodeState">
-    <rdfs:label xml:lang="de">hasNodeState</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#NodeState"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Node"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:InverseFunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasConnectedDER">
-    <rdfs:label xml:lang="de">hasConnectedDER</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Node"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:InverseFunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#hasLineSegmentState">
-    <rdfs:label xml:lang="de">hasLineSegmentState</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegmentState"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegment"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:InverseFunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#controls">
-    <rdfs:label xml:lang="de">controls</rdfs:label>
-    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
-    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResourceAgent"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </owl:InverseFunctionalProperty>
-  <lvgridflex:NodeState rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#nodestate01">
-    <lvgridflex:hasVoltage rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
-    >228.0</lvgridflex:hasVoltage>
-    <lvgridflex:hasTimeStamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
-    >2020-08-08T14:26:00</lvgridflex:hasTimeStamp>
-    <lvgridflex:componentId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-    >node01</lvgridflex:componentId>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ComponentState"/>
-  </lvgridflex:NodeState>
-  <rdfs:Resource rdf:about="http://www.w3.org/2000/01/rdf-schema#comment">
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </rdfs:Resource>
-  <lvgridflex:LineSegment rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls04">
-    <lvgridflex:hasMaximumCurrent rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
-    >100.0</lvgridflex:hasMaximumCurrent>
-    <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-    >ls04</lvgridflex:hasId>
-    <lvgridflex:isComponentOf>
-      <lvgridflex:Busbar rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01">
-        <rdfs:label xml:lang="de">bb01</rdfs:label>
-        <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-        >bb01</lvgridflex:hasId>
-        <lvgridflex:hasComponent>
-          <lvgridflex:Node rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#node01">
-            <rdfs:label xml:lang="de">node01</rdfs:label>
-            <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-            >node01</lvgridflex:hasId>
-            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-            <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-            <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-          </lvgridflex:Node>
-        </lvgridflex:hasComponent>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-      </lvgridflex:Busbar>
-    </lvgridflex:isComponentOf>
-    <lvgridflex:hasStartNode>
-      <lvgridflex:Node rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#node03">
-        <rdfs:label>node03</rdfs:label>
-        <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-        >node03</lvgridflex:hasId>
-        <lvgridflex:isComponentOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-      </lvgridflex:Node>
-    </lvgridflex:hasStartNode>
-    <lvgridflex:hasEndNode>
-      <lvgridflex:Node rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#node04">
-        <rdfs:label>node04</rdfs:label>
-        <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-        >node04</lvgridflex:hasId>
-        <lvgridflex:isComponentOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-      </lvgridflex:Node>
-    </lvgridflex:hasEndNode>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-  </lvgridflex:LineSegment>
-  <lvgridflex:Busbar rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb02">
-    <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-    >bb02</lvgridflex:hasId>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </lvgridflex:Busbar>
-  <lvgridflex:LineSegment rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls03">
-    <lvgridflex:hasMaximumCurrent rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
-    >100.0</lvgridflex:hasMaximumCurrent>
-    <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-    >ls03</lvgridflex:hasId>
-    <lvgridflex:isComponentOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
-    <lvgridflex:hasStartNode>
-      <lvgridflex:Node rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#node02">
-        <rdfs:label>node02</rdfs:label>
-        <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-        >node02</lvgridflex:hasId>
-        <lvgridflex:isComponentOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-      </lvgridflex:Node>
-    </lvgridflex:hasStartNode>
-    <lvgridflex:hasLineSegmentState>
-      <lvgridflex:LineSegmentState rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#lss03">
-        <lvgridflex:hasTimeStamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
-        >2022-08-08T15:12:00</lvgridflex:hasTimeStamp>
-        <lvgridflex:hasCurrent rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
-        >105.3</lvgridflex:hasCurrent>
-        <lvgridflex:componentId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-        >ls03</lvgridflex:componentId>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ComponentState"/>
-      </lvgridflex:LineSegmentState>
-    </lvgridflex:hasLineSegmentState>
-    <lvgridflex:hasEndNode rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node03"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-  </lvgridflex:LineSegment>
-  <lvgridflex:SensorAgent rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#sa01">
-    <lvgridflex:measures rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node01"/>
-    <lvgridflex:measures>
-      <lvgridflex:LineSegment rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls02">
-        <lvgridflex:hasMaximumCurrent rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
-        >100.0</lvgridflex:hasMaximumCurrent>
-        <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-        >ls02</lvgridflex:hasId>
-        <lvgridflex:isComponentOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
-        <lvgridflex:hasStartNode rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node01"/>
-        <lvgridflex:hasLineSegmentState>
-          <lvgridflex:LineSegmentState rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#lss02">
-            <lvgridflex:hasTimeStamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
-            >2020-08-08T14:26:00</lvgridflex:hasTimeStamp>
-            <lvgridflex:hasCurrent rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
-            >90.0</lvgridflex:hasCurrent>
-            <lvgridflex:componentId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-            >ls01</lvgridflex:componentId>
-            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-            <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-            <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#ComponentState"/>
-          </lvgridflex:LineSegmentState>
-        </lvgridflex:hasLineSegmentState>
-        <lvgridflex:hasEndNode rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node02"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-      </lvgridflex:LineSegment>
-    </lvgridflex:measures>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#EnergyAgent"/>
-  </lvgridflex:SensorAgent>
-  <lvgridflex:DistributedEnergyResourceAgent rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#dera02">
-    <rdfs:label xml:lang="de">dera02</rdfs:label>
-    <lvgridflex:controls>
-      <lvgridflex:ChargingStation rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#cs02">
-        <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-        >cs02</lvgridflex:hasId>
-        <lvgridflex:connectedTo rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node04"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
-      </lvgridflex:ChargingStation>
-    </lvgridflex:controls>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#EnergyAgent"/>
-  </lvgridflex:DistributedEnergyResourceAgent>
-  <rdfs:Resource rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </rdfs:Resource>
-  <rdf:List rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdf:List>
-  <lvgridflex:DistributedEnergyResourceAgent rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#dera01">
-    <rdfs:label xml:lang="de">dera01</rdfs:label>
-    <lvgridflex:controls>
-      <lvgridflex:ChargingStation rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#cs01">
-        <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-        >cs01</lvgridflex:hasId>
-        <lvgridflex:connectedTo rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node02"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
-      </lvgridflex:ChargingStation>
-    </lvgridflex:controls>
-    <lvgridflex:controls>
-      <lvgridflex:BatteryStorage rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#bs01">
-        <rdfs:label xml:lang="de">bs01</rdfs:label>
-        <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-        >bs01</lvgridflex:hasId>
-        <lvgridflex:connectedTo rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node01"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#DistributedEnergyResource"/>
-      </lvgridflex:BatteryStorage>
-    </lvgridflex:controls>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#EnergyAgent"/>
-  </lvgridflex:DistributedEnergyResourceAgent>
-  <lvgridflex:GridStateAgent rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#gsa01">
-    <rdfs:label xml:lang="de">gsa</rdfs:label>
-    <lvgridflex:supervises rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#EnergyAgent"/>
-  </lvgridflex:GridStateAgent>
-  <lvgridflex:LineSegment rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls01">
-    <lvgridflex:hasMaximumCurrent rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
-    >100.0</lvgridflex:hasMaximumCurrent>
-    <lvgridflex:hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal"
-    >ls01</lvgridflex:hasId>
-    <lvgridflex:isComponentOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
-    <lvgridflex:hasEndNode rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node01"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#Component"/>
-  </lvgridflex:LineSegment>
-</rdf:RDF>
+lvgridflex:node02  rdf:type       lvgridflex:Node , owl:NamedIndividual ;
+        rdfs:label                "node02" ;
+        lvgridflex:hasId          "node02"^^rdfs:Literal ;
+        lvgridflex:isComponentOf  lvgridflex:bb01 .
+
+lvgridflex:dera02  rdf:type  lvgridflex:DistributedEnergyResourceAgent , owl:NamedIndividual ;
+        rdfs:label           "dera02"@de ;
+        lvgridflex:controls  lvgridflex:cs02 .
+
+lvgridflex:controlledBy
+        rdf:type       owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain    lvgridflex:DistributedEnergyResource ;
+        rdfs:label     "controlledBy"@de ;
+        rdfs:range     lvgridflex:DistributedEnergyResourceAgent ;
+        owl:inverseOf  lvgridflex:controls .
+
+lvgridflex:resourceId
+        rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:domain  lvgridflex:FlexibilityPotential ;
+        rdfs:label   "resourceID" ;
+        rdfs:range   rdfs:Literal .
+
+lvgridflex:hasFlexibilityPotential
+        rdf:type     owl:ObjectProperty ;
+        rdfs:domain  lvgridflex:DistributedEnergyResource ;
+        rdfs:range   lvgridflex:FlexibilityPotential .
+
+lvgridflex:controls  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain  lvgridflex:DistributedEnergyResourceAgent ;
+        rdfs:label   "controls"@de ;
+        rdfs:range   lvgridflex:DistributedEnergyResource .
+
+lvgridflex:ls03  rdf:type             lvgridflex:LineSegment , owl:NamedIndividual ;
+        lvgridflex:hasEndNode         lvgridflex:node03 ;
+        lvgridflex:hasId              "ls03"^^rdfs:Literal ;
+        lvgridflex:hasMaximumCurrent  "100.0"^^xsd:double ;
+        lvgridflex:hasStartNode       lvgridflex:node02 ;
+        lvgridflex:isComponentOf      lvgridflex:bb01 .
+
+lvgridflex:hasEndNode
+        rdf:type     owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain  lvgridflex:LineSegment ;
+        rdfs:label   "hasEndNode"@de ;
+        rdfs:range   lvgridflex:Node .
+
+lvgridflex:node01  rdf:type  lvgridflex:Node , owl:NamedIndividual ;
+        rdfs:label        "node01"@de ;
+        lvgridflex:hasId  "node01"^^rdfs:Literal .
+
+lvgridflex:dera01  rdf:type  lvgridflex:DistributedEnergyResourceAgent , owl:NamedIndividual ;
+        rdfs:label           "dera01"@de ;
+        lvgridflex:controls  lvgridflex:cs01 , lvgridflex:bs01 .
+
+lvgridflex:hasComponent
+        rdf:type       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain    lvgridflex:Busbar ;
+        rdfs:label     "hasComponent"@de ;
+        rdfs:range     lvgridflex:Component ;
+        owl:inverseOf  lvgridflex:isComponentOf .
+
+lvgridflex:fp01  rdf:type           lvgridflex:FlexibilityPotential , owl:NamedIndividual ;
+        lvgridflex:hasMaximumPower  "20.0"^^xsd:double ;
+        lvgridflex:hasMinimumPower  "10.0"^^xsd:double ;
+        lvgridflex:hasTimeStamp     "2022-02-03T19:27:00"^^xsd:dateTime ;
+        lvgridflex:hasTotalEnergy   "5.0"^^xsd:double ;
+        lvgridflex:resourceId       "bs01"^^rdfs:Literal .
+
+lvgridflex:cs02  rdf:type       lvgridflex:ChargingStation , owl:NamedIndividual ;
+        lvgridflex:connectedTo  lvgridflex:node04 ;
+        lvgridflex:hasId        "cs02"^^rdfs:Literal .
+
+lvgridflex:ls02  rdf:type             lvgridflex:LineSegment , owl:NamedIndividual ;
+        lvgridflex:hasEndNode         lvgridflex:node02 ;
+        lvgridflex:hasId              "ls02"^^rdfs:Literal ;
+        lvgridflex:hasMaximumCurrent  "100.0"^^xsd:double ;
+        lvgridflex:hasStartNode       lvgridflex:node01 ;
+        lvgridflex:isComponentOf      lvgridflex:bb01 .
+
+lvgridflex:hasMaximumPower
+        rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:domain  lvgridflex:FlexibilityPotential ;
+        rdfs:label   "hasMaximumPower" ;
+        rdfs:range   xsd:double .
+
+<http://www.hsu-ifa.de/ontologies/LVGridFlex>
+        rdf:type      owl:Ontology ;
+        rdfs:comment  "Bekannte Schwachstellen: \n\nmanche Klassen haben IDs (z.B. Busbar), andere nicht (z.B. Line Segment); allgemein ist das Thema IDs ist nicht einheitlich gehandhabt\n\nBei FlexibilityPotential wird die DP \"resourceId\" genutzt (sollte zumindes anders genannt werden (z.B. derId); bei ComponentStates wird die DP \"componentId\" genutzt"^^rdfs:Literal .
+
+lvgridflex:bs01  rdf:type       lvgridflex:BatteryStorage , owl:NamedIndividual ;
+        rdfs:label              "bs01"@de ;
+        lvgridflex:connectedTo  lvgridflex:node01 ;
+        lvgridflex:hasId        "bs01"^^rdfs:Literal .
+
+lvgridflex:Component  rdf:type  owl:Class ;
+        rdfs:label  "Component"@de .
+
+lvgridflex:isComponentOf
+        rdf:type     owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain  lvgridflex:Component ;
+        rdfs:label   "isComponentOf"@de ;
+        rdfs:range   lvgridflex:Busbar .
+
+lvgridflex:hasId  rdf:type  owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:range  rdfs:Literal .
+
+lvgridflex:sa01  rdf:type    lvgridflex:SensorAgent , owl:NamedIndividual ;
+        lvgridflex:measures  lvgridflex:node01 , lvgridflex:ls02 .
+
+lvgridflex:FlexibilityPotential
+        rdf:type    owl:Class ;
+        rdfs:label  "FlexibilityPotential" .
+
+lvgridflex:GridStateAgent
+        rdf:type         owl:Class ;
+        rdfs:label       "GridStateAgent"@de ;
+        rdfs:subClassOf  lvgridflex:EnergyAgent .
+
+lvgridflex:componentId
+        rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:domain  lvgridflex:ComponentState ;
+        rdfs:range   rdfs:Literal .
+
+lvgridflex:hasTotalEnergy
+        rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:domain  lvgridflex:FlexibilityPotential ;
+        rdfs:label   "hasTotalEnergy" ;
+        rdfs:range   xsd:double .
+
+lvgridflex:hasConnectedDER
+        rdf:type     owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain  lvgridflex:Node ;
+        rdfs:label   "hasConnectedDER"@de ;
+        rdfs:range   lvgridflex:DistributedEnergyResource .
+
+lvgridflex:gsa01  rdf:type     lvgridflex:GridStateAgent , owl:NamedIndividual ;
+        rdfs:label             "gsa"@de ;
+        lvgridflex:supervises  lvgridflex:bb01 .
+
+lvgridflex:hasStartNode
+        rdf:type     owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain  lvgridflex:LineSegment ;
+        rdfs:label   "hasStartNode"@de ;
+        rdfs:range   lvgridflex:Node .
+
+lvgridflex:cs01  rdf:type       lvgridflex:ChargingStation , owl:NamedIndividual ;
+        lvgridflex:connectedTo  lvgridflex:node02 ;
+        lvgridflex:hasId        "cs01"^^rdfs:Literal .
+
+lvgridflex:ls01  rdf:type             lvgridflex:LineSegment , owl:NamedIndividual ;
+        lvgridflex:hasEndNode         lvgridflex:node01 ;
+        lvgridflex:hasId              "ls01"^^rdfs:Literal ;
+        lvgridflex:hasMaximumCurrent  "100.0"^^xsd:double ;
+        lvgridflex:isComponentOf      lvgridflex:bb01 .
+
+lvgridflex:hasNodeState
+        rdf:type     owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain  lvgridflex:Node ;
+        rdfs:label   "hasNodeState"@de ;
+        rdfs:range   lvgridflex:NodeState .
+
+lvgridflex:EnergyAgent
+        rdf:type    owl:Class ;
+        rdfs:label  "EnergyAgent"@de .
+
+lvgridflex:ChargingStation
+        rdf:type         owl:Class ;
+        rdfs:label       "ChargingStation"@de ;
+        rdfs:subClassOf  lvgridflex:DistributedEnergyResource .
+
+lvgridflex:hasMaximumCurrent
+        rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:domain  lvgridflex:LineSegment ;
+        rdfs:label   "hasMaximumCurrent"@de ;
+        rdfs:range   xsd:double .
+
+lvgridflex:hasTimeStamp
+        rdf:type    owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:label  "hasTimeStamp"@de ;
+        rdfs:range  xsd:dateTime .
+
+lvgridflex:hasLineSegmentState
+        rdf:type     owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain  lvgridflex:LineSegment ;
+        rdfs:label   "hasLineSegmentState"@de ;
+        rdfs:range   lvgridflex:LineSegmentState .
+
+lvgridflex:LineSegmentState
+        rdf:type         owl:Class ;
+        rdfs:label       "LineSegmentState"@de ;
+        rdfs:subClassOf  lvgridflex:ComponentState .
+
+lvgridflex:BatteryStorage
+        rdf:type         owl:Class ;
+        rdfs:label       "BatteryStorage"@de ;
+        rdfs:subClassOf  lvgridflex:DistributedEnergyResource .
+
+lvgridflex:ComponentState
+        rdf:type    owl:Class ;
+        rdfs:label  "ComponentState"@de .
+
+lvgridflex:DistributedEnergyResource
+        rdf:type    owl:Class ;
+        rdfs:label  "DistributedEnergyResource"@de .
+
+lvgridflex:connectedTo
+        rdf:type       owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain    lvgridflex:DistributedEnergyResource ;
+        rdfs:label     "connectedTo"@de ;
+        rdfs:range     lvgridflex:Node ;
+        owl:inverseOf  lvgridflex:hasConnectedDER .
+
+lvgridflex:node04  rdf:type       lvgridflex:Node , owl:NamedIndividual ;
+        rdfs:label                "node04" ;
+        lvgridflex:hasId          "node04"^^rdfs:Literal ;
+        lvgridflex:isComponentOf  lvgridflex:bb01 .
+
+lvgridflex:DistributedEnergyResourceAgent
+        rdf:type         owl:Class ;
+        rdfs:label       "DistributedEnergyResourceAgent"@de ;
+        rdfs:subClassOf  lvgridflex:EnergyAgent .
+
+lvgridflex:Busbar  rdf:type  owl:Class ;
+        rdfs:label        "Busbar"@de ;
+        owl:disjointWith  lvgridflex:Component .
+
+lvgridflex:hasCurrent
+        rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:domain  lvgridflex:LineSegmentState ;
+        rdfs:label   "hasCurrent"@de ;
+        rdfs:range   xsd:double .
+
+lvgridflex:SensorAgent
+        rdf:type         owl:Class ;
+        rdfs:label       "SensorAgent"@de ;
+        rdfs:subClassOf  lvgridflex:EnergyAgent .
+
+lvgridflex:Node  rdf:type  owl:Class ;
+        rdfs:label       "Node"@de ;
+        rdfs:subClassOf  lvgridflex:Component .
+
+lvgridflex:LineSegment
+        rdf:type          owl:Class ;
+        rdfs:label        "LineSegment"@de ;
+        rdfs:subClassOf   lvgridflex:Component ;
+        owl:disjointWith  lvgridflex:Node .
+
+lvgridflex:bb02  rdf:type  lvgridflex:Busbar , owl:NamedIndividual ;
+        lvgridflex:hasId  "bb02"^^rdfs:Literal .
+
+lvgridflex:supervises
+        rdf:type     owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain  lvgridflex:GridStateAgent ;
+        rdfs:label   "supervises"@de ;
+        rdfs:range   lvgridflex:Busbar .
+
+lvgridflex:hasVoltage
+        rdf:type    owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:label  "hasVoltage"@de ;
+        rdfs:range  xsd:double .
+
+lvgridflex:node03  rdf:type       lvgridflex:Node , owl:NamedIndividual ;
+        rdfs:label                "node03" ;
+        lvgridflex:hasId          "node03"^^rdfs:Literal ;
+        lvgridflex:isComponentOf  lvgridflex:bb01 .
+
+lvgridflex:measures  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:domain  lvgridflex:SensorAgent ;
+        rdfs:label   "measures"@de ;
+        rdfs:range   lvgridflex:Component .
+
+lvgridflex:NodeState  rdf:type  owl:Class ;
+        rdfs:label       "NodeState"@de ;
+        rdfs:subClassOf  lvgridflex:ComponentState .
+
+lvgridflex:hasMinimumPower
+        rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
+        rdfs:domain  lvgridflex:FlexibilityPotential ;
+        rdfs:label   "hasMinimumPower" ;
+        rdfs:range   xsd:double .
+
+lvgridflex:bb01  rdf:type        lvgridflex:Busbar , owl:NamedIndividual ;
+        rdfs:label               "bb01"@de ;
+        lvgridflex:hasComponent  lvgridflex:node01 ;
+        lvgridflex:hasId         "bb01"^^rdfs:Literal .

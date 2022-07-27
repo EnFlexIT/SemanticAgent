@@ -513,6 +513,19 @@ Bei FlexibilityPotential wird die DP &quot;resourceId&quot; genutzt (sollte zumi
     
 
 
+    <!-- http://www.hsu-ifa.de/ontologies/LVGridFlex#fp01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#fp01">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential"/>
+        <hasMaximumPower rdf:datatype="http://www.w3.org/2001/XMLSchema#double">20.0</hasMaximumPower>
+        <hasMinimumPower rdf:datatype="http://www.w3.org/2001/XMLSchema#double">10.0</hasMinimumPower>
+        <hasTimeStamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-02-03T19:27:00</hasTimeStamp>
+        <hasTotalEnergy rdf:datatype="http://www.w3.org/2001/XMLSchema#double">5.0</hasTotalEnergy>
+        <resourceId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">bs01</resourceId>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.hsu-ifa.de/ontologies/LVGridFlex#gsa01 -->
 
     <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#gsa01">
@@ -540,7 +553,6 @@ Bei FlexibilityPotential wird die DP &quot;resourceId&quot; genutzt (sollte zumi
     <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls02">
         <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegment"/>
         <hasEndNode rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node02"/>
-        <hasLineSegmentState rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#lss02"/>
         <hasStartNode rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node01"/>
         <isComponentOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
         <hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">ls02</hasId>
@@ -554,7 +566,6 @@ Bei FlexibilityPotential wird die DP &quot;resourceId&quot; genutzt (sollte zumi
     <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#ls03">
         <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegment"/>
         <hasEndNode rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node03"/>
-        <hasLineSegmentState rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#lss03"/>
         <hasStartNode rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#node02"/>
         <isComponentOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
         <hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">ls03</hasId>
@@ -572,28 +583,6 @@ Bei FlexibilityPotential wird die DP &quot;resourceId&quot; genutzt (sollte zumi
         <isComponentOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
         <hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">ls04</hasId>
         <hasMaximumCurrent rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</hasMaximumCurrent>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.hsu-ifa.de/ontologies/LVGridFlex#lss02 -->
-
-    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#lss02">
-        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegmentState"/>
-        <componentId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">ls01</componentId>
-        <hasCurrent rdf:datatype="http://www.w3.org/2001/XMLSchema#double">90.0</hasCurrent>
-        <hasTimeStamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-08-08T14:26:00</hasTimeStamp>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.hsu-ifa.de/ontologies/LVGridFlex#lss03 -->
-
-    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#lss03">
-        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#LineSegmentState"/>
-        <componentId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">ls03</componentId>
-        <hasCurrent rdf:datatype="http://www.w3.org/2001/XMLSchema#double">105.3</hasCurrent>
-        <hasTimeStamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-08-08T15:12:00</hasTimeStamp>
     </owl:NamedIndividual>
     
 
@@ -637,17 +626,6 @@ Bei FlexibilityPotential wird die DP &quot;resourceId&quot; genutzt (sollte zumi
         <isComponentOf rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#bb01"/>
         <hasId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">node04</hasId>
         <rdfs:label>node04</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.hsu-ifa.de/ontologies/LVGridFlex#nodestate01 -->
-
-    <owl:NamedIndividual rdf:about="http://www.hsu-ifa.de/ontologies/LVGridFlex#nodestate01">
-        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridFlex#NodeState"/>
-        <componentId rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">node01</componentId>
-        <hasTimeStamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-08-08T14:26:00</hasTimeStamp>
-        <hasVoltage rdf:datatype="http://www.w3.org/2001/XMLSchema#double">228.0</hasVoltage>
     </owl:NamedIndividual>
     
 

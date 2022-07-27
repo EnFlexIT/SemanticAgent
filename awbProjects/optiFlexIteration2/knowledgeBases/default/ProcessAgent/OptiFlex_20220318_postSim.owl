@@ -16,12 +16,12 @@
         rdfs:domain  :FlexibleLoad ;
         rdfs:range   :FlexibleLoadDependency .
 
+:process1  rdf:type       :Process , owl:NamedIndividual ;
+        :hasFlexibleLoad  :flexibleLoad2 , :flexibleLoad1 .
+
 :earliestStart  rdf:type  owl:DatatypeProperty ;
         rdfs:domain  :FlexibleLoad ;
         rdfs:range   xsd:dateTime .
-
-:process1  rdf:type       :Process , owl:NamedIndividual ;
-        :hasFlexibleLoad  :flexibleLoad2 , :flexibleLoad1 .
 
 :end-start  rdf:type  :TemporalType , owl:NamedIndividual .
 

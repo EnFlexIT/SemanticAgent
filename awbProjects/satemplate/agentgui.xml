@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <project>
-    <projectName>optiFlexIteration1</projectName>
+    <projectName>saTemplate</projectName>
     <projectTreeVisible>true</projectTreeVisible>
     <projectTabHeaderVisible>true</projectTabHeaderVisible>
     <versionTag>Complete Project</versionTag>
-    <updateSite>https://p2.enflex.it/awbProjectRepository/</updateSite>
     <updateAutoConfiguration>0</updateAutoConfiguration>
-    <updateDateLastChecked>1658934985917</updateDateLastChecked>
-    <updateAuthorization>
-        <authorizationType>NONE</authorizationType>
-    </updateAuthorization>
-    <environmentModel>none</environmentModel>
+    <updateDateLastChecked>0</updateDateLastChecked>
     <projectFeatures/>
     <plugins/>
     <subOntologies/>
@@ -28,7 +23,7 @@
             <service>agentgui.simulationService.LoadService</service>
             <service>agentgui.simulationService.SimulationService</service>
             <service>jade.core.event.NotificationService</service>
-            <service>agentgui.logging.DebugService</service>
+            <service>jade.core.mobility.AgentMobilityService</service>
         </serviceList>
     </jadeConfiguration>
     <distributionSetup>
@@ -60,21 +55,13 @@
             <agentClass>
                 <className>system.class.-Regular-Thread-</className>
                 <realMetric>1.0</realMetric>
-                <realMetricAverage>34.79319441193724</realMetricAverage>
-                <realMetricMax>34.793194411937215</realMetricMax>
-                <realMetricMin>34.793194411937215</realMetricMin>
+                <realMetricAverage>23.67070233922865</realMetricAverage>
+                <realMetricMax>23.670702339228644</realMetricMax>
+                <realMetricMin>23.670702339228644</realMetricMin>
                 <userPredictedMetric>1.0</userPredictedMetric>
             </agentClass>
             <agentClass>
                 <className>agentgui.simulationService.agents.ServerClientAgent</className>
-                <realMetric>1.0</realMetric>
-                <realMetricAverage>0.0</realMetricAverage>
-                <realMetricMax>0.0</realMetricMax>
-                <realMetricMin>0.0</realMetricMin>
-                <userPredictedMetric>1.0</userPredictedMetric>
-            </agentClass>
-            <agentClass>
-                <className>org.awb.env.networkModel.visualisation.DisplayAgent</className>
                 <realMetric>1.0</realMetric>
                 <realMetricAverage>0.0</realMetricAverage>
                 <realMetricMax>0.0</realMetricMax>
@@ -92,21 +79,13 @@
             <agentClass>
                 <className>agentgui.simulationService.agents.LoadMeasureAgent</className>
                 <realMetric>1.0</realMetric>
-                <realMetricAverage>1.304805409026064</realMetricAverage>
-                <realMetricMax>1.304805409026064</realMetricMax>
-                <realMetricMin>1.304805409026064</realMetricMin>
-                <userPredictedMetric>1.0</userPredictedMetric>
-            </agentClass>
-            <agentClass>
-                <className>jade.domain.ams</className>
-                <realMetric>1.0</realMetric>
                 <realMetricAverage>0.0</realMetricAverage>
                 <realMetricMax>0.0</realMetricMax>
                 <realMetricMin>0.0</realMetricMin>
                 <userPredictedMetric>1.0</userPredictedMetric>
             </agentClass>
             <agentClass>
-                <className>optiFlex.ProcessAgent</className>
+                <className>jade.domain.ams</className>
                 <realMetric>1.0</realMetric>
                 <realMetricAverage>0.0</realMetricAverage>
                 <realMetricMax>0.0</realMetricMax>
@@ -122,11 +101,11 @@
                 <userPredictedMetric>1.0</userPredictedMetric>
             </agentClass>
             <agentClass>
-                <className>optiFlex.OptimizationAgent</className>
+                <className>semanticAgent.SemanticAgentTemplate</className>
                 <realMetric>1.0</realMetric>
-                <realMetricAverage>448.8982377265102</realMetricAverage>
-                <realMetricMax>448.8982377265102</realMetricMax>
-                <realMetricMin>448.8982377265102</realMetricMin>
+                <realMetricAverage>0.0</realMetricAverage>
+                <realMetricMax>0.0</realMetricMax>
+                <realMetricMin>0.0</realMetricMin>
                 <userPredictedMetric>1.0</userPredictedMetric>
             </agentClass>
         </agentClassMetricDescriptionVector>

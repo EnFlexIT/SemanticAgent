@@ -48,7 +48,6 @@ public class SendInformBehaviour extends OneShotBehaviour{
 		msg.setContent(this.rdfString);
 		msg.setLanguage("TURTLE");
 		msg.setOntology(ontologyName);
-		//Protokoll für diesen Anwendugnsfall auslassenauslassen?
 		msg.setConversationId(this.conversationId);
 		
 		this.myAgent.send(msg);
