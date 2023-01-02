@@ -123,6 +123,7 @@ public class UtilityMethods{
 	
 	/**
 	 * Method to create a Jena Query object from a valid SPARQL query string
+	 * 
 	 * @param queryString String that contains a SPARQL query including prefixes
 	 * @return Query A Jena query object that can be used to create a Jena QueryExecution object
 	 */
@@ -145,6 +146,7 @@ public class UtilityMethods{
 	 * Method to create and execute SPARQL CONSTRUCT queries received as a String 
 	 * on the provided model. Returns a Turtle-serielized String consisting of 
 	 * SPO (subject, predicate, object) triples with full IRIs for all resources and literals. 
+	 * 
 	 * @param constructQuery String containing a SPARQL CONSTRUCT query
 	 * @param model Target of the query
 	 * @return Returns a well formed solution string serialized in TURTLE containing 
@@ -170,11 +172,6 @@ public class UtilityMethods{
 		// --- Execute CONSTRUCT query ------------------
 		Model solutionModel = ModelFactory.createDefaultModel();
 		solutionModel = qexec.execConstruct(solutionModel);
-		
-		// --- With this code one can create the result string in RDF/XML serialization ---
-//		java.io.StringWriter out = new java.io.StringWriter();
-//		solutionModel.write(out, "RDF/XML");
-//		logger.debug(out.toString());
 		
 		// --- Building the solution string containing single statements from the solution model (=query answer)
 		StmtIterator stmtIterator = solutionModel.listStatements();
@@ -259,7 +256,7 @@ public class UtilityMethods{
 		// --- Execute query and prepare results -------		
 		results = qexec.execSelect();
 		
-		List<String> resultVariables = results.getResultVars(); //Die Bezeichner der Ergebnisvariablen entsprechend der übergebenen Query
+		List<String> resultVariables = results.getResultVars(); //Die Bezeichner der Ergebnisvariablen entsprechend der ï¿½bergebenen Query
 		
 		int nofColumns = resultVariables.size();
 		solStrArray = new String[1][nofColumns];
@@ -302,10 +299,11 @@ public class UtilityMethods{
 		
 	
 	/**
-	 * A method to perform a consistency check on a OntModel to verify if new statements can be added to
-	 * that model without harming any restrictions of the ontology. Therefore a copy of the model is created, 
-	 * to which the new statements are added via a SPARQL update. The selected reasoner then validates the model and prints
-	 * a validity report. OWL reasoner is used by default. In case the validity report shows at least one error/conflict, the statements should not be added to the model.
+	 * A method to perform a consistency check to verify if new statements can be added to a KnowledgeBase without violating 
+	 * any restrictions of the ontology. Therefore a copy of the model is created, to which the new statements are added via 
+	 * a SPARQL update. The selected reasoner then validates the model and prints a validity report. OWL reasoner is used by 
+	 * default. In case the validity report shows at least one error/conflict, the statements will not be added to the model.
+	 * 
 	 * @param triplesToAddToModel string containing triples in TURTLE Syntax.
 	 * @param knowledgeBase KnowledgeBase containing the OntModel to make a copy from that is used for the validity check
 	 * @return Boolean: True, if modified model passed consistency check, otherwise false
@@ -422,18 +420,21 @@ public class UtilityMethods{
 		
 		return stringAsXsdDateTime;
 	}
+	
+	/**
+	 * Converts an int value to a String that can be used as an object of a triple in a SPARQL Update
+	 * statement. It uses the qname "xsd".  
+	 * 
+	 * @param intValue
+	 * @return
+	 */
+	public static String inToXsdInt(int intValue) {
+		
+		String intAsXsdInt = "\"" + intValue + "\"^^xsd:int";
+		
+		return intAsXsdInt;
+	}
 
-//	/**
-//	 * Runs a specified inference engine on the model of a given knowledgeBase. 
-//	 * The model in the given knowledge base is replaced with the inferred model.
-//	 * 
-//	 * @param knowledgeBase
-//	 * @param infEngine
-//	 */
-//	public static void runInferenceEngineOnModel(KnowledgeBase knowledgeBase, String infEngine) {
-//		
-//		knowledgeBase.setModel(UtilityMethods.generateInferredModel(knowledgeBase.getModel(), infEngine));	
-//	}	
 	
 	/**
 	 * Method to execute a SPARQL SELECT query received as a String on the provided model. 
@@ -445,9 +446,7 @@ public class UtilityMethods{
 	 * @return Returns a String containing the value of the cell
 	 */
 	public static String executeSingleCellSelectQuery(String queryString, Model model) {
-		
-		String[][] multiColSolStrArray = UtilityMethods.executeMultiColumnSelectQuery(queryString, model);
-		
+				
 		String singleCellResult = UtilityMethods.executeSingleColumnSelectQuery(queryString, model)[0]; 
 				
 		return singleCellResult;
