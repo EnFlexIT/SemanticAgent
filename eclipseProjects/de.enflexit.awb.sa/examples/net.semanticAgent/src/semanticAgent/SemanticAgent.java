@@ -109,8 +109,8 @@ public class SemanticAgent extends Agent {
 			
 		// --- Evaluation methods ----------------------------
 //		if (this.getAID().getLocalName().equals("A1")) this.testReasoning(); 
-		this.testSendInformBehaviour();
-//		this.testSparqlQuery();
+//		this.testSendInformBehaviour();
+		this.testSparqlQuery();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar2Col();
 //		this.determineDerasControllingDersAtBusbar();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar();
@@ -118,8 +118,6 @@ public class SemanticAgent extends Agent {
 //		this.determineMostRecentVoltageAtSpecificNode();
 //		this.determineBusbarsWithLineSegmentsExceedingMaxCurrent();
 //		this.updateFlexibilityPotential();
-		
-		// --- dieses Szenario führt zu Inkonsistenzen im Konsistenzcheck, so dass das Query Ergebnis nicht angenommen wird von A1
 //		this.gsaAsksDeraForFlexibility();
 	
 	}
@@ -216,9 +214,22 @@ public class SemanticAgent extends Agent {
 	private void testSparqlQuery() {
 		if (this.getAID().getLocalName().equals("A2")) {
 						
-			String query = "SELECT ?sc ?c WHERE {\n"
-					+ "	?sc rdfs:subClassOf ?c. \n"
+//			String query = "SELECT ?sc ?c WHERE {\n"
+//					+ "	?sc rdfs:subClassOf ?c. \n"
+//					+ "}";
+					
+//			String query = "SELECT ?inverseProperty ?property WHERE {\n"
+//					+ "	?inverseProperty owl:inverseOf ?property. \n"
+//					+ "}";
+			
+			
+			// Welche Komponenten haben Messwerte
+			String query = "SELECT DISTINCT ?hasMeasurement WHERE {\n"
+					+ "	?hasMeasurement rdfs:subClassOf ?Component, [ \n"
+					+ " 	a owl:Restriction;"
+					+ "		owl:onProperty "
 					+ "}";
+			
 					
 
 			String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);

@@ -12,7 +12,7 @@ import jade.core.behaviours.OneShotBehaviour;
  */
 public class ReceiveInformBehaviour extends OneShotBehaviour {
 	
-	private static Logger logger = Logger.getRootLogger();
+	private static Logger rootLogger = Logger.getRootLogger();
 
 	private String rdfTriples;
 	private KnowledgeBase knowledgeBase;
@@ -34,7 +34,7 @@ public class ReceiveInformBehaviour extends OneShotBehaviour {
 			this.addStatementsToModel();
 			
 		} else {
-			logger.info("Consistency check not passed.\nDon't add statements to model now.");
+			rootLogger.info("Consistency check not passed.\nDon't add statements to model now.");
 		}
 	}
 	
@@ -43,7 +43,7 @@ public class ReceiveInformBehaviour extends OneShotBehaviour {
 	 * The copy contains the new statements. 
 	 */
 	private boolean statementsAreValid() {
-		logger.info("Perform consistency check now");
+		rootLogger.info("Perform consistency check now");
 		return UtilityMethods.checkRdfStatementConsistency(rdfTriples, this.knowledgeBase);
 	}
 	
@@ -53,7 +53,7 @@ public class ReceiveInformBehaviour extends OneShotBehaviour {
 	 */
 	private void addStatementsToModel() {
 
-		logger.info("Consistency check passed.\nAdd statements to model now.");
+		rootLogger.info("Consistency check passed.\nAdd statements to model now.");
 
 		UtilityMethods.executeSparqlUpdate(this.knowledgeBase, this.rdfTriples);
 	}

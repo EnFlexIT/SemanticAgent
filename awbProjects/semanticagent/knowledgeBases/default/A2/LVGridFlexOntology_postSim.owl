@@ -13,25 +13,21 @@ lvgridflex:ls04  rdf:type             lvgridflex:LineSegment , owl:NamedIndividu
         lvgridflex:isComponentOf      lvgridflex:bb01 .
 
 lvgridflex:node02  rdf:type       lvgridflex:Node , owl:NamedIndividual ;
-        rdfs:label                "node02" ;
         lvgridflex:hasId          "node02"^^rdfs:Literal ;
         lvgridflex:isComponentOf  lvgridflex:bb01 .
 
 lvgridflex:dera02  rdf:type  lvgridflex:DistributedEnergyResourceAgent , owl:NamedIndividual ;
-        rdfs:label           "dera02"@de ;
         lvgridflex:controls  lvgridflex:cs02 .
 
 lvgridflex:controlledBy
         rdf:type       owl:FunctionalProperty , owl:ObjectProperty ;
         rdfs:domain    lvgridflex:DistributedEnergyResource ;
-        rdfs:label     "controlledBy"@de ;
         rdfs:range     lvgridflex:DistributedEnergyResourceAgent ;
         owl:inverseOf  lvgridflex:controls .
 
 lvgridflex:resourceId
         rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
         rdfs:domain  lvgridflex:FlexibilityPotential ;
-        rdfs:label   "resourceID" ;
         rdfs:range   rdfs:Literal .
 
 lvgridflex:hasFlexibilityPotential
@@ -41,7 +37,6 @@ lvgridflex:hasFlexibilityPotential
 
 lvgridflex:controls  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
         rdfs:domain  lvgridflex:DistributedEnergyResourceAgent ;
-        rdfs:label   "controls"@de ;
         rdfs:range   lvgridflex:DistributedEnergyResource .
 
 lvgridflex:ls03  rdf:type             lvgridflex:LineSegment , owl:NamedIndividual ;
@@ -54,21 +49,17 @@ lvgridflex:ls03  rdf:type             lvgridflex:LineSegment , owl:NamedIndividu
 lvgridflex:hasEndNode
         rdf:type     owl:FunctionalProperty , owl:ObjectProperty ;
         rdfs:domain  lvgridflex:LineSegment ;
-        rdfs:label   "hasEndNode"@de ;
         rdfs:range   lvgridflex:Node .
 
 lvgridflex:node01  rdf:type  lvgridflex:Node , owl:NamedIndividual ;
-        rdfs:label        "node01"@de ;
         lvgridflex:hasId  "node01"^^rdfs:Literal .
 
 lvgridflex:dera01  rdf:type  lvgridflex:DistributedEnergyResourceAgent , owl:NamedIndividual ;
-        rdfs:label           "dera01"@de ;
         lvgridflex:controls  lvgridflex:cs01 , lvgridflex:bs01 .
 
 lvgridflex:hasComponent
         rdf:type       owl:InverseFunctionalProperty , owl:ObjectProperty ;
         rdfs:domain    lvgridflex:Busbar ;
-        rdfs:label     "hasComponent"@de ;
         rdfs:range     lvgridflex:Component ;
         owl:inverseOf  lvgridflex:isComponentOf .
 
@@ -94,7 +85,6 @@ lvgridflex:ls02  rdf:type               lvgridflex:LineSegment , owl:NamedIndivi
 lvgridflex:hasMaximumPower
         rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
         rdfs:domain  lvgridflex:FlexibilityPotential ;
-        rdfs:label   "hasMaximumPower" ;
         rdfs:range   xsd:double .
 
 <http://www.hsu-ifa.de/ontologies/LVGridFlex>
@@ -102,17 +92,14 @@ lvgridflex:hasMaximumPower
         rdfs:comment  "Bekannte Schwachstellen: \n\nmanche Klassen haben IDs (z.B. Busbar), andere nicht (z.B. Line Segment); allgemein ist das Thema IDs ist nicht einheitlich gehandhabt\n\nBei FlexibilityPotential wird die DP \"resourceId\" genutzt (sollte zumindes anders genannt werden (z.B. derId); bei ComponentStates wird die DP \"componentId\" genutzt"^^rdfs:Literal .
 
 lvgridflex:bs01  rdf:type       lvgridflex:BatteryStorage , owl:NamedIndividual ;
-        rdfs:label              "bs01"@de ;
         lvgridflex:connectedTo  lvgridflex:node01 ;
         lvgridflex:hasId        "bs01"^^rdfs:Literal .
 
-lvgridflex:Component  rdf:type  owl:Class ;
-        rdfs:label  "Component"@de .
+lvgridflex:Component  rdf:type  owl:Class .
 
 lvgridflex:isComponentOf
         rdf:type     owl:FunctionalProperty , owl:ObjectProperty ;
         rdfs:domain  lvgridflex:Component ;
-        rdfs:label   "isComponentOf"@de ;
         rdfs:range   lvgridflex:Busbar .
 
 lvgridflex:hasId  rdf:type  owl:FunctionalProperty , owl:DatatypeProperty ;
@@ -122,12 +109,10 @@ lvgridflex:sa01  rdf:type    lvgridflex:SensorAgent , owl:NamedIndividual ;
         lvgridflex:measures  lvgridflex:node01 , lvgridflex:ls02 .
 
 lvgridflex:FlexibilityPotential
-        rdf:type    owl:Class ;
-        rdfs:label  "FlexibilityPotential" .
+        rdf:type  owl:Class .
 
 lvgridflex:GridStateAgent
         rdf:type         owl:Class ;
-        rdfs:label       "GridStateAgent"@de ;
         rdfs:subClassOf  lvgridflex:EnergyAgent .
 
 lvgridflex:componentId
@@ -138,23 +123,19 @@ lvgridflex:componentId
 lvgridflex:hasTotalEnergy
         rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
         rdfs:domain  lvgridflex:FlexibilityPotential ;
-        rdfs:label   "hasTotalEnergy" ;
         rdfs:range   xsd:double .
 
 lvgridflex:hasConnectedDER
         rdf:type     owl:InverseFunctionalProperty , owl:ObjectProperty ;
         rdfs:domain  lvgridflex:Node ;
-        rdfs:label   "hasConnectedDER"@de ;
         rdfs:range   lvgridflex:DistributedEnergyResource .
 
 lvgridflex:gsa01  rdf:type     lvgridflex:GridStateAgent , owl:NamedIndividual ;
-        rdfs:label             "gsa"@de ;
         lvgridflex:supervises  lvgridflex:bb01 .
 
 lvgridflex:hasStartNode
         rdf:type     owl:FunctionalProperty , owl:ObjectProperty ;
         rdfs:domain  lvgridflex:LineSegment ;
-        rdfs:label   "hasStartNode"@de ;
         rdfs:range   lvgridflex:Node .
 
 lvgridflex:cs01  rdf:type       lvgridflex:ChargingStation , owl:NamedIndividual ;
@@ -171,27 +152,22 @@ lvgridflex:ls01  rdf:type               lvgridflex:LineSegment , owl:NamedIndivi
 lvgridflex:hasNodeState
         rdf:type     owl:InverseFunctionalProperty , owl:ObjectProperty ;
         rdfs:domain  lvgridflex:Node ;
-        rdfs:label   "hasNodeState"@de ;
         rdfs:range   lvgridflex:NodeState .
 
 lvgridflex:EnergyAgent
-        rdf:type    owl:Class ;
-        rdfs:label  "EnergyAgent"@de .
+        rdf:type  owl:Class .
 
 lvgridflex:ChargingStation
         rdf:type         owl:Class ;
-        rdfs:label       "ChargingStation"@de ;
         rdfs:subClassOf  lvgridflex:DistributedEnergyResource .
 
 lvgridflex:hasMaximumCurrent
         rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
         rdfs:domain  lvgridflex:LineSegment ;
-        rdfs:label   "hasMaximumCurrent"@de ;
         rdfs:range   xsd:double .
 
 lvgridflex:hasTimeStamp
         rdf:type    owl:FunctionalProperty , owl:DatatypeProperty ;
-        rdfs:label  "hasTimeStamp"@de ;
         rdfs:range  xsd:dateTime .
 
 lvgridflex:lss02  rdf:type       lvgridflex:LineSegmentState , owl:NamedIndividual ;
@@ -202,42 +178,34 @@ lvgridflex:lss02  rdf:type       lvgridflex:LineSegmentState , owl:NamedIndividu
 lvgridflex:hasLineSegmentState
         rdf:type     owl:InverseFunctionalProperty , owl:ObjectProperty ;
         rdfs:domain  lvgridflex:LineSegment ;
-        rdfs:label   "hasLineSegmentState"@de ;
         rdfs:range   lvgridflex:LineSegmentState .
 
 lvgridflex:LineSegmentState
         rdf:type         owl:Class ;
-        rdfs:label       "LineSegmentState"@de ;
         rdfs:subClassOf  lvgridflex:ComponentState .
 
 lvgridflex:BatteryStorage
         rdf:type         owl:Class ;
-        rdfs:label       "BatteryStorage"@de ;
         rdfs:subClassOf  lvgridflex:DistributedEnergyResource .
 
 lvgridflex:ComponentState
-        rdf:type    owl:Class ;
-        rdfs:label  "ComponentState"@de .
+        rdf:type  owl:Class .
 
 lvgridflex:DistributedEnergyResource
-        rdf:type    owl:Class ;
-        rdfs:label  "DistributedEnergyResource"@de .
+        rdf:type  owl:Class .
 
 lvgridflex:connectedTo
         rdf:type       owl:FunctionalProperty , owl:ObjectProperty ;
         rdfs:domain    lvgridflex:DistributedEnergyResource ;
-        rdfs:label     "connectedTo"@de ;
         rdfs:range     lvgridflex:Node ;
         owl:inverseOf  lvgridflex:hasConnectedDER .
 
 lvgridflex:node04  rdf:type       lvgridflex:Node , owl:NamedIndividual ;
-        rdfs:label                "node04" ;
         lvgridflex:hasId          "node04"^^rdfs:Literal ;
         lvgridflex:isComponentOf  lvgridflex:bb01 .
 
 lvgridflex:DistributedEnergyResourceAgent
         rdf:type         owl:Class ;
-        rdfs:label       "DistributedEnergyResourceAgent"@de ;
         rdfs:subClassOf  lvgridflex:EnergyAgent .
 
 lvgridflex:lss01  rdf:type       lvgridflex:LineSegmentState , owl:NamedIndividual ;
@@ -252,27 +220,22 @@ lvgridflex:nodestate02
         lvgridflex:hasVoltage    "228.5"^^xsd:double .
 
 lvgridflex:Busbar  rdf:type  owl:Class ;
-        rdfs:label        "Busbar"@de ;
         owl:disjointWith  lvgridflex:Component .
 
 lvgridflex:hasCurrent
         rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
         rdfs:domain  lvgridflex:LineSegmentState ;
-        rdfs:label   "hasCurrent"@de ;
         rdfs:range   xsd:double .
 
 lvgridflex:SensorAgent
         rdf:type         owl:Class ;
-        rdfs:label       "SensorAgent"@de ;
         rdfs:subClassOf  lvgridflex:EnergyAgent .
 
 lvgridflex:Node  rdf:type  owl:Class ;
-        rdfs:label       "Node"@de ;
         rdfs:subClassOf  lvgridflex:Component .
 
 lvgridflex:LineSegment
         rdf:type          owl:Class ;
-        rdfs:label        "LineSegment"@de ;
         rdfs:subClassOf   lvgridflex:Component ;
         owl:disjointWith  lvgridflex:Node .
 
@@ -282,26 +245,21 @@ lvgridflex:bb02  rdf:type  lvgridflex:Busbar , owl:NamedIndividual ;
 lvgridflex:supervises
         rdf:type     owl:InverseFunctionalProperty , owl:ObjectProperty ;
         rdfs:domain  lvgridflex:GridStateAgent ;
-        rdfs:label   "supervises"@de ;
         rdfs:range   lvgridflex:Busbar .
 
 lvgridflex:hasVoltage
         rdf:type    owl:FunctionalProperty , owl:DatatypeProperty ;
-        rdfs:label  "hasVoltage"@de ;
         rdfs:range  xsd:double .
 
 lvgridflex:node03  rdf:type       lvgridflex:Node , owl:NamedIndividual ;
-        rdfs:label                "node03" ;
         lvgridflex:hasId          "node03"^^rdfs:Literal ;
         lvgridflex:isComponentOf  lvgridflex:bb01 .
 
 lvgridflex:measures  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
         rdfs:domain  lvgridflex:SensorAgent ;
-        rdfs:label   "measures"@de ;
         rdfs:range   lvgridflex:Component .
 
 lvgridflex:NodeState  rdf:type  owl:Class ;
-        rdfs:label       "NodeState"@de ;
         rdfs:subClassOf  lvgridflex:ComponentState .
 
 lvgridflex:nodestate01
@@ -313,10 +271,8 @@ lvgridflex:nodestate01
 lvgridflex:hasMinimumPower
         rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
         rdfs:domain  lvgridflex:FlexibilityPotential ;
-        rdfs:label   "hasMinimumPower" ;
         rdfs:range   xsd:double .
 
 lvgridflex:bb01  rdf:type        lvgridflex:Busbar , owl:NamedIndividual ;
-        rdfs:label               "bb01"@de ;
         lvgridflex:hasComponent  lvgridflex:node01 ;
         lvgridflex:hasId         "bb01"^^rdfs:Literal .
