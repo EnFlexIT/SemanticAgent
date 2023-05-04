@@ -6,7 +6,7 @@
     <versionTag>Complete Project</versionTag>
     <updateSite>https://p2.enflex.it/awbProjectRepository/</updateSite>
     <updateAutoConfiguration>0</updateAutoConfiguration>
-    <updateDateLastChecked>1658919132459</updateDateLastChecked>
+    <updateDateLastChecked>1683215613492</updateDateLastChecked>
     <updateAuthorization>
         <authorizationType>NONE</authorizationType>
     </updateAuthorization>
@@ -138,6 +138,9 @@
         <preventUsageOfAlreadyUsedComputers>true</preventUsageOfAlreadyUsedComputers>
         <showJADErmaGUI>false</showJADErmaGUI>
     </remoteContainerConfiguration>
+    <projectProperties>
+        <propertyMap/>
+    </projectProperties>
     <simulationSetupCurrent>default</simulationSetupCurrent>
     <simulationSetups>
         <entry>

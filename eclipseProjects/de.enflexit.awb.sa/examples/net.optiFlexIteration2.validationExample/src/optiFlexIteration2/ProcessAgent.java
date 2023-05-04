@@ -19,7 +19,7 @@ import jade.core.Agent;
 
 
 /**
- * @author Sebastian Törsleff, Helmut Schmidt University;
+ * @author Sebastian Tï¿½rsleff, Helmut Schmidt University;
  */
 public class ProcessAgent extends Agent {
 
@@ -90,7 +90,66 @@ public class ProcessAgent extends Agent {
 		// Timeblocker 2s for setting up JADE sniffer
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
 
-		testSendInformBehaviour();
+		this.testFOR003();
+//		this.listEnumIndividuals(); 
+//		this.showOntologyVersionIRI(); 
+//		this.owlInferenceTest(); 
+	}
+
+	private void owlInferenceTest() {
+		if(this.getLocalName().equals("ProcessAgent")) {
+			String query = "SELECT DISTINCT ?fl WHERE {\n"
+					+ "	?p rdf:type :Process .\n"
+					+ "	?fl :isFlexibleLoadOf ?p .\n"
+					+ "}";
+			
+					
+
+			String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
+			String[] queryResults = UtilityMethods.executeSingleColumnSelectQuery(queryPSS, knowledgeBase.getModel());
+//			String[][] queryResults = UtilityMethods.executeMultiColumnSelectQuery(queryPSS, this.knowledgeBase.getModel());
+//			this.knowledgeBase.printAllModelStatements();
+			
+			rootLogger.debug(queryResults);
+		}
+		
+	}
+
+	private void showOntologyVersionIRI() {
+		
+		if(this.getLocalName().equals("ProcessAgent")) {
+			String query = "SELECT DISTINCT ?ip WHERE {\n"
+					+ "	?ip rdf:type owl:IrreflexiveProperty .\n"
+					+ "}";
+			
+					
+
+			String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
+			String[] queryResults = UtilityMethods.executeSingleColumnSelectQuery(queryPSS, knowledgeBase.getModel());
+//			String[][] queryResults = UtilityMethods.executeMultiColumnSelectQuery(queryPSS, this.knowledgeBase.getModel());
+//			this.knowledgeBase.printAllModelStatements();
+			
+			rootLogger.debug(queryResults);
+		}
+		
+	}
+
+	private void listEnumIndividuals() {
+		
+		if(this.getLocalName().equals("ProcessAgent")) {
+			String query = "SELECT DISTINCT ?tt WHERE {\n"
+					+ "	?tt rdf:type :TemporalType .\n"
+					+ "}";
+			
+					
+
+			String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
+			String[] queryResults = UtilityMethods.executeSingleColumnSelectQuery(queryPSS, knowledgeBase.getModel());
+//			String[][] queryResults = UtilityMethods.executeMultiColumnSelectQuery(queryPSS, this.knowledgeBase.getModel());
+//			this.knowledgeBase.printAllModelStatements();
+			
+			rootLogger.debug(queryResults);
+		}
 	}
 
 	@Override
@@ -120,7 +179,7 @@ public class ProcessAgent extends Agent {
 		return cidBase + (cidCnt++);
 	}
 
-	private void testSendInformBehaviour() {
+	private void testFOR003() {
 		
 		String processName; 
 		if(this.getLocalName().equals("ProcessAgent")) {
