@@ -50,4 +50,7 @@
             <value>60000</value>
         </entry>
     </timeModelSettings>
+    <setupProperties>
+        <propertyMap/>
+    </setupProperties>
 </simulationSetup>
