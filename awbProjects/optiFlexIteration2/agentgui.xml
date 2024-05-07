@@ -2,7 +2,7 @@
 <project>
     <projectName>optiFlexIteration2</projectName>
     <projectTreeVisible>true</projectTreeVisible>
-    <projectTabHeaderVisible>true</projectTabHeaderVisible>
+    <projectTabHeaderVisible>false</projectTabHeaderVisible>
     <versionTag>Complete Project</versionTag>
     <updateSite>https://p2.enflex.it/awbProjectRepository/</updateSite>
     <updateAutoConfiguration>0</updateAutoConfiguration>
@@ -32,7 +32,9 @@
         </serviceList>
     </jadeConfiguration>
     <distributionSetup>
+        <additionalRemoteContainerTimeOutInSeconds>0</additionalRemoteContainerTimeOutInSeconds>
         <autoSaveRealMetricsOnSimStop>false</autoSaveRealMetricsOnSimStop>
+        <distributeAllProjectResources>false</distributeAllProjectResources>
         <doDynamicLoadBalancing>false</doDynamicLoadBalancing>
         <doStaticLoadBalancing>true</doStaticLoadBalancing>
         <dynamicLoadBalancingClass>agentgui.simulationService.balancing.DynamicLoadBalancing</dynamicLoadBalancingClass>

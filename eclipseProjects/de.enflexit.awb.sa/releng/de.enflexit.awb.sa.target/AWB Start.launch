@@ -39,9 +39,10 @@
         <setEntry value="com.sun.jna@default:default"/>
         <setEntry value="com.sun.xml.bind.jaxb-impl@default:default"/>
         <setEntry value="de.enflexit.api@default:default"/>
+        <setEntry value="de.enflexit.awb.bgSystem@default:default"/>
         <setEntry value="de.enflexit.common@default:default"/>
         <setEntry value="de.enflexit.db.hibernate@default:default"/>
-        <setEntry value="de.enflexit.jaxb.impl.binding@default:default"/>
+        <setEntry value="de.enflexit.jaxb.impl.binding@default:false"/>
         <setEntry value="de.enflexit.oidc.libs@default:default"/>
         <setEntry value="de.enflexit.oidc@default:default"/>
         <setEntry value="de.enflexit.oshi@default:default"/>
