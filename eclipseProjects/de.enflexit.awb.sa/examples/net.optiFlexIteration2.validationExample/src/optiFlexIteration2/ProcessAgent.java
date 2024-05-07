@@ -90,7 +90,7 @@ public class ProcessAgent extends Agent {
 		// Timeblocker 2s for setting up JADE sniffer
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
 
-		this.testFOR003();
+		this.provideFlexibilityUpdate();
 //		this.listEnumIndividuals(); 
 //		this.showOntologyVersionIRI(); 
 //		this.owlInferenceTest(); 
@@ -179,7 +179,7 @@ public class ProcessAgent extends Agent {
 		return cidBase + (cidCnt++);
 	}
 
-	private void testFOR003() {
+	private void provideFlexibilityUpdate() {
 		
 		String processName; 
 		if(this.getLocalName().equals("ProcessAgent")) {
