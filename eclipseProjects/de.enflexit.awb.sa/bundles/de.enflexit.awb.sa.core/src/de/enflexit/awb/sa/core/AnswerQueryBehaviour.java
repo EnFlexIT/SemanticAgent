@@ -21,7 +21,7 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 	
 	private KnowledgeBase knowledgeBase;
 	private String queryString;
-	private String msgRef;
+	private String conversationId;
 	private AID receiverAID;
 	private String[][] solutionArray;
 	private String contentString = "";
@@ -33,14 +33,14 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 	 *
 	 * @param knowledgeBase the knowledge base
 	 * @param queryString the query string (only construct queries can be processed)
-	 * @param msgRef the message reference
+	 * @param conversationId the conversation ID provided by the agent that sent the query
 	 * @param receiverAID the receiver AID
 	 * @param ontologyName the ontology name
 	 */
-	public AnswerQueryBehaviour(KnowledgeBase knowledgeBase, String queryString, String msgRef, AID receiverAID, String ontologyName) {
+	public AnswerQueryBehaviour(KnowledgeBase knowledgeBase, String queryString, String conversationId, AID receiverAID, String ontologyName) {
 		this.knowledgeBase = knowledgeBase;
 		this.queryString = queryString;
-		this.msgRef = msgRef;
+		this.conversationId = conversationId;
 		this.receiverAID = receiverAID;
 		this.ontologyName = ontologyName; 
 	}
@@ -77,7 +77,7 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 		msg.setLanguage("TURTLE");
 		msg.setOntology(ontologyName);
 		msg.setProtocol("FIPA_QUERY"); 
-		msg.setConversationId(msgRef);
+		msg.setConversationId(conversationId);
 		
 		logger.debug("AnswerQueryBehaviour of agent " + this.myAgent.getLocalName() + ": INFORM_REF message sent to agent " + this.receiverAID.getLocalName());
 		
