@@ -15,7 +15,7 @@ public class NamespaceList extends ArrayList<de.enflexit.awb.sa.core.NamespaceLi
 	 */
 	public NamespaceList() {
 		
-		// --- Add default namespaces --------
+		// --- Add default namespaces and prefixes --------
 		this.add(new NamespaceDescription("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#", true));
 		this.add(new NamespaceDescription("rdfs", "http://www.w3.org/2000/01/rdf-schema#", true));
 		this.add(new NamespaceDescription("owl", "http://www.w3.org/2002/07/owl#", true));

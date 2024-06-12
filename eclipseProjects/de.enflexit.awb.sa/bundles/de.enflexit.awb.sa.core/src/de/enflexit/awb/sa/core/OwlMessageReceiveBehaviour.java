@@ -48,9 +48,19 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 		this.knowledgeBase = knowledgeBase; 
 		this.trustedAgents = trustedAgents; 
 		
-		//folgende Zeile auskommentiert; wäre relevant, wenn ein AbstractEnergyAgent genutzt werden würde
+		//folgende Zeile auskommentiert; wï¿½re relevant, wenn ein AbstractEnergyAgent genutzt werden wï¿½rde
 //		myAgent.getDefaultMessageReceiveBehaviour().addMessageTemplateToIgnoreList(this.getMessageTemplate());
 	}
+	
+	public OwlMessageReceiveBehaviour(String ontologyName, Agent myAgent, KnowledgeBase knowledgeBase) {
+		
+		this.ontologyName = ontologyName; 	
+		this.myAgent = myAgent; 
+		this.knowledgeBase = knowledgeBase; 
+		this.trustedAgents = null; 
+	}
+	
+	
 
 	public MessageTemplate getMessageTemplate() {
 		if (messageTemplate == null) {
@@ -74,7 +84,7 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 			AID messageSender = message.getSender();
 			logger.debug("Agent " + myAgent.getAID().getLocalName() + " has received an OWL message from " + messageSender.getLocalName() + " .");	
 			
-			if (this.trustedAgents.contains(messageSender)) {
+			if (this.trustedAgents.isEmpty() || this.trustedAgents.contains(messageSender)) {
 				
 				logger.debug("..." + messageSender.getLocalName() + " is a trusted agent (based on AID comparison). Therefore the message will be processed.");	
 				
@@ -136,7 +146,7 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 		AnswerQueryBehaviour aqb = new AnswerQueryBehaviour(this.knowledgeBase, message.getContent(), message.getConversationId(), message.getSender(), ontologyName);
 		this.myAgent.addBehaviour(aqb);		
 		
-		// --- alternative für synchrone Code-Ausführung -----------------
+		// --- alternative fï¿½r synchrone Code-Ausfï¿½hrung -----------------
 //		new AnswerQueryBehaviour(this.knowledgeBase, message.getContent(), message.getConversationId(), message.getSender()).action();
 
 	}

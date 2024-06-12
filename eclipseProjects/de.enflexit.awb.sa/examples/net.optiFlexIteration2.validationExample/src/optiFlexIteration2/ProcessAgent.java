@@ -77,7 +77,8 @@ public class ProcessAgent extends Agent {
 
 
 		// --- add OWL message receive behavior ----------------------
-		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
+//		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
+		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase);
 		this.addBehaviour(this.owlMsgReceiveBehaviour);
 
 		// --- Logger configuration --------------------------------------
