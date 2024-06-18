@@ -57,9 +57,9 @@
             <agentClass>
                 <className>system.class.-Regular-Thread-</className>
                 <realMetric>1.0</realMetric>
-                <realMetricAverage>12.755353621615855</realMetricAverage>
-                <realMetricMax>12.755353621615852</realMetricMax>
-                <realMetricMin>12.755353621615852</realMetricMin>
+                <realMetricAverage>24.21114479010636</realMetricAverage>
+                <realMetricMax>24.21114479010635</realMetricMax>
+                <realMetricMin>24.21114479010635</realMetricMin>
                 <userPredictedMetric>1.0</userPredictedMetric>
             </agentClass>
         </agentClassMetricDescriptionVector>
