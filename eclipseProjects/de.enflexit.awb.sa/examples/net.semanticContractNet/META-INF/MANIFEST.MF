@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: optiFlexIteration2.validationExample
-Bundle-SymbolicName: net.optiFlexIteration2.validationExample
+Bundle-Name: semanticContractNet
+Bundle-SymbolicName: net.semanticContractNet
 Bundle-Version: 1.0.0.qualifier
-Automatic-Module-Name: net.optiFlex.iteration2
+Automatic-Module-Name: net.semanticContractNet
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Service-Component: OSGI-INF/awbClassLoadService.xml
 Bundle-ActivationPolicy: lazy

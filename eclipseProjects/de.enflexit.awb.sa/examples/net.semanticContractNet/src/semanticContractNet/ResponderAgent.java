@@ -16,6 +16,9 @@ import de.enflexit.awb.sa.core.SendQueryBehaviour;
 import de.enflexit.awb.sa.core.UtilityMethods;
 import jade.core.AID;
 import jade.core.Agent;
+import jade.domain.FIPANames;
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 
 /**
@@ -53,20 +56,20 @@ public class ResponderAgent extends Agent {
 		this.ontologyName = "OptiFlex_20220318";
 
 		// --- specify ontology folder path and file name --------------------------
-		String ontologyDirectory = Application.getProjectFocused().getProjectFolderFullPath()
-				+ "knowledgeBases" + File.separator 
-				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
-				+ this.getAID().getLocalName();
-		String ontologyFileName = "OptiFlex_20220318.owl";
+//		String ontologyDirectory = Application.getProjectFocused().getProjectFolderFullPath()
+//				+ "knowledgeBases" + File.separator 
+//				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
+//				+ this.getAID().getLocalName();
+//		String ontologyFileName = "OptiFlex_20220318.owl";
 
 		// --- specify Base URI ------------------------
 		String baseUri = "http://www.hsu-ifa.de/ontologies/OptiFlex#"; 
 
 		// --- instantiate knowledge base with previously defined parameters -----------------
-		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
+//		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
 
 		// --- add individual namespaces --------------
-		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
+//		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
 
 		// --- Determine communication partner ----------------
 		this.communicationPartner = new AID("OptimizationAgent", AID.ISLOCALNAME);
@@ -78,8 +81,8 @@ public class ResponderAgent extends Agent {
 
 		// --- add OWL message receive behavior ----------------------
 //		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
-		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase);
-		this.addBehaviour(this.owlMsgReceiveBehaviour);
+//		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase);
+//		this.addBehaviour(this.owlMsgReceiveBehaviour);
 
 		// --- Logger configuration --------------------------------------
 		rootLogger.removeAllAppenders(); 
@@ -90,6 +93,16 @@ public class ResponderAgent extends Agent {
 
 		// Timeblocker 2s for setting up JADE sniffer
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
+		
+		MessageTemplate msgTemplate = MessageTemplate.and(
+			MessageTemplate.MatchProtocol(FIPANames.InteractionProtocol.FIPA_CONTRACT_NET),
+			MessageTemplate.and(
+				MessageTemplate.MatchPerformative(ACLMessage.CFP), 
+				MessageTemplate.MatchOntology("FlexibilityOntology")
+			)
+		); 
+				
+		this.addBehaviour(new SemanticContractNetResponder(this, msgTemplate));
 
 	}
 
@@ -135,10 +148,10 @@ public class ResponderAgent extends Agent {
 
 		// --- Save the knowledge base model into a file, as the current implementation ---
 		// --- does not use a persistent storage ------------------------------------------
-		this.knowledgeBase.saveModel();
+//		this.knowledgeBase.saveModel();
 
 		// --- Close the knowledge base model ---------------------------------------------
-		this.knowledgeBase.closeModel();
+//		this.knowledgeBase.closeModel();
 
 
 		rootLogger.removeAllAppenders(); 		
@@ -155,5 +168,13 @@ public class ResponderAgent extends Agent {
 			cidBase = this.getLocalName() + hashCode() +System.currentTimeMillis()%10000 + "_";		
 		}
 		return cidBase + (cidCnt++);
+	}
+	
+	protected KnowledgeBase getKnowledgeBase() {
+		return knowledgeBase;
+	}
+
+	protected void setKnowledgeBase(KnowledgeBase knowledgeBase) {
+		this.knowledgeBase = knowledgeBase;
 	}
 }
