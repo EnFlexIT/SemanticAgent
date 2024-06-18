@@ -1,6 +1,7 @@
 package semanticContractNet;
 
 import java.io.File;
+import java.util.Date;
 import java.util.Set;
 
 import org.apache.jena.ontology.OntModel;
@@ -27,12 +28,14 @@ import de.enflexit.awb.sa.core.SendQueryBehaviour;
 import de.enflexit.awb.sa.core.UtilityMethods;
 import jade.core.AID;
 import jade.core.Agent;
+import jade.domain.FIPANames;
+import jade.lang.acl.ACLMessage;
 
 
 /**
- * @author Sebastian T�rsleff, Helmut Schmidt University
+ * @author Sebastian Törsleff, Helmut Schmidt University
  */
-public class NegotiatorAgent extends Agent {
+public class InitiatorAgent extends Agent {
 
 
 	// --- static variables -----------------------------
@@ -67,20 +70,20 @@ public class NegotiatorAgent extends Agent {
 		this.ontologyName = "OptiFlex_20220318";
 
 		// --- specify ontology folder path and file name --------------------------
-		String ontologyDirectory = Application.getProjectFocused().getProjectFolderFullPath()
-				+ "knowledgeBases" + File.separator 
-				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
-				+ this.getAID().getLocalName();
-		String ontologyFileName = "OptiFlex_20220318.owl";
+//		String ontologyDirectory = Application.getProjectFocused().getProjectFolderFullPath()
+//				+ "knowledgeBases" + File.separator 
+//				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
+//				+ this.getAID().getLocalName();
+//		String ontologyFileName = "OptiFlex_20220318.owl";
 
 		// --- specify Base URI ------------------------
 		String baseUri = "http://www.hsu-ifa.de/ontologies/OptiFlex#"; 
 
 		// --- instantiate knowledge base with previously defined parameters -----------------
-		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
+//		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
 
 		// --- add individual namespaces --------------
-		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
+//		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
 
 		// --- Determine communication partner ----------------
 		this.communicationPartner = new AID("ProcessAgent", AID.ISLOCALNAME);
@@ -90,8 +93,9 @@ public class NegotiatorAgent extends Agent {
 		Set<AID> trustedAgents = Set.of(this.communicationPartner, this.communicationPartnerTwo); 
 
 		// --- add OWL message receive behavior ----------------------
-		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
-		this.addBehaviour(this.owlMsgReceiveBehaviour);
+//		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
+//		this.addBehaviour(this.owlMsgReceiveBehaviour);
+		
 
 
 		// --- Logger configuration --------------------------------------
@@ -103,6 +107,22 @@ public class NegotiatorAgent extends Agent {
 
 		// Timeblocker 2s for setting up JADE sniffer
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
+		
+		
+		// -------------------------------------------------------------------
+		// --- contract net setup -------------------------
+		// -------------------------------------------------------------------
+		
+		// Create the CFP message
+	    ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
+	    cfp.addReceiver(new AID("responder", AID.ISLOCALNAME)); // add receivers to cfp
+	    cfp.setContent("..."); // add triples specifying the flexibility request; for now empty
+	    cfp.setProtocol(FIPANames.InteractionProtocol.FIPA_CONTRACT_NET);
+		// We want to receive a reply in 10 secs
+	    cfp.setReplyByDate(new Date(System.currentTimeMillis() + 10000)); // 10 seconds timeout
+	    
+	    // Add the customized ContractNetInitiator behaviour
+	    addBehaviour(new SemanticContractNetInitiator(this, cfp, 1));
 
 	}
 	
@@ -111,10 +131,10 @@ public class NegotiatorAgent extends Agent {
 
 		// --- Save the knowledge base model into a file, as the current implementation ---
 		// --- does not use a persistent storage ------------------------------------------
-		this.knowledgeBase.saveModel();
+//		this.knowledgeBase.saveModel();
 			
 		// --- Close the knowledge base model ---------------------------------------------
-		this.knowledgeBase.closeModel();
+//		this.knowledgeBase.closeModel();
 		
 		
 		rootLogger.removeAllAppenders(); 		
@@ -131,6 +151,14 @@ public class NegotiatorAgent extends Agent {
 			cidBase = this.getLocalName() + hashCode() +System.currentTimeMillis()%10000 + "_";		
 		}
 		return cidBase + (cidCnt++);
+	}
+
+	protected KnowledgeBase getKnowledgeBase() {
+		return knowledgeBase;
+	}
+
+	protected void setKnowledgeBase(KnowledgeBase knowledgeBase) {
+		this.knowledgeBase = knowledgeBase;
 	}
 	
 	

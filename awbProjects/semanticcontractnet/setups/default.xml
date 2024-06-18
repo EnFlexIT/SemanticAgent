@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <simulationSetup>
-    <agentSetup/>
+    <agentSetup>
+        <agent>
+            <postionNo>1</postionNo>
+            <listMembership>01 AgentStartManual</listMembership>
+            <agentClassReference>semanticContractNet.ResponderAgent</agentClassReference>
+            <startAsName>responder</startAsName>
+        </agent>
+        <agent>
+            <postionNo>2</postionNo>
+            <listMembership>01 AgentStartManual</listMembership>
+            <agentClassReference>semanticContractNet.InitiatorAgent</agentClassReference>
+            <startAsName>initiator</startAsName>
+        </agent>
+    </agentSetup>
     <setupProperties>
         <propertyMap/>
     </setupProperties>

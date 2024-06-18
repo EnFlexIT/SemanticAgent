@@ -12,7 +12,6 @@
     <stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/AWB Start"/>
     <booleanAttribute key="default" value="false"/>
     <setAttribute key="deselected_workspace_bundles">
-        <setEntry value="net.optiFlexIteration2.validationExample*1.0.0.qualifier"/>
         <setEntry value="net.peak.agent.gridAgent"/>
         <setEntry value="net.peak.agent.mapperAgent"/>
         <setEntry value="net.peak.agent.marketAgent"/>
@@ -247,9 +246,10 @@
         <setEntry value="de.enflexit.awb.sa.core@default:default"/>
         <setEntry value="de.enflexit.awb.sa.jena@default:default"/>
         <setEntry value="net.optiFlex.validationExample@default:default"/>
-        <setEntry value="net.optiFlexIteration2.validationExample*1.0.0.qualifier@default:default"/>
+        <setEntry value="net.optiFlexIteration2.validationExample@default:default"/>
         <setEntry value="net.semanticAgent@default:default"/>
         <setEntry value="net.semanticAgentTemplate@default:default"/>
+        <setEntry value="net.semanticContractNet@default:default"/>
     </setAttribute>
     <booleanAttribute key="show_selected_only" value="false"/>
     <stringAttribute key="templateConfig" value="${target_home}\configuration\config.ini"/>
