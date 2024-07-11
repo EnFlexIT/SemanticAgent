@@ -30,7 +30,7 @@ import jade.core.Agent;
 
 
 /**
- * @author Sebastian Törsleff, Helmut Schmidt University
+ * @author Sebastian Tï¿½rsleff, Helmut Schmidt University
  */
 public class OptimizationAgent extends Agent {
 
@@ -77,7 +77,8 @@ public class OptimizationAgent extends Agent {
 		String baseUri = "http://www.hsu-ifa.de/ontologies/OptiFlex#"; 
 
 		// --- instantiate knowledge base with previously defined parameters -----------------
-		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
+		OntModelSpec ontModelSpec = OntModelSpec.OWL_DL_MEM_RULE_INF; 
+		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri, ontModelSpec);
 
 		// --- add individual namespaces --------------
 		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);

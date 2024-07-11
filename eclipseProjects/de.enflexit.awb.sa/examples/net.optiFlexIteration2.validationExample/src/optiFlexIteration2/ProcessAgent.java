@@ -3,6 +3,7 @@ package optiFlexIteration2;
 import java.io.File;
 import java.util.Set;
 
+import org.apache.jena.ontology.OntModelSpec;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -63,7 +64,8 @@ public class ProcessAgent extends Agent {
 		String baseUri = "http://www.hsu-ifa.de/ontologies/OptiFlex#"; 
 
 		// --- instantiate knowledge base with previously defined parameters -----------------
-		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
+		OntModelSpec ontModelSpec = OntModelSpec.OWL_DL_MEM_RULE_INF; 
+		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri, ontModelSpec);
 
 		// --- add individual namespaces --------------
 		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);

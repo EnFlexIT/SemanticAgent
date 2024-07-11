@@ -1,4 +1,4 @@
-package semanticContractNet;
+package peakCaseStudyV1;
 
 import java.io.File;
 import java.util.Date;
@@ -35,7 +35,7 @@ import jade.lang.acl.ACLMessage;
 /**
  * @author Sebastian Törsleff, Helmut Schmidt University
  */
-public class InitiatorAgent extends Agent {
+public class MarketAgent extends Agent {
 
 
 	// --- static variables -----------------------------
@@ -67,30 +67,37 @@ public class InitiatorAgent extends Agent {
 
 		// --- for now only one ontology is supported; this variable is used ------------
 		// --- for the ontology field of ACL message objects and message filtering; -----
-		this.ontologyName = "OptiFlex_20220318";
+		this.ontologyName = "PEAKv1";
 
 		// --- specify ontology folder path and file name --------------------------
-//		String ontologyDirectory = Application.getProjectFocused().getProjectFolderFullPath()
-//				+ "knowledgeBases" + File.separator 
-//				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
-//				+ this.getAID().getLocalName();
-//		String ontologyFileName = "OptiFlex_20220318.owl";
+		String ontologyDirectory = Application.getProjectFocused().getProjectFolderFullPath()
+				+ "knowledgeBases" + File.separator 
+				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
+				+ this.getAID().getLocalName();
+		String ontologyFileName = "peakv1taskfit_forMarketAgent.owl";
 
 		// --- specify Base URI ------------------------
-		String baseUri = "http://www.hsu-ifa.de/ontologies/OptiFlex#"; 
+		String baseUri = "https://www.hsu-ifa.de/ontologies/peakv1taskfit#"; 
 
 		// --- instantiate knowledge base with previously defined parameters -----------------
-//		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
+//		OntModelSpec ontModelSpec = OntModelSpec.OWL_DL_MEM_RULE_INF; 
+		OntModelSpec ontModelSpec = OntModelSpec.OWL_MEM_MICRO_RULE_INF;
+		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri, ontModelSpec);
 
 		// --- add individual namespaces --------------
-//		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
+		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
+		knowledgeBase.getNamespaceList().addNameSpace("s4ener", "https://saref.etsi.org/saref4ener/", false);
+		knowledgeBase.getNamespaceList().addNameSpace("ao", "https://www.hsu-ifa.de/ontologies/PeakEvaluation01AlignmentOntology#", false);
+		knowledgeBase.getNamespaceList().addNameSpace("s4enerext", "https://www.hsu-ifa.de/ontologies/SAREF4ENERExtension#", false);
+		knowledgeBase.getNamespaceList().addNameSpace("topo", "https://www.hsu-ifa.de/ontologies/LVGridTopology#", false);
+		
 
 		// --- Determine communication partner ----------------
-		this.communicationPartner = new AID("ProcessAgent", AID.ISLOCALNAME);
-		this.communicationPartnerTwo = new AID("ProcessAgent2", AID.ISLOCALNAME);
+//		this.communicationPartner = new AID("ProcessAgent", AID.ISLOCALNAME);
+//		this.communicationPartnerTwo = new AID("ProcessAgent2", AID.ISLOCALNAME);
 
 		// --- Generate set of trusted agents used by OMRB for handling of incoming messages
-		Set<AID> trustedAgents = Set.of(this.communicationPartner, this.communicationPartnerTwo); 
+//		Set<AID> trustedAgents = Set.of(this.communicationPartner, this.communicationPartnerTwo); 
 
 		// --- add OWL message receive behavior ----------------------
 //		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
@@ -108,6 +115,39 @@ public class InitiatorAgent extends Agent {
 		// Timeblocker 2s for setting up JADE sniffer
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
 		
+		// perform consistency check of the ontology 
+//		UtilityMethods.checkRdfStatementConsistency("", this.knowledgeBase);
+		
+		
+		// -------------------------------------------------------------------
+		// --- get latest flexibility request -------------------------
+		// -------------------------------------------------------------------
+		
+		String query = "CONSTRUCT {\n"
+				+ "  ?ind ?p ?o .\n"
+				+ "  ?s ?p ?ind .\n"
+				+ "  ?interval ?dp ?dpv. \n"
+				+ "}\n"
+				+ "WHERE {\n"
+				+ "    {\n"
+				+ "        SELECT ?ind ?creationTime WHERE { \n"
+				+ "			?ind s4ener:hasCreationTime ?creationTime .\n"
+				+ "		} \n"
+				+ "	ORDER BY DESC(?creationTime)\n"
+				+ "	LIMIT 1 \n"
+				+ "    }\n"
+				+ "    ?ind ?p ?o .\n"
+				+ "    OPTIONAL { ?s ?p ?ind . }\n"
+				+ "    OPTIONAL {\n"
+				+ "    	?ind s4ener:hasEffectivePeriod ?interval .\n"
+				+ "    	?interval ?dp ?dpv .\n"
+				+ "  	}\n"
+				+ "}";
+
+		String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
+		String queryResults = UtilityMethods.executeConstructQuery(queryPSS, knowledgeBase.getModel());
+		
+		
 		
 		// -------------------------------------------------------------------
 		// --- contract net setup -------------------------
@@ -115,9 +155,10 @@ public class InitiatorAgent extends Agent {
 		
 		// Create the CFP message
 	    ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
-	    cfp.addReceiver(new AID("responder", AID.ISLOCALNAME)); // add receivers to cfp
-	    cfp.setContent("..."); // add triples specifying the flexibility request; for now empty
+	    cfp.addReceiver(new AID("ProsumerAgent", AID.ISLOCALNAME)); // add receivers to cfp
+	    cfp.setContent(queryResults); // add triples specifying the flexibility request; for now empty
 	    cfp.setProtocol(FIPANames.InteractionProtocol.FIPA_CONTRACT_NET);
+	    cfp.setOntology(this.ontologyName);
 		// We want to receive a reply in 10 secs
 	    cfp.setReplyByDate(new Date(System.currentTimeMillis() + 10000)); // 10 seconds timeout
 	    
@@ -131,10 +172,10 @@ public class InitiatorAgent extends Agent {
 
 		// --- Save the knowledge base model into a file, as the current implementation ---
 		// --- does not use a persistent storage ------------------------------------------
-//		this.knowledgeBase.saveModel();
+		this.knowledgeBase.saveModel();
 			
 		// --- Close the knowledge base model ---------------------------------------------
-//		this.knowledgeBase.closeModel();
+		this.knowledgeBase.closeModel();
 		
 		
 		rootLogger.removeAllAppenders(); 		

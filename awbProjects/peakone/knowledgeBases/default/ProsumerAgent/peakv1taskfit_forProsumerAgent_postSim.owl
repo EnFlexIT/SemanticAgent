@@ -1,0 +1,123 @@
+@prefix :          <https://www.hsu-ifa.de/ontologies/peakv1taskfit> .
+@prefix ao:        <https://www.hsu-ifa.de/ontologies/PeakEvaluation01AlignmentOntology#> .
+@prefix core:      <https://saref.etsi.org/core/> .
+@prefix mod:       <https://w3id.org/mod#> .
+@prefix owl:       <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:       <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s4ener:    <https://saref.etsi.org/saref4ener/> .
+@prefix s4enerext: <https://www.hsu-ifa.de/ontologies/SAREF4ENERExtension#> .
+@prefix terms:     <http://purl.org/dc/terms/> .
+@prefix topo:      <https://www.hsu-ifa.de/ontologies/LVGridTopology#> .
+@prefix vann:      <http://purl.org/vocab/vann/> .
+@prefix xsd:       <http://www.w3.org/2001/XMLSchema#> .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#node03>
+        rdf:type            topo:Node , owl:NamedIndividual ;
+        topo:isComponentOf  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01> ;
+        topo:isRootNode     false .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval02>
+        rdf:type             <http://www.w3.org/2006/time#Interval> , owl:NamedIndividual ;
+        s4ener:hasStartTime  "2024-06-28T12:00:00Z"^^xsd:dateTimeStamp ;
+        s4ener:isFinishedAt  "2024-06-28T13:00:00Z"^^xsd:dateTimeStamp .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls03>
+        rdf:type            topo:LineSegment , owl:NamedIndividual ;
+        topo:hasEndNode     <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node04> ;
+        topo:hasStartNode   <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node03> ;
+        topo:isComponentOf  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01> .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb02>
+        rdf:type  topo:Busbar , owl:NamedIndividual .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#node02>
+        rdf:type            topo:Node , owl:NamedIndividual ;
+        topo:isComponentOf  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01> ;
+        topo:isRootNode     false .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval01>
+        rdf:type             <http://www.w3.org/2006/time#Interval> , owl:NamedIndividual ;
+        s4ener:hasStartTime  "2024-06-28T11:00:00Z"^^xsd:dateTimeStamp ;
+        s4ener:isFinishedAt  "2024-06-28T12:00:00Z"^^xsd:dateTimeStamp .
+
+:       rdf:type     owl:Ontology ;
+        owl:imports  <https://raw.githubusercontent.com/toersleff/oreco/main/case_studies/PEAK_v1/AlignmentOnto_edited.xml> .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls02>
+        rdf:type            topo:LineSegment , owl:NamedIndividual ;
+        topo:hasEndNode     <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node03> ;
+        topo:hasStartNode   <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node02> ;
+        topo:isComponentOf  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01> .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01>
+        rdf:type  topo:Busbar , owl:NamedIndividual .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#node01>
+        rdf:type            topo:Node , owl:NamedIndividual ;
+        topo:isComponentOf  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01> ;
+        topo:isRootNode     true .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#fo1>
+        rdf:type                   s4ener:FlexOffer , owl:NamedIndividual ;
+        s4ener:hasEffectivePeriod  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval03> ;
+        s4ener:includes            <https://www.hsu-ifa.de/ontologies/peakv1taskfit#ts01> ;
+        s4ener:relatesToRequest    <https://www.hsu-ifa.de/ontologies/peakv1taskfit#fr02> ;
+        ao:hasLocation             <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node05> ;
+        s4enerext:hasPriceInEuro   "2.5"^^xsd:double .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls01>
+        rdf:type            topo:LineSegment , owl:NamedIndividual ;
+        topo:hasEndNode     <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node02> ;
+        topo:hasStartNode   <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node01> ;
+        topo:isComponentOf  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01> .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#dp02>
+        rdf:type           s4ener:DataPoint , owl:NamedIndividual ;
+        core:hasTimestamp  "2024-06-28T12:15:00Z"^^xsd:dateTimeStamp ;
+        core:hasValue      20 ;
+        core:isMeasuredIn  s4enerext:Kilowatt .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#fr02>
+        rdf:type                   s4ener:FlexRequest , owl:NamedIndividual ;
+        s4ener:hasCreationTime     "2024-06-28T11:00:00Z"^^xsd:dateTimeStamp ;
+        s4ener:hasEffectivePeriod  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval02> ;
+        s4ener:hasUsage            s4ener:Production ;
+        ao:hasLocation             <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node05> .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#node05>
+        rdf:type            topo:Node , owl:NamedIndividual ;
+        topo:isComponentOf  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01> ;
+        topo:isRootNode     false .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#dp01>
+        rdf:type           s4ener:DataPoint , owl:NamedIndividual ;
+        core:hasTimestamp  "2024-06-28T12:00:00Z"^^xsd:dateTimeStamp ;
+        core:hasValue      10 ;
+        core:isMeasuredIn  s4enerext:Kilowatt .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#fr01>
+        rdf:type                   s4ener:FlexRequest , owl:NamedIndividual ;
+        s4ener:hasCreationTime     "2024-06-28T10:00:00Z"^^xsd:dateTimeStamp ;
+        s4ener:hasEffectivePeriod  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval01> ;
+        s4ener:hasUsage            s4ener:Production ;
+        ao:hasLocation             <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node02> , <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node01> .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#node04>
+        rdf:type            topo:Node , owl:NamedIndividual ;
+        topo:isComponentOf  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01> ;
+        topo:isRootNode     false .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval03>
+        rdf:type             <http://www.w3.org/2006/time#Interval> , owl:NamedIndividual ;
+        s4ener:hasStartTime  "2024-06-28T12:00:00Z"^^xsd:dateTimeStamp ;
+        s4ener:isFinishedAt  "2024-06-28T12:30:00Z"^^xsd:dateTimeStamp .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#ts01>
+        rdf:type             s4ener:TimeSeries , owl:NamedIndividual ;
+        s4ener:hasDataPoint  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#dp02> , <https://www.hsu-ifa.de/ontologies/peakv1taskfit#dp01> .
+
+<https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls04>
+        rdf:type           topo:LineSegment , owl:NamedIndividual ;
+        topo:hasEndNode    <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node05> ;
+        topo:hasStartNode  <https://www.hsu-ifa.de/ontologies/peakv1taskfit#node04> .

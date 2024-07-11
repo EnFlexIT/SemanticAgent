@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://www.hsu-ifa.de/ontologies/peakv1taskfit"
+     xml:base="https://www.hsu-ifa.de/ontologies/peakv1taskfit"
+     xmlns:ao="https://www.hsu-ifa.de/ontologies/PeakEvaluation01AlignmentOntology#"
+     xmlns:mod="https://w3id.org/mod#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:core="https://saref.etsi.org/core/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:topo="https://www.hsu-ifa.de/ontologies/LVGridTopology#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:s4ener="https://saref.etsi.org/saref4ener/"
+     xmlns:s4enerext="https://www.hsu-ifa.de/ontologies/SAREF4ENERExtension#">
+    <owl:Ontology rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit">
+        <owl:imports rdf:resource="https://raw.githubusercontent.com/toersleff/oreco/main/case_studies/PEAK_v1/AlignmentOnto_edited.xml"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#Busbar"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb02 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb02">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#Busbar"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#fr01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#fr01">
+        <rdf:type rdf:resource="https://saref.etsi.org/saref4ener/FlexRequest"/>
+        <s4ener:hasEffectivePeriod rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval01"/>
+        <s4ener:hasUsage rdf:resource="https://saref.etsi.org/saref4ener/Production"/>
+        <ao:hasLocation rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node01"/>
+        <ao:hasLocation rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node02"/>
+        <s4ener:hasCreationTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T10:00:00Z</s4ener:hasCreationTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#fr02 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#fr02">
+        <rdf:type rdf:resource="https://saref.etsi.org/saref4ener/FlexRequest"/>
+        <s4ener:hasEffectivePeriod rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval02"/>
+        <s4ener:hasUsage rdf:resource="https://saref.etsi.org/saref4ener/Production"/>
+        <ao:hasLocation rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node05"/>
+        <s4ener:hasCreationTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T11:00:00Z</s4ener:hasCreationTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval01">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Interval"/>
+        <s4ener:hasStartTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T11:00:00Z</s4ener:hasStartTime>
+        <s4ener:isFinishedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T12:00:00Z</s4ener:isFinishedAt>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval02 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval02">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Interval"/>
+        <s4ener:hasStartTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T12:00:00Z</s4ener:hasStartTime>
+        <s4ener:isFinishedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T13:00:00Z</s4ener:isFinishedAt>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls01">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#LineSegment"/>
+        <topo:hasEndNode rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node02"/>
+        <topo:hasStartNode rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node01"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls02 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls02">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#LineSegment"/>
+        <topo:hasEndNode rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node03"/>
+        <topo:hasStartNode rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node02"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls03 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls03">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#LineSegment"/>
+        <topo:hasEndNode rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node04"/>
+        <topo:hasStartNode rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node03"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls04 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#ls04">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#LineSegment"/>
+        <topo:hasEndNode rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node05"/>
+        <topo:hasStartNode rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node04"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#node01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node01">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01"/>
+        <topo:isRootNode rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</topo:isRootNode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#node02 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node02">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01"/>
+        <topo:isRootNode rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</topo:isRootNode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#node03 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node03">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01"/>
+        <topo:isRootNode rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</topo:isRootNode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#node04 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node04">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01"/>
+        <topo:isRootNode rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</topo:isRootNode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#node05 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node05">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01"/>
+        <topo:isRootNode rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</topo:isRootNode>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

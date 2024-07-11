@@ -106,7 +106,10 @@ public class UtilityMethods{
 					queryResult += "<" + s + "> <" + p + "> \"" + value + "\"^^<" + datatypeUri + ">.\n";
 				}
 				else if (o.isResource()) {
-					queryResult += "<" + s + "> <" + p + "> <" + o + ">.\n";
+					String objStr = o.toString();
+					if (objStr.startsWith("http")) {
+						queryResult += "<" + s + "> <" + p + "> <" + o + ">.\n";
+					}
 				}
 	
 			}

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: semanticContractNet
-Bundle-SymbolicName: net.semanticContractNet
+Bundle-SymbolicName: net.peakCaseStudyV1
 Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: net.semanticContractNet
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
@@ -12,5 +12,5 @@ Require-Bundle: de.enflexit.common,
  org.agentgui.lib.jade,
  de.enflexit.awb.sa.jena,
  de.enflexit.awb.sa.core
-Export-Package: semanticContractNet,
+Export-Package: peakCaseStudyV1,
  semanticContractNet.classLoadService

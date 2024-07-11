@@ -40,7 +40,7 @@ public class KnowledgeBase {
 	private String baseUri; 
 	
 	// --- Constructor for knowledgeBase --------------------------------------
-	public KnowledgeBase(Agent myAgent, String ontologyDirectory, String ontologyFileName, String baseUri) {
+	public KnowledgeBase(Agent myAgent, String ontologyDirectory, String ontologyFileName, String baseUri, OntModelSpec ontModelSpec) {
 		
 		this.myAgent = myAgent; 
 		this.ontologyDirectory = ontologyDirectory; 
@@ -48,13 +48,13 @@ public class KnowledgeBase {
 		this.setBaseUri(baseUri); 
 		
 		// --- instantiate a ontModel using ModelFactory 
-		ontModel = this.instantiateModelInFactory();   
+		ontModel = this.instantiateModelInFactory(ontModelSpec);   
 	}
 	
-	private OntModel instantiateModelInFactory() {
+	private OntModel instantiateModelInFactory(OntModelSpec ontModelSpec) {
 		
 		String filePath = this.getKnowledgeBaseFolderPath() + File.separator + ontologyFileName; 
-		OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
+		OntModel ontModel = ModelFactory.createOntologyModel(ontModelSpec); 
 		ontModel.read(filePath); 		
 		return ontModel;
 	}

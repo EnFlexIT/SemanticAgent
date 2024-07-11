@@ -1,4 +1,4 @@
-package semanticContractNet;
+package peakCaseStudyV1;
 
 import java.util.Vector;
 
@@ -7,6 +7,7 @@ import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
 import jade.proto.ContractNetInitiator;
 import de.enflexit.awb.sa.core.KnowledgeBase;
+import de.enflexit.awb.sa.core.ReceiveInformBehaviour;
 
 class SemanticContractNetInitiator extends ContractNetInitiator {
 	
@@ -19,7 +20,7 @@ class SemanticContractNetInitiator extends ContractNetInitiator {
 	public SemanticContractNetInitiator(Agent a, ACLMessage cfp, int nParticipants) {
 		super(a, cfp);
 		this.nParticipants = nParticipants; 
-		this.knowledgeBase =  ((InitiatorAgent) a).getKnowledgeBase(); 
+		this.knowledgeBase =  ((MarketAgent) a).getKnowledgeBase(); 
 	}
 
 	protected void handleRefuse(ACLMessage refuse) {
@@ -48,19 +49,16 @@ class SemanticContractNetInitiator extends ContractNetInitiator {
 				nProposals++; 
 				System.out.println("Adding proposal from " + rsp.getSender().getName()+ " to knowledge base");
 				
+				// save content of proposal to knowledge base 
+				String flexOfferTriples = rsp.getContent();
+				if (!flexOfferTriples.isEmpty()) {
+					this.myAgent.addBehaviour(new ReceiveInformBehaviour(knowledgeBase, flexOfferTriples));
+				}
 				ACLMessage reply = rsp.createReply();
 				reply.setPerformative(ACLMessage.REJECT_PROPOSAL);
 				acceptances.addElement(reply); 	// es werden erstmal alle Nachrichten mit REJECT in den Antwortvektor geschoben
-												// weiter unten wird das Performative der Gewinnerproposals in ACCEPT geändert
-				int proposal = Integer.parseInt(rsp.getContent());
-				if (proposal > 0) {
-					bestProposer = rsp.getSender();
-					accept = reply;
-				}
+												// weiter unten kann das Performative der Gewinnerproposals in ACCEPT geändert werden
 				
-				// add proposal to knowledge base
-				// es muss auch eine AID oder Proposal ID abgelegt werden, 
-				// damit man später weiß, welchem Agenten man eine positive Antwort schicken muss
 			} 
 			
 		}	
@@ -75,10 +73,6 @@ class SemanticContractNetInitiator extends ContractNetInitiator {
 			System.out.println("No proposals received."); 
 		}
 		
-		if (accept != null) {
-			System.out.println("Accepting proposal from responder " + bestProposer.getName());
-			accept.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
-		}
 	}
 
 	protected void handleFailure(ACLMessage failure) {

@@ -27,7 +27,8 @@
         :hasTargetFlexibleLoad   :flexibleLoad4 ;
         :hasTemporalType         :start-start ;
         :hasTriggerFlexibleLoad  :flexibleLoad3 ;
-        :temporalGapInSeconds    "400"^^xsd:int .
+        :temporalGapInSeconds    "400"^^xsd:int ;
+        owl:sameAs               :flexibleLoadDependency2 .
 
 :end-start  rdf:type  :TemporalType , owl:NamedIndividual .
 
@@ -43,6 +44,8 @@
         rdfs:domain  :FlexibleLoadDependency ;
         rdfs:range   xsd:int .
 
+:start-start  rdf:type  :TemporalType , owl:NamedIndividual .
+
 :flexibleLoad4  rdf:type           rdfs:Resource , :FlexibleLoad , owl:NamedIndividual , owl:Thing ;
         :activationGradientInKilowattPerSecond
                 "0.1"^^xsd:double ;
@@ -52,16 +55,16 @@
         :isFlexibleLoadOf          :process2 ;
         :isTargetFlexibleLoadOf    :flexibleLoadDependency2 ;
         :latestStart               "2022-03-18T23:30:00"^^xsd:dateTime ;
-        :powerStateInKilowatts     "3.0"^^xsd:double .
-
-:start-start  rdf:type  :TemporalType , owl:NamedIndividual .
+        :powerStateInKilowatts     "3.0"^^xsd:double ;
+        owl:sameAs                 :flexibleLoad4 .
 
 :flexibleLoadDependency1
         rdf:type                 :FlexibleLoadDependency , owl:NamedIndividual , owl:Thing , rdfs:Resource ;
         :hasTargetFlexibleLoad   :flexibleLoad2 ;
         :hasTemporalType         :start-start ;
         :hasTriggerFlexibleLoad  :flexibleLoad1 ;
-        :temporalGapInSeconds    "400"^^xsd:int .
+        :temporalGapInSeconds    "400"^^xsd:int ;
+        owl:sameAs               :flexibleLoadDependency1 .
 
 :flexibleLoad3  rdf:type           rdfs:Resource , owl:NamedIndividual , :FlexibleLoad , owl:Thing ;
         :activationGradientInKilowattPerSecond
@@ -72,7 +75,8 @@
         :isFlexibleLoadOf          :process2 ;
         :isTriggerFlexibleLoadOf   :flexibleLoadDependency2 ;
         :latestStart               "2022-03-18T22:00:00"^^xsd:dateTime ;
-        :powerStateInKilowatts     "7.0"^^xsd:double .
+        :powerStateInKilowatts     "7.0"^^xsd:double ;
+        owl:sameAs                 :flexibleLoad3 .
 
 :activationGradientInKilowattPerSecond
         rdf:type     owl:DatatypeProperty ;
@@ -100,7 +104,8 @@
         :isFlexibleLoadOf          :process1 ;
         :isTargetFlexibleLoadOf    :flexibleLoadDependency1 ;
         :latestStart               "2022-03-18T23:30:00"^^xsd:dateTime ;
-        :powerStateInKilowatts     "3.0"^^xsd:double .
+        :powerStateInKilowatts     "3.0"^^xsd:double ;
+        owl:sameAs                 :flexibleLoad2 .
 
 :holdingDurationInSeconds
         rdf:type     owl:FunctionalProperty , owl:DatatypeProperty ;
@@ -128,7 +133,8 @@
         :isFlexibleLoadOf          :process1 ;
         :isTriggerFlexibleLoadOf   :flexibleLoadDependency1 ;
         :latestStart               "2022-03-18T22:00:00"^^xsd:dateTime ;
-        :powerStateInKilowatts     "7.0"^^xsd:double .
+        :powerStateInKilowatts     "7.0"^^xsd:double ;
+        owl:sameAs                 :flexibleLoad1 .
 
 :hasTemporalType  rdf:type  owl:FunctionalProperty , owl:ObjectProperty ;
         rdfs:domain  :FlexibleLoadDependency ;

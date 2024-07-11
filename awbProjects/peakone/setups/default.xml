@@ -4,14 +4,14 @@
         <agent>
             <postionNo>1</postionNo>
             <listMembership>01 AgentStartManual</listMembership>
-            <agentClassReference>semanticContractNet.ResponderAgent</agentClassReference>
-            <startAsName>responder</startAsName>
+            <agentClassReference>peakCaseStudyV1.MarketAgent</agentClassReference>
+            <startAsName>MarketAgent</startAsName>
         </agent>
         <agent>
             <postionNo>2</postionNo>
             <listMembership>01 AgentStartManual</listMembership>
-            <agentClassReference>semanticContractNet.InitiatorAgent</agentClassReference>
-            <startAsName>initiator</startAsName>
+            <agentClassReference>peakCaseStudyV1.ProsumerAgent</agentClassReference>
+            <startAsName>ProsumerAgent</startAsName>
         </agent>
     </agentSetup>
     <setupProperties>

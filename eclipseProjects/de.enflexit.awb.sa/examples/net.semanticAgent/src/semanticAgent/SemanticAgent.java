@@ -71,7 +71,8 @@ public class SemanticAgent extends Agent {
 		String baseUri = "http://www.hsu-ifa.de/ontologies/LVGridFlex#"; 
 		
 		// --- instantiate knowledge base with previously defined parameters -----------------
-		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
+		OntModelSpec ontModelSpec = OntModelSpec.OWL_DL_MEM_RULE_INF; 
+		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri, ontModelSpec);
 		
 		// --- add individual namespaces --------------
 		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);

@@ -30,7 +30,7 @@ import jade.core.Agent;
 
 
 /**
- * @author Sebastian Törsleff, Helmut Schmidt University
+ * @author Sebastian Tï¿½rsleff, Helmut Schmidt University
  */
 public class OptimizationAgent extends Agent {
 
@@ -73,7 +73,8 @@ public class OptimizationAgent extends Agent {
 		String baseUri = "http://www.hsu-ifa.de/ontologies/OptiFlex#"; 
 		
 		// --- instantiate knowledge base with previously defined parameters -----------------
-		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
+		OntModelSpec ontModelSpec = OntModelSpec.OWL_DL_MEM_RULE_INF; 
+		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri, ontModelSpec);
 		
 		// --- add default namespace --------------
 		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
@@ -94,7 +95,7 @@ public class OptimizationAgent extends Agent {
 		// -------------------------------------------------------------------
 		
 		// --- Logger configuration --------------------------------------
-		rootLogger.removeAllAppenders(); //unschöner workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell
+		rootLogger.removeAllAppenders(); //unschï¿½ner workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell
 		SimpleLayout layout = new SimpleLayout();
 		ConsoleAppender consoleAppender = new ConsoleAppender(layout);
 		rootLogger.addAppender(consoleAppender);
@@ -128,7 +129,7 @@ public class OptimizationAgent extends Agent {
 		// --- Close the knowledge base model ---------------------------------------------
 		this.knowledgeBase.closeModel();
 		
-		rootLogger.removeAllAppenders(); //unschöner workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell		
+		rootLogger.removeAllAppenders(); //unschï¿½ner workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell		
 				
 		super.takeDown();
 	}
@@ -418,7 +419,7 @@ public class OptimizationAgent extends Agent {
 			String commandText = "SELECT DISTINCT ?bb\n" + 
 					"	WHERE {\n" + 
 					"	?bb rdf:type :Busbar .\n" + 
-					"	?bb :hasComponent ?ls .\n" +   //hier steht nur node01 zur Verfügung - in Protege testen
+					"	?bb :hasComponent ?ls .\n" +   //hier steht nur node01 zur Verfï¿½gung - in Protege testen
 					"	?ls rdf:type :LineSegment .\n" + 
 					"	?ls :hasMaximumCurrent ?maxcurrent .\n" + 
 					"	?ls :hasLineSegmentState ?lss .\n" + 
@@ -449,7 +450,7 @@ public class OptimizationAgent extends Agent {
 			
 //			String totalEnergy = "\"9.55\"^^xsd:double";
 			
-			// --- Update string für neues Flexibilitätspotential
+			// --- Update string fï¿½r neues Flexibilitï¿½tspotential
 			
 //					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential>.\n"  
 //					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMaximumPower> "+maxPower+".\n"
@@ -483,7 +484,7 @@ public class OptimizationAgent extends Agent {
 					+":fp02 :hasTimeStamp " + UtilityMethods.stringToXsdDateTime(timeStamp) + ".";	
 			
 			
-			// --- RDF Statements model via SPARQL Update hinzufügen
+			// --- RDF Statements model via SPARQL Update hinzufï¿½gen
 			rootLogger.debug(this.getAID().getLocalName() + "/updateFlexibilityPotential() will add these triples: \n" + sparqlUpdateTriples);	
 			UtilityMethods.executeSparqlUpdate(this.knowledgeBase, sparqlUpdateTriples);
 		}

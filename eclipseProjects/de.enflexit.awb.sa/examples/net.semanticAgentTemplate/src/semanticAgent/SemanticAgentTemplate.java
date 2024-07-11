@@ -70,7 +70,8 @@ public class SemanticAgentTemplate extends Agent {
 		String baseUri = "http://www.hsu-ifa.de/ontologies/SemanticAgentTestOntology#"; 
 		
 		// --- instantiate KnowledgeBase with previously specified parameters -----------------
-		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
+		OntModelSpec ontModelSpec = OntModelSpec.OWL_DL_MEM_RULE_INF; 
+		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri, ontModelSpec);
 		
 		// --- add non-generic namespaces --------------
 		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);

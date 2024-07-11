@@ -1,8 +1,9 @@
-package semanticContractNet;
+package peakCaseStudyV1;
 
 import java.io.File;
 import java.util.Set;
 
+import org.apache.jena.ontology.OntModelSpec;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -24,7 +25,7 @@ import jade.lang.acl.MessageTemplate;
 /**
  * @author Sebastian T�rsleff, Helmut Schmidt University;
  */
-public class ResponderAgent extends Agent {
+public class ProsumerAgent extends Agent {
 
 
 	// --- static variables -----------------------------
@@ -53,30 +54,37 @@ public class ResponderAgent extends Agent {
 
 		// --- for now only one ontology is supported; this variable is used ------------
 		// --- for the ontology field of ACL message objects and message filtering; -----
-		this.ontologyName = "OptiFlex_20220318";
+		this.ontologyName = "PEAKv1";
 
 		// --- specify ontology folder path and file name --------------------------
-//		String ontologyDirectory = Application.getProjectFocused().getProjectFolderFullPath()
-//				+ "knowledgeBases" + File.separator 
-//				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
-//				+ this.getAID().getLocalName();
-//		String ontologyFileName = "OptiFlex_20220318.owl";
+		String ontologyDirectory = Application.getProjectFocused().getProjectFolderFullPath()
+				+ "knowledgeBases" + File.separator 
+				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
+				+ this.getAID().getLocalName();
+		String ontologyFileName = "peakv1taskfit_forProsumerAgent.owl";
 
 		// --- specify Base URI ------------------------
-		String baseUri = "http://www.hsu-ifa.de/ontologies/OptiFlex#"; 
+		String baseUri = "https://www.hsu-ifa.de/ontologies/peakv1taskfit#"; 
 
 		// --- instantiate knowledge base with previously defined parameters -----------------
-//		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri);
+		OntModelSpec ontModelSpec = OntModelSpec.OWL_MEM_MICRO_RULE_INF;
+		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri, ontModelSpec);
+		
 
 		// --- add individual namespaces --------------
-//		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
+		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
+		knowledgeBase.getNamespaceList().addNameSpace("s4ener", "https://saref.etsi.org/saref4ener/", false);
+		knowledgeBase.getNamespaceList().addNameSpace("ao", "https://www.hsu-ifa.de/ontologies/PeakEvaluation01AlignmentOntology#", false);
+		knowledgeBase.getNamespaceList().addNameSpace("s4enerext", "https://www.hsu-ifa.de/ontologies/SAREF4ENERExtension#", false);
+		knowledgeBase.getNamespaceList().addNameSpace("topo", "https://www.hsu-ifa.de/ontologies/LVGridTopology#", false);
+		
 
 		// --- Determine communication partner ----------------
-		this.communicationPartner = new AID("OptimizationAgent", AID.ISLOCALNAME);
+//		this.communicationPartner = new AID("OptimizationAgent", AID.ISLOCALNAME);
 
 
 		// --- Generate set of trusted agents used by OMRB for handling of incoming messages
-		Set<AID> trustedAgents = Set.of(this.communicationPartner); 
+//		Set<AID> trustedAgents = Set.of(this.communicationPartner); 
 
 
 		// --- add OWL message receive behavior ----------------------
@@ -98,12 +106,29 @@ public class ResponderAgent extends Agent {
 			MessageTemplate.MatchProtocol(FIPANames.InteractionProtocol.FIPA_CONTRACT_NET),
 			MessageTemplate.and(
 				MessageTemplate.MatchPerformative(ACLMessage.CFP), 
-				MessageTemplate.MatchOntology("FlexibilityOntology")
+				MessageTemplate.MatchOntology(this.ontologyName)
 			)
 		); 
 				
 		this.addBehaviour(new SemanticContractNetResponder(this, msgTemplate));
+		
+//		this.testSelectQuery(); 
 
+	}
+
+	private void testSelectQuery() {
+		
+		String query = "        select ?fo where { \n"
+				+ "			?fo s4ener:relatesToRequest :fr02 .\n"
+				+ "		}";
+		
+
+
+		String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
+		String[] queryResults = UtilityMethods.executeSingleColumnSelectQuery(queryPSS, knowledgeBase.getModel());
+		
+		rootLogger.debug(queryResults);
+		
 	}
 
 	private void showOntologyVersionIRI() {
@@ -148,10 +173,10 @@ public class ResponderAgent extends Agent {
 
 		// --- Save the knowledge base model into a file, as the current implementation ---
 		// --- does not use a persistent storage ------------------------------------------
-//		this.knowledgeBase.saveModel();
+		this.knowledgeBase.saveModel();
 
 		// --- Close the knowledge base model ---------------------------------------------
-//		this.knowledgeBase.closeModel();
+		this.knowledgeBase.closeModel();
 
 
 		rootLogger.removeAllAppenders(); 		
