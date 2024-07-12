@@ -100,7 +100,7 @@ public class OptimizationAgent extends Agent {
 		SimpleLayout layout = new SimpleLayout();
 		ConsoleAppender consoleAppender = new ConsoleAppender(layout);
 		rootLogger.addAppender(consoleAppender);
-		rootLogger.setLevel(Level.DEBUG);			
+		rootLogger.setLevel(Level.INFO);			
 
 		// Timeblocker 2s for setting up JADE sniffer
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}

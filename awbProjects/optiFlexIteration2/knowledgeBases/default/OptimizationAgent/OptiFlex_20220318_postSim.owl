@@ -44,8 +44,6 @@
         rdfs:domain  :FlexibleLoadDependency ;
         rdfs:range   xsd:int .
 
-:start-start  rdf:type  :TemporalType , owl:NamedIndividual .
-
 :flexibleLoad4  rdf:type           rdfs:Resource , :FlexibleLoad , owl:NamedIndividual , owl:Thing ;
         :activationGradientInKilowattPerSecond
                 "0.1"^^xsd:double ;
@@ -57,6 +55,8 @@
         :latestStart               "2022-03-18T23:30:00"^^xsd:dateTime ;
         :powerStateInKilowatts     "3.0"^^xsd:double ;
         owl:sameAs                 :flexibleLoad4 .
+
+:start-start  rdf:type  :TemporalType , owl:NamedIndividual .
 
 :flexibleLoadDependency1
         rdf:type                 :FlexibleLoadDependency , owl:NamedIndividual , owl:Thing , rdfs:Resource ;

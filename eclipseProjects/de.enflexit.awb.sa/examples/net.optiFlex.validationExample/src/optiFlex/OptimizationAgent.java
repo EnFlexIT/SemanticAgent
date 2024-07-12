@@ -22,6 +22,7 @@ import org.apache.log4j.SimpleLayout;
 import agentgui.core.application.Application;
 import de.enflexit.awb.sa.core.KnowledgeBase;
 import de.enflexit.awb.sa.core.OwlMessageReceiveBehaviour;
+import de.enflexit.awb.sa.core.SemanticAgentProtocols;
 import de.enflexit.awb.sa.core.SendInformBehaviour;
 import de.enflexit.awb.sa.core.SendQueryBehaviour;
 import de.enflexit.awb.sa.core.UtilityMethods;
@@ -30,7 +31,7 @@ import jade.core.Agent;
 
 
 /**
- * @author Sebastian T�rsleff, Helmut Schmidt University
+ * @author Sebastian Toersleff, Helmut Schmidt University
  */
 public class OptimizationAgent extends Agent {
 
@@ -99,7 +100,7 @@ public class OptimizationAgent extends Agent {
 		SimpleLayout layout = new SimpleLayout();
 		ConsoleAppender consoleAppender = new ConsoleAppender(layout);
 		rootLogger.addAppender(consoleAppender);
-		rootLogger.setLevel(Level.DEBUG);			
+		rootLogger.setLevel(Level.INFO);			
 		
 		// Timeblocker 4s for setting up JADE sniffer
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
@@ -201,61 +202,6 @@ public class OptimizationAgent extends Agent {
 	}
 
 
-	/**
-	 * The Sensor Agent (A2) queries his ontology for the newest measurements of two components (parameters) and sends these to the Grid State Agent.
-	 * The GSA then performs a consistency check and adds the measurements to his ontology in case this information does not cause any inconsistency in the ontology of the GSA.
-	 * A1 = GridStateAgent, A2 = SensorAgent
-	 * Test erfordert : "LVGridFlexOntology.owl" bei beiden Agenten 
-	 */
-	private void testSendInformBehaviour() {
-		if (this.getAID().getLocalName().equals("A2")) {
-			String node = "node01";
-			String lineSegment = "ls01";
-			
-			String queryResults = null;
-			
-			String nodeStateQuery = "CONSTRUCT {?nodestate ?p ?o}" +
-				    "	 WHERE {\n" + 
-					"	 ?nodestate ?p ?o {\n" + 
-					"		SELECT ?nodestate\n" + 
-					"		WHERE {\n" + 
-					"		?nodestate rdf:type :NodeState .\n" + 
-					"		?nodestate :hasTimeStamp ?timestamp .\n" + 
-					"		?nodestate :componentId ?cid .\n" + 
-					"		FILTER (regex(str(?cid), \""+node+"\")) \n" + 
-					"		}\n" + 
-					"		ORDER BY DESC (?timestamp) \n" + 
-					"		LIMIT 1 }\n" + 
-					"	}";
-			
-			
-			String nodeStateQueryPSS = UtilityMethods.addPrefixesToSparqlQuery(nodeStateQuery, knowledgeBase);
-			queryResults = UtilityMethods.executeConstructQuery(nodeStateQueryPSS, this.knowledgeBase.getModel());
-			
-			String lineSegmentStateQuery = "CONSTRUCT {?linesegmentstate ?p ?o}\n" + 
-					"    WHERE {\n" +
-					"	 ?linesegmentstate ?p ?o {\n" + 
-					"		SELECT ?linesegmentstate\n" + 
-					"		WHERE {\n" + 
-					"		?linesegmentstate rdf:type :LineSegmentState .\n" + 
-					"		?linesegmentstate :hasTimeStamp ?timestamp .\n" + 
-					"		?linesegmentstate :componentId ?cid .\n" + 
-					"		FILTER (regex(str(?cid), \""+lineSegment+"\")) \n" + 
-					"		}\n" + 
-					"		ORDER BY DESC (?timestamp) \n" + 
-					"		LIMIT 1 }\n" + 
-					"	}";
-			
-			String lineSegmentStateQueryPSS = UtilityMethods.addPrefixesToSparqlQuery(lineSegmentStateQuery, knowledgeBase);
-			
-			queryResults+=UtilityMethods.executeConstructQuery(lineSegmentStateQueryPSS, this.knowledgeBase.getModel());
-			
-			rootLogger.debug(queryResults);
-			
-			SendInformBehaviour sendInformBehaviour = new SendInformBehaviour(this.communicationPartner, queryResults, this.generateArbitraryConversationId(), ontologyName);
-			this.addBehaviour(sendInformBehaviour);
-		}
-	}
 	
 	/**
 	 * GSA (A1) queries his ontology to determine which DERAs control DERs that are connectedTo a specific busbar
@@ -516,7 +462,7 @@ public class OptimizationAgent extends Agent {
 					"		LIMIT 1}\n" + 
 					"}";
 			String queryString = UtilityMethods.addPrefixesToSparqlQuery(commandText, knowledgeBase);
-			SendQueryBehaviour sqb = new SendQueryBehaviour(this, queryString, this.communicationPartner, this.generateArbitraryConversationId(), this.ontologyName);
+			SendQueryBehaviour sqb = new SendQueryBehaviour(this, queryString, this.communicationPartner, this.generateArbitraryConversationId(), SemanticAgentProtocols.OWL_QUESTION, this.ontologyName);
 			this.addBehaviour(sqb);
 		}
 	}

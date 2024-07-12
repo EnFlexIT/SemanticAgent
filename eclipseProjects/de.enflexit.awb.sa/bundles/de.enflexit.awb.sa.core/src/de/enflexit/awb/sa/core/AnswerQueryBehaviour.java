@@ -23,8 +23,8 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 	private String queryString;
 	private String conversationId;
 	private AID receiverAID;
-	private String[][] solutionArray;
 	private String contentString = "";
+	private String protocol; 
 	String ontologyName; 
 	
 	
@@ -37,11 +37,12 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 	 * @param receiverAID the receiver AID
 	 * @param ontologyName the ontology name
 	 */
-	public AnswerQueryBehaviour(KnowledgeBase knowledgeBase, String queryString, String conversationId, AID receiverAID, String ontologyName) {
+	public AnswerQueryBehaviour(KnowledgeBase knowledgeBase, String queryString, String conversationId, AID receiverAID, String protocol, String ontologyName) {
 		this.knowledgeBase = knowledgeBase;
 		this.queryString = queryString;
 		this.conversationId = conversationId;
 		this.receiverAID = receiverAID;
+		this.protocol = protocol; 
 		this.ontologyName = ontologyName; 
 	}
 		
@@ -52,7 +53,6 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 		// --- If Jena is updated, the queryType is different (probably a string) and these lines need to be updated accordingly ----
 		// 111=Select, 222=Construct, 333=Describe, 444=Ask, 555=Json, -123=Unknown
 		int queryTypeInteger = UtilityMethods.createQueryFromString(this.queryString).getQueryType();
-		logger.debug("Agent " + this.myAgent.getLocalName() + " has received query of type= " + queryTypeInteger);
 		
 		switch (queryTypeInteger) {
 			
@@ -74,14 +74,14 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 		msg.setSender(this.myAgent.getAID());
 		msg.addReceiver(receiverAID);
 		msg.setContent(contentString);
-		msg.setLanguage("TURTLE");
+		msg.setLanguage("RDF/XML");
 		msg.setOntology(ontologyName);
-		msg.setProtocol("FIPA_QUERY"); 
+		msg.setProtocol(protocol); 
 		msg.setConversationId(conversationId);
 		
-		logger.debug("AnswerQueryBehaviour of agent " + this.myAgent.getLocalName() + ": INFORM_REF message sent to agent " + this.receiverAID.getLocalName());
 		
 		this.myAgent.send(msg);
+		logger.info("Agent " + myAgent.getAID().getLocalName() + ": message (performative INFORM_REF) sent to agent " + this.receiverAID.getLocalName() + ".");
 	}
 
 }

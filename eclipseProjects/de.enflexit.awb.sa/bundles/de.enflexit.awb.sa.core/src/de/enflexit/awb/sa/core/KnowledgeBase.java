@@ -48,7 +48,8 @@ public class KnowledgeBase {
 		this.setBaseUri(baseUri); 
 		
 		// --- instantiate a ontModel using ModelFactory 
-		ontModel = this.instantiateModelInFactory(ontModelSpec);   
+		ontModel = this.instantiateModelInFactory(ontModelSpec);
+		logger.info("Agent "+ this.myAgent.getAID().getLocalName() + ": ontology successfully instantiated"); 
 	}
 	
 	private OntModel instantiateModelInFactory(OntModelSpec ontModelSpec) {
@@ -117,7 +118,7 @@ public class KnowledgeBase {
 	       				closeException.printStackTrace();
 	       			}
 	  		}
-		logger.info("Ontology of "+ this.myAgent.getAID().getLocalName() + " successfully saved to: " + this.getKnowledgeBaseFolderPath()+  File.separator + fileSaveName);
+		logger.info("Agent "+ this.myAgent.getAID().getLocalName() + ": ontology successfully saved to " + this.getKnowledgeBaseFolderPath()+  File.separator + fileSaveName);
 	}
 	
 

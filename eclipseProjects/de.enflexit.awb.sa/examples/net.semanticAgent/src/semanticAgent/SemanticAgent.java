@@ -16,6 +16,7 @@ import org.apache.log4j.SimpleLayout;
 import agentgui.core.application.Application;
 import de.enflexit.awb.sa.core.KnowledgeBase;
 import de.enflexit.awb.sa.core.OwlMessageReceiveBehaviour;
+import de.enflexit.awb.sa.core.SemanticAgentProtocols;
 import de.enflexit.awb.sa.core.SendInformBehaviour;
 import de.enflexit.awb.sa.core.SendQueryBehaviour;
 import de.enflexit.awb.sa.core.UtilityMethods;
@@ -71,7 +72,7 @@ public class SemanticAgent extends Agent {
 		String baseUri = "http://www.hsu-ifa.de/ontologies/LVGridFlex#"; 
 		
 		// --- instantiate knowledge base with previously defined parameters -----------------
-		OntModelSpec ontModelSpec = OntModelSpec.OWL_DL_MEM_RULE_INF; 
+		OntModelSpec ontModelSpec = OntModelSpec.OWL_MEM_MICRO_RULE_INF; 
 		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri, ontModelSpec);
 		
 		// --- add individual namespaces --------------
@@ -111,7 +112,7 @@ public class SemanticAgent extends Agent {
 		// --- Evaluation methods ----------------------------
 //		if (this.getAID().getLocalName().equals("A1")) this.testReasoning(); 
 //		this.testSendInformBehaviour();
-		this.testSparqlQuery();
+//		this.testSparqlQuery();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar2Col();
 //		this.determineDerasControllingDersAtBusbar();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar();
@@ -119,7 +120,7 @@ public class SemanticAgent extends Agent {
 //		this.determineMostRecentVoltageAtSpecificNode();
 //		this.determineBusbarsWithLineSegmentsExceedingMaxCurrent();
 //		this.updateFlexibilityPotential();
-//		this.gsaAsksDeraForFlexibility();
+		this.gsaAsksDeraForFlexibility();
 	
 	}
 
@@ -207,7 +208,7 @@ public class SemanticAgent extends Agent {
 			
 			rootLogger.debug(queryResults);
 			
-			SendInformBehaviour sendInformBehaviour = new SendInformBehaviour(this.communicationPartner, queryResults, this.generateArbitraryConversationId(), ontologyName);
+			SendInformBehaviour sendInformBehaviour = new SendInformBehaviour(this.communicationPartner, queryResults, this.generateArbitraryConversationId(), SemanticAgentProtocols.OWL_INFORM, ontologyName);
 			this.addBehaviour(sendInformBehaviour);
 		}
 	}
@@ -476,7 +477,7 @@ public class SemanticAgent extends Agent {
 					"		LIMIT 1}\n" + 
 					"}";
 			String queryString = UtilityMethods.addPrefixesToSparqlQuery(commandText, knowledgeBase);
-			SendQueryBehaviour sqb = new SendQueryBehaviour(this, queryString, this.communicationPartner, this.generateArbitraryConversationId(), this.ontologyName);
+			SendQueryBehaviour sqb = new SendQueryBehaviour(this, queryString, this.communicationPartner, this.generateArbitraryConversationId(), SemanticAgentProtocols.OWL_QUESTION, this.ontologyName);
 			this.addBehaviour(sqb);
 		}
 	}

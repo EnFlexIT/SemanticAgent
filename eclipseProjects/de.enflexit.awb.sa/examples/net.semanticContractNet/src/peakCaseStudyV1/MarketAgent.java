@@ -23,6 +23,7 @@ import org.apache.log4j.SimpleLayout;
 import agentgui.core.application.Application;
 import de.enflexit.awb.sa.core.KnowledgeBase;
 import de.enflexit.awb.sa.core.OwlMessageReceiveBehaviour;
+import de.enflexit.awb.sa.core.SemanticAgentProtocols;
 import de.enflexit.awb.sa.core.SendInformBehaviour;
 import de.enflexit.awb.sa.core.SendQueryBehaviour;
 import de.enflexit.awb.sa.core.UtilityMethods;
@@ -110,7 +111,7 @@ public class MarketAgent extends Agent {
 		SimpleLayout layout = new SimpleLayout();
 		ConsoleAppender consoleAppender = new ConsoleAppender(layout);
 		rootLogger.addAppender(consoleAppender);
-		rootLogger.setLevel(Level.DEBUG);			
+		rootLogger.setLevel(Level.INFO);			
 
 		// Timeblocker 2s for setting up JADE sniffer
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}

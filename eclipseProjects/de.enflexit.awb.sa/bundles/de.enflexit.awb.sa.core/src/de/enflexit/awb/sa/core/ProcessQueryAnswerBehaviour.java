@@ -33,10 +33,12 @@ public class ProcessQueryAnswerBehaviour extends OneShotBehaviour {
 	public void action() {
 		
 		if(this.statementsAreValid()) {
+			logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency passed; adding triples to ontology.");
 			this.addStatementsToModel();
 			
+			
 		} else {
-			logger.info("Consistency check not passed.\n The statements will not be added to the model.");
+			logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency check not passed.\n The statements will not be added to the model.");
 		}
 	}
 	
@@ -45,7 +47,7 @@ public class ProcessQueryAnswerBehaviour extends OneShotBehaviour {
 	 * The copy contains the new statements. 
 	 */
 	private boolean statementsAreValid() {
-		logger.info("Perform consistency check now");
+		logger.info("Agent " + myAgent.getAID().getLocalName() + ": performing consistency check for received triples...");
 		return UtilityMethods.checkRdfStatementConsistency(queryResult, knowledgeBase);
 	}
 	

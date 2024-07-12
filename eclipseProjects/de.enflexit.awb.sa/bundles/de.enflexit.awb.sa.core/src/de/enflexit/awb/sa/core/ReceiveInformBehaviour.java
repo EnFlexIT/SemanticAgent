@@ -12,7 +12,7 @@ import jade.core.behaviours.OneShotBehaviour;
  */
 public class ReceiveInformBehaviour extends OneShotBehaviour {
 	
-	private static Logger rootLogger = Logger.getRootLogger();
+	private static Logger logger = Logger.getRootLogger();
 
 	private String rdfTriples;
 	private KnowledgeBase knowledgeBase;
@@ -31,10 +31,11 @@ public class ReceiveInformBehaviour extends OneShotBehaviour {
 	public void action() {
 		
 		if(this.statementsAreValid()) {
+			logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency passed; adding triples to ontology.");
 			this.addStatementsToModel();
 			
 		} else {
-			rootLogger.info("Consistency check not passed.\nDon't add statements to model now.");
+			logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency check not passed.\n The statements will not be added to the model.");
 		}
 	}
 	
@@ -43,7 +44,7 @@ public class ReceiveInformBehaviour extends OneShotBehaviour {
 	 * The copy contains the new statements. 
 	 */
 	private boolean statementsAreValid() {
-		rootLogger.info("Perform consistency check now");
+		logger.info("Agent " + myAgent.getAID().getLocalName() + ": performing consistency check for received triples...");
 		return UtilityMethods.checkRdfStatementConsistency(rdfTriples, this.knowledgeBase);
 	}
 	
@@ -52,8 +53,6 @@ public class ReceiveInformBehaviour extends OneShotBehaviour {
 	 * run "OWL" reasoning afterwards to possibly generate new ABox instances.
 	 */
 	private void addStatementsToModel() {
-
-		rootLogger.info("Consistency check passed.\nAdd statements to model now.");
 
 		UtilityMethods.executeSparqlUpdate(this.knowledgeBase, this.rdfTriples);
 	}

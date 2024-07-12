@@ -21,6 +21,7 @@ public class SendQueryBehaviour extends OneShotBehaviour{
 	
 	private AID receiverAID;
 	private String queryString;
+	private String protocol; 
 	private String ontologyName; 
 	String conversationId; 
 	
@@ -34,11 +35,12 @@ public class SendQueryBehaviour extends OneShotBehaviour{
 	 * @param conversationId the conversation id
 	 * @param ontologyName the ontology name 
 	 */
-	public SendQueryBehaviour(Agent sendingAgent, String queryString, AID receiverAID, String conversationId, String ontologyName) {
+	public SendQueryBehaviour(Agent sendingAgent, String queryString, AID receiverAID, String conversationId, String protocol, String ontologyName) {
 		super(sendingAgent);
 		this.queryString = queryString;
 		this.receiverAID = receiverAID;
 		this.conversationId = conversationId; 
+		this.protocol = protocol;
 		this.ontologyName = ontologyName; 
 	}
 	
@@ -52,12 +54,15 @@ public class SendQueryBehaviour extends OneShotBehaviour{
 		msg.setContent(this.queryString);
 		msg.setLanguage("SPARQL");
 		msg.setOntology(this.ontologyName); 
-		msg.setProtocol("FIPA_QUERY");
+		msg.setProtocol(protocol);
 		msg.setConversationId(this.conversationId);
 //		logger.debug(msg.toString());
 		
 		// --- Send message ------------------------------------
 		this.myAgent.send(msg);	
+		
+		logger.info("Agent " + myAgent.getAID().getLocalName() + ": message (performative QUERY_REF) sent to agent " + this.receiverAID.getLocalName() + ".");
+
 
 	}
 }

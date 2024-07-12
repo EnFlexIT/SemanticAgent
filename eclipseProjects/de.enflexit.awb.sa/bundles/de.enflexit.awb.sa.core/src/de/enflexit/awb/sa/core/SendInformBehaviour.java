@@ -21,6 +21,7 @@ public class SendInformBehaviour extends OneShotBehaviour{
 	private AID receiverAID;
 	private String rdfString;
 	private String conversationId; 
+	private String protocol; 
 	private String ontologyName; 
 	
 	
@@ -32,10 +33,11 @@ public class SendInformBehaviour extends OneShotBehaviour{
 	 * @param conversationId the conversation id
 	 * @param ontologyName the ontology name
 	 */
-	public SendInformBehaviour(AID receiverAID, String rdfString, String conversationId, String ontologyName) {
+	public SendInformBehaviour(AID receiverAID, String rdfString, String conversationId, String protocol, String ontologyName) {
 		this.receiverAID = receiverAID;
 		this.rdfString = rdfString;
 		this.conversationId = conversationId; 
+		this.protocol = protocol; 
 		this.ontologyName = ontologyName; 
 	}
 
@@ -46,11 +48,14 @@ public class SendInformBehaviour extends OneShotBehaviour{
 		msg.setSender(this.myAgent.getAID());
 		msg.addReceiver(this.receiverAID);
 		msg.setContent(this.rdfString);
-		msg.setLanguage("TURTLE");
+		msg.setLanguage("RDF/XML");
 		msg.setOntology(ontologyName);
+		msg.setProtocol(protocol); 
 		msg.setConversationId(this.conversationId);
 		
 		this.myAgent.send(msg);
+		
+		logger.info("Agent " + myAgent.getAID().getLocalName() + ": message (performative INFORM) sent to agent " + this.receiverAID.getLocalName() + ".");
 		
 	}
 

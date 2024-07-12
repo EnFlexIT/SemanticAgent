@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
+import jade.domain.FIPANames;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
@@ -64,7 +65,13 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 
 	public MessageTemplate getMessageTemplate() {
 		if (messageTemplate == null) {
-			this.messageTemplate = MessageTemplate.MatchOntology(this.ontologyName);
+			this.messageTemplate = MessageTemplate.and(
+				MessageTemplate.MatchOntology(this.ontologyName),
+				MessageTemplate.or(
+					MessageTemplate.MatchProtocol(SemanticAgentProtocols.OWL_INFORM), 
+					MessageTemplate.MatchProtocol(SemanticAgentProtocols.OWL_QUESTION)
+				)
+			);
 		}
 		return messageTemplate;
 	}
@@ -82,28 +89,25 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 		if (message != null) {
 			
 			AID messageSender = message.getSender();
-			logger.debug("Agent " + myAgent.getAID().getLocalName() + " has received an OWL message from " + messageSender.getLocalName() + " .");	
+			logger.info("Agent " + myAgent.getAID().getLocalName() + ": received an OWL message (performative: " + message.getPerformative() + ") from " + messageSender.getLocalName() + " .");	
 			
 			if (this.trustedAgents.isEmpty() || this.trustedAgents.contains(messageSender)) {
 				
-				logger.debug("..." + messageSender.getLocalName() + " is a trusted agent (based on AID comparison). Therefore the message will be processed.");	
+				logger.info("Agent " + myAgent.getAID().getLocalName() + ": " + messageSender.getLocalName() + " is a trusted agent (based on AID comparison). Message will be processed.");	
 				
 				
 				switch (message.getPerformative()) {
 				
 				case ACLMessage.QUERY_REF:
-					logger.debug("...a QUERY_REF message");
 					this.processQueryRefMessage(message); 
 					break;
 					
 				case ACLMessage.INFORM: 
-					logger.debug("...an INFORM message");
 					this.processInformMessage(message); 
 					break;
 					
 				case ACLMessage.INFORM_REF:
-					logger.debug("...an INFORM_REF message");
-					this.processInformRefBehaviour(message); 
+					this.processQueryAnswer(message); 
 					break;
 					
 				case ACLMessage.INFORM_IF: 
@@ -121,7 +125,7 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 			} 
 			
 			else {
-				logger.debug("..." + messageSender.getLocalName() + " is not a trusted agent. Therefore the message will not be processed.");	
+				logger.info("Agent " + myAgent.getAID().getLocalName() + ": agent " + messageSender.getLocalName() + " is not a trusted agent. Message will not be processed.");	
 			}
 			
 		} else {
@@ -129,7 +133,7 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 		}
 	}
 	
-	protected void processInformRefBehaviour(ACLMessage message) {
+	protected void processQueryAnswer(ACLMessage message) {
 
 		ProcessQueryAnswerBehaviour pqab_ref = new ProcessQueryAnswerBehaviour(this.knowledgeBase, message.getContent());
 		this.myAgent.addBehaviour(pqab_ref);
@@ -143,11 +147,8 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 
 	protected void processQueryRefMessage(ACLMessage message) {
 		
-		AnswerQueryBehaviour aqb = new AnswerQueryBehaviour(this.knowledgeBase, message.getContent(), message.getConversationId(), message.getSender(), ontologyName);
+		AnswerQueryBehaviour aqb = new AnswerQueryBehaviour(this.knowledgeBase, message.getContent(), message.getConversationId(), message.getSender(), message.getProtocol(), ontologyName);
 		this.myAgent.addBehaviour(aqb);		
-		
-		// --- alternative f�r synchrone Code-Ausf�hrung -----------------
-//		new AnswerQueryBehaviour(this.knowledgeBase, message.getContent(), message.getConversationId(), message.getSender()).action();
 
 	}
 
