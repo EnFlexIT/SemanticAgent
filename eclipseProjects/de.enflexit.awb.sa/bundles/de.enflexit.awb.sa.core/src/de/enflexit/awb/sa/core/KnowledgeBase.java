@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import org.apache.jena.ontology.OntDocumentManager;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.query.ARQ;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
@@ -14,6 +17,9 @@ import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
+import org.apache.jena.sparql.core.assembler.AssemblerUtils;
+import org.apache.jena.util.FileManager;
+import org.apache.jena.util.FileManagerImpl;
 import org.apache.log4j.Logger;
 
 import de.enflexit.awb.sa.core.NamespaceList.NamespaceDescription;
@@ -47,16 +53,20 @@ public class KnowledgeBase {
 		this.ontologyFileName = ontologyFileName; 
 		this.setBaseUri(baseUri); 
 		
+		FileManager.get().resetCache();
+		
 		// --- instantiate a ontModel using ModelFactory 
 		ontModel = this.instantiateModelInFactory(ontModelSpec);
-		logger.info("Agent "+ this.myAgent.getAID().getLocalName() + ": ontology successfully instantiated"); 
 	}
 	
 	private OntModel instantiateModelInFactory(OntModelSpec ontModelSpec) {
-		
+				
 		String filePath = this.getKnowledgeBaseFolderPath() + File.separator + ontologyFileName; 
 		OntModel ontModel = ModelFactory.createOntologyModel(ontModelSpec); 
-		ontModel.read(filePath); 		
+		logger.info("Agent " + myAgent.getLocalName() + ": creating ontology model from " + ontologyFileName); 
+		
+		ontModel.read(filePath);
+		
 		return ontModel;
 	}
 

@@ -89,7 +89,6 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 		if (message != null) {
 			
 			AID messageSender = message.getSender();
-			logger.info("Agent " + myAgent.getAID().getLocalName() + ": received an OWL message (performative: " + message.getPerformative() + ") from " + messageSender.getLocalName() + " .");	
 			
 			if (this.trustedAgents.isEmpty() || this.trustedAgents.contains(messageSender)) {
 				
@@ -99,14 +98,18 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 				switch (message.getPerformative()) {
 				
 				case ACLMessage.QUERY_REF:
+					logger.info("Agent " + myAgent.getAID().getLocalName() + ": received an OWL message (performative: QUERY_REF) from " + messageSender.getLocalName() + " .");	
 					this.processQueryRefMessage(message); 
 					break;
 					
 				case ACLMessage.INFORM: 
+					logger.info("Agent " + myAgent.getAID().getLocalName() + ": received an OWL message (performative: INFORM) from " + messageSender.getLocalName() + " .");	
+
 					this.processInformMessage(message); 
 					break;
 					
 				case ACLMessage.INFORM_REF:
+					logger.info("Agent " + myAgent.getAID().getLocalName() + ": received an OWL message (performative: INFORM_REF) from " + messageSender.getLocalName() + " .");	
 					this.processQueryAnswer(message); 
 					break;
 					

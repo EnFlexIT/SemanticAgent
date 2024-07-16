@@ -52,6 +52,15 @@ public class SemanticAgent extends Agent {
 	@Override
 	protected void setup() {
 		
+		// --- Logger configuration --------------------------------------
+		if (this.getAID().getLocalName().equals("A1")) {
+			rootLogger.removeAllAppenders(); //unsch�ner workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell
+			SimpleLayout layout = new SimpleLayout();
+			ConsoleAppender consoleAppender = new ConsoleAppender(layout);
+			rootLogger.addAppender(consoleAppender);
+			rootLogger.setLevel(Level.DEBUG);			
+		} else try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+
 
 		// -------------------------------------------------------------------
 		// --- obligatory setup for a semantic agent -------------------------
@@ -97,18 +106,7 @@ public class SemanticAgent extends Agent {
 		// --- setup required for evaluation ---------------------------------
 		// -------------------------------------------------------------------
 		
-		// --- Logger configuration --------------------------------------
-		if (this.getAID().getLocalName().equals("A1")) {
-			rootLogger.removeAllAppenders(); //unsch�ner workaround. sollte besser an zentraler Stelle erfolgen und nicht bei jedem Agenten individuell
-			SimpleLayout layout = new SimpleLayout();
-			ConsoleAppender consoleAppender = new ConsoleAppender(layout);
-			rootLogger.addAppender(consoleAppender);
-			rootLogger.setLevel(Level.DEBUG);			
-		}
-		
-		// Timeblocker 4s for setting up JADE sniffer
-		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
-			
+					
 		// --- Evaluation methods ----------------------------
 //		if (this.getAID().getLocalName().equals("A1")) this.testReasoning(); 
 //		this.testSendInformBehaviour();

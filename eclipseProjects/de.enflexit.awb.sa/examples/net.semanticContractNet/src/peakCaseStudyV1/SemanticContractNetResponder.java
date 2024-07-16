@@ -1,5 +1,7 @@
 package peakCaseStudyV1;
 
+import org.apache.log4j.Logger;
+
 import de.enflexit.awb.sa.core.KnowledgeBase;
 import de.enflexit.awb.sa.core.UtilityMethods;
 import jade.core.Agent;
@@ -18,6 +20,8 @@ public class SemanticContractNetResponder extends ContractNetResponder {
 	private KnowledgeBase knowledgeBase; 
 	
 	private String latestFlexRequest = ":fr02"; 
+	
+	private static Logger logger = Logger.getRootLogger();
 
 	public SemanticContractNetResponder(Agent a, MessageTemplate mt) {
 		super(a, mt);
@@ -27,14 +31,15 @@ public class SemanticContractNetResponder extends ContractNetResponder {
 	@Override
 	protected ACLMessage handleCfp(ACLMessage cfp) throws NotUnderstoodException, RefuseException {
 		
-		System.out.println("Agent " + this.getAgent().getLocalName() + ": CFP received from "+cfp.getSender().getName()+". Content is "+ "\n" +cfp.getContent());
-		int proposal = this.evaluateAction();
-		// We provide a proposal
-		System.out.println("Agent " + this.getAgent().getLocalName() + ": Proposing " + proposal);
+		logger.info("Agent " + this.getAgent().getLocalName() + ": CFP received from " + cfp.getSender().getLocalName());
 		ACLMessage propose = cfp.createReply();
 		propose.setPerformative(ACLMessage.PROPOSE);
+		
+		// create proposal 
 		String flexOffer = this.createFlexOffer(); 
 		propose.setContent(flexOffer);
+		logger.info("Agent " + this.getAgent().getLocalName() + ": sending proposal to " + cfp.getSender().getLocalName());
+		
 		return propose;
 	}
 
@@ -83,8 +88,7 @@ public class SemanticContractNetResponder extends ContractNetResponder {
 	@Override
 	protected ACLMessage handleAcceptProposal(ACLMessage cfp, ACLMessage propose, ACLMessage accept) throws FailureException {
 		
-		System.out.println("Agent " + this.getAgent().getLocalName() + ": Proposal accepted");
-		System.out.println("Agent " + this.getAgent().getLocalName() + ": Action successfully performed");
+		logger.info("Agent " + this.getAgent().getLocalName() + ": received proposal acceptance from " + cfp.getSender().getLocalName());
 		ACLMessage inform = accept.createReply();
 		inform.setPerformative(ACLMessage.INFORM);
 		return inform;
@@ -92,7 +96,7 @@ public class SemanticContractNetResponder extends ContractNetResponder {
 	}
 
 	protected void handleRejectProposal(ACLMessage cfp, ACLMessage propose, ACLMessage reject) {
-		System.out.println("Agent " + this.getAgent().getLocalName() + ": Proposal rejected");
+		logger.info("Agent " + this.getAgent().getLocalName() + ": received proposal rejection from " + cfp.getSender().getLocalName());
 	}
 	
 	private int evaluateAction() {

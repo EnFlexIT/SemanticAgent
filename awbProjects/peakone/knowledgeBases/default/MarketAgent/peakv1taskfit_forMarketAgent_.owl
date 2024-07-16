@@ -47,41 +47,6 @@
     
 
 
-    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#dp01 -->
-
-    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#dp01">
-        <rdf:type rdf:resource="https://saref.etsi.org/saref4ener/DataPoint"/>
-        <core:isMeasuredIn rdf:resource="https://www.hsu-ifa.de/ontologies/SAREF4ENERExtension#Kilowatt"/>
-        <core:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T12:00:00Z</core:hasTimestamp>
-        <core:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</core:hasValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#dp02 -->
-
-    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#dp02">
-        <rdf:type rdf:resource="https://saref.etsi.org/saref4ener/DataPoint"/>
-        <core:isMeasuredIn rdf:resource="https://www.hsu-ifa.de/ontologies/SAREF4ENERExtension#Kilowatt"/>
-        <core:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T12:15:00Z</core:hasTimestamp>
-        <core:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">20</core:hasValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#fo1 -->
-
-    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#fo1">
-        <rdf:type rdf:resource="https://saref.etsi.org/saref4ener/FlexOffer"/>
-        <s4ener:hasEffectivePeriod rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval03"/>
-        <s4ener:includes rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#ts01"/>
-        <s4ener:relatesToRequest rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#fr02"/>
-        <ao:hasLocation rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#node05"/>
-        <s4enerext:hasPriceInEuro rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.5</s4enerext:hasPriceInEuro>
-    </owl:NamedIndividual>
-    
-
-
     <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#fr01 -->
 
     <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#fr01">
@@ -123,16 +88,6 @@
         <rdf:type rdf:resource="http://www.w3.org/2006/time#Interval"/>
         <s4ener:hasStartTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T12:00:00Z</s4ener:hasStartTime>
         <s4ener:isFinishedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T13:00:00Z</s4ener:isFinishedAt>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval03 -->
-
-    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#interval03">
-        <rdf:type rdf:resource="http://www.w3.org/2006/time#Interval"/>
-        <s4ener:hasStartTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T12:00:00Z</s4ener:hasStartTime>
-        <s4ener:isFinishedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T12:30:00Z</s4ener:isFinishedAt>
     </owl:NamedIndividual>
     
 
@@ -226,16 +181,6 @@
         <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
         <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#bb01"/>
         <topo:isRootNode rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</topo:isRootNode>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://www.hsu-ifa.de/ontologies/peakv1taskfit#ts01 -->
-
-    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/peakv1taskfit#ts01">
-        <rdf:type rdf:resource="https://saref.etsi.org/saref4ener/TimeSeries"/>
-        <s4ener:hasDataPoint rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#dp01"/>
-        <s4ener:hasDataPoint rdf:resource="https://www.hsu-ifa.de/ontologies/peakv1taskfit#dp02"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 

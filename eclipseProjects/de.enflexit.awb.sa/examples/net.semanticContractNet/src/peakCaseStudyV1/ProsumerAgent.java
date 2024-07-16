@@ -48,10 +48,15 @@ public class ProsumerAgent extends Agent {
 
 	@Override
 	protected void setup() {
+		
+		// Timeblocker 2s for setting up logger
+		try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
 
 		// -------------------------------------------------------------------
 		// --- obligatory setup for a semantic agent -------------------------
 		// -------------------------------------------------------------------
+		
+		rootLogger.info("Agent "+ this.getAID().getLocalName() + ": performing setup routine"); 
 
 		// --- for now only one ontology is supported; this variable is used ------------
 		// --- for the ontology field of ACL message objects and message filtering; -----
@@ -94,14 +99,12 @@ public class ProsumerAgent extends Agent {
 //		this.addBehaviour(this.owlMsgReceiveBehaviour);
 
 		// --- Logger configuration --------------------------------------
-		rootLogger.removeAllAppenders(); 
-		SimpleLayout layout = new SimpleLayout();
-		ConsoleAppender consoleAppender = new ConsoleAppender(layout);
-		rootLogger.addAppender(consoleAppender);
-		rootLogger.setLevel(Level.INFO);	
+//		rootLogger.removeAllAppenders(); 
+//		SimpleLayout layout = new SimpleLayout();
+//		ConsoleAppender consoleAppender = new ConsoleAppender(layout);
+//		rootLogger.addAppender(consoleAppender);
+//		rootLogger.setLevel(Level.INFO);	
 
-		// Timeblocker 2s for setting up JADE sniffer
-		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
 		
 		MessageTemplate msgTemplate = MessageTemplate.and(
 			MessageTemplate.MatchProtocol(FIPANames.InteractionProtocol.FIPA_CONTRACT_NET),
@@ -180,7 +183,7 @@ public class ProsumerAgent extends Agent {
 		this.knowledgeBase.closeModel();
 
 
-		rootLogger.removeAllAppenders(); 		
+//		rootLogger.removeAllAppenders(); 		
 
 		super.takeDown();
 	}

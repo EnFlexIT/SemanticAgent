@@ -31,11 +31,11 @@ public class ReceiveInformBehaviour extends OneShotBehaviour {
 	public void action() {
 		
 		if(this.statementsAreValid()) {
-			logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency passed; adding triples to ontology.");
+			logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency check passed; adding triples to ontology.");
 			this.addStatementsToModel();
 			
 		} else {
-			logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency check not passed.\n The statements will not be added to the model.");
+			logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency check not passed, the statements will not be added to the model.");
 		}
 	}
 	
