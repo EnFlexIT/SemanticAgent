@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simulationSetup>
+    <agentSetup>
+        <agent>
+            <postionNo>1</postionNo>
+            <listMembership>01 AgentStartManual</listMembership>
+            <agentClassReference>ahgCaseStudyV1.GridDistrictAgent</agentClassReference>
+            <startAsName>GDA</startAsName>
+        </agent>
+        <agent>
+            <postionNo>2</postionNo>
+            <listMembership>01 AgentStartManual</listMembership>
+            <agentClassReference>ahgCaseStudyV1.SensorAgent</agentClassReference>
+            <startAsName>SA</startAsName>
+        </agent>
+        <agent>
+            <postionNo>3</postionNo>
+            <listMembership>01 AgentStartManual</listMembership>
+            <agentClassReference>ahgCaseStudyV1.BatteryStorageAgent</agentClassReference>
+            <startAsName>BSA</startAsName>
+        </agent>
+    </agentSetup>
+    <setupProperties>
+        <propertyMap/>
+    </setupProperties>
+</simulationSetup>

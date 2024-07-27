@@ -29,7 +29,7 @@ class SemanticContractNetInitiator extends ContractNetInitiator {
 	}
 
 	protected void handleRefuse(ACLMessage refuse) {
-		System.out.println("Agent "+refuse.getSender().getName()+" refused");
+		System.out.println("Agent " + this.getAgent().getLocalName() + ": Agent "+refuse.getSender().getName()+" refused");
 	}
 
 	protected void handlePropose(ACLMessage propose, Vector v) {

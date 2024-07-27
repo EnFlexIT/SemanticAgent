@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: AhgCaseStudyV1
+Bundle-SymbolicName: net.ahgCaseStudyV1
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: net.ahgCaseStudyV1
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Service-Component: OSGI-INF/awbClassLoadService.xml
+Bundle-ActivationPolicy: lazy
+Require-Bundle: de.enflexit.common,
+ org.agentgui.core,
+ org.agentgui.lib.jade,
+ de.enflexit.awb.sa.jena,
+ de.enflexit.awb.sa.core
+Export-Package: ahgCaseStudyV1,
+ ahgCaseStudyV1.classLoadService

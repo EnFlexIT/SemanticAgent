@@ -1,0 +1,385 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#"
+     xml:base="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification"
+     xmlns:ao="https://www.hsu-ifa.de/ontologies/AHG01AlignmentOntology#"
+     xmlns:mod="https://w3id.org/mod#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:qudt="http://qudt.org/schema/qudt/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:sosa="http://www.w3.org/ns/sosa/"
+     xmlns:topo="http://www.hsu-ifa.de/ontologies/LVGridTopology#"
+     xmlns:unit="http://qudt.org/vocab/unit/"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:saref="https://saref.etsi.org/core/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:s4ener="https://saref.etsi.org/saref4ener/"
+     xmlns:schema="http://schema.org/"
+     xmlns:sosaext="https://www.hsu-ifa.de/ontologies/SOSAext#"
+     xmlns:s4enerext="https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#">
+    <owl:Ontology rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification">
+        <owl:imports rdf:resource="https://raw.githubusercontent.com/toersleff/oreco/main/case_studies/AHGv1/AHGv1_Alignment%20Ontology_edited.xml"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/LVGridTopology#Busbar -->
+
+    <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridTopology#Busbar"/>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/LVGridTopology#LineSegment -->
+
+    <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridTopology#LineSegment"/>
+    
+
+
+    <!-- http://www.hsu-ifa.de/ontologies/LVGridTopology#Node -->
+
+    <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#Kilowatthours -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#Kilowatthours">
+        <rdf:type rdf:resource="https://saref.etsi.org/core/EnergyUnit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb01">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#Busbar"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb02 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb02">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#Busbar"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#BatteryStorage"/>
+        <saref:hasProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01cap"/>
+        <saref:hasProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01soc"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01cap -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01cap">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#BatteryCapacity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01soc -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01soc">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#StateOfCharge"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentAtNode01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentAtNode01">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SOSAext#Current"/>
+        <saref:isPropertyOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentAtNode02 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentAtNode02">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SOSAext#Current"/>
+        <saref:isPropertyOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node02"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentAtNode03 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentAtNode03">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SOSAext#Current"/>
+        <saref:isPropertyOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node03"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentAtNode04 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentAtNode04">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SOSAext#Current"/>
+        <saref:isPropertyOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node04"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentAtNode05 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentAtNode05">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SOSAext#Current"/>
+        <saref:isPropertyOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node05"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentObservation01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentObservation01">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
+        <qudt:hasUnit rdf:resource="http://qudt.org/vocab/unit/A"/>
+        <sosa:observedProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#currentAtNode01"/>
+        <sosa:hasSimpleResult rdf:datatype="http://www.w3.org/2001/XMLSchema#double">30.5</sosa:hasSimpleResult>
+        <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-28T10:00:00</sosa:resultTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#gd01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#gd01">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#GridDistrict"/>
+        <topo:hasComponent rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls01"/>
+        <topo:hasComponent rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls02"/>
+        <topo:hasComponent rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls03"/>
+        <topo:hasComponent rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls04"/>
+        <topo:hasComponent rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node01"/>
+        <topo:hasComponent rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node02"/>
+        <topo:hasComponent rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node03"/>
+        <topo:hasComponent rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node04"/>
+        <topo:hasComponent rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node05"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#gd02 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#gd02">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#GridDistrict"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#gd03 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#gd03">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#GridDistrict"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls01">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#LineSegment"/>
+        <topo:hasEndNode rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node02"/>
+        <topo:hasStartNode rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node01"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls02 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls02">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#LineSegment"/>
+        <topo:hasEndNode rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node03"/>
+        <topo:hasStartNode rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node02"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls03 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls03">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#LineSegment"/>
+        <topo:hasEndNode rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node04"/>
+        <topo:hasStartNode rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node03"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls04 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ls04">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#LineSegment"/>
+        <topo:hasEndNode rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node05"/>
+        <topo:hasStartNode rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node04"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ms01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ms01">
+        <rdf:type rdf:resource="https://saref.etsi.org/core/Measurement"/>
+        <saref:relatesToProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01soc"/>
+        <saref:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T10:00:00Z</saref:hasTimestamp>
+        <s4ener:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">57.41</s4ener:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ms03 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ms03">
+        <rdf:type rdf:resource="https://saref.etsi.org/core/Measurement"/>
+        <saref:isMeasuredIn rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#Kilowatthours"/>
+        <saref:relatesToProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01cap"/>
+        <saref:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T10:00:00Z</saref:hasTimestamp>
+        <s4ener:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12.5</s4ener:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node01">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb01"/>
+        <topo:isRootNode rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</topo:isRootNode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node02 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node02">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb01"/>
+        <topo:isRootNode rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</topo:isRootNode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node03 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node03">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb01"/>
+        <topo:isRootNode rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</topo:isRootNode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node04 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node04">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb01"/>
+        <topo:isRootNode rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</topo:isRootNode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node05 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node05">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/LVGridTopology#Node"/>
+        <topo:isComponentOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bb01"/>
+        <topo:isRootNode rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</topo:isRootNode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageAtNode01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageAtNode01">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SOSAext#Voltage"/>
+        <saref:isPropertyOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageAtNode02 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageAtNode02">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SOSAext#Voltage"/>
+        <saref:isPropertyOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node02"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageAtNode03 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageAtNode03">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SOSAext#Voltage"/>
+        <saref:isPropertyOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node03"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageAtNode04 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageAtNode04">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SOSAext#Voltage"/>
+        <saref:isPropertyOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node04"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageAtNode05 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageAtNode05">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SOSAext#Voltage"/>
+        <saref:isPropertyOf rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#node05"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageObservation01 -->
+
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageObservation01">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
+        <qudt:hasUnit rdf:resource="http://qudt.org/vocab/unit/V"/>
+        <sosa:observedProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#voltageAtNode01"/>
+        <sosa:hasSimpleResult rdf:datatype="http://www.w3.org/2001/XMLSchema#double">232.7</sosa:hasSimpleResult>
+        <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-28T10:00:00</sosa:resultTime>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

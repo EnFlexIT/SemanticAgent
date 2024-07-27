@@ -49,7 +49,7 @@ public class ProsumerAgent extends Agent {
 	@Override
 	protected void setup() {
 		
-		// Timeblocker 2s for setting up logger
+		// Timeblocker 1s for setting up logger
 		try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
 
 		// -------------------------------------------------------------------

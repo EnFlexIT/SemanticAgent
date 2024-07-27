@@ -119,6 +119,36 @@ public class UtilityMethods{
 		
 		return queryResult;
 	}
+	
+	/**
+	 * Method to execute SPARQL ASK queries received as a String 
+	 * on the provided model. Returns a boolean with the result of
+	 * the query. 
+	 * 
+	 * @param askQuery String containing a SPARQL ASK query
+	 * @param model Target of the query
+	 * @return Returns a boolean with the result of the query.
+	 */
+	public static boolean executeAskQuery(String askQuery, Model model) {
+		Query query = null;		
+		
+		// --- Create a SPARQL query object from the query string -------------
+		try {query = QueryFactory.create(askQuery);
+		}
+			catch(QueryException createQueryException){
+				logger.debug("Exception thrown creating query: " +createQueryException);
+			}
+		if(query==null) {logger.debug("Query is NULL!");}
+		
+		// --- Create a query execution -----------------
+		QueryExecution qexec = QueryExecutionFactory.create(query, model);
+		if(qexec==null) {logger.debug("QueryExecution is NULL!");}
+		
+		// --- Execute ASK query ------------------
+		boolean queryResult = qexec.execAsk();
+		
+		return queryResult;
+	}
 
 	/**
 		 * A method to perform a consistency check to verify if new statements can be added to a KnowledgeBase without violating 

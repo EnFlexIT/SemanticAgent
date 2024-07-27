@@ -90,7 +90,7 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 			
 			AID messageSender = message.getSender();
 			
-			if (this.trustedAgents.isEmpty() || this.trustedAgents.contains(messageSender)) {
+			if (this.trustedAgents == null || this.trustedAgents.contains(messageSender)) {
 				
 				logger.info("Agent " + myAgent.getAID().getLocalName() + ": " + messageSender.getLocalName() + " is a trusted agent (based on AID comparison). Message will be processed.");	
 				
