@@ -94,14 +94,94 @@ public class ProcessAgent extends Agent {
 		// Timeblocker 2s for setting up JADE sniffer
 		try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
 
+		this.addNewFlexibility(); 
 		this.provideFlexibilityUpdate();
 //		this.listEnumIndividuals(); 
 //		this.showOntologyVersionIRI(); 
 //		this.owlInferenceTest(); 
 	}
 
+	private void addNewFlexibility() {
+		if(this.getLocalName().equals("ProcessAgent1")) {
+			
+			String sparqlInsertQuery = "INSERT {\n"
+					+ "    ?flexibleLoad rdf:type :FlexibleLoad .\n"
+					+ "    ?flexibleLoad :isFlexibleLoadOf ?process.\n"
+					+ "    ?flexibleLoad :activationGradientInKilowattPerSecond ?gradient .\n"
+					+ "    ?flexibleLoad :costInEuro ?cost .\n"
+					+ "    ?flexibleLoad :earliestStart ?earliestStart .\n"
+					+ "    ?flexibleLoad :earliestStart ?latestStart .\n"
+					+ "    ?flexibleLoad :costInEuro ?cost .\n"
+					+ "    ?flexibleLoad :holdingDurationInSeconds ?duration .\n"
+					+ "    ?flexibleLoad :powerStateInKilowatts ?powerState .\n"
+					+ "}\n"
+					+ "WHERE {\n"
+					+ "    BIND(:flexibleLoad5 AS ?flexibleLoad)\n"
+					+ "    BIND(:process1 AS ?process)\n"
+					+ "    BIND(\"0.2\"^^xsd:double AS ?gradient)\n"
+					+ "    BIND(\"4.5\"^^xsd:double AS ?cost)\n"
+					+ "    BIND(\"600\"^^xsd:int AS ?duration)\n"
+					+ "    BIND(\"2024-07-29T16:20:00\"^^xsd:dateTime AS ?earliestStart)\n"
+					+ "    BIND(\"2024-07-29T16:30:00\"^^xsd:dateTime AS ?latestStart)\n"
+					+ "    BIND(\"10.4\"^^xsd:double AS ?powerState)\n"
+					+ "}\n"
+					+ ""; 
+			
+			String sparqlInsertQueryWithPrefixes = UtilityMethods.addPrefixesToSparqlQuery(sparqlInsertQuery, knowledgeBase);
+			UtilityMethods.executeSparqlInsert(knowledgeBase, sparqlInsertQueryWithPrefixes);
+		
+		}
+	}
+
+	private void provideFlexibilityUpdate() {
+		
+		String processName; 
+		if(this.getLocalName().equals("ProcessAgent1")) {
+			processName = "process1";
+		}
+		else {
+			processName = "process2";
+		}
+	
+		String queryResults = null;
+	
+		String nodeStateQuery = "CONSTRUCT {?s ?p ?o}\n"
+				+ "WHERE {\n"
+				+ "    ?s ?p ?o {\n"
+				+ "        SELECT ?s ?o\n"
+				+ "        WHERE {\n"
+				+ "            {\n"
+				+ "                ?process :hasFlexibleLoad ?s.\n"
+				+ "                FILTER (?process = :"+ processName +" )\n"
+				+ "            }\n"
+				+ "            UNION\n"
+				+ "            {\n"
+				+ "                ?process :hasFlexibleLoad ?o.\n"
+				+ "                FILTER (?process = :"+ processName +")\n"
+				+ "            }\n"
+				+ "            UNION \n"
+				+ "            {\n"
+				+ "                ?s :hasTriggerFlexibleLoad ?fl.\n"
+				+ "                ?process :hasFlexibleLoad ?fl\n"
+				+ "                FILTER (?process = :"+ processName +")\n"
+				+ "            }\n"
+				+ "        }        \n"
+				+ "    }\n"
+				+ "}";
+	
+	
+		String nodeStateQueryPSS = UtilityMethods.addPrefixesToSparqlQuery(nodeStateQuery, knowledgeBase);
+		queryResults = UtilityMethods.executeConstructQuery(nodeStateQueryPSS, this.knowledgeBase.getModel());
+	
+		rootLogger.debug(queryResults);
+	
+		SendInformBehaviour sendInformBehaviour = new SendInformBehaviour(this.communicationPartner, queryResults, this.generateArbitraryConversationId(), SemanticAgentProtocols.OWL_INFORM, ontologyName);
+		this.addBehaviour(sendInformBehaviour);
+	
+	}
+
 	private void owlInferenceTest() {
-		if(this.getLocalName().equals("ProcessAgent")) {
+		if(this.getLocalName().equals("ProcessAgent1")) {
 			String query = "SELECT DISTINCT ?fl WHERE {\n"
 					+ "	?p rdf:type :Process .\n"
 					+ "	?fl :isFlexibleLoadOf ?p .\n"
@@ -121,7 +201,7 @@ public class ProcessAgent extends Agent {
 
 	private void showOntologyVersionIRI() {
 		
-		if(this.getLocalName().equals("ProcessAgent")) {
+		if(this.getLocalName().equals("ProcessAgent1")) {
 			String query = "SELECT DISTINCT ?ip WHERE {\n"
 					+ "	?ip rdf:type owl:IrreflexiveProperty .\n"
 					+ "}";
@@ -140,7 +220,7 @@ public class ProcessAgent extends Agent {
 
 	private void listEnumIndividuals() {
 		
-		if(this.getLocalName().equals("ProcessAgent")) {
+		if(this.getLocalName().equals("ProcessAgent1")) {
 			String query = "SELECT DISTINCT ?tt WHERE {\n"
 					+ "	?tt rdf:type :TemporalType .\n"
 					+ "}";
@@ -181,53 +261,6 @@ public class ProcessAgent extends Agent {
 			cidBase = this.getLocalName() + hashCode() +System.currentTimeMillis()%10000 + "_";		
 		}
 		return cidBase + (cidCnt++);
-	}
-
-	private void provideFlexibilityUpdate() {
-		
-		String processName; 
-		if(this.getLocalName().equals("ProcessAgent")) {
-			processName = "process1";
-		}
-		else {
-			processName = "process2";
-		}
-
-		String queryResults = null;
-
-		String nodeStateQuery = "CONSTRUCT {?s ?p ?o}\n"
-				+ "WHERE {\n"
-				+ "    ?s ?p ?o {\n"
-				+ "        SELECT ?s ?o\n"
-				+ "        WHERE {\n"
-				+ "            {\n"
-				+ "                ?process :hasFlexibleLoad ?s.\n"
-				+ "                FILTER (?process = :"+ processName +" )\n"
-				+ "            }\n"
-				+ "            UNION\n"
-				+ "            {\n"
-				+ "                ?process :hasFlexibleLoad ?o.\n"
-				+ "                FILTER (?process = :"+ processName +")\n"
-				+ "            }\n"
-				+ "            UNION \n"
-				+ "            {\n"
-				+ "                ?s :hasTriggerFlexibleLoad ?fl.\n"
-				+ "                ?process :hasFlexibleLoad ?fl\n"
-				+ "                FILTER (?process = :"+ processName +")\n"
-				+ "            }\n"
-				+ "        }        \n"
-				+ "    }\n"
-				+ "}";
-
-
-		String nodeStateQueryPSS = UtilityMethods.addPrefixesToSparqlQuery(nodeStateQuery, knowledgeBase);
-		queryResults = UtilityMethods.executeConstructQuery(nodeStateQueryPSS, this.knowledgeBase.getModel());
-
-		rootLogger.debug(queryResults);
-
-		SendInformBehaviour sendInformBehaviour = new SendInformBehaviour(this.communicationPartner, queryResults, this.generateArbitraryConversationId(), SemanticAgentProtocols.OWL_INFORM, ontologyName);
-		this.addBehaviour(sendInformBehaviour);
-
 	}
 
 }

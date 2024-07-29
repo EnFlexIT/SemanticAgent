@@ -84,7 +84,7 @@ public class OptimizationAgent extends Agent {
 		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
 
 		// --- Determine communication partner ----------------
-		this.communicationPartner = new AID("ProcessAgent", AID.ISLOCALNAME);
+		this.communicationPartner = new AID("ProcessAgent1", AID.ISLOCALNAME);
 		this.communicationPartnerTwo = new AID("ProcessAgent2", AID.ISLOCALNAME);
 
 		// --- Generate set of trusted agents used by OMRB for handling of incoming messages

@@ -52,9 +52,7 @@ public class KnowledgeBase {
 		this.ontologyDirectory = ontologyDirectory; 
 		this.ontologyFileName = ontologyFileName; 
 		this.setBaseUri(baseUri); 
-		
-		FileManager.get().resetCache();
-		
+				
 		// --- instantiate a ontModel using ModelFactory 
 		ontModel = this.instantiateModelInFactory(ontModelSpec);
 	}

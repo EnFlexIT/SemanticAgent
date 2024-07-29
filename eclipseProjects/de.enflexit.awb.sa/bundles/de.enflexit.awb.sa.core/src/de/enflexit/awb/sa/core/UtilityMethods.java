@@ -59,15 +59,30 @@ public class UtilityMethods{
 	}
 	
 	/**
-	 * Method to create and execute SPARQL CONSTRUCT queries received as a String 
-	 * on the provided model. Returns a Turtle-serialized String consisting of 
-	 * SPO (subject, predicate, object) triples with full IRIs for all resources and literals. 
+	 * This method is used to a SPARQL INSER query on the OntModel contained in the provided knowledge base.
+	 * 
+	 * @param knowledgeBase contains the OntModel that is the target of update.
+	 * @param sparqlInsertQuery a String containing a SPARQL INSERT query (including prefixes). 
+	 */
+	public static void executeSparqlInsert(KnowledgeBase knowledgeBase, String sparqlInsertQuery) {	
+		
+		UpdateRequest updateRequest = UpdateFactory.create();
+		updateRequest.add(sparqlInsertQuery);
+		UpdateAction.execute(updateRequest, knowledgeBase.getModel());
+	}
+	
+	
+	/**
+	 * Method to execute SPARQL CONSTRUCT queries received as a String 
+	 * on the provided model. Returns a String consisting of 
+	 * SPO (subject, predicate, object) triples with full IRIs for all 
+	 * resources and literals. 
 	 * 
 	 * @param constructQuery String containing a SPARQL CONSTRUCT query
 	 * @param model Target of the query
-	 * @return Returns a well formed solution string serialized in TURTLE containing 
-	 * statements as defined in the CONSTRUCT query. These statements can be added to
-	 * a model via a SPARQL update.
+	 * @return Returns a well formed solution String containing 
+	 * statements as defined in the CONSTRUCT query. These statements 
+	 * can be added to a model via a SPARQL update.
 	 */
 	public static String executeConstructQuery(String constructQuery, Model model) {
 		Query query = null;
