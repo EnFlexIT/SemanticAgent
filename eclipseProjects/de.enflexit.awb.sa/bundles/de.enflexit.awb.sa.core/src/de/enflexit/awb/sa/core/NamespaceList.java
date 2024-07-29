@@ -16,15 +16,16 @@ public class NamespaceList extends ArrayList<de.enflexit.awb.sa.core.NamespaceLi
 	public NamespaceList() {
 		
 		// --- Add default namespaces and prefixes --------
-		this.add(new NamespaceDescription("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#", true));
-		this.add(new NamespaceDescription("rdfs", "http://www.w3.org/2000/01/rdf-schema#", true));
-		this.add(new NamespaceDescription("owl", "http://www.w3.org/2002/07/owl#", true));
-		this.add(new NamespaceDescription("xsd", "http://www.w3.org/2001/XMLSchema#", true));		
+		this.add(new NamespaceDescription("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#"));
+		this.add(new NamespaceDescription("rdfs", "http://www.w3.org/2000/01/rdf-schema#"));
+		this.add(new NamespaceDescription("owl", "http://www.w3.org/2002/07/owl#"));
+		this.add(new NamespaceDescription("xsd", "http://www.w3.org/2001/XMLSchema#"));		
 	}
 	
-	public void addNameSpace(String namespacePrefix, String namespaceIRI, boolean isDefaultNamespace) {
-		this.addNameSpace(new NamespaceDescription(namespacePrefix, namespaceIRI, isDefaultNamespace));
+	public void addNameSpace(String namespacePrefix, String namespaceIRI ) {
+		this.addNameSpace(new NamespaceDescription(namespacePrefix, namespaceIRI));
 	}
+	
 	public void addNameSpace(NamespaceDescription nameSpaceDescription) {
 		this.add(nameSpaceDescription);
 	}
@@ -38,12 +39,10 @@ public class NamespaceList extends ArrayList<de.enflexit.awb.sa.core.NamespaceLi
 		
 		private String namespacePrefix;
 		private String namespaceIRI;
-		private boolean isDefaultNamespace;
 		
-		public NamespaceDescription(String namespacePrefix, String namespaceIRI, boolean isDefaultNamespace) {
+		public NamespaceDescription(String namespacePrefix, String namespaceIRI) {
 			this.setNamespacePrefix(namespacePrefix);
 			this.setNamespaceIRI(namespaceIRI);
-			this.setDefaultNamespace(isDefaultNamespace);
 		}
 		
 		public String getNamespacePrefix() {
@@ -57,12 +56,6 @@ public class NamespaceList extends ArrayList<de.enflexit.awb.sa.core.NamespaceLi
 		}
 		public void setNamespaceIRI(String namespaceIRI) {
 			this.namespaceIRI = namespaceIRI;
-		}
-		public boolean isDefaultNamespace() {
-			return isDefaultNamespace;
-		}
-		public void setDefaultNamespace(boolean isDefaultNamespace) {
-			this.isDefaultNamespace = isDefaultNamespace;
 		}
 	}
 	

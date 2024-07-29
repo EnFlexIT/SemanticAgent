@@ -5,7 +5,7 @@
             <postionNo>1</postionNo>
             <listMembership>01 AgentStartManual</listMembership>
             <agentClassReference>optiFlexIteration2.ProcessAgent</agentClassReference>
-            <startAsName>ProcessAgent</startAsName>
+            <startAsName>ProcessAgent1</startAsName>
         </agent>
         <agent>
             <postionNo>2</postionNo>

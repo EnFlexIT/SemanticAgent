@@ -81,7 +81,7 @@ public class OptimizationAgent extends Agent {
 		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri, ontModelSpec);
 
 		// --- add individual namespaces --------------
-		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
+		knowledgeBase.getNamespaceList().addNameSpace("", baseUri);
 
 		// --- Determine communication partner ----------------
 		this.communicationPartner = new AID("ProcessAgent1", AID.ISLOCALNAME);

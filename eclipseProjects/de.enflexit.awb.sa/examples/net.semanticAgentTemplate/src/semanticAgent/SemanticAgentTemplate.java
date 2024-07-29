@@ -74,7 +74,7 @@ public class SemanticAgentTemplate extends Agent {
 		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri, ontModelSpec);
 		
 		// --- add non-generic namespaces --------------
-		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
+		knowledgeBase.getNamespaceList().addNameSpace("", baseUri);
 
 		// --- Populate set of trusted agents ----------------------------
 		// trustedAgents.add(new AID("NameOfAgent1", AID.ISLOCALNAME)); 

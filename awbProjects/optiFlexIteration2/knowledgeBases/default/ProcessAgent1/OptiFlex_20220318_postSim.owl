@@ -46,6 +46,15 @@
         :hasTriggerFlexibleLoad  :flexibleLoad1 ;
         :temporalGapInSeconds    "400"^^xsd:int .
 
+:flexibleLoad3  rdf:type           :FlexibleLoad ;
+        :activationGradientInKilowattPerSecond
+                "0.2"^^xsd:double ;
+        :costInEuro                "4.5"^^xsd:double ;
+        :earliestStart             "2024-07-29T16:30:00"^^xsd:dateTime , "2024-07-29T16:20:00"^^xsd:dateTime ;
+        :holdingDurationInSeconds  "600"^^xsd:int ;
+        :isFlexibleLoadOf          :process1 ;
+        :powerStateInKilowatts     "10.4"^^xsd:double .
+
 :activationGradientInKilowattPerSecond
         rdf:type     owl:DatatypeProperty ;
         rdfs:domain  :FlexibleLoad ;

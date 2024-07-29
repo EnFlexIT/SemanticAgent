@@ -72,16 +72,16 @@ public class BatteryStorageAgent extends Agent {
 		this.knowledgeBase = new KnowledgeBase(this, ontologyDirectory, ontologyFileName, baseUri, ontModelSpec);
 
 		// --- add individual namespaces --------------
-		knowledgeBase.getNamespaceList().addNameSpace("", baseUri, false);
-		knowledgeBase.getNamespaceList().addNameSpace("s4ener", "https://saref.etsi.org/saref4ener/", false);
-		knowledgeBase.getNamespaceList().addNameSpace("ao", "https://www.hsu-ifa.de/ontologies/AHG01AlignmentOntology#", false);
-		knowledgeBase.getNamespaceList().addNameSpace("s4enerext", "https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#", false);
-		knowledgeBase.getNamespaceList().addNameSpace("topo", "http://www.hsu-ifa.de/ontologies/LVGridTopology#", false);
-		knowledgeBase.getNamespaceList().addNameSpace("sosa", "http://www.w3.org/ns/sosa/", false);
-		knowledgeBase.getNamespaceList().addNameSpace("sosaext", "https://www.hsu-ifa.de/ontologies/SOSAext#", false);
-		knowledgeBase.getNamespaceList().addNameSpace("saref", "https://saref.etsi.org/core/", false);
-		knowledgeBase.getNamespaceList().addNameSpace("qudt", "http://qudt.org/schema/qudt/", false);
-		knowledgeBase.getNamespaceList().addNameSpace("unit", "http://qudt.org/vocab/unit/", false);
+		knowledgeBase.getNamespaceList().addNameSpace("", baseUri);
+		knowledgeBase.getNamespaceList().addNameSpace("s4ener", "https://saref.etsi.org/saref4ener/");
+		knowledgeBase.getNamespaceList().addNameSpace("ao", "https://www.hsu-ifa.de/ontologies/AHG01AlignmentOntology#");
+		knowledgeBase.getNamespaceList().addNameSpace("s4enerext", "https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#");
+		knowledgeBase.getNamespaceList().addNameSpace("topo", "http://www.hsu-ifa.de/ontologies/LVGridTopology#");
+		knowledgeBase.getNamespaceList().addNameSpace("sosa", "http://www.w3.org/ns/sosa/");
+		knowledgeBase.getNamespaceList().addNameSpace("sosaext", "https://www.hsu-ifa.de/ontologies/SOSAext#");
+		knowledgeBase.getNamespaceList().addNameSpace("saref", "https://saref.etsi.org/core/");
+		knowledgeBase.getNamespaceList().addNameSpace("qudt", "http://qudt.org/schema/qudt/");
+		knowledgeBase.getNamespaceList().addNameSpace("unit", "http://qudt.org/vocab/unit/");
 
 
 		// --- Generate set of trusted agents used by OMRB for handling of incoming messages
