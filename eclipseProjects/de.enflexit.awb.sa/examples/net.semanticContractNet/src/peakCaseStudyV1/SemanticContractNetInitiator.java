@@ -87,7 +87,7 @@ class SemanticContractNetInitiator extends ContractNetInitiator {
 		boolean triplesAreValid = UtilityMethods.checkRdfStatementConsistency(flexOfferTriples, this.knowledgeBase);
 		if (triplesAreValid) {
 			logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency check passed; adding triples to the knowledge base.");
-			UtilityMethods.executeSparqlUpdate(this.knowledgeBase, flexOfferTriples); 
+			UtilityMethods.addTriplesToKnowledgeBase(this.knowledgeBase, flexOfferTriples); 
 		} else {
 			logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency check not passed; triples will not be added to the knowledge base.");
 		}

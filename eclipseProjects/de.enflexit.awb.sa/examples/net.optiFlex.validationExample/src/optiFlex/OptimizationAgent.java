@@ -326,37 +326,6 @@ public class OptimizationAgent extends Agent {
 	}
 	
 	/**
-	 * A2 queries his ontology to determine the most recent voltage at a specific node.
-	 */
-	private void determineMostRecentVoltageAtSpecificNode() {
-		if (this.getAID().getLocalName().equals("A2")) {
-			
-			String nodeId = "node01";
-			
-			String query= "SELECT ?v\n"
-					+ "WHERE { \n" + 
-					"		?ns rdf:type :NodeState. \n" + 
-					"		?ns :componentId ?cid. \n" + 
-					"       ?ns :hasVoltage ?v. \n" +
-					"       ?ns :hasTimeStamp ?ts. \n" +
-					"		FILTER (str(?cid)=\"" + nodeId + "\") \n" + 
-					"		}\n" + 
-					"ORDER BY DESC (?ts) \n" + 
-					"LIMIT 1 \n";
-		
-			String sparqlString = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
-			String queryResult = UtilityMethods.executeSingleCellSelectQuery(sparqlString, this.knowledgeBase.getModel());
-			
-			double voltage = Double.parseDouble(queryResult); 
-			
-			rootLogger.debug(queryResult);	
-		}
-	}
-	
-	
-	
-	
-	/**
 	 * A2 queries his ontology to determine which busbars comprise line segments that exceed the maximum current allowed.
 	 */
 	private void determineBusbarsWithLineSegmentsExceedingMaxCurrent() {
@@ -378,61 +347,6 @@ public class OptimizationAgent extends Agent {
 			String contentString = UtilityMethods.oneDimensionalStringArrayToString(solution);
 			rootLogger.debug(contentString);
 			
-		}
-	}
-	/**
-	 * Method used for updating the flexibility potential of a DERA (A2) by using sparql update functionality
-	 */
-	private void updateFlexibilityPotential() {
-		
-		// --- list of parameters that would be passed to this method -------
-		double totalEnergy = 9.55;
-		double maxPower = 30.0; 
-		double minPower = 5.0; 
-		String resourceId = "bs01"; 
-		String timeStamp = "2022-02-04T20:27:00";
-		
-		if (this.getAID().getLocalName().equals("A2")) {
-			
-//			String totalEnergy = "\"9.55\"^^xsd:double";
-			
-			// --- Update string f�r neues Flexibilit�tspotential
-			
-//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential>.\n"  
-//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMaximumPower> "+maxPower+".\n"
-//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMinimumPower> " +minPower+".\n"
-//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTotalEnergy> " + totalEnergy +".\n"
-//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#resourceId> " + resourceId + ".\n" 
-//					+"<http://www.hsu-ifa.de/ontologies/LVGridFlex#fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTimeStamp> " + timeStamp + ".";			
-			
-//			String updateString = "<fp02> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual>.\n" 
-//					+"<fp02> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential>.\n"  
-//					+"<fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMaximumPower> "+maxPower+".\n"
-//					+"<fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMinimumPower> " +minPower+".\n"
-//					+"<fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTotalEnergy> " + totalEnergy +".\n"
-//					+"<fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#resourceId> " + resourceId + ".\n" 
-//					+"<fp02> <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTimeStamp> " + timeStamp + ".";	
-			
-//			String updateString = ":fp02 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual>.\n" 
-//					+":fp02 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.hsu-ifa.de/ontologies/LVGridFlex#FlexibilityPotential>.\n"  
-//					+":fp02 <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMaximumPower> "+maxPower+".\n"
-//					+":fp02 <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasMinimumPower> " +minPower+".\n"
-//					+":fp02 <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTotalEnergy> " + totalEnergy +".\n"
-//					+":fp02 <http://www.hsu-ifa.de/ontologies/LVGridFlex#resourceId> " + resourceId + ".\n" 
-//					+":fp02 <http://www.hsu-ifa.de/ontologies/LVGridFlex#hasTimeStamp> " + timeStamp + ".";		
-			
-			String sparqlUpdateTriples = ":fp02 rdf:type owl:NamedIndividual.\n" 
-					+":fp02 rdf:type :FlexibilityPotential.\n"  
-					+":fp02 :hasMaximumPower "+ UtilityMethods.doubleToXsdDouble(maxPower)+".\n"
-					+":fp02 :hasMinimumPower " + UtilityMethods.doubleToXsdDouble(minPower)+".\n"
-					+":fp02 :hasTotalEnergy " + UtilityMethods.doubleToXsdDouble(totalEnergy) +".\n"
-					+":fp02 :resourceId " + UtilityMethods.stringtoRdfsLiteral(resourceId) + ".\n" 
-					+":fp02 :hasTimeStamp " + UtilityMethods.stringToXsdDateTime(timeStamp) + ".";	
-			
-			
-			// --- RDF Statements model via SPARQL Update hinzuf�gen
-			rootLogger.debug(this.getAID().getLocalName() + "/updateFlexibilityPotential() will add these triples: \n" + sparqlUpdateTriples);	
-			UtilityMethods.executeSparqlUpdate(this.knowledgeBase, sparqlUpdateTriples);
 		}
 	}
 	
@@ -462,7 +376,7 @@ public class OptimizationAgent extends Agent {
 					"		LIMIT 1}\n" + 
 					"}";
 			String queryString = UtilityMethods.addPrefixesToSparqlQuery(commandText, knowledgeBase);
-			SendQueryBehaviour sqb = new SendQueryBehaviour(this, queryString, this.communicationPartner, this.generateArbitraryConversationId(), SemanticAgentProtocols.OWL_QUESTION, this.ontologyName);
+			SendQueryBehaviour sqb = new SendQueryBehaviour(this, queryString, this.communicationPartner, this.generateArbitraryConversationId(), SemanticAgentProtocols.OWL_QUERY, this.ontologyName);
 			this.addBehaviour(sqb);
 		}
 	}

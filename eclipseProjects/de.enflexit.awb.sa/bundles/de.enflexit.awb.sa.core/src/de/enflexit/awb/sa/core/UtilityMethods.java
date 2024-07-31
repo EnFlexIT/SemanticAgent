@@ -44,22 +44,22 @@ public class UtilityMethods{
 	private static Logger logger = Logger.getRootLogger();
 	
 	/**
-	 * This method is used to add triples as a SPARQL update on the OntModel contained in the provided KnowledgeBase.
+	 * This method is used to add triples to the provided KnowledgeBase.
 	 * 
 	 * @param knowledgeBase contains the OntModel that is the target of update.
-	 * @param sparqlUpdateTriples a String of triples serialized in Turtle that is to be added to the OntModel. 
-	 * The method transforms the raw triples into a complete SPARQL update statement it is executed.
+	 * @param triples a String of triples in N-Tripel or Turtle syntax that is to be added to the OntModel. 
+	 * The method transforms the raw triples into a complete SPARQL INSERT statement before it is executed.
 	 */
-	public static void executeSparqlUpdate(KnowledgeBase knowledgeBase, String sparqlUpdateTriples) {	
+	public static void addTriplesToKnowledgeBase(KnowledgeBase knowledgeBase, String triples) {	
 		
-		String sparqlUpdateStatement = UtilityMethods.addPrefixesToSparqlUpdate(sparqlUpdateTriples, knowledgeBase);
+		String sparqlUpdateStatement = UtilityMethods.addPrefixesToSparqlUpdate(triples, knowledgeBase);
 		UpdateRequest updateRequest = UpdateFactory.create();
 		updateRequest.add(sparqlUpdateStatement);
 		UpdateAction.execute(updateRequest, knowledgeBase.getModel());
 	}
 	
 	/**
-	 * This method is used to a SPARQL INSER query on the OntModel contained in the provided knowledge base.
+	 * This method is used to execute a SPARQL INSERT query on the provided knowledge base.
 	 * 
 	 * @param knowledgeBase contains the OntModel that is the target of update.
 	 * @param sparqlInsertQuery a String containing a SPARQL INSERT query (including prefixes). 
@@ -394,18 +394,37 @@ public class UtilityMethods{
 	
 	/**
 	 * Method to execute a SPARQL SELECT query received as a String on the provided model. 
-	 * The result includes an IRI for resources and only values for literals, i.e. the values of datatype properties.
-	 * Only works properly for select queries that have a single field as a result.
+	 * The result includes an IRI for resources and only values for literals, i.e. the values of data properties.
+	 * Only works properly for SELECT queries that have a single field as a result.
+	 * The result is returned as a String independent of its data or object type. 
 	 * 
 	 * @param queryString String containing the SPARQL SELECT query
 	 * @param model Target of the query
 	 * @return Returns a String containing the value of the cell
 	 */
-	public static String executeSingleCellSelectQuery(String queryString, Model model) {
+	public static String executeSingleCellSelectQueryStringResult(String queryString, Model model) {
 				
 		String singleCellResult = UtilityMethods.executeSingleColumnSelectQuery(queryString, model)[0]; 
 				
 		return singleCellResult;
+	}
+	
+	/**
+	 * Method to execute a SPARQL SELECT query received as a String on the provided model. 
+	 * The result includes an IRI for resources and only values for literals, i.e. the values of data properties.
+	 * Only works properly for SELECT queries that have a single field as a result.
+	 * The result is returned as a String independent of its data or object type. 
+	 * 
+	 * @param queryString String containing the SPARQL SELECT query
+	 * @param model Target of the query
+	 * @return Returns a String containing the value of the cell
+	 */
+	public static double executeSingleCellSelectQueryDoubleResult(String queryString, Model model) {
+				
+		String singleCellStringResult = UtilityMethods.executeSingleColumnSelectQuery(queryString, model)[0]; 
+		double doubleResult = Double.parseDouble(singleCellStringResult); 
+				
+		return doubleResult;
 	}
 
 	/**

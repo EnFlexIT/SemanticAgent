@@ -54,7 +54,7 @@ public class ReceiveInformBehaviour extends OneShotBehaviour {
 	 */
 	private void addStatementsToModel() {
 
-		UtilityMethods.executeSparqlUpdate(this.knowledgeBase, this.rdfTriples);
+		UtilityMethods.addTriplesToKnowledgeBase(this.knowledgeBase, this.rdfTriples);
 	}
 
 }

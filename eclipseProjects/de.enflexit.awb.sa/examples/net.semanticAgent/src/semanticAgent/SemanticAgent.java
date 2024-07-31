@@ -115,21 +115,20 @@ public class SemanticAgent extends Agent {
 //		this.determineDerasControllingDersAtBusbar();
 //		this.determineAllDerasThatControlBatteryStoragesAtSpecificBusbar();
 //		this.determineLineSegmentsExceedingMaxCurrent();
-//		this.determineMostRecentVoltageAtSpecificNode();
+		this.determineMostRecentVoltageAtSpecificNode();
 //		this.determineBusbarsWithLineSegmentsExceedingMaxCurrent();
 //		this.updateFlexibilityPotential();
-		this.gsaAsksDeraForFlexibility();
+//		this.gsaAsksDeraForFlexibility();
 	
 	}
 
 	@Override
 	protected void takeDown() {
 
-		// --- Save the knowledge base model into a file, as the current implementation ---
-		// --- does not use a persistent storage ------------------------------------------
+		// --- Save the knowledge base model into a new file -------
 		this.knowledgeBase.saveModel();
 			
-		// --- Close the knowledge base model ---------------------------------------------
+		// --- Close the knowledge base model ----------------------
 		this.knowledgeBase.closeModel();
 		
 		if (this.getAID().getLocalName().equals("A1")) {
@@ -373,22 +372,20 @@ public class SemanticAgent extends Agent {
 			
 			String nodeId = "node01";
 			
-			String query= "SELECT ?v\n"
-					+ "WHERE { \n" + 
+			String sparqlSelectQuery= "SELECT ?voltage \n" +
+					"WHERE { \n" + 
 					"		?ns rdf:type :NodeState. \n" + 
 					"		?ns :componentId ?cid. \n" + 
-					"       ?ns :hasVoltage ?v. \n" +
+					"       ?ns :hasVoltage ?voltage. \n" +
 					"       ?ns :hasTimeStamp ?ts. \n" +
 					"		FILTER (str(?cid)=\"" + nodeId + "\") \n" + 
 					"		}\n" + 
 					"ORDER BY DESC (?ts) \n" + 
 					"LIMIT 1 \n";
 		
-			String sparqlString = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
-			String queryResult = UtilityMethods.executeSingleCellSelectQuery(sparqlString, this.knowledgeBase.getModel());
-			
-			double voltage = Double.parseDouble(queryResult); 
-			
+			String sparqlSelectQueryWithPrefixes = UtilityMethods.addPrefixesToSparqlQuery(sparqlSelectQuery, knowledgeBase);
+			double queryResult = UtilityMethods.executeSingleCellSelectQueryDoubleResult(sparqlSelectQueryWithPrefixes, this.knowledgeBase.getModel());
+						
 			rootLogger.debug(queryResult);	
 		}
 	}
@@ -445,7 +442,7 @@ public class SemanticAgent extends Agent {
 			
 			// --- RDF Statements model via SPARQL Update hinzuf�gen
 			rootLogger.debug(this.getAID().getLocalName() + "/updateFlexibilityPotential() will add these triples: \n" + sparqlUpdateTriples);	
-			UtilityMethods.executeSparqlUpdate(this.knowledgeBase, sparqlUpdateTriples);
+			UtilityMethods.addTriplesToKnowledgeBase(this.knowledgeBase, sparqlUpdateTriples);
 		}
 	}
 	
@@ -459,24 +456,28 @@ public class SemanticAgent extends Agent {
 		
 		if (this.getAID().getLocalName().equals("A1")) {	
 			
-			String batteryStorageId = "bs01"; 
+			String batteryId = ":bs01"; 
 			
-			String commandText= "CONSTRUCT {?flexpo ?p ?o}\n"
-					+ "WHERE { \n" + 
-					"	?flexpo ?p ?o { \n" + 
+			String constructQuery= "CONSTRUCT {?flexpo ?p ?o} \n" +
+					"WHERE { \n" + 
+					"    BIND("+ batteryId +" AS ?batteryStorage) \n" +
+					"	 ?flexpo ?p ?o { \n" + 
 					"		SELECT ?flexpo \n" + 
-					"		WHERE {\n" + 
-					"		?flexpo rdf:type :FlexibilityPotential. \n" + 
-					"		?flexpo :resourceId ?rid. \n" + 
-					"       ?flexpo :hasTimeStamp ?timestamp. \n" +
-					"		FILTER (regex(str(?rid), \""+batteryStorageId+"\")) \n" + 
-					"		}\n" + 
-					"	ORDER BY DESC (?timestamp) \n" + 
-					"		LIMIT 1}\n" + 
+					"		WHERE { \n" + 
+					"			?flexpo rdf:type :FlexibilityPotential. \n" + 
+					"			?flexpo :resourceId ?rid. \n" + 
+					"      	 	?flexpo :hasTimeStamp ?timestamp. \n" +
+					"			FILTER (regex(str(?rid), ?batteryStorage)) \n" + 
+					"		} \n" + 
+					"		ORDER BY DESC (?timestamp) \n" + 
+					"		LIMIT 1" +
+					"	} \n" + 
 					"}";
-			String queryString = UtilityMethods.addPrefixesToSparqlQuery(commandText, knowledgeBase);
-			SendQueryBehaviour sqb = new SendQueryBehaviour(this, queryString, this.communicationPartner, this.generateArbitraryConversationId(), SemanticAgentProtocols.OWL_QUESTION, this.ontologyName);
+			
+			String queryString = UtilityMethods.addPrefixesToSparqlQuery(constructQuery, knowledgeBase);
+			SendQueryBehaviour sqb = new SendQueryBehaviour(this, queryString, this.communicationPartner, this.generateArbitraryConversationId(), SemanticAgentProtocols.OWL_QUERY, this.ontologyName);
 			this.addBehaviour(sqb);
+
 		}
 	}
 }

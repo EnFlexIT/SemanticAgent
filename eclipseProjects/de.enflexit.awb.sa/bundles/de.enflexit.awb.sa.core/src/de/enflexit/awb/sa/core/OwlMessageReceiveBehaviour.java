@@ -69,7 +69,7 @@ public class OwlMessageReceiveBehaviour extends CyclicBehaviour {
 				MessageTemplate.MatchOntology(this.ontologyName),
 				MessageTemplate.or(
 					MessageTemplate.MatchProtocol(SemanticAgentProtocols.OWL_INFORM), 
-					MessageTemplate.MatchProtocol(SemanticAgentProtocols.OWL_QUESTION)
+					MessageTemplate.MatchProtocol(SemanticAgentProtocols.OWL_QUERY)
 				)
 			);
 		}

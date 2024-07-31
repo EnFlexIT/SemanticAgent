@@ -123,13 +123,16 @@ public class GridDistrictAgent extends Agent {
 	    
 //	    this.instantiateGridStateEvaluationBehaviour();
 		
-		this.addAchieveREInitiatorBehaviour(); 
+//		this.addAchieveREInitiatorBehaviour(); 
 	    
 	}
 	
 	private void addAchieveREInitiatorBehaviour() {
 		
-		String batteryStorageId = ":bs01";         
+		
+		
+		String batteryStorageId = ":bs01";  
+		
         String constructQuery= "CONSTRUCT {\n"
         		+ "    ?capms ?p1 ?o1 .\n"
         		+ "    ?capprop ?p2 ?o2 .\n"
@@ -204,7 +207,7 @@ public class GridDistrictAgent extends Agent {
 					boolean triplesAreValid = UtilityMethods.checkRdfStatementConsistency(informTriples, kb);
 					if (triplesAreValid) {
 						logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency check passed; adding triples to the knowledge base.");
-						UtilityMethods.executeSparqlUpdate(kb, informTriples); 
+						UtilityMethods.addTriplesToKnowledgeBase(kb, informTriples); 
 					} else {
 						logger.info("Agent " + myAgent.getAID().getLocalName() + ": consistency check not passed; triples will not be added to the knowledge base.");
 					}
