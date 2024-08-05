@@ -16,12 +16,23 @@
         rdfs:domain  :FlexibleLoad ;
         rdfs:range   :FlexibleLoadDependency .
 
+:flexibleLoad5  rdf:type           :FlexibleLoad ;
+        :activationGradientInKilowattPerSecond
+                "0.2"^^xsd:double ;
+        :costInEuro                "4.5"^^xsd:double ;
+        :earliestStart             "2024-07-29T16:30:00"^^xsd:dateTime , "2024-07-29T16:20:00"^^xsd:dateTime ;
+        :holdingDurationInSeconds  "600"^^xsd:int ;
+        :isFlexibleLoadOf          :process1 ;
+        :powerStateInKilowatts     "10.4"^^xsd:double .
+
 :earliestStart  rdf:type  owl:DatatypeProperty ;
         rdfs:domain  :FlexibleLoad ;
         rdfs:range   xsd:dateTime .
 
 :process1  rdf:type       :Process , owl:NamedIndividual ;
         :hasFlexibleLoad  :flexibleLoad2 , :flexibleLoad1 .
+
+:start-start  rdf:type  :TemporalType , owl:NamedIndividual .
 
 :end-start  rdf:type  :TemporalType , owl:NamedIndividual .
 
@@ -37,23 +48,12 @@
         rdfs:domain  :FlexibleLoadDependency ;
         rdfs:range   xsd:int .
 
-:start-start  rdf:type  :TemporalType , owl:NamedIndividual .
-
 :flexibleLoadDependency1
         rdf:type                 :FlexibleLoadDependency , owl:NamedIndividual ;
         :hasTargetFlexibleLoad   :flexibleLoad2 ;
         :hasTemporalType         :start-start ;
         :hasTriggerFlexibleLoad  :flexibleLoad1 ;
         :temporalGapInSeconds    "400"^^xsd:int .
-
-:flexibleLoad3  rdf:type           :FlexibleLoad ;
-        :activationGradientInKilowattPerSecond
-                "0.2"^^xsd:double ;
-        :costInEuro                "4.5"^^xsd:double ;
-        :earliestStart             "2024-07-29T16:30:00"^^xsd:dateTime , "2024-07-29T16:20:00"^^xsd:dateTime ;
-        :holdingDurationInSeconds  "600"^^xsd:int ;
-        :isFlexibleLoadOf          :process1 ;
-        :powerStateInKilowatts     "10.4"^^xsd:double .
 
 :activationGradientInKilowattPerSecond
         rdf:type     owl:DatatypeProperty ;

@@ -36,6 +36,13 @@
 
 :bb02   rdf:type  topo:Busbar , owl:NamedIndividual .
 
+:currentObservation02
+        rdf:type               sosa:Observation , owl:NamedIndividual ;
+        qudt:hasUnit           unit:A ;
+        sosa:hasSimpleResult   "24.6"^^xsd:double ;
+        sosa:observedProperty  :currentAtNode01 ;
+        sosa:resultTime        "2024-06-28T10:05:00"^^xsd:dateTime .
+
 :node04  rdf:type           topo:Node , owl:NamedIndividual ;
         topo:isComponentOf  :bb01 ;
         topo:isRootNode     false .
@@ -52,12 +59,6 @@ topo:Busbar  rdf:type  owl:Class .
 :Kilowatthours  rdf:type  saref:EnergyUnit , owl:NamedIndividual .
 
 :gd02   rdf:type  topo:GridDistrict , owl:NamedIndividual .
-
-:ms02   rdf:type                 rdfs:Resource , saref:Measurement , owl:NamedIndividual , owl:Thing ;
-        saref:hasTimestamp       "2024-06-28T10:30:00Z"^^xsd:dateTimeStamp ;
-        saref:isMeasuredIn       unit:PERCENT ;
-        saref:relatesToProperty  :bs01soc ;
-        s4ener:hasValue          37.62 .
 
 :bb01   rdf:type  topo:Busbar , owl:NamedIndividual .
 
@@ -80,9 +81,7 @@ topo:Node  rdf:type  owl:Class .
         topo:hasStartNode   :node03 ;
         topo:isComponentOf  :bb01 .
 
-:bs01soc  rdf:type                  s4ener:Property , owl:Thing , saref:Property , rdfs:Resource , s4enerext:StateOfCharge , owl:NamedIndividual ;
-        saref:isPropertyOf          :bs01 ;
-        saref:relatesToMeasurement  :ms02 , :ms01 .
+:bs01soc  rdf:type  s4enerext:StateOfCharge , owl:NamedIndividual .
 
 :currentObservation01
         rdf:type               sosa:Observation , owl:NamedIndividual ;
@@ -105,6 +104,13 @@ topo:LineSegment  rdf:type  owl:Class .
 
 :voltageAtNode03  rdf:type  sosaext:Voltage , owl:NamedIndividual ;
         saref:isPropertyOf  :node03 .
+
+:voltageObservation02
+        rdf:type               sosa:Observation , owl:NamedIndividual ;
+        qudt:hasUnit           unit:V ;
+        sosa:hasSimpleResult   "321.5"^^xsd:double ;
+        sosa:observedProperty  :voltageAtNode01 ;
+        sosa:resultTime        "2024-06-28T10:05:00"^^xsd:dateTime .
 
 :ls02   rdf:type            topo:LineSegment , owl:NamedIndividual ;
         topo:hasEndNode     :node03 ;
@@ -149,12 +155,4 @@ topo:LineSegment  rdf:type  owl:Class .
 :currentAtNode02  rdf:type  sosaext:Current , owl:NamedIndividual ;
         saref:isPropertyOf  :node02 .
 
-:bs01cap  rdf:type                  rdfs:Resource , s4ener:Property , owl:Thing , saref:Property , s4enerext:BatteryCapacity , owl:NamedIndividual ;
-        saref:isPropertyOf          :bs01 ;
-        saref:relatesToMeasurement  :ms04 , :ms03 .
-
-:ms04   rdf:type                 rdfs:Resource , saref:Measurement , owl:NamedIndividual , owl:Thing ;
-        saref:hasTimestamp       "2024-06-28T10:30:00Z"^^xsd:dateTimeStamp ;
-        saref:isMeasuredIn       :Kilowatthours ;
-        saref:relatesToProperty  :bs01cap ;
-        s4ener:hasValue          12.49 .
+:bs01cap  rdf:type  s4enerext:BatteryCapacity , owl:NamedIndividual .

@@ -16,11 +16,21 @@
         rdfs:domain  :FlexibleLoad ;
         rdfs:range   :FlexibleLoadDependency .
 
+:process1  :hasFlexibleLoad  :flexibleLoad2 , :flexibleLoad1 , :flexibleLoad5 .
+
 :earliestStart  rdf:type  owl:DatatypeProperty ;
         rdfs:domain  :FlexibleLoad ;
         rdfs:range   xsd:dateTime .
 
-:process1  :hasFlexibleLoad  :flexibleLoad2 , :flexibleLoad1 , :flexibleLoad3 .
+:flexibleLoad5  rdf:type           :FlexibleLoad , rdfs:Resource , owl:Thing ;
+        :activationGradientInKilowattPerSecond
+                "0.2"^^xsd:double ;
+        :costInEuro                "4.5"^^xsd:double ;
+        :earliestStart             "2024-07-29T16:30:00"^^xsd:dateTime , "2024-07-29T16:20:00"^^xsd:dateTime ;
+        :holdingDurationInSeconds  "600"^^xsd:int ;
+        :isFlexibleLoadOf          :process1 ;
+        :powerStateInKilowatts     "10.4"^^xsd:double ;
+        owl:sameAs                 :flexibleLoad5 .
 
 :flexibleLoadDependency2
         rdf:type                 :FlexibleLoadDependency , owl:NamedIndividual , owl:Thing , rdfs:Resource ;
@@ -68,14 +78,14 @@
 
 :flexibleLoad3  rdf:type           rdfs:Resource , owl:NamedIndividual , :FlexibleLoad , owl:Thing ;
         :activationGradientInKilowattPerSecond
-                "0.1"^^xsd:double , "0.2"^^xsd:double ;
-        :costInEuro                "4.5"^^xsd:double , "2.7"^^xsd:double ;
-        :earliestStart             "2022-03-18T19:20:00"^^xsd:dateTime , "2024-07-29T16:30:00"^^xsd:dateTime , "2024-07-29T16:20:00"^^xsd:dateTime ;
+                "0.1"^^xsd:double ;
+        :costInEuro                "2.7"^^xsd:double ;
+        :earliestStart             "2022-03-18T19:20:00"^^xsd:dateTime ;
         :holdingDurationInSeconds  "600"^^xsd:int ;
-        :isFlexibleLoadOf          :process1 , :process2 ;
+        :isFlexibleLoadOf          :process2 ;
         :isTriggerFlexibleLoadOf   :flexibleLoadDependency2 ;
         :latestStart               "2022-03-18T22:00:00"^^xsd:dateTime ;
-        :powerStateInKilowatts     "7.0"^^xsd:double , "10.4"^^xsd:double ;
+        :powerStateInKilowatts     "7.0"^^xsd:double ;
         owl:sameAs                 :flexibleLoad3 .
 
 :activationGradientInKilowattPerSecond

@@ -35,6 +35,13 @@ lvgridflex:hasFlexibilityPotential
         rdfs:domain  lvgridflex:DistributedEnergyResource ;
         rdfs:range   lvgridflex:FlexibilityPotential .
 
+lvgridflex:fp02  rdf:type           lvgridflex:FlexibilityPotential , owl:NamedIndividual ;
+        lvgridflex:hasMaximumPower  "30.0"^^xsd:double ;
+        lvgridflex:hasMinimumPower  "5.0"^^xsd:double ;
+        lvgridflex:hasTimeStamp     "2022-02-04T20:27:00"^^xsd:dateTime ;
+        lvgridflex:hasTotalEnergy   "9.55"^^xsd:double ;
+        lvgridflex:resourceId       "bs01"^^rdfs:Literal .
+
 lvgridflex:controls  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
         rdfs:domain  lvgridflex:DistributedEnergyResourceAgent ;
         rdfs:range   lvgridflex:DistributedEnergyResource .

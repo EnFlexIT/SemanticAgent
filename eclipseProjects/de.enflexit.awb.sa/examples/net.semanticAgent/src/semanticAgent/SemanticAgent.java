@@ -371,17 +371,30 @@ public class SemanticAgent extends Agent {
 		if (this.getAID().getLocalName().equals("A2")) {
 			
 			String nodeId = "node01";
+//			
+//			String sparqlSelectQuery= "SELECT ?voltage \n" +
+//					"WHERE { \n" + 
+//					"		?ns rdf:type :NodeState. \n" + 
+//					"		?ns :componentId ?cid. \n" + 
+//					"       ?ns :hasVoltage ?voltage. \n" +
+//					"       ?ns :hasTimeStamp ?ts. \n" +
+//					"		FILTER (str(?cid)=\"" + nodeId + "\") \n" + 
+//					"		}\n" + 
+//					"ORDER BY DESC (?ts) \n" + 
+//					"LIMIT 1 \n";
 			
-			String sparqlSelectQuery= "SELECT ?voltage \n" +
-					"WHERE { \n" + 
-					"		?ns rdf:type :NodeState. \n" + 
-					"		?ns :componentId ?cid. \n" + 
-					"       ?ns :hasVoltage ?voltage. \n" +
-					"       ?ns :hasTimeStamp ?ts. \n" +
-					"		FILTER (str(?cid)=\"" + nodeId + "\") \n" + 
-					"		}\n" + 
-					"ORDER BY DESC (?ts) \n" + 
-					"LIMIT 1 \n";
+			//nur für Skript
+			String sparqlSelectQuery= 
+				"SELECT ?voltage \n" +
+				"WHERE { \n" + 
+				"	BIND("+nodeId+" AS ?node) \n" + 
+				"	?ns rdf:type :NodeState. \n" + 
+				"	?ns :relatesTo ?node. \n" + 
+				"   ?ns :hasVoltage ?voltage. \n" +
+				"   ?ns :hasTimeStamp ?ts. \n" +
+				"} \n" + 
+				"ORDER BY DESC (?ts) \n" + 
+				"LIMIT 1 \n";
 		
 			String sparqlSelectQueryWithPrefixes = UtilityMethods.addPrefixesToSparqlQuery(sparqlSelectQuery, knowledgeBase);
 			double queryResult = UtilityMethods.executeSingleCellSelectQueryDoubleResult(sparqlSelectQueryWithPrefixes, this.knowledgeBase.getModel());
