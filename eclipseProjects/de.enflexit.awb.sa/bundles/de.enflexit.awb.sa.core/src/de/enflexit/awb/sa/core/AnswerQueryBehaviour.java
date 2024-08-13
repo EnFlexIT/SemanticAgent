@@ -61,8 +61,13 @@ public class AnswerQueryBehaviour extends OneShotBehaviour{
 //						contentString = UtilityMethods.stringArrayToString(solutionArray);
 //						break;
 			
-			case 222:	this.contentString = UtilityMethods.executeConstructQuery(this.queryString, this.knowledgeBase.getModel());
-						break;
+			case 222:	
+				this.contentString = UtilityMethods.executeConstructQuery(this.queryString, this.knowledgeBase.getModel());
+					break;
+						
+			case 333:	
+				this.contentString = UtilityMethods.executeDescribeQuery(this.queryString, this.knowledgeBase.getModel());
+				break;	
 		}
 		
 		this.sendACLMessage();

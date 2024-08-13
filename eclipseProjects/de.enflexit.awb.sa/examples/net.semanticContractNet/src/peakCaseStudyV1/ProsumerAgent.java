@@ -67,10 +67,12 @@ public class ProsumerAgent extends Agent {
 				+ "knowledgeBases" + File.separator 
 				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
 				+ this.getAID().getLocalName();
-		String ontologyFileName = "peakv1taskfit_forProsumerAgent.owl";
+		String ontologyFileName = "PEAKv2_taskfit_forProsumerAgent.xml";
+		
+		this.communicationPartner = new AID("MarketAgent", AID.ISLOCALNAME);
 
 		// --- specify Base URI ------------------------
-		String baseUri = "https://www.hsu-ifa.de/ontologies/peakv1taskfit#"; 
+		String baseUri = "https://www.hsu-ifa.de/ontologies/PeakEvaluation02taskfit#"; 
 
 		// --- instantiate knowledge base with previously defined parameters -----------------
 		OntModelSpec ontModelSpec = OntModelSpec.OWL_MEM_MICRO_RULE_INF;
@@ -83,6 +85,7 @@ public class ProsumerAgent extends Agent {
 		knowledgeBase.getNamespaceList().addNameSpace("ao", "https://www.hsu-ifa.de/ontologies/PeakEvaluation01AlignmentOntology#");
 		knowledgeBase.getNamespaceList().addNameSpace("s4enerext", "https://www.hsu-ifa.de/ontologies/SAREF4ENERExtension#");
 		knowledgeBase.getNamespaceList().addNameSpace("topo", "https://www.hsu-ifa.de/ontologies/LVGridTopology#");
+		knowledgeBase.getNamespaceList().addNameSpace("obv", "http://www.hsu-ifa.de/ontologies/OrderBookValues#");
 		
 
 		// --- Determine communication partner ----------------
@@ -94,16 +97,10 @@ public class ProsumerAgent extends Agent {
 
 
 		// --- add OWL message receive behavior ----------------------
-//		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
-//		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase);
-//		this.addBehaviour(this.owlMsgReceiveBehaviour);
+		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase);
+		this.addBehaviour(this.owlMsgReceiveBehaviour);
 
-		// --- Logger configuration --------------------------------------
-//		rootLogger.removeAllAppenders(); 
-//		SimpleLayout layout = new SimpleLayout();
-//		ConsoleAppender consoleAppender = new ConsoleAppender(layout);
-//		rootLogger.addAppender(consoleAppender);
-//		rootLogger.setLevel(Level.INFO);	
+
 
 		
 		MessageTemplate msgTemplate = MessageTemplate.and(
@@ -117,7 +114,27 @@ public class ProsumerAgent extends Agent {
 		this.addBehaviour(new SemanticContractNetResponder(this, msgTemplate));
 		
 //		this.testSelectQuery(); 
+		
+		// --- FOR-0021 -----------------------
+//		this.askForOrderBookValues(); 
 
+	}
+
+	private void askForOrderBookValues() {
+		
+		
+		String describeQuery= "DESCRIBE ?obv\n"
+				+ "WHERE {\n"
+				+ "    ?obv rdf:type obv:OrderBookValues .\n"
+				+ "    ?obv obv:tradingPeriodStartTime ?startTime .\n"
+				+ "}\n"
+				+ "ORDER BY DESC(?startTime)\n"
+				+ "LIMIT 1";
+		
+		String queryString = UtilityMethods.addPrefixesToSparqlQuery(describeQuery, knowledgeBase);
+		SendQueryBehaviour sqb = new SendQueryBehaviour(this, queryString, this.communicationPartner, this.generateArbitraryConversationId(), SemanticAgentProtocols.OWL_QUERY, this.ontologyName);
+		this.addBehaviour(sqb);
+		
 	}
 
 	private void testSelectQuery() {

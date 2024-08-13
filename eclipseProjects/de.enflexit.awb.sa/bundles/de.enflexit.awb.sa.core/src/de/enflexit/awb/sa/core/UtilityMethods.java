@@ -82,7 +82,7 @@ public class UtilityMethods{
 	 * @param model Target of the query
 	 * @return Returns a well formed solution String containing 
 	 * statements as defined in the CONSTRUCT query. These statements 
-	 * can be added to a model via a SPARQL update.
+	 * can be added to a model via a SPARQL INSERT.
 	 */
 	public static String executeConstructQuery(String constructQuery, Model model) {
 		Query query = null;
@@ -103,6 +103,71 @@ public class UtilityMethods{
 		// --- Execute CONSTRUCT query ------------------
 		Model solutionModel = ModelFactory.createDefaultModel();
 		solutionModel = qexec.execConstruct(solutionModel);
+		
+		// --- Building the solution string containing single statements from the solution model (=query answer)
+		StmtIterator stmtIterator = solutionModel.listStatements();
+		try {
+			while(stmtIterator.hasNext()) {
+		
+				Statement stmt = stmtIterator.nextStatement();
+				RDFNode s = stmt.getSubject();
+				RDFNode p = stmt.getPredicate();
+				RDFNode o = stmt.getObject();
+			
+				if(o.isLiteral()) {
+					Literal literal = (Literal) o; 
+					String value = literal.getLexicalForm(); 
+					String datatypeUri = literal.getDatatypeURI();
+					queryResult += "<" + s + "> <" + p + "> \"" + value + "\"^^<" + datatypeUri + ">.\n";
+				}
+				else if (o.isResource()) {
+					String objStr = o.toString();
+					if (objStr.startsWith("http")) {
+						queryResult += "<" + s + "> <" + p + "> <" + o + ">.\n";
+					}
+				}
+	
+			}
+		} finally {
+			qexec.close();
+		}
+		
+		return queryResult;
+	}
+	
+	/**
+	 * Method to execute SPARQL DESCRIBE queries received as a String 
+	 * on the provided model. Returns a String consisting of 
+	 * SPO (subject, predicate, object) triples with full IRIs for all 
+	 * resources and literals. 
+	 * 
+	 * @param constructQuery String containing a SPARQL DESCRIBE query
+	 * @param model Target of the query
+	 * @return Returns a well formed solution String containing 
+	 * statements as per the DESCRIBE query. These statements 
+	 * can be added to a model via a SPARQL INSERT.
+	 */
+	public static String executeDescribeQuery(String constructQuery, Model model) {
+		Query query = null;
+		String queryResult = "";		
+		
+		// --- Create a SPARQL query object from a string -------------
+		try {query = QueryFactory.create(constructQuery);
+		}
+			catch(QueryException createQueryException){
+				logger.debug("Exception thrown creating query: " +createQueryException);
+			}
+		if(query==null) {logger.debug("Query is NULL!");}
+		
+		// --- Create a query execution -----------------
+		QueryExecution qexec = QueryExecutionFactory.create(query, model);
+		if(qexec==null) {logger.debug("QueryExecution is NULL!");}
+		
+		// --- Execute CONSTRUCT query ------------------
+		Model solutionModel = ModelFactory.createDefaultModel();
+//		solutionModel = qexec.execConstruct(solutionModel);
+		solutionModel = qexec.execDescribe(solutionModel);
+
 		
 		// --- Building the solution string containing single statements from the solution model (=query answer)
 		StmtIterator stmtIterator = solutionModel.listStatements();

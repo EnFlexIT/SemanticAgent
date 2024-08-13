@@ -22,7 +22,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import jade.proto.AchieveREResponder;
 
-public class BatteryStorageAgent extends Agent {
+public class ChargingStationAgent extends Agent {
 	
 
 	// --- static variables -----------------------------
@@ -122,7 +122,7 @@ public class BatteryStorageAgent extends Agent {
 				if (reply) {
 					logger.info("Agent " + myAgent.getAID().getLocalName() + ": preparing reply...");
 					inform.setPerformative(ACLMessage.INFORM);
-					KnowledgeBase kb = ((BatteryStorageAgent) myAgent).getKnowledgeBase(); 
+					KnowledgeBase kb = ((ChargingStationAgent) myAgent).getKnowledgeBase(); 
 					String queryResult = UtilityMethods.executeConstructQuery(request.getContent(),kb.getModel());
 					inform.setContent(queryResult);
 					logger.info("Agent " + myAgent.getAID().getLocalName() + ": sending reply to " + request.getSender().getLocalName());

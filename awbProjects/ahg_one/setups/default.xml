@@ -16,8 +16,8 @@
         <agent>
             <postionNo>3</postionNo>
             <listMembership>01 AgentStartManual</listMembership>
-            <agentClassReference>ahgCaseStudyV1.BatteryStorageAgent</agentClassReference>
-            <startAsName>BSA</startAsName>
+            <agentClassReference>ahgCaseStudyV1.ChargingStationAgent</agentClassReference>
+            <startAsName>CSA</startAsName>
         </agent>
     </agentSetup>
     <setupProperties>

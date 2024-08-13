@@ -45,36 +45,27 @@ public class SemanticContractNetResponder extends ContractNetResponder {
 
 	private String createFlexOffer() {
 		
-		String query = "CONSTRUCT {\n"
-				+ "  ?fo ?p ?o .\n"
-				+ "  ?s ?p ?fo .\n"
-				+ "  ?interval ?dp ?dpv. \n"
-				+ "}\n"
-				+ "WHERE {\n"
-				+ "    {\n"
-				+ "        select ?fo where { \n"
-				+ "			?fo s4ener:relatesToRequest " + this.latestFlexRequest + " .\n"
-				+ "		} \n"
-				+ "    }\n"
-				+ "    ?fo ?p ?o .\n"
-				+ "  	OPTIONAL { ?s ?p ?fo . }\n"
-				+ "    OPTIONAL {\n"
-				+ "    	?fo s4ener:hasEffectivePeriod ?interval .\n"
-				+ "    	?interval ?dp ?dpv .\n"
-				+ "  	}\n"
-				+ "}";
+		String relatedFlexRequest = ":fr02"; 
 		
-//		String query = "CONSTRUCT {\n"
-//				+ "  ?fo ?p ?o .\n"
-//				+ "}\n"
-//				+ "WHERE {\n"
-//				+ "    {\n"
-//				+ "        select ?fo where { \n"
-//				+ "			?fo s4ener:relatesToRequest :fr02 .\n"
-//				+ "		} \n"
-//				+ "    }\n"
-//				+ "    ?fo ?p ?o .\n"
-//				+ "}";
+		String query = "CONSTRUCT {\r\n"
+				+ "  ?fo ?p ?o .\r\n"
+				+ "  ?s ?p ?fo .\r\n"
+				+ "  ?interval ?dp ?dpv. \r\n"
+				+ "}\r\n"
+				+ "WHERE {\r\n"
+				+ "    BIND(" + relatedFlexRequest + " AS ?flexRequest)\r\n"
+				+ "    {\r\n"
+				+ "        select ?fo where { \r\n"
+				+ "            ?fo s4ener:relatesToRequest ?flexRequest .\r\n"
+				+ "        } \r\n"
+				+ "    }\r\n"
+				+ "    ?fo ?p ?o .\r\n"
+				+ "    OPTIONAL { ?s ?p ?fo . }\r\n"
+				+ "    OPTIONAL {\r\n"
+				+ "        ?fo s4ener:hasEffectivePeriod ?interval .\r\n"
+				+ "        ?interval ?dp ?dpv .\r\n"
+				+ "    }\r\n"
+				+ "}";
 		
 
 

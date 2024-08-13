@@ -1,0 +1,115 @@
+@prefix :          <https://www.hsu-ifa.de/ontologies/PeakEvaluation02taskfit#> .
+@prefix ao:        <https://www.hsu-ifa.de/ontologies/PeakEvaluation01AlignmentOntology#> .
+@prefix core:      <https://saref.etsi.org/core/> .
+@prefix mod:       <https://w3id.org/mod#> .
+@prefix obv:       <http://www.hsu-ifa.de/ontologies/OrderBookValues#> .
+@prefix owl:       <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:       <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s4ener:    <https://saref.etsi.org/saref4ener/> .
+@prefix s4enerext: <https://www.hsu-ifa.de/ontologies/SAREF4ENERExtension#> .
+@prefix terms:     <http://purl.org/dc/terms/> .
+@prefix topo:      <https://www.hsu-ifa.de/ontologies/LVGridTopology#> .
+@prefix vann:      <http://purl.org/vocab/vann/> .
+@prefix xsd:       <http://www.w3.org/2001/XMLSchema#> .
+
+:fr02   rdf:type                   s4ener:FlexRequest , owl:NamedIndividual ;
+        s4ener:hasCreationTime     "2024-06-28T11:00:00Z"^^xsd:dateTimeStamp ;
+        s4ener:hasEffectivePeriod  :interval02 ;
+        s4ener:hasUsage            s4ener:Production ;
+        ao:hasLocation             :node05 .
+
+:node01  rdf:type           topo:Node , owl:NamedIndividual ;
+        topo:isComponentOf  :bb01 ;
+        topo:isRootNode     true .
+
+:ls01   rdf:type            topo:LineSegment , owl:NamedIndividual ;
+        topo:hasEndNode     :node02 ;
+        topo:hasStartNode   :node01 ;
+        topo:isComponentOf  :bb01 .
+
+:fr01   rdf:type                   s4ener:FlexRequest , owl:NamedIndividual ;
+        s4ener:hasCreationTime     "2024-06-28T10:00:00Z"^^xsd:dateTimeStamp ;
+        s4ener:hasEffectivePeriod  :interval01 ;
+        s4ener:hasUsage            s4ener:Production ;
+        ao:hasLocation             :node02 , :node01 .
+
+:dp02   rdf:type           s4ener:DataPoint , owl:NamedIndividual ;
+        core:hasTimestamp  "2024-06-28T12:15:00Z"^^xsd:dateTimeStamp ;
+        core:hasValue      20 ;
+        core:isMeasuredIn  s4enerext:Kilowatt .
+
+:obv2   rdf:type                    obv:OrderBookValues , owl:NamedIndividual ;
+        obv:averageAskPriceInEuro   "0.214"^^xsd:double ;
+        obv:averageBidPriceInEuro   "0.189"^^xsd:double ;
+        obv:counterAsks             "52"^^xsd:int ;
+        obv:counterBids             "64"^^xsd:int ;
+        obv:tradingPeriodEndTime    "2024-08-13T12:45:00"^^xsd:dateTime ;
+        obv:tradingPeriodStartTime  "2024-08-13T12:30:00"^^xsd:dateTime .
+
+:interval03  rdf:type        <http://www.w3.org/2006/time#Interval> , s4ener:Timer , owl:Thing , rdfs:Resource , owl:NamedIndividual ;
+        core:hasTimestamp    "2024-06-28T12:00:00Z"^^xsd:dateTimeStamp , "2024-06-28T12:30:00Z"^^xsd:dateTimeStamp ;
+        s4ener:hasStartTime  "2024-06-28T12:00:00Z"^^xsd:dateTimeStamp ;
+        s4ener:isFinishedAt  "2024-06-28T12:30:00Z"^^xsd:dateTimeStamp .
+
+:node05  rdf:type           topo:Node , owl:NamedIndividual ;
+        topo:isComponentOf  :bb01 ;
+        topo:isRootNode     false .
+
+<https://www.hsu-ifa.de/ontologies/PeakEvaluation02taskfit>
+        rdf:type     owl:Ontology ;
+        owl:imports  <https://raw.githubusercontent.com/toersleff/oreco/main/case_studies/PEAK_v2/AlignmentOntology_edited.xml> .
+
+:dp01   rdf:type           s4ener:DataPoint , owl:NamedIndividual ;
+        core:hasTimestamp  "2024-06-28T12:00:00Z"^^xsd:dateTimeStamp ;
+        core:hasValue      10 ;
+        core:isMeasuredIn  s4enerext:Kilowatt .
+
+:obv1   rdf:type                    obv:OrderBookValues , owl:NamedIndividual ;
+        obv:tradingPeriodEndTime    "2024-08-13T12:30:00"^^xsd:dateTime ;
+        obv:tradingPeriodStartTime  "2024-08-13T12:15:00"^^xsd:dateTime .
+
+:interval02  rdf:type        <http://www.w3.org/2006/time#Interval> , owl:NamedIndividual ;
+        s4ener:hasStartTime  "2024-06-28T12:00:00Z"^^xsd:dateTimeStamp ;
+        s4ener:isFinishedAt  "2024-06-28T13:00:00Z"^^xsd:dateTimeStamp .
+
+:node04  rdf:type           topo:Node , owl:NamedIndividual ;
+        topo:isComponentOf  :bb01 ;
+        topo:isRootNode     false .
+
+:ls04   rdf:type           topo:LineSegment , owl:NamedIndividual ;
+        topo:hasEndNode    :node05 ;
+        topo:hasStartNode  :node04 .
+
+:interval01  rdf:type        <http://www.w3.org/2006/time#Interval> , owl:NamedIndividual ;
+        s4ener:hasStartTime  "2024-06-28T11:00:00Z"^^xsd:dateTimeStamp ;
+        s4ener:isFinishedAt  "2024-06-28T12:00:00Z"^^xsd:dateTimeStamp .
+
+:fo1    rdf:type                   rdfs:Resource , s4ener:FlexOffer , owl:Thing , owl:NamedIndividual ;
+        s4ener:hasEffectivePeriod  :interval03 ;
+        s4ener:includes            :ts01 ;
+        s4ener:relatesToRequest    :fr02 ;
+        ao:hasLocation             :node05 ;
+        s4enerext:hasPriceInEuro   "2.5"^^xsd:double .
+
+:node03  rdf:type           topo:Node , owl:NamedIndividual ;
+        topo:isComponentOf  :bb01 ;
+        topo:isRootNode     false .
+
+:ls03   rdf:type            topo:LineSegment , owl:NamedIndividual ;
+        topo:hasEndNode     :node04 ;
+        topo:hasStartNode   :node03 ;
+        topo:isComponentOf  :bb01 .
+
+:bb02   rdf:type  topo:Busbar , owl:NamedIndividual .
+
+:node02  rdf:type           topo:Node , owl:NamedIndividual ;
+        topo:isComponentOf  :bb01 ;
+        topo:isRootNode     false .
+
+:ls02   rdf:type            topo:LineSegment , owl:NamedIndividual ;
+        topo:hasEndNode     :node03 ;
+        topo:hasStartNode   :node02 ;
+        topo:isComponentOf  :bb01 .
+
+:bb01   rdf:type  topo:Busbar , owl:NamedIndividual .

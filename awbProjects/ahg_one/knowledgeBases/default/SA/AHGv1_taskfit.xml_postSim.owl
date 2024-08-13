@@ -26,6 +26,9 @@
         sosa:observedProperty  :voltageAtNode01 ;
         sosa:resultTime        "2024-06-28T10:05:00"^^xsd:dateTime .
 
+:cs01   rdf:type           s4enerext:ChargingStation , owl:NamedIndividual ;
+        saref:hasProperty  :cs01soc , :cs01cap .
+
 :ls01   rdf:type            topo:LineSegment , owl:NamedIndividual ;
         topo:hasEndNode     :node02 ;
         topo:hasStartNode   :node01 ;
@@ -44,9 +47,6 @@
 :currentAtNode02  rdf:type  sosaext:Current , owl:NamedIndividual ;
         saref:isPropertyOf  :node02 .
 
-:bs01   rdf:type           s4enerext:BatteryStorage , owl:NamedIndividual ;
-        saref:hasProperty  :bs01soc , :bs01cap .
-
 :voltageObservation01
         rdf:type               sosa:Observation , owl:NamedIndividual ;
         qudt:hasUnit           unit:V ;
@@ -55,6 +55,8 @@
         sosa:resultTime        "2024-06-28T10:00:00"^^xsd:dateTime .
 
 topo:Busbar  rdf:type  owl:Class .
+
+:cs01soc  rdf:type  s4enerext:StateOfCharge , owl:NamedIndividual .
 
 :node03  rdf:type           topo:Node , owl:NamedIndividual ;
         topo:isComponentOf  :bb01 ;
@@ -69,7 +71,7 @@ topo:Busbar  rdf:type  owl:Class .
 :ms04   rdf:type                 saref:Measurement , owl:NamedIndividual ;
         saref:hasTimestamp       "2024-06-28T10:30:00Z"^^xsd:dateTimeStamp ;
         saref:isMeasuredIn       :Kilowatthours ;
-        saref:relatesToProperty  :bs01cap ;
+        saref:relatesToProperty  :cs01cap ;
         s4ener:hasValue          12.49 .
 
 :node02  rdf:type           topo:Node , owl:NamedIndividual ;
@@ -81,8 +83,6 @@ topo:Busbar  rdf:type  owl:Class .
 
 topo:LineSegment  rdf:type  owl:Class .
 
-:bs01cap  rdf:type  s4enerext:BatteryCapacity , owl:NamedIndividual .
-
 :ls04   rdf:type           topo:LineSegment , owl:NamedIndividual ;
         topo:hasEndNode    :node05 ;
         topo:hasStartNode  :node04 .
@@ -92,7 +92,7 @@ topo:Node  rdf:type  owl:Class .
 :ms03   rdf:type                 saref:Measurement , owl:NamedIndividual ;
         saref:hasTimestamp       "2024-06-28T10:00:00Z"^^xsd:dateTimeStamp ;
         saref:isMeasuredIn       :Kilowatthours ;
-        saref:relatesToProperty  :bs01cap ;
+        saref:relatesToProperty  :cs01cap ;
         s4ener:hasValue          12.5 .
 
 :bb02   rdf:type  topo:Busbar , owl:NamedIndividual .
@@ -122,7 +122,7 @@ topo:Node  rdf:type  owl:Class .
 :ms02   rdf:type                 saref:Measurement , owl:NamedIndividual ;
         saref:hasTimestamp       "2024-06-28T10:30:00Z"^^xsd:dateTimeStamp ;
         saref:isMeasuredIn       unit:PERCENT ;
-        saref:relatesToProperty  :bs01soc ;
+        saref:relatesToProperty  :cs01soc ;
         s4ener:hasValue          37.62 .
 
 :bb01   rdf:type  topo:Busbar , owl:NamedIndividual .
@@ -132,12 +132,12 @@ topo:Node  rdf:type  owl:Class .
 :currentAtNode04  rdf:type  sosaext:Current , owl:NamedIndividual ;
         saref:isPropertyOf  :node04 .
 
+:cs01cap  rdf:type  s4enerext:Capacity , owl:NamedIndividual .
+
 :ls02   rdf:type            topo:LineSegment , owl:NamedIndividual ;
         topo:hasEndNode     :node03 ;
         topo:hasStartNode   :node02 ;
         topo:isComponentOf  :bb01 .
-
-:bs01soc  rdf:type  s4enerext:StateOfCharge , owl:NamedIndividual .
 
 :currentObservation01
         rdf:type               sosa:Observation , owl:NamedIndividual ;
@@ -157,12 +157,12 @@ topo:Node  rdf:type  owl:Class .
 
 :ms01   rdf:type                 saref:Measurement , owl:NamedIndividual ;
         saref:hasTimestamp       "2024-06-28T10:00:00Z"^^xsd:dateTimeStamp ;
-        saref:relatesToProperty  :bs01soc ;
+        saref:relatesToProperty  :cs01soc ;
         s4ener:hasValue          57.41 .
 
 <https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification>
         rdf:type     owl:Ontology ;
-        owl:imports  <https://raw.githubusercontent.com/toersleff/oreco/main/case_studies/AHGv1/AHGv1_Alignment%20Ontology_edited.xml> .
+        owl:imports  <https://raw.githubusercontent.com/toersleff/oreco/main/case_studies/AHGv2/AHGv1_Alignment%20Ontology_edited.xml> .
 
 :gd02   rdf:type  topo:GridDistrict , owl:NamedIndividual .
 

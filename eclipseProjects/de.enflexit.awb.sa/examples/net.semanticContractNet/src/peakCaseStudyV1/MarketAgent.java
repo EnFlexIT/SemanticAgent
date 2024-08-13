@@ -87,10 +87,10 @@ public class MarketAgent extends Agent {
 				+ "knowledgeBases" + File.separator 
 				+ Application.getProjectFocused().getSimulationSetupCurrent() + File.separator 
 				+ this.getAID().getLocalName();
-		String ontologyFileName = "peakv1taskfit_forMarketAgent.owl";
+		String ontologyFileName = "PEAKv2_taskfit_forMarketAgent.xml";
 
 		// --- specify Base URI ------------------------
-		String baseUri = "https://www.hsu-ifa.de/ontologies/peakv1taskfit#"; 
+		String baseUri = "https://www.hsu-ifa.de/ontologies/PeakEvaluation02taskfit#"; 
 
 		// --- instantiate knowledge base with previously defined parameters -----------------
 		OntModelSpec ontModelSpec = OntModelSpec.OWL_MEM_MICRO_RULE_INF;
@@ -102,6 +102,7 @@ public class MarketAgent extends Agent {
 		knowledgeBase.getNamespaceList().addNameSpace("ao", "https://www.hsu-ifa.de/ontologies/PeakEvaluation01AlignmentOntology#");
 		knowledgeBase.getNamespaceList().addNameSpace("s4enerext", "https://www.hsu-ifa.de/ontologies/SAREF4ENERExtension#");
 		knowledgeBase.getNamespaceList().addNameSpace("topo", "https://www.hsu-ifa.de/ontologies/LVGridTopology#");
+		knowledgeBase.getNamespaceList().addNameSpace("obv", "http://www.hsu-ifa.de/ontologies/OrderBookValues#");
 		
 
 		// --- Determine communication partner ----------------
@@ -112,16 +113,13 @@ public class MarketAgent extends Agent {
 //		Set<AID> trustedAgents = Set.of(this.communicationPartner, this.communicationPartnerTwo); 
 
 		// --- add OWL message receive behavior ----------------------
-//		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase, trustedAgents);
-//		this.addBehaviour(this.owlMsgReceiveBehaviour);
+		this.owlMsgReceiveBehaviour = new OwlMessageReceiveBehaviour(this.ontologyName, this, this.knowledgeBase);
+		this.addBehaviour(this.owlMsgReceiveBehaviour);
 		
-		
-		// perform consistency check of the ontology 
-//		UtilityMethods.checkRdfStatementConsistency("", this.knowledgeBase);
 		
 		
 	    
-//	    this.testSemanticContractNet(); 
+	    this.testSemanticContractNet(); 
 
 	}
 	
@@ -137,18 +135,18 @@ public class MarketAgent extends Agent {
 				+ "}\n"
 				+ "WHERE {\n"
 				+ "    {\n"
-				+ "        SELECT ?ind ?creationTime WHERE { \n"
-				+ "			?ind s4ener:hasCreationTime ?creationTime .\n"
-				+ "		} \n"
-				+ "	ORDER BY DESC(?creationTime)\n"
-				+ "	LIMIT 1 \n"
+				+ "        select ?ind ?creationTime where { \n"
+				+ "            ?ind s4ener:hasCreationTime ?creationTime .\n"
+				+ "        } \n"
+				+ "    order by desc(?creationTime)\n"
+				+ "    limit 1 \n"
 				+ "    }\n"
 				+ "    ?ind ?p ?o .\n"
 				+ "    OPTIONAL { ?s ?p ?ind . }\n"
 				+ "    OPTIONAL {\n"
-				+ "    	?ind s4ener:hasEffectivePeriod ?interval .\n"
-				+ "    	?interval ?dp ?dpv .\n"
-				+ "  	}\n"
+				+ "        ?ind s4ener:hasEffectivePeriod ?interval .\n"
+				+ "        ?interval ?dp ?dpv .\n"
+				+ "    }\n"
 				+ "}";
 		
 		String queryPSS = UtilityMethods.addPrefixesToSparqlQuery(query, knowledgeBase);
@@ -171,7 +169,6 @@ public class MarketAgent extends Agent {
 		
 		// Add the customized ContractNetInitiator behaviour
 		addBehaviour(new SemanticContractNetInitiator(this, cfp, 1));
-		// TODO Auto-generated method stub
 		
 	}
 

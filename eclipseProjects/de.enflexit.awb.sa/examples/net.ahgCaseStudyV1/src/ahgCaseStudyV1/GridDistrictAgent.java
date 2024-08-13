@@ -123,7 +123,7 @@ public class GridDistrictAgent extends Agent {
 	    
 //	    this.instantiateGridStateEvaluationBehaviour();
 		
-//		this.addAchieveREInitiatorBehaviour(); 
+		this.addAchieveREInitiatorBehaviour(); 
 	    
 	}
 	
@@ -131,7 +131,7 @@ public class GridDistrictAgent extends Agent {
 		
 		
 		
-		String batteryStorageId = ":bs01";  
+		String chargingStationId = ":cs01";  
 		
         String constructQuery= "CONSTRUCT {\n"
         		+ "    ?capms ?p1 ?o1 .\n"
@@ -141,49 +141,43 @@ public class GridDistrictAgent extends Agent {
         		+ "    ?socprop ?p5 ?o5 .\n"
         		+ "    ?s6 ?p6 ?socprop .\n"
         		+ "} \n"
-        		+ "WHERE { \n"
-        		+ "    BIND("+batteryStorageId+" AS ?batteryStorage)\n"
-        		+ "\n"
+        		+ "where { \n"
+        		+ "    BIND("+ chargingStationId +" AS ?chargingStation)\n"
         		+ "    {\n"
-        		+ "        SELECT ?capms ?capprop WHERE { \n"
+        		+ "        select ?capms ?capprop where { \n"
         		+ "            ?capms rdf:type saref:Measurement .\n"
         		+ "            ?capms saref:hasTimestamp ?timestamp .\n"
         		+ "            ?capms saref:relatesToProperty ?capprop .\n"
-        		+ "            ?capprop rdf:type s4enerext:BatteryCapacity .\n"
-        		+ "            ?batteryStorage saref:hasProperty ?capprop .\n"
+        		+ "            ?capprop rdf:type s4enerext:Capacity .\n"
+        		+ "            ?chargingStation saref:hasProperty ?capprop .\n"
         		+ "        } \n"
-        		+ "        ORDER BY DESC(?timestamp)\n"
-        		+ "        LIMIT 1 \n"
+        		+ "        order by desc(?timestamp)\n"
+        		+ "        limit 1 \n"
         		+ "    }\n"
-        		+ "\n"
-        		+ "    ?capms ?p1 ?o1 .\n"
-        		+ "    \n"
+        		+ "    ?capms ?p1 ?o1\n"
         		+ "    OPTIONAL {\n"
         		+ "        ?capprop ?p2 ?o2 .\n"
         		+ "        ?s3 ?p3 ?capprop .\n"
         		+ "        FILTER(?p3 != saref:relatesToProperty)\n"
         		+ "    }\n"
-        		+ "\n"
         		+ "    {\n"
-        		+ "        SELECT ?socms ?socprop WHERE { \n"
+        		+ "        select ?socms ?socprop where { \n"
         		+ "            ?socms rdf:type saref:Measurement .\n"
         		+ "            ?socms saref:hasTimestamp ?timestamp .\n"
         		+ "            ?socms saref:relatesToProperty ?socprop .\n"
         		+ "            ?socprop rdf:type s4enerext:StateOfCharge .\n"
-        		+ "            ?batteryStorage saref:hasProperty ?socprop .\n"
+        		+ "            ?chargingStation saref:hasProperty ?socprop .\n"
         		+ "        } \n"
-        		+ "        ORDER BY DESC(?timestamp)\n"
-        		+ "        LIMIT 1 \n"
+        		+ "        order by desc(?timestamp)\n"
+        		+ "        limit 1 \n"
         		+ "    }\n"
-        		+ "\n"
-        		+ "    ?socms ?p4 ?o4 .\n"
-        		+ "    \n"
+        		+ "    ?socms ?p4 ?o4\n"
         		+ "    OPTIONAL {\n"
         		+ "        ?socprop ?p5 ?o5 .\n"
         		+ "        ?s6 ?p6 ?socprop .\n"
         		+ "        FILTER(?p6 != saref:relatesToProperty)\n"
         		+ "    }\n"
-        		+ "}";
+        		+ "} ";
         
         String prefixedQueryString = UtilityMethods.addPrefixesToSparqlQuery(constructQuery, knowledgeBase);
         
@@ -191,7 +185,7 @@ public class GridDistrictAgent extends Agent {
 
         
         ACLMessage query = new ACLMessage(ACLMessage.QUERY_REF);
-        query.addReceiver(new AID("BSA", AID.ISLOCALNAME));
+        query.addReceiver(new AID("CSA", AID.ISLOCALNAME));
 		query.setProtocol(FIPANames.InteractionProtocol.FIPA_QUERY);
         query.setContent(prefixedQueryString);
         query.setOntology(this.ontologyName);

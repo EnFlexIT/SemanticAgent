@@ -94,7 +94,7 @@ public class SensorAgent extends Agent {
 //		UtilityMethods.checkRdfStatementConsistency("", this.knowledgeBase);
 		
 	    
-	    this.sendLatestSensorMeausurementsToGda(); 
+//	    this.sendLatestSensorMeausurementsToGda(); 
 
 	}
 	

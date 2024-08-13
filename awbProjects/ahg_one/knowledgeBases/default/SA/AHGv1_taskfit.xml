@@ -22,7 +22,7 @@
      xmlns:sosaext="https://www.hsu-ifa.de/ontologies/SOSAext#"
      xmlns:s4enerext="https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#">
     <owl:Ontology rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification">
-        <owl:imports rdf:resource="https://raw.githubusercontent.com/toersleff/oreco/main/case_studies/AHGv1/AHGv1_Alignment%20Ontology_edited.xml"/>
+        <owl:imports rdf:resource="https://raw.githubusercontent.com/toersleff/oreco/main/case_studies/AHGv2/AHGv1_Alignment%20Ontology_edited.xml"/>
     </owl:Ontology>
 
 
@@ -90,27 +90,27 @@
     
 
 
-    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01 -->
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01 -->
 
-    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01">
-        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#BatteryStorage"/>
-        <saref:hasProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01cap"/>
-        <saref:hasProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01soc"/>
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#ChargingStation"/>
+        <saref:hasProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01cap"/>
+        <saref:hasProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01soc"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01cap -->
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01cap -->
 
-    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01cap">
-        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#BatteryCapacity"/>
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01cap">
+        <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#Capacity"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01soc -->
+    <!-- https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01soc -->
 
-    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01soc">
+    <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01soc">
         <rdf:type rdf:resource="https://www.hsu-ifa.de/ontologies/SAREF4ENERbs#StateOfCharge"/>
     </owl:NamedIndividual>
     
@@ -266,7 +266,7 @@
     <owl:NamedIndividual rdf:about="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#ms01">
         <rdf:type rdf:resource="https://saref.etsi.org/core/Measurement"/>
         <saref:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T10:00:00Z</saref:hasTimestamp>
-        <saref:relatesToProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01soc"/>
+        <saref:relatesToProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01soc"/>
         <s4ener:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">57.41</s4ener:hasValue>
     </owl:NamedIndividual>
     
@@ -278,7 +278,7 @@
         <rdf:type rdf:resource="https://saref.etsi.org/core/Measurement"/>
         <saref:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T10:30:00Z</saref:hasTimestamp>
         <saref:isMeasuredIn rdf:resource="http://qudt.org/vocab/unit/PERCENT"/>
-        <saref:relatesToProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01soc"/>
+        <saref:relatesToProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01soc"/>
         <s4ener:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">37.62</s4ener:hasValue>
     </owl:NamedIndividual>
     
@@ -290,7 +290,7 @@
         <rdf:type rdf:resource="https://saref.etsi.org/core/Measurement"/>
         <saref:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T10:00:00Z</saref:hasTimestamp>
         <saref:isMeasuredIn rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#Kilowatthours"/>
-        <saref:relatesToProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01cap"/>
+        <saref:relatesToProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01cap"/>
         <s4ener:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12.5</s4ener:hasValue>
     </owl:NamedIndividual>
     
@@ -302,7 +302,7 @@
         <rdf:type rdf:resource="https://saref.etsi.org/core/Measurement"/>
         <saref:hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTimeStamp">2024-06-28T10:30:00Z</saref:hasTimestamp>
         <saref:isMeasuredIn rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#Kilowatthours"/>
-        <saref:relatesToProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#bs01cap"/>
+        <saref:relatesToProperty rdf:resource="https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification#cs01cap"/>
         <s4ener:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12.49</s4ener:hasValue>
     </owl:NamedIndividual>
     

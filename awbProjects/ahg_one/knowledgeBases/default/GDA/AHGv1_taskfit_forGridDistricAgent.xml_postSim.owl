@@ -19,6 +19,8 @@
 @prefix vann:      <http://purl.org/vocab/vann/> .
 @prefix xsd:       <http://www.w3.org/2001/XMLSchema#> .
 
+:cs01soc  rdf:type  s4enerext:StateOfCharge , owl:NamedIndividual .
+
 :node05  rdf:type           topo:Node , owl:NamedIndividual ;
         topo:isComponentOf  :bb01 ;
         topo:isRootNode     false .
@@ -31,17 +33,10 @@
 :ms03   rdf:type                 saref:Measurement , owl:NamedIndividual ;
         saref:hasTimestamp       "2024-06-28T10:00:00Z"^^xsd:dateTimeStamp ;
         saref:isMeasuredIn       :Kilowatthours ;
-        saref:relatesToProperty  :bs01cap ;
+        saref:relatesToProperty  :cs01cap ;
         s4ener:hasValue          12.5 .
 
 :bb02   rdf:type  topo:Busbar , owl:NamedIndividual .
-
-:currentObservation02
-        rdf:type               sosa:Observation , owl:NamedIndividual ;
-        qudt:hasUnit           unit:A ;
-        sosa:hasSimpleResult   "24.6"^^xsd:double ;
-        sosa:observedProperty  :currentAtNode01 ;
-        sosa:resultTime        "2024-06-28T10:05:00"^^xsd:dateTime .
 
 :node04  rdf:type           topo:Node , owl:NamedIndividual ;
         topo:isComponentOf  :bb01 ;
@@ -60,28 +55,32 @@ topo:Busbar  rdf:type  owl:Class .
 
 :gd02   rdf:type  topo:GridDistrict , owl:NamedIndividual .
 
+:ms02   rdf:type                 saref:Measurement , owl:NamedIndividual ;
+        saref:hasTimestamp       "2024-06-28T10:30:00Z"^^xsd:dateTimeStamp ;
+        saref:isMeasuredIn       unit:PERCENT ;
+        saref:relatesToProperty  :cs01soc ;
+        s4ener:hasValue          37.62 .
+
 :bb01   rdf:type  topo:Busbar , owl:NamedIndividual .
 
 :voltageAtNode04  rdf:type  sosaext:Voltage , owl:NamedIndividual ;
         saref:isPropertyOf  :node04 .
 
+topo:Node  rdf:type  owl:Class .
+
 :node03  rdf:type           topo:Node , owl:NamedIndividual ;
         topo:isComponentOf  :bb01 ;
         topo:isRootNode     false .
 
-topo:Node  rdf:type  owl:Class .
-
 :ms01   rdf:type                 saref:Measurement , owl:NamedIndividual ;
         saref:hasTimestamp       "2024-06-28T10:00:00Z"^^xsd:dateTimeStamp ;
-        saref:relatesToProperty  :bs01soc ;
+        saref:relatesToProperty  :cs01soc ;
         s4ener:hasValue          57.41 .
 
 :ls03   rdf:type            topo:LineSegment , owl:NamedIndividual ;
         topo:hasEndNode     :node04 ;
         topo:hasStartNode   :node03 ;
         topo:isComponentOf  :bb01 .
-
-:bs01soc  rdf:type  s4enerext:StateOfCharge , owl:NamedIndividual .
 
 :currentObservation01
         rdf:type               sosa:Observation , owl:NamedIndividual ;
@@ -102,15 +101,10 @@ topo:LineSegment  rdf:type  owl:Class .
         topo:isComponentOf  :bb01 ;
         topo:isRootNode     false .
 
+:cs01cap  rdf:type  s4enerext:Capacity , owl:NamedIndividual .
+
 :voltageAtNode03  rdf:type  sosaext:Voltage , owl:NamedIndividual ;
         saref:isPropertyOf  :node03 .
-
-:voltageObservation02
-        rdf:type               sosa:Observation , owl:NamedIndividual ;
-        qudt:hasUnit           unit:V ;
-        sosa:hasSimpleResult   "321.5"^^xsd:double ;
-        sosa:observedProperty  :voltageAtNode01 ;
-        sosa:resultTime        "2024-06-28T10:05:00"^^xsd:dateTime .
 
 :ls02   rdf:type            topo:LineSegment , owl:NamedIndividual ;
         topo:hasEndNode     :node03 ;
@@ -119,6 +113,9 @@ topo:LineSegment  rdf:type  owl:Class .
 
 :currentAtNode04  rdf:type  sosaext:Current , owl:NamedIndividual ;
         saref:isPropertyOf  :node04 .
+
+:cs01   rdf:type           s4enerext:ChargingStation , owl:NamedIndividual ;
+        saref:hasProperty  :cs01soc , :cs01cap .
 
 :node01  rdf:type           topo:Node , owl:NamedIndividual ;
         topo:isComponentOf  :bb01 ;
@@ -144,15 +141,16 @@ topo:LineSegment  rdf:type  owl:Class .
 
 <https://www.hsu-ifa.de/ontologies/casestudies/AHGv1/taskfitverification>
         rdf:type     owl:Ontology ;
-        owl:imports  <https://raw.githubusercontent.com/toersleff/oreco/main/case_studies/AHGv1/AHGv1_Alignment%20Ontology_edited.xml> .
+        owl:imports  <https://raw.githubusercontent.com/toersleff/oreco/main/case_studies/AHGv2/AHGv1_Alignment%20Ontology_edited.xml> .
 
 :voltageAtNode01  rdf:type  sosaext:Voltage , owl:NamedIndividual ;
         saref:isPropertyOf  :node01 .
 
-:bs01   rdf:type           s4enerext:BatteryStorage , owl:NamedIndividual ;
-        saref:hasProperty  :bs01soc , :bs01cap .
-
 :currentAtNode02  rdf:type  sosaext:Current , owl:NamedIndividual ;
         saref:isPropertyOf  :node02 .
 
-:bs01cap  rdf:type  s4enerext:BatteryCapacity , owl:NamedIndividual .
+:ms04   rdf:type                 saref:Measurement , owl:NamedIndividual ;
+        saref:hasTimestamp       "2024-06-28T10:30:00Z"^^xsd:dateTimeStamp ;
+        saref:isMeasuredIn       :Kilowatthours ;
+        saref:relatesToProperty  :cs01cap ;
+        s4ener:hasValue          12.49 .
